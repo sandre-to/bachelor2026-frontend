@@ -1,0 +1,155 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci0qy2icdgh4o"]
+
+[ext_resource type="Script" uid="uid://dw5q6yd5vy3jp" path="res://scenes/tools/portfinder/portfinder_scene.gd" id="1_27as4"]
+[ext_resource type="Shader" uid="uid://cc6cy5181oha2" path="res://scenes/tools/portfinder/portfinder_scene.gdshader" id="2_1gmsj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iergq"]
+shader = ExtResource("2_1gmsj")
+shader_parameter/color = Color(0, 0.5, 1, 1)
+shader_parameter/frequency = 1.0
+shader_parameter/compress = 1.0
+shader_parameter/add_light = 0.1999999955296
+shader_parameter/scale = 1.0
+shader_parameter/speed = 0.07997764621188708
+shader_parameter/x_angle = 0.9199998918914298
+shader_parameter/y_angle = 1.38999988138599
+shader_parameter/base_alpha = 0.9399999342851196
+shader_parameter/refraction_ratio = 10.0
+shader_parameter/clear = 0.0
+shader_parameter/surf_sinpowder = 8.0
+shader_parameter/surf_speed = -2.91000015847568
+shader_parameter/surf_angle = -0.39000007882745
+shader_parameter/surf_magnitude = 0.0
+shader_parameter/s11 = 2.221
+shader_parameter/sinpowder = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_27as4"]
+font_size = 48
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1gmsj"]
+font_size = 30
+outline_size = 10
+outline_color = Color(0.15487596, 0.154876, 0.15487596, 1)
+
+[node name="PortfinderScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_27as4")
+metadata/_edit_vertical_guides_ = [1309.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_iergq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="InfoButton" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "HELP!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 35
+
+[node name="ToolLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "PORTFINDER"
+label_settings = SubResource("LabelSettings_27as4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IPLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "ENTER IP"
+label_settings = SubResource("LabelSettings_1gmsj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 80
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+text = "SIMPLE 
+SCAN"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+text = "PORT SELECTION"
+autowrap_mode = 3
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+text = "ALL 
+PORTS"
+autowrap_mode = 3
+
+[node name="OutputPanel" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(280, 140)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/OutputPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/OutputPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="OutputTitle" type="Label" parent="MarginContainer/VBoxContainer/OutputPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "OUTPUT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/OutputPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
