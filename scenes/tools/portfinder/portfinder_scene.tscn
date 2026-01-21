@@ -5,7 +5,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iergq"]
 shader = ExtResource("2_1gmsj")
-shader_parameter/color = Color(0, 0.5, 1, 1)
+shader_parameter/color = Color(1, 0.4363543, 0.8013625, 1)
 shader_parameter/frequency = 1.0
 shader_parameter/compress = 1.0
 shader_parameter/add_light = 0.1999999955296
