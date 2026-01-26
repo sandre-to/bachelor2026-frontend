@@ -9,6 +9,7 @@ class_name LoginScreen extends Control
 @onready var user_label: Label = $MarginContainer/VBoxContainer/UserLabel
 @onready var http_request: HTTPRequest = $HTTPRequest
 
+# Registrer eller login panel
 @onready var log_or_reg_panel: PanelContainer = $MarginContainer/VBoxContainer/ChooseLoginOrRegister
 @onready var login_panel: PanelContainer = $MarginContainer/VBoxContainer/LoginPanel
 @onready var register_panel: PanelContainer = $MarginContainer/VBoxContainer/RegisterPanel

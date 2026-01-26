@@ -1577,6 +1577,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -1611,11 +1612,13 @@ text = "USER"
 horizontal_alignment = 1
 
 [node name="LoginPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_b0h4y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LoginPanel"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="UsernameEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/LoginPanel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -1638,11 +1641,13 @@ size_flags_horizontal = 4
 text = "CONFIRM"
 
 [node name="RegisterPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_b0h4y")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RegisterPanel"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="UsernameEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -1663,6 +1668,14 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "Password"
+caret_blink = true
+secret = true
+
+[node name="PasswordEnter2" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "Confirm Password"
 caret_blink = true
 secret = true
 
