@@ -54,6 +54,10 @@ func _on_confirm_register_pressed() -> void:
 	var password: String = register_panel.get_node("PasswordEnter").text
 	var passwordConfirm: String = register_panel.get_node("PasswordEnter2").text
 	
+	if password != passwordConfirm:
+		push_error("Password not matching")
+		return
+	
 	#Lagrer informasjonen til en JSON-fil
 	var user_data := {
 		"username": username,

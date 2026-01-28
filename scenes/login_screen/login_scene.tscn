@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dqw4wcwwwwnrv"]
+[gd_scene format=4 uid="uid://dqw4wcwwwwnrv"]
 
 [ext_resource type="Script" uid="uid://bybd87hxcqvev" path="res://scenes/login_screen/login_scene.gd" id="1_b0h4y"]
 [ext_resource type="Texture2D" uid="uid://b5id45wykg3m5" path="res://assets/bunny.webp" id="1_sgss4"]
@@ -101,6 +101,15 @@ font_weight = 600
 subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 18.0
 cache/0/16/0/descent = 5.0
 cache/0/16/0/underline_position = 1.609375
@@ -1541,7 +1550,7 @@ corner_radius_bottom_left = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f7cn"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="LoginScene" type="Control"]
+[node name="LoginScene" type="Control" unique_id=1893889522]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1551,9 +1560,9 @@ grow_vertical = 2
 theme = SubResource("Theme_udver")
 script = ExtResource("1_b0h4y")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1494165139]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=763155201]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1561,7 +1570,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1574305816]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1573,19 +1582,19 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=139859388]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 7
 
-[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer" unique_id=1263701467]
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u8cht")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel" unique_id=1095463993]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1597,30 +1606,29 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Panel/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Panel/MarginContainer" unique_id=1732360095]
 layout_mode = 2
 texture = ExtResource("1_sgss4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="UserLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="UserLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1621174714]
 layout_mode = 2
 text = "USER"
 horizontal_alignment = 1
 
-[node name="LoginPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-visible = false
+[node name="LoginPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=733172139]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UsernameEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/LoginPanel"]
+[node name="UsernameEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/LoginPanel" unique_id=631751783]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "User"
 caret_blink = true
 
-[node name="PasswordEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/LoginPanel"]
+[node name="PasswordEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/LoginPanel" unique_id=1396418972]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1628,30 +1636,30 @@ placeholder_text = "Password"
 caret_blink = true
 secret = true
 
-[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/LoginPanel"]
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/LoginPanel" unique_id=1859659473]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "CONFIRM"
 
-[node name="RegisterPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="RegisterPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=330149388]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="UsernameEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel"]
+[node name="UsernameEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel" unique_id=328725567]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "User"
 caret_blink = true
 
-[node name="EmailEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel"]
+[node name="EmailEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel" unique_id=1246828904]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "Email"
 caret_blink = true
 
-[node name="PasswordEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel"]
+[node name="PasswordEnter" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel" unique_id=1994679865]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1659,7 +1667,7 @@ placeholder_text = "Password"
 caret_blink = true
 secret = true
 
-[node name="PasswordEnter2" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel"]
+[node name="PasswordEnter2" type="LineEdit" parent="MarginContainer/VBoxContainer/RegisterPanel" unique_id=1359936969]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1667,38 +1675,47 @@ placeholder_text = "Confirm Password"
 caret_blink = true
 secret = true
 
-[node name="ConfirmRegister" type="Button" parent="MarginContainer/VBoxContainer/RegisterPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/RegisterPanel" unique_id=2101344217]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/RegisterPanel/HBoxContainer" unique_id=673229864]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "RETURN"
+
+[node name="ConfirmRegister" type="Button" parent="MarginContainer/VBoxContainer/RegisterPanel/HBoxContainer" unique_id=2088979768]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "CONFIRM"
 
-[node name="-------------" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="-------------" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=986266644]
 layout_mode = 2
 
-[node name="--------------" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="--------------" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=486168343]
 layout_mode = 2
 
-[node name="ChooseLoginOrRegister" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ChooseLoginOrRegister" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1577965378]
 visible = false
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_2f7cn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ChooseLoginOrRegister"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ChooseLoginOrRegister" unique_id=980278777]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ChooseLoginButton" type="Button" parent="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer"]
+[node name="ChooseLoginButton" type="Button" parent="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer" unique_id=885751009]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Login"
 
-[node name="RegisterUserButton" type="Button" parent="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer"]
+[node name="RegisterUserButton" type="Button" parent="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer" unique_id=144971560]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Register"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/RegisterPanel/ConfirmRegister" to="." method="_on_confirm_register_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RegisterPanel/HBoxContainer/ConfirmRegister" to="." method="_on_confirm_register_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer/ChooseLoginButton" to="." method="_on_choose_login_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer/RegisterUserButton" to="." method="_on_register_user_button_pressed"]
