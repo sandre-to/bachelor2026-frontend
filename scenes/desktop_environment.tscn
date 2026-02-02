@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxrsa5in13360"]
+[gd_scene format=3 uid="uid://bxrsa5in13360"]
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://assets/desktop_theme.tres" id="1_enld1"]
 
@@ -18,7 +18,7 @@ border_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_enld1"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="DesktopEnvironment" type="Control"]
+[node name="DesktopEnvironment" type="Control" unique_id=234728653]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_enld1")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1754402672]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +35,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1965554476]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,11 +47,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=1976751569]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_71yap")
 
-[node name="Tools" type="HBoxContainer" parent="MarginContainer/Panel"]
+[node name="Tools" type="HBoxContainer" parent="MarginContainer/Panel" unique_id=652398855]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -66,25 +66,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="Button" type="Button" parent="MarginContainer/Panel/Tools"]
+[node name="Button" type="Button" parent="MarginContainer/Panel/Tools" unique_id=252030503]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Button2" type="Button" parent="MarginContainer/Panel/Tools"]
+[node name="Button2" type="Button" parent="MarginContainer/Panel/Tools" unique_id=1631248600]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Button3" type="Button" parent="MarginContainer/Panel/Tools"]
+[node name="Button3" type="Button" parent="MarginContainer/Panel/Tools" unique_id=1994276370]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Navigator" type="HBoxContainer" parent="MarginContainer/Panel"]
+[node name="Navigator" type="HBoxContainer" parent="MarginContainer/Panel" unique_id=1917906391]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,19 +99,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="Button" type="Button" parent="MarginContainer/Panel/Navigator"]
+[node name="Button" type="Button" parent="MarginContainer/Panel/Navigator" unique_id=465329096]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Button2" type="Button" parent="MarginContainer/Panel/Navigator"]
+[node name="Button2" type="Button" parent="MarginContainer/Panel/Navigator" unique_id=184310365]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="." unique_id=286517032]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -127,7 +127,7 @@ grow_vertical = 0
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_enld1")
 
-[node name="Label" type="Label" parent="Panel2"]
+[node name="Label" type="Label" parent="Panel2" unique_id=1479065530]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
