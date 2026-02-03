@@ -14,7 +14,7 @@ func send_networkpacket() -> HttpResponse:
 	var datapacket := NetworkPacket.new(to_ip, port, from_ip, content)
 	
 	# Mottakeren
-	var receiver: Server = _get_entity(to_ip)
+	var receiver: Server = _get_server(to_ip)
 	
 	if receiver == null or receiver.is_firewall_blocked(datapacket):
 		return HttpResponse.new(
@@ -29,11 +29,11 @@ func send_networkpacket() -> HttpResponse:
 			)
 	
 	# Pakken er sendt til en gyldig mottaker, send til prosess
-	return receiver.process(datapacket)
+	return receiver.call_process(datapacket)
 
 
 # Henter nettverksobjektet, returnerer null hvis den ikke eksisterer
-func _get_entity(ip: String) -> Server:
+func _get_server(ip: String) -> Server:
 	for server in servers:
 		if server.ip_addr == ip:
 			return server

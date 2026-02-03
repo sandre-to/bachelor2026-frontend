@@ -27,9 +27,9 @@ func is_firewall_blocked(packet: NetworkPacket) -> bool:
 func is_port_open(packet: NetworkPacket) -> bool:
 	return network_processes.has(packet.to_port)
 
-func call_process(port: int) -> HttpResponse:
+func call_process(datapacket: NetworkPacket) -> HttpResponse:
 	# Kjør prosessen
-	var response: HttpResponse = network_processes.get(port).call()
+	var response: HttpResponse = network_processes.get(datapacket.to_port).call()
 	
 	# Hvis for en eller en annen grunn prosessen ikke returnerer en HTTP-respons
 	return response if response != null else HttpResponse.new(
