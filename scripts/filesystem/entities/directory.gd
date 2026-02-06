@@ -73,10 +73,10 @@ func entity_exists(entity_name: String) -> bool:
 #					- En entitet med samme navn eksisterer (EEXIST).
 func insert_into(entity: FileEntity) -> bool:
 	if not write:
-		parent_fs.errno = FileSystem.FileError.EACCES
+		parent_fs.set_error(FileSystem.FileError.EACCES)
 		return false
 	elif entity_exists(entity.name):
-		parent_fs.errno = FileSystem.FileError.EEXIST
+		parent_fs.set_error(FileSystem.FileError.EEXIST)
 		return false
 	else:
 		_content.append(entity)

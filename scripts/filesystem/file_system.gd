@@ -25,12 +25,12 @@ func _init() -> void:
 #						- get_entity() feiler (ENOENT, EACCES)
 func get_file_entity(path: String) -> FileEntity:
 	if not _path_is_valid(path):
-		errno = FileError.EINPTH
+		set_error(FileError.EINPTH)
 		return null
 
 	var file_entity: FileEntity = root_directory.get_entity(path)
 	if not file_entity.read:
-		errno = FileError.EACCES
+		set_error(FileError.EACCES)
 		return null
 	
 	return file_entity
