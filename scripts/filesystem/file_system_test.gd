@@ -14,4 +14,7 @@ func _ready() -> void:
 	
 	var fs: FileSystem = FileSystem.new()
 
-	print("node".contains("nd"))
+	fs.mkdir("/home")
+	fs.mkdir("/home/bigsoda")
+	fs.mkdir("/home/bigsoda/dir_with.extention")
+	print(fs.exists("/home/bigsoda/dir_with.extention"))

@@ -11,7 +11,7 @@ class_name FileSystem
 var root_directory: Directory 
 
 # Filsystemets Errno: Holder på, og klassifiserer feilmeldinger
-enum FileError {OK, ENOENT, ENOTDIR, EACCES, EEXIST}
+enum FileError {OK, ENOENT, ENOTDIR, EACCES, EEXIST, EINPTH}
 var errno: FileError = FileError.OK
 
 
@@ -19,19 +19,36 @@ func _init() -> void:
 	root_directory = Directory.new("/", null, self)
 
 
-func get_file_entity(path: String, current_path: String) -> FileEntity:	
-	var abs_path: String = _make_path_absoulute(path, current_path)
-	if abs_path == "INVALID":
-		errno = FileError.ENOENT
+# Get_file_entity():	Henter en file-entity hvor som helst i filsystemet
+func get_file_entity(path: String) -> FileEntity:
+	if _path_is_valid(path):
+		errno = FileError.EINPTH
 		return null
 
-	var path_depth: int = abs_path.get_slice_count("/")
-	var file_entity: FileEntity = root_directory.get_entity(abs_path, 1, path_depth)
+	var path_depth: int = path.get_slice_count("/")
+	var file_entity: FileEntity = root_directory.get_entity(path, 1, path_depth)
 	if not file_entity.read:
 		errno = FileError.EACCES
 		return null
 	
 	return file_entity
+
+
+# Mkdir():	Lager en katalog på en gitt filsti
+func mkdir(path: String) -> bool:
+	if not _path_is_valid(path):
+		set_error(FileError.EINPTH)
+		return false
+	
+	var dir_name: String = path.get_file()	# get_file() fordi navnet kan ha en extention
+	var parent_dir_path: String = path.get_base_dir()
+	
+	var parent_dir: FileEntity = root_directory.get_entity(parent_dir_path, 1, parent_dir_path.get_slice_count("/"))
+	if not is_instance_of(parent_dir, Directory):
+		set_error(FileError.ENOTDIR)
+		return false
+	
+	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir, self))
 
 
 # Exists():	Returnerer en bool basert på om et element eksisterer eller ikke
@@ -68,9 +85,10 @@ func _path_is_valid(path: String) -> bool:
 		return false
 
 	# Håndter edgecaser
+	if path.begins_with("res://") || path.begins_with("user://") || path.begins_with("C:\\"):
+		return false
 	
-	
-	return false
+	return true
 	
 	
 	
