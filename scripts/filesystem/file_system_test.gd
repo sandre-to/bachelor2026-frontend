@@ -14,12 +14,4 @@ func _ready() -> void:
 	
 	var fs: FileSystem = FileSystem.new()
 
-	fs.mkdir("/home", "/")
-	fs.mkdir("/home/bigsoda", "/")
-	fs.mkdir("/home/forsen", "/")
-	
-	fs.touch("/home/bigsoda/ballz", "/")
-	(fs.get_file_entity("/home/bigsoda/ballz", "/") as File).text_content = "jump in MegaLUL"
-	fs.cp("/home/bigsoda/ballz", "/home/forsen/file", "/")
-	print(fs.exists("/home/bigsoda/ballz"))
-	print(fs.exists("/home/forsen/file"))
+	print("node".contains("nd"))
