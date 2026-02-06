@@ -9,8 +9,17 @@ func _init(_name: String, _parent: Directory, _parent_fs: FileSystem) -> void:
 	self.parent_dir = _parent
 
 
+# Get_entity():	Returnerer en entity i filsystemet, starter fra denne katalogen
+# Problem:		Mangler filstivalidering; sirkulær avhengighet dersom man bruker
+#				FileSystem.path_is_valid()
+# Notat:		Filstier her kan jo egt være relative, kanskje man ikke trenger
+#				den samme valideringen?
+func get_entity(path: String) -> FileEntity:
+	return self._recr_get_entity(path, 1, path.get_slice_count("/"))
+
+
 # Returnerer en entitet rekrusivt
-func get_entity(path: String, current_depth: int, path_depth: int) -> FileEntity:
+func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> FileEntity:
 	# Er vi i bunnen av stien?
 	if current_depth == path_depth:
 		return self
@@ -20,16 +29,16 @@ func get_entity(path: String, current_depth: int, path_depth: int) -> FileEntity
 	
 	# Hvis vi hopper tilbake
 	if entity_name == ".." && parent_dir != null:
-		return parent_dir.get_entity(path, current_depth, path_depth)
+		return parent_dir._recr_get_entity(path, current_depth, path_depth)
 		
 	# Hvis vi er i riktig katalog
 	elif entity_name == "." || entity_name == "":
-		return self.get_entity(path, current_depth, path_depth)
+		return self._recr_get_entity(path, current_depth, path_depth)
 
 	# Hvis et annet navn
 	for entity in _content:
 		if entity.name == entity_name && entity.read:
-			return entity.get_entity(path, current_depth, path_depth)
+			return entity._recr_get_entity(path, current_depth, path_depth)
 		if entity.name == entity_name && not entity.read:
 			parent_fs.set_error(FileSystem.FileError.EACCES)
 			return null

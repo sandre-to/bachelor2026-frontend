@@ -11,7 +11,7 @@ func _init(_name: String, _parent_system: FileSystem) -> void:
 	super(_name, _parent_system)
 
 
-func get_entity(path: String, current_depth: int, path_depth: int) -> FileEntity:
+func get_entity(path: String) -> FileEntity:
 	return self
 
 

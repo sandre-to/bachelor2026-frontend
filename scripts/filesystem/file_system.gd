@@ -25,12 +25,12 @@ func get_file_entity(path: String) -> FileEntity:
 		errno = FileError.EINPTH
 		return null
 
-	var path_depth: int = path.get_slice_count("/")
-	var file_entity: FileEntity = root_directory.get_entity(path, 1, path_depth)
+	var file_entity: FileEntity = root_directory.get_entity(path)
 	if not file_entity.read:
 		errno = FileError.EACCES
 		return null
 	
+	print(file_entity)
 	return file_entity
 
 
@@ -43,7 +43,7 @@ func mkdir(path: String) -> bool:
 	var dir_name: String = path.get_file()	# get_file() fordi navnet kan ha en extention
 	var parent_dir_path: String = path.get_base_dir()
 	
-	var parent_dir: FileEntity = root_directory.get_entity(parent_dir_path, 1, parent_dir_path.get_slice_count("/"))
+	var parent_dir: FileEntity = root_directory.get_entity(parent_dir_path)
 	if not is_instance_of(parent_dir, Directory):
 		set_error(FileError.ENOTDIR)
 		return false
@@ -53,7 +53,7 @@ func mkdir(path: String) -> bool:
 
 # Exists():	Returnerer en bool basert på om et element eksisterer eller ikke
 func exists(path: String) -> bool:
-	return root_directory.get_entity(path, 1, path.get_slice_count("/")) != null
+	return root_directory.get_entity(path) != null
 
 
 # Check_error():	Returnerer innholdet i errno og resetter det
@@ -68,16 +68,6 @@ func set_error(err_code: FileError) -> void:
 	errno = err_code
 	print("Error: ", errno)
 	
-
-# Skal gjøre en filsti absolutt
-func _make_path_absoulute(path: String, current_path: String) -> String:
-	if path.is_absolute_path() && not path.contains(" "):
-		return path
-	elif path.is_relative_path():
-		return current_path + path
-	else:
-		return "INVALID"
-
 
 # Sjekker om en gitt filsti er gyldig
 func _path_is_valid(path: String) -> bool:

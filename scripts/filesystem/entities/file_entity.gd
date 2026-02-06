@@ -17,4 +17,4 @@ func _init(_name: String, _parent_fs: FileSystem) -> void:
 	self.parent_fs = _parent_fs
 
 @abstract
-func get_entity(path: String, current_depth: int, path_depth: int) -> FileEntity
+func get_entity(path: String) -> FileEntity
