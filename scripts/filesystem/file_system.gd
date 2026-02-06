@@ -4,14 +4,14 @@ class_name FileSystem
 # Dette er filen som håndterer spillerens filsystem
 
 # Regler for bruken av filsystemet:
-# 	- Alle "current_path"-felt skal være absolutt til der spilleren står.
-#	  De skal også alltid slutte med "/". Eksempel: "/A/B/C/", "/etc/", "/lol/lil/lel/"
+#	- Alle metoder i FileSystem-objekter krever absolutte filstier
+#	- På directory-objekt kan man bruke relative filstier (Fra den katalogen)
 
 # Rotkatalogen på topp av strukturen
 var root_directory: Directory 
 
 # Filsystemets Errno: Holder på, og klassifiserer feilmeldinger
-enum FileError {OK, ENOENT, ENOTDIR, EACCES, EEXIST, EINPTH}
+enum FileError {OK, ENOENT, ENODIR, EACCES, EEXIST, EINPTH}
 var errno: FileError = FileError.OK
 
 
@@ -19,9 +19,12 @@ func _init() -> void:
 	root_directory = Directory.new("/", null, self)
 
 
-# Get_file_entity():	Henter en file-entity hvor som helst i filsystemet
+# Get_file_entity():	Henter en file-entity hvor som helst i filsystemet.
+#						Kan feile dersom:
+#						- Filstien ikke er gyldig formatert (EINPTH).
+#						- get_entity() feiler (ENOENT, EACCES)
 func get_file_entity(path: String) -> FileEntity:
-	if _path_is_valid(path):
+	if not _path_is_valid(path):
 		errno = FileError.EINPTH
 		return null
 
@@ -30,25 +33,50 @@ func get_file_entity(path: String) -> FileEntity:
 		errno = FileError.EACCES
 		return null
 	
-	print(file_entity)
 	return file_entity
 
 
 # Mkdir():	Lager en katalog på en gitt filsti
+#			Kan feile dersom:
+#			- Filstien ikke er gyldig formatert (EINPTH).
+#			- Entiteten get_entity() returnerte var en fil (ENOTDIR).
+#			- get_entity() feiler (ENOENT, EACCES)
 func mkdir(path: String) -> bool:
 	if not _path_is_valid(path):
 		set_error(FileError.EINPTH)
 		return false
 	
 	var dir_name: String = path.get_file()	# get_file() fordi navnet kan ha en extention
-	var parent_dir_path: String = path.get_base_dir()
 	
-	var parent_dir: FileEntity = root_directory.get_entity(parent_dir_path)
+	var parent_dir: FileEntity = root_directory.get_entity(path.get_base_dir())
+	
+	if parent_dir == null:
+		return false
 	if not is_instance_of(parent_dir, Directory):
-		set_error(FileError.ENOTDIR)
+		set_error(FileError.ENODIR)
 		return false
 	
 	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir, self))
+
+
+# Touch():	Lager en tom fil på en gitt filsti. Kan feile dersom:
+#			- Filstien ikke er gyldig formatert (EINPTH).
+#			- Entiteten get_entity() returnerte var en katalog (ENOTDIR).
+#			- get_entity() feiler (ENOENT, EACCES)
+func touch(path: String) -> bool:
+	if not _path_is_valid(path):
+		set_error(FileError.EINPTH)
+		return false
+	
+	var file_name: String = path.get_file()
+	var parent_dir: FileEntity = root_directory.get_entity(path.get_base_dir())
+	if parent_dir == null:
+		return false
+	elif not is_instance_of(parent_dir, Directory):
+		set_error(FileError.ENOENT)
+		return false
+	
+	return (parent_dir as Directory).insert_into(File.new(file_name, self))
 
 
 # Exists():	Returnerer en bool basert på om et element eksisterer eller ikke
@@ -66,10 +94,10 @@ func check_error() -> FileError:
 # Set_error():		Setter innholdet i errno
 func set_error(err_code: FileError) -> void:
 	errno = err_code
-	print("Error: ", errno)
+	print("Error: ", errno)		# Husk å fjern
 	
 
-# Sjekker om en gitt filsti er gyldig
+# _path_is_valid():	Sjekker om en gitt filsti er gyldig formatert.
 func _path_is_valid(path: String) -> bool:
 	if not path.is_absolute_path():
 		return false

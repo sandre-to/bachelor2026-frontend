@@ -16,11 +16,15 @@ func _ready() -> void:
 
 	fs.mkdir("/home")
 	fs.mkdir("/home/bigsoda")
-	fs.mkdir("/home/bigsoda/dir_with.extention")
+	fs.mkdir("/home/bigsoda/lol")
+	fs.mkdir("/home/bigsoda/lol/omg")
 	
 	var dir: Directory = fs.get_file_entity("/home/bigsoda")
+	print(dir)
 	
+	var sub_dir: Directory = dir.get_entity("")
+	print(sub_dir)
 	
-	#dir.insert_into(File.new("file", fs))
+	fs.touch("/home/bigsoda/file.txt")
+	print(sub_dir)
 	
-	print(fs.exists("/home/bigsoda/dir_with.extention/file"))

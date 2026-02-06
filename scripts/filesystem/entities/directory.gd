@@ -9,16 +9,25 @@ func _init(_name: String, _parent: Directory, _parent_fs: FileSystem) -> void:
 	self.parent_dir = _parent
 
 
-# Get_entity():	Returnerer en entity i filsystemet, starter fra denne katalogen
-# Problem:		Mangler filstivalidering; sirkulær avhengighet dersom man bruker
-#				FileSystem.path_is_valid()
-# Notat:		Filstier her kan jo egt være relative, kanskje man ikke trenger
-#				den samme valideringen?
+# Get_entity():	Returnerer en entity i filsystemet, starter fra denne katalogen.
+#				Man kan bruke en relativ filsti fra denne katalogen. Kan feile dersom:
+#						- Man prøver å hoppe en katalog tilbake fra root-katalogen (ENOENT).
+#						- Om man ikke har lesetilgang (EACCES).
+#						- Om entiteten ikke eksisterer (ENOENT).
+# Problem:		Hvis man bruker en relativ filsti, finner man ikke entiteten,
+#				dette fikses hvis man legger til "/" forran.
+# Løsning:		Sjekk om stien begynner med "/". Føles ut som en dårlig løsning
+#				men herregud. Jeg lar det være fram til vi lager filexplorer ass.
 func get_entity(path: String) -> FileEntity:
-	return self._recr_get_entity(path, 1, path.get_slice_count("/"))
+	if path.begins_with("/"):
+		return self._recr_get_entity(path, 1, path.get_slice_count("/"))
+	return self._recr_get_entity(path, 0, path.get_slice_count("/"))
 
 
-# Returnerer en entitet rekrusivt
+# _recr_get_entity(): 	Returnerer en entitet rekrusivt. Returnerer null dersom:
+#						- Man prøver å hoppe en katalog tilbake fra root-katalogen (ENOENT).
+#						- Om man ikke har lesetilgang (EACCES).
+#						- Om entiteten ikke eksisterer (ENOENT).
 func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> FileEntity:
 	# Er vi i bunnen av stien?
 	if current_depth == path_depth:
@@ -38,7 +47,10 @@ func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> File
 	# Hvis et annet navn
 	for entity in _content:
 		if entity.name == entity_name && entity.read:
-			return entity._recr_get_entity(path, current_depth, path_depth)
+			if is_instance_of(entity, Directory):									#	Hack
+				return entity._recr_get_entity(path, current_depth, path_depth)		#	Hack
+			else:																	#	Hack
+				return entity														#	Hack :(
 		if entity.name == entity_name && not entity.read:
 			parent_fs.set_error(FileSystem.FileError.EACCES)
 			return null
@@ -47,7 +59,7 @@ func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> File
 	return null
 
 
-# Returnerer en bool basert på resultatet av funksjonen
+# Entity_exists():	Finner ut om en entitet eksisterer i katalogen
 func entity_exists(entity_name: String) -> bool:
 	for entity in _content:
 		if entity.name == entity_name:
@@ -55,7 +67,10 @@ func entity_exists(entity_name: String) -> bool:
 	return false
 
 
-# Returnerer en bool basert på resultatet av funksjonen
+# Insert_into():	Legger til en entitet i katalogen. Returenere en bool
+#					basert på om det fungerte. Kan feile dersom:
+#					- Man har ikke skriverettigheter (EACCES).
+#					- En entitet med samme navn eksisterer (EEXIST).
 func insert_into(entity: FileEntity) -> bool:
 	if not write:
 		parent_fs.errno = FileSystem.FileError.EACCES
@@ -69,11 +84,10 @@ func insert_into(entity: FileEntity) -> bool:
 
 
 func _to_string() -> String:
-	return name
-	#var stringified_content: String = ""
-	#for entity in _content:
-		#stringified_content += entity.name + " "
-	#return stringified_content
+	var stringified_content: String = ""
+	for entity in _content:
+		stringified_content += entity.name + " "
+	return stringified_content
 	
 	
 	
