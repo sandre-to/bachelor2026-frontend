@@ -7,6 +7,7 @@ class_name LetterBox extends Panel
 
 var focused: bool = false
 
+# Sub letter er den krypterte bokstaven
 func set_sub_letter(input_letter: String) -> void:
 	sub_letter.text = input_letter.to_upper()
 

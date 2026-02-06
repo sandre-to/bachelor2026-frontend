@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iplmf")
-test_string = "I am arm."
+test_string = "Am I him?"
 letter_box_scene = ExtResource("2_ak0rv")
 
 [node name="Panel" type="Panel" parent="." unique_id=1655366806]
@@ -44,7 +44,8 @@ theme_override_constants/margin_bottom = 40
 [node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer" unique_id=1924734759]
 unique_name_in_owner = true
 layout_mode = 2
-columns = 10
+theme_override_constants/h_separation = 8
+columns = 12
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer" unique_id=479246492]
 unique_name_in_owner = true

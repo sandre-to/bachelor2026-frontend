@@ -1,10 +1,20 @@
 class_name CryptogramPuzzle extends Control
 
-#Engelsk alfabetet
+# Engelsk alfabet
 const ALPHABET_LETTERS: String = "abcdefghijklmnopqrstuvwxyz"
 
-@export var test_string: String = "is u ded"
+# Tenkte å lage ulike tekstfiler etter hvilke nivå spilleren er på.
+# Alle setninger må være på engelsk.
+
+# Nive 1 (skal være veldig lett).
+# Les en teksfil som består av setninger med tre til fire ord.
+# Hvert ord skal ikke inneholde mer enn fire bokstaver.
+# Eksempel på setning: "Is it safe"?
+
+# Dette er kun en test string som sendes inn i "generate_words" funksjonen.
+@export var test_string: String = ""
 @export var letter_box_scene: PackedScene
+
 @onready var h_box_container: HBoxContainer = %HBoxContainer
 @onready var grid_container: GridContainer = %GridContainer
 
@@ -21,7 +31,7 @@ func _substitute_letter() -> void:
 	for i in ALPHABET_LETTERS.length():
 		mapped_letters[ALPHABET_LETTERS[i]] = new_alphabet[i]
 	
-	#Print ut hver key: value i Dictionary
+	#Printer ut key: value for debugging
 	for i in mapped_letters.size():
 		print("Keys: %s Value: %s" % [mapped_letters.keys()[i], mapped_letters.values()[i]])
 
@@ -55,11 +65,13 @@ func generate_words(words: String) -> void:
 		var letter_box: LetterBox = letter_box_scene.instantiate()
 		grid_container.add_child(letter_box)
 		
+		# Mellomrom i setningen.
 		if letter == " ":
 			letter_box.button.disabled = true
 			letter_box.button.modulate = 0
 			continue
 		
+		# Sjekker om bokstavene som er sendt finnes i alfabetet
 		if ALPHABET_LETTERS.contains(lower_case_letter):
 			var style := StyleBoxLine.new()
 			style.color = Color.WHITE #Bokstaver får en hvit linje som indikerer at det ikke er mellomrom
@@ -70,5 +82,6 @@ func generate_words(words: String) -> void:
 			letter_box.button.modulate = Color.WHITE
 			continue
 		
+		# Denne delen kjører kun hvis det er symboler eller annet. 
 		letter_box.button.self_modulate = 0
 		letter_box.guessed_letter.text = letter
