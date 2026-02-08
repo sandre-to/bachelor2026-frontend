@@ -1,6 +1,9 @@
 extends Resource
 class_name HttpResponse
 
+# HttpResponse:
+# Et objekt som representerer en HTTP-response
+
 # Responskoder
 enum ResponseCode {
 	# Gode fine elskelige responser
@@ -21,15 +24,10 @@ enum ResponseCode {
 	NETWORK_AUTHENTICATION_REQUIRED = 511	# Anner ikke :)
 }
 
-var response_code: ResponseCode = ResponseCode.INTERNAL_SERVER_ERROR
-var content: String = ""
+var response_code: ResponseCode = ResponseCode.OK
+var content: String
+
 
 func _init(_response_code: ResponseCode, _content: String) -> void:
-	self.response_code = _response_code
-	self.content = _content	
-
-func set_response_code(_response_code: ResponseCode) -> void:
-	self.response_code = _response_code
-
-func set_content(_content: String) -> void:
-	self.content = _content
+	response_code = _response_code
+	content = _content
