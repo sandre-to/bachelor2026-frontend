@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://c5fsrvarkxfyu"]
 
-[ext_resource type="Theme" uid="uid://dbiogwry113ua" path="res://scenes/tools/cryptogram/letter_box_theme.tres" id="1_7swl5"]
-[ext_resource type="Script" uid="uid://dw7vjdb6nw3kn" path="res://scenes/tools/cryptogram/letter_box.gd" id="2_54wdr"]
+[ext_resource type="Script" uid="uid://dw7vjdb6nw3kn" path="res://assets/tools/cryptogram/letter_box.gd" id="2_54wdr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djvoj"]
+bg_color = Color(0.35906905, 0.35906908, 0.35906896, 1)
+draw_center = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_54wdr"]
 
@@ -23,7 +26,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_7swl5")
 script = ExtResource("2_54wdr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=809700673]
@@ -35,13 +37,18 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer" unique_id=1226896190]
+[node name="GuessedLetter" type="Label" parent="VBoxContainer" unique_id=1062447165]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-toggle_mode = true
+theme_override_styles/normal = SubResource("StyleBoxFlat_djvoj")
+label_settings = SubResource("LabelSettings_54wdr")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="GuessedLetter" type="Label" parent="VBoxContainer/Button" unique_id=1062447165]
+[node name="Button" type="Button" parent="VBoxContainer/GuessedLetter" unique_id=1226896190]
 unique_name_in_owner = true
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,9 +56,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-label_settings = SubResource("LabelSettings_54wdr")
-horizontal_alignment = 1
-vertical_alignment = 1
+toggle_mode = true
 
 [node name="Panel" type="Panel" parent="VBoxContainer" unique_id=875115884]
 layout_mode = 2
@@ -65,4 +70,4 @@ size_flags_vertical = 3
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="toggled" from="VBoxContainer/Button" to="." method="_on_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/GuessedLetter/Button" to="." method="_on_button_toggled"]

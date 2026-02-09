@@ -15,8 +15,7 @@ const ALPHABET_LETTERS: String = "abcdefghijklmnopqrstuvwxyz"
 @export var test_string: String = ""
 @export var letter_box_scene: PackedScene
 
-@onready var h_box_container: HBoxContainer = %HBoxContainer
-@onready var grid_container: GridContainer = %GridContainer
+@onready var word_manager: GridContainer = %WordManager
 
 var mapped_letters: Dictionary[String, String] = {}
 
@@ -63,12 +62,13 @@ func generate_words(words: String) -> void:
 	for letter in words:
 		var lower_case_letter := letter.to_lower()
 		var letter_box: LetterBox = letter_box_scene.instantiate()
-		grid_container.add_child(letter_box)
+		word_manager.add_child(letter_box)
 		
 		# Mellomrom i setningen.
 		if letter == " ":
 			letter_box.button.disabled = true
-			letter_box.button.modulate = 0
+			letter_box.button.self_modulate = 0
+			letter_box.line.hide()
 			continue
 		
 		# Sjekker om bokstavene som er sendt finnes i alfabetet
@@ -85,3 +85,4 @@ func generate_words(words: String) -> void:
 		# Denne delen kjører kun hvis det er symboler eller annet. 
 		letter_box.button.self_modulate = 0
 		letter_box.guessed_letter.text = letter
+		letter_box.line.hide()

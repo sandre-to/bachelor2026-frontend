@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci0qy2icdgh4o"]
+[gd_scene format=3 uid="uid://ci0qy2icdgh4o"]
 
-[ext_resource type="Script" uid="uid://dw5q6yd5vy3jp" path="res://scenes/tools/portfinder/portfinder_scene.gd" id="1_27as4"]
-[ext_resource type="Shader" uid="uid://cc6cy5181oha2" path="res://scenes/tools/portfinder/portfinder_scene.gdshader" id="2_1gmsj"]
+[ext_resource type="Script" uid="uid://dw5q6yd5vy3jp" path="res://assets/tools/portfinder/portfinder_scene.gd" id="1_27as4"]
+[ext_resource type="Shader" uid="uid://cc6cy5181oha2" path="res://assets/tools/portfinder/portfinder_scene.gdshader" id="2_1gmsj"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iergq"]
 shader = ExtResource("2_1gmsj")
