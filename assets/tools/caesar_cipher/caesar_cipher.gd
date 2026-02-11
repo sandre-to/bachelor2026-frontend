@@ -1,8 +1,10 @@
-class_name CaesarCipher extends Control
+class_name CaesarCipher extends Tool
 
 @onready var text_input: TextEdit = $MainPanel/TextEdit
 @onready var shift_input: LineEdit = $MainPanel/LineEdit
 @onready var output_label: RichTextLabel = $OutputPanel/OutputLabel
+
+var tool_type: ToolType = ToolType.CRYPTOTOOL
 
 func encrypt(text: String, shift: int) -> String:
 	if text_input.text == "":

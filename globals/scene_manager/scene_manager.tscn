@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bs5rjynbtaxhk"]
 
 [ext_resource type="Script" uid="uid://benm7d3d0qonl" path="res://globals/scene_manager/scene_manager.gd" id="1_yq64p"]
+[ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="2_4fvoj"]
 
 [node name="SceneManager" type="Node" unique_id=1294782379]
 script = ExtResource("1_yq64p")
+tools = Array[PackedScene]([ExtResource("2_4fvoj")])

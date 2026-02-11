@@ -18,6 +18,10 @@ config/name="CTF Project"
 run/main_scene="uid://bxrsa5in13360"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+SceneManager="*uid://bs5rjynbtaxhk"
+
 [display]
 
 window/stretch/mode="canvas_items"
