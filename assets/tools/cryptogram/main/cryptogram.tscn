@@ -31,47 +31,12 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=479246492]
-custom_minimum_size = Vector2(40, 80)
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1452733025]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=490163806]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel" unique_id=566400360]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -71.5
-offset_top = -15.5
-offset_right = 71.5
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "GENERATE WORD"
-
-[node name="Panel2" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1159326427]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer" unique_id=2093606927]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=2093606927]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Panel" unique_id=1293032298]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel" unique_id=1293032298]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,19 +44,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1578078753]
+[node name="Label" type="Label" parent="MarginContainer/Panel/VBoxContainer" unique_id=1578078753]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "SOLVE THE PUZZLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WordManager" type="GridContainer" parent="MarginContainer/HBoxContainer/Panel/VBoxContainer" unique_id=898777713]
+[node name="WordManager" type="GridContainer" parent="MarginContainer/Panel/VBoxContainer" unique_id=898777713]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 columns = 12
 script = ExtResource("4_5gf4b")
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Panel/Button" to="." method="_on_button_pressed"]
