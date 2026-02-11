@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxrsa5in13360"]
 
-[ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/login_screen/desktop_theme.tres" id="1_enld1"]
+[ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71yap"]

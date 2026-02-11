@@ -30,9 +30,9 @@ func _input(event: InputEvent) -> void:
 func set_guessed_letter(input_letter: String) -> void:
 	guessed_letter.text = input_letter.to_upper()
 
-# Sub letter er den krypterte bokstaven.
 func set_sub_letter(input_letter: String) -> void:
 	sub_letter.text = input_letter.to_upper()
 
 func _on_button_toggled(toggled_on: bool) -> void:
 	focused = toggled_on
+	focus_mode = Control.FOCUS_ALL

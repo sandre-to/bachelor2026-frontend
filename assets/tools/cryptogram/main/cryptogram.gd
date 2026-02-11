@@ -15,13 +15,13 @@ const ALPHABET_LETTERS: String = "abcdefghijklmnopqrstuvwxyz"
 @export var test_string: String = ""
 @export var letter_box_scene: PackedScene
 
-@onready var word_manager: GridContainer = %WordManager
+@onready var word_manager: WordManager = %WordManager
+@onready var button: Button = $MarginContainer/HBoxContainer/VBoxContainer/Panel/Button
 
 var mapped_letters: Dictionary[String, String] = {}
 
 func _ready() -> void:
 	_substitute_letter()
-	generate_words(test_string)
 
 func _substitute_letter() -> void:
 	var new_alphabet := _randomize_alphabet()
@@ -58,7 +58,7 @@ func _is_not_duplicate_letter(alphabet: Array[String]) -> bool:
 			return false
 	return true
 
-func generate_words(words: String) -> void:
+func _generate_words(words: String) -> void:
 	for letter in words:
 		var lower_case_letter := letter.to_lower()
 		var letter_box: LetterBox = letter_box_scene.instantiate()
@@ -86,3 +86,9 @@ func generate_words(words: String) -> void:
 		letter_box.button.self_modulate = 0
 		letter_box.guessed_letter.text = letter
 		letter_box.line.hide()
+
+func _on_button_pressed() -> void:
+	for child in word_manager.get_children():
+		child.queue_free()
+	_generate_words(test_string)
+	print(word_manager.get_letter_boxes())

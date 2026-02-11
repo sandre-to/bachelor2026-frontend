@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dwxgp4h2t0jwm"]
 
-[ext_resource type="Theme" uid="uid://bevarwxrnatg" path="res://assets/tools/cryptogram/crypto-theme.tres" id="1_dk2ld"]
-[ext_resource type="Script" uid="uid://bcle7l7mbmwke" path="res://assets/tools/cryptogram/cryptogram.gd" id="1_iplmf"]
-[ext_resource type="PackedScene" uid="uid://c5fsrvarkxfyu" path="res://assets/tools/cryptogram/letter_box.tscn" id="2_ak0rv"]
+[ext_resource type="Theme" uid="uid://bevarwxrnatg" path="res://assets/tools/cryptogram/main/crypto-theme.tres" id="1_dk2ld"]
+[ext_resource type="Script" uid="uid://bcle7l7mbmwke" path="res://assets/tools/cryptogram/main/cryptogram.gd" id="1_iplmf"]
+[ext_resource type="PackedScene" uid="uid://c5fsrvarkxfyu" path="res://assets/tools/cryptogram/letter-box/letter_box.tscn" id="2_ak0rv"]
+[ext_resource type="Script" uid="uid://crp5lluumclif" path="res://assets/tools/cryptogram/word_manager.gd" id="4_5gf4b"]
 
 [node name="Cryptogram" type="Control" unique_id=2122768395]
 layout_mode = 3
@@ -46,6 +47,21 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Panel" unique_id=566400360]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = -15.5
+offset_right = 71.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GENERATE WORD"
+
 [node name="Panel2" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1159326427]
 layout_mode = 2
 size_flags_vertical = 3
@@ -76,3 +92,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 columns = 12
+script = ExtResource("4_5gf4b")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Panel/Button" to="." method="_on_button_pressed"]
