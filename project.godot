@@ -26,6 +26,10 @@ SceneManager="*uid://bs5rjynbtaxhk"
 
 window/stretch/mode="canvas_items"
 
+[dotnet]
+
+project/assembly_name="CTF Project"
+
 [file_customization]
 
 folder_colors={
