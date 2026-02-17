@@ -12,8 +12,8 @@ func _on_crypto_button_pressed() -> void:
 		window.current_scene = SceneManager.find_tool_scene(Tool.ToolType.CRYPTOTOOL)
 		root.add_child(window)
 
-func _tool_exists(root: Node, type: Tool.ToolType) -> bool:
-	for node in root.get_children():
+func _tool_exists(root_node: Node, type: Tool.ToolType) -> bool:
+	for node in root_node.get_children():
 		if node is CustomWindow:
 			var child_node = node.get_child(0)
 			if child_node.tool_type == type:
