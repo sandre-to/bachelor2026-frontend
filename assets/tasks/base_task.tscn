@@ -40,13 +40,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="LabelSettings" id="LabelSettings_ncm2f"]
-font_size = 24
-outline_size = 8
-outline_color = Color(0.19215687, 0.19215687, 0.19215687, 0.69411767)
-shadow_size = 12
-shadow_color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jfeq"]
 bg_color = Color(0.25952256, 0.5388755, 0.19095689, 1)
 corner_radius_top_left = 8
@@ -136,7 +129,7 @@ custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ncm2f")
 
-[node name="Puzzle" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel" unique_id=272615662]
+[node name="Puzzle" type="RichTextLabel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel" unique_id=1290987728]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 1
 anchors_preset = 15
@@ -148,10 +141,11 @@ offset_right = -15.0
 offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hfs dtz wjfi ymnx? Nk dtz hfs, ywd ijhwduynsl ymnx rjxxflj: Nsppdpnlvp"
-label_settings = SubResource("LabelSettings_ncm2f")
-autowrap_mode = 3
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "Mjqqt. Nk dtz hfs wjfi ymnx, hwfhp ymnx htij: QKMKWNNM!!"
 autowrap_trim_flags = 128
+selection_enabled = true
 
 [node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
 custom_minimum_size = Vector2(0, 50)
@@ -181,16 +175,19 @@ alignment = 1
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 1"
 
 [node name="Button2" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=601580613]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 2"
 
 [node name="Button3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"

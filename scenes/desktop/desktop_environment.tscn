@@ -2,6 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
+[ext_resource type="PackedScene" uid="uid://s46xl3ppjspc" path="res://scenes/window/window.tscn" id="3_ec86u"]
+[ext_resource type="PackedScene" uid="uid://f7m1nc23t8ak" path="res://assets/tasks/base_task.tscn" id="4_lkv1q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71yap"]
 bg_color = Color(0.82606, 0.82606006, 0.82606, 1)
@@ -190,5 +192,13 @@ grow_horizontal = 2
 text = "10 : 38"
 label_settings = SubResource("LabelSettings_bpu8p")
 horizontal_alignment = 1
+
+[node name="Window" parent="." unique_id=1351884654 instance=ExtResource("3_ec86u")]
+initial_position = 0
+position = Vector2i(1137, 180)
+size = Vector2i(620, 720)
+unresizable = true
+
+[node name="BaseTask" parent="Window" unique_id=629482100 instance=ExtResource("4_lkv1q")]
 
 [connection signal="pressed" from="MarginContainer/Panel/Tools/CryptoButton" to="." method="_on_crypto_button_pressed"]
