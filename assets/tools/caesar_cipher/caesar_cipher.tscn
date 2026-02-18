@@ -16,11 +16,9 @@ font_size = 24
 
 [node name="CaesarCipher" type="Control" unique_id=1370531773]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_h2t4e")
@@ -33,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -377.0
-offset_top = -189.0
-offset_right = 5.0
-offset_bottom = 189.0
+offset_left = -628.0
+offset_top = -350.0
+offset_right = 122.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -62,13 +60,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -151.0
-offset_top = -106.0
-offset_right = 151.0
-offset_bottom = 37.0
+offset_left = -250.0
+offset_top = -210.0
+offset_right = 250.0
+offset_bottom = 141.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter text to be encoded or decoded"
+wrap_mode = 1
 
 [node name="LineEdit" type="LineEdit" parent="MainPanel" unique_id=870649531]
 layout_mode = 1
@@ -77,13 +77,15 @@ anchor_left = 0.5
 anchor_top = 0.794
 anchor_right = 0.5
 anchor_bottom = 0.794
-offset_left = -110.0
-offset_top = -44.600006
-offset_right = 110.0
-offset_bottom = -13.600006
+offset_left = -144.0
+offset_top = -35.80005
+offset_right = 144.0
+offset_bottom = 40.799805
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 placeholder_text = "Enter number between 0-9"
+alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MainPanel" unique_id=2010700267]
 layout_mode = 1
@@ -101,12 +103,12 @@ grow_vertical = 0
 theme_override_constants/separation = 14
 
 [node name="Encrypt" type="Button" parent="MainPanel/HBoxContainer" unique_id=1873083127]
-custom_minimum_size = Vector2(84, 32)
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "ENCRYPT"
 
 [node name="Decrypt" type="Button" parent="MainPanel/HBoxContainer" unique_id=1834689157]
-custom_minimum_size = Vector2(84, 32)
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 text = "DECRYPT"
 
@@ -117,10 +119,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 71.0
-offset_top = -134.0
-offset_right = 311.0
-offset_bottom = 134.0
+offset_left = 182.0
+offset_top = -258.0
+offset_right = 588.0
+offset_bottom = 258.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -144,21 +146,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -71.0
-offset_right = 83.0
-offset_bottom = 98.0
+offset_left = -141.0
+offset_top = -171.0
+offset_right = 141.0
+offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
+theme_override_font_sizes/normal_font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 selection_enabled = true
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2144441665]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="pressed" from="MainPanel/HBoxContainer/Encrypt" to="." method="_on_encrypt_pressed"]
 [connection signal="pressed" from="MainPanel/HBoxContainer/Decrypt" to="." method="_on_decrypt_pressed"]

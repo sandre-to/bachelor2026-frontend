@@ -7,9 +7,9 @@ func _ready() -> void:
 	root = get_tree().root
 
 func _on_crypto_button_pressed() -> void:
-	if not _tool_exists(root, Tool.ToolType.CRYPTOTOOL):
+	if not _tool_exists(root, Tool.ToolType.CRYPTO_TOOL):
 		var window := WINDOW.instantiate()
-		window.current_scene = SceneManager.find_tool_scene(Tool.ToolType.CRYPTOTOOL)
+		window.current_scene = SceneManager.find_tool_scene(Tool.ToolType.CRYPTO_TOOL)
 		root.add_child(window)
 
 func _tool_exists(root_node: Node, type: Tool.ToolType) -> bool:

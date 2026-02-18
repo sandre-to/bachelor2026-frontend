@@ -4,12 +4,16 @@
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71yap"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+bg_color = Color(0.82606, 0.82606006, 0.82606, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enld1"]
 bg_color = Color(1, 1, 1, 1)
@@ -17,7 +21,15 @@ border_width_top = 5
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_enld1"]
+font_size = 32
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.9372549)
 
 [node name="DesktopEnvironment" type="Control" unique_id=1468378510]
 layout_mode = 3
@@ -36,6 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.991779, 0.870118, 0.5572064, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2089317787]
 layout_mode = 1
@@ -44,10 +57,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
 [node name="Panel" type="Panel" parent="MarginContainer" unique_id=788057033]
 layout_mode = 2
@@ -60,45 +73,50 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -491.0
-offset_top = -256.0
-offset_right = -143.0
-offset_bottom = -156.0
+offset_left = -853.0
+offset_top = -373.0
+offset_right = -161.0
+offset_bottom = -273.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 18
+alignment = 1
 
 [node name="CryptoButton" type="Button" parent="MarginContainer/Panel/Tools" unique_id=1147306848]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
 text = "CRYPTO"
 
-[node name="Button2" type="Button" parent="MarginContainer/Panel/Tools" unique_id=887957376]
-custom_minimum_size = Vector2(100, 100)
+[node name="SteganoButton" type="Button" parent="MarginContainer/Panel/Tools" unique_id=1637416392]
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="Button3" type="Button" parent="MarginContainer/Panel/Tools" unique_id=2051422132]
-custom_minimum_size = Vector2(100, 100)
+[node name="WebExploit" type="Button" parent="MarginContainer/Panel/Tools" unique_id=311522693]
+custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="Navigator" type="HBoxContainer" parent="MarginContainer/Panel" unique_id=1235140867]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 265.0
-offset_top = -256.0
-offset_right = 489.0
-offset_bottom = -156.0
+offset_left = 423.0
+offset_top = -385.0
+offset_right = 647.0
+offset_bottom = -285.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
@@ -122,10 +140,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -561.0
-offset_top = -63.0
-offset_right = 560.0
-offset_bottom = -15.0
+offset_left = -911.0
+offset_top = -107.0
+offset_right = 912.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
@@ -138,6 +156,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Clock" type="Label" parent="TaskBar" unique_id=1103319372]
 layout_mode = 1
@@ -146,13 +165,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -71.0
-offset_top = -10.0
+offset_left = -236.0
+offset_top = -32.5
 offset_right = -31.0
-offset_bottom = 13.0
+offset_bottom = 35.5
 grow_horizontal = 0
 grow_vertical = 2
-text = "10 : 10"
+text = "BunOS"
 label_settings = SubResource("LabelSettings_enld1")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="TimeLabel" type="Label" parent="." unique_id=1826581504]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 9.0
+offset_right = 300.0
+offset_bottom = 54.0
+grow_horizontal = 2
+text = "10 : 38"
+label_settings = SubResource("LabelSettings_bpu8p")
+horizontal_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/Panel/Tools/CryptoButton" to="." method="_on_crypto_button_pressed"]

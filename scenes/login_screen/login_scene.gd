@@ -13,7 +13,7 @@ class_name LoginScreen extends Control
 @onready var log_or_reg_panel: PanelContainer = $MarginContainer/VBoxContainer/ChooseLoginOrRegister
 @onready var login_panel: VBoxContainer = $MarginContainer/VBoxContainer/LoginPanel
 @onready var register_panel: VBoxContainer = $MarginContainer/VBoxContainer/RegisterPanel
-@onready var confirm_register: Button = $MarginContainer/VBoxContainer/RegisterPanel/ConfirmRegister
+@onready var confirm_register: Button = %ConfirmRegister
 
 func _ready() -> void:
 	log_or_reg_panel.show()
@@ -24,11 +24,8 @@ func _ready() -> void:
 	http_request.request_completed.connect(_on_request_completed)
 	http_request.request(host_url)
 	
-func _on_request_completed(
-	result: int, 
-	response_code: int, 
-	headers: PackedStringArray, 
-	body: PackedByteArray
+func _on_request_completed(_result: int, response_code: int, 
+	_headers: PackedStringArray, body: PackedByteArray
 	) -> void:
 	
 	var response_text := body.get_string_from_utf8()
@@ -77,3 +74,8 @@ func _on_confirm_register_pressed() -> void:
 	
 	if error != OK:
 		print("Error sending request: ", error)
+
+func _on_back_button_pressed() -> void:
+	register_panel.hide()
+	login_panel.hide()
+	log_or_reg_panel.show()
