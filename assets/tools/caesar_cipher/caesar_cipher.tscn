@@ -154,6 +154,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 32
+context_menu_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 selection_enabled = true

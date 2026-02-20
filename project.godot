@@ -21,6 +21,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 [autoload]
 
 SceneManager="*uid://bs5rjynbtaxhk"
+HttpManager="*uid://cavqb22lgnfdx"
 
 [display]
 
@@ -31,6 +32,10 @@ window/size/mode=2
 [dotnet]
 
 project/assembly_name="CTF Project"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/moderntitlebar/plugin.cfg")
 
 [file_customization]
 
@@ -55,6 +60,5 @@ enter={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

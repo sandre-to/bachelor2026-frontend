@@ -26,8 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b0h4y")
-
-[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=1494165139]
+host_url = null
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=763155201]
 layout_mode = 1
