@@ -1,10 +1,10 @@
 extends Resource
-class_name SPNetwork
+class_name OldNetwork
 
 # AuthoratativeNetwork:
 # Dette er klassen som representerer "internettet" i spillet,
 # det ruter datapakker mellom enheter og passer på at pakkene
-# får lov til å få kontakt. Objektinstansen eies av levelcontext. 
+# får lov til å få kontakt.
 
 # Notater: (Kristoffer)
 # - Trenger vi en firewall dersom vi har available_ og blocked_devices?
@@ -23,20 +23,20 @@ var hidden_devices: Array[Device] = []
 
 func _init() -> void:
 	available_devices.append(
-		Device.new("ORACLE", "9.9.9.9", self)
-		)
-	
+		Device.new("ORACLE", "9.9.9.9")
+	)
+
 
 # Initialize_available_device(): Lager og legger til en dev i available_devices
 func initialize_available_device(hostname: String, ip: String) -> Device:
-	var dev: Device = Device.new(hostname, ip, self)
+	var dev: Device = Device.new(hostname, ip)
 	available_devices.append(dev)
 	return dev
 
 
 # Initialize_hidden_device(): Lager og legger til en dev i hidden_devices
 func initialize_hidden_device(hostname: String, ip: String) -> Device:
-	var dev: Device = Device.new(hostname, ip, self)
+	var dev: Device = Device.new(hostname, ip)
 	hidden_devices.append(dev)
 	return dev
 
@@ -58,14 +58,6 @@ func route_packet(datapacket: DataPacket) -> DataPacket:
 	if dev == null:
 		return DataPacket.copy_header(
 			datapacket, 
-			ErrorResponse.new(ErrorResponse.NetworkError.ENETUNREACH)
-		)
-
-	# Tillater enheten trafikk?	
-	var packed_allowed: bool = dev.firewall.audit_datapackage(datapacket)
-	if not packed_allowed:
-		return DataPacket.copy_header(
-			datapacket,
 			ErrorResponse.new(ErrorResponse.NetworkError.ENETUNREACH)
 		)
 	

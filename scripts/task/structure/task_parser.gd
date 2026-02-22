@@ -18,17 +18,17 @@ enum ErrorCode{
 	UNEXPECTED_FIELD,
 	MISSING_FIELD,
 	
-	# Object feilmeldinger
+	# Object feilmeldinger (3 - 5)
 	INVALID_OBJECT_TYPE,
 	INVALID_OBJECT_ATTRIBUTES,
 	MISSING_CHILD_OBJECT,
 	
-	# Key-events feilmeldinger
+	# Key-events feilmeldinger (6 - 7)
 	MISSING_REQUIRED_KEY_EVENTS,
 	NO_EVENT_CMD,
 	
 }
-var error_code: ErrorCode = ErrorCode.OK
+var errno: ErrorCode = ErrorCode.OK
 
 
 # Gyldige kommandoer som oppgaven kan utføre
@@ -200,13 +200,13 @@ func _handle_key_events(key_events: Dictionary, task: Task) -> bool:
 
 # Get_error():	Returnerer den nåverende erroren og reset verdien.
 func get_error() -> ErrorCode:
-	var to_return: ErrorCode = error_code
-	error_code = ErrorCode.OK
+	var to_return: ErrorCode = errno
+	errno = ErrorCode.OK
 	return to_return
 
 # Set_error():	Setter en ny error
 func set_error(error: ErrorCode) -> void:
-	error_code = error
+	errno = error
 
 
 # ---------------| Miniskule hjelpefunksjoner |--------------- #
