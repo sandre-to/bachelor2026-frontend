@@ -10,13 +10,24 @@ class_name File
 # Rettighet: Kjørbar
 var exec: bool = false
 
+# Metadata om filen (brukes i oppgaver)
+var _metadata: String
+
 # Midlertidig en tekstfil :)
-var text_content: String
+var _text_content: String
 
 
 func _init(_name: String, _parent_system: FileSystem) -> void:
 	super(_name, _parent_system)
 
+
+# Update_content():	 Oppdaterer innholdet
+func update_content(content: String) -> void:
+	_text_content = content
+
+# Update_metadata(): Oppdaterer metadataen
+func update_metadata(metadata: String) -> void:
+	_metadata = metadata
 
 # Get_entity(): Gir filen.
 func get_entity(path: String) -> FileEntity:

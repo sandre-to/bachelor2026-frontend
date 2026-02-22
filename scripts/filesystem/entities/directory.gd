@@ -2,7 +2,7 @@ extends FileEntity
 class_name Directory
 
 var parent_dir: Directory
-var _content: Array[FileEntity]
+var _content: Array[FileEntity] = []
 
 func _init(_name: String, _parent: Directory, _parent_fs: FileSystem) -> void:
 	super(_name, _parent_fs)
@@ -88,11 +88,4 @@ func _to_string() -> String:
 	for entity in _content:
 		stringified_content += entity.name + " "
 	return stringified_content
-	
-	
-	
-	
-	
-	
-	
 	

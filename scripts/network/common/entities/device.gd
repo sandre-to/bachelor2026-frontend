@@ -13,20 +13,23 @@ class_name Device
 #	og jeg vet ikke om det er en bedre måte å gjennomføre dette på.
 
 # Referansen til nettverket. Om null, kan det sies av enheten ikke har internet.
-var network_connection: AuthoratativeNetwork
+var network_connection: Network
 
 var hostname: String
 var ip: String
 
-var firewall: Firewall
 var ports: Dictionary[int, Callable] = {}	# OBS: Viktig av Callable returnerer en Datapacket
 
 
-func _init(_hostname: String, _ip: String, _auth_network: AuthoratativeNetwork) -> void:
+func _init(_hostname: String, _ip: String) -> void:
 	hostname = _hostname
 	ip = _ip
-	network_connection = _auth_network
-	firewall = Firewall.new()
+
+
+
+# Connect_to_network(): Kobler enheten til et nettverk
+func connect_to_network(network: Network) -> void:
+	network_connection = network
 
 
 # Send_datapacket(): Sender en datapakke og returnerer responsen

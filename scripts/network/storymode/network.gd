@@ -1,5 +1,5 @@
 extends Resource
-class_name AuthoratativeNetwork
+class_name SPNetwork
 
 # AuthoratativeNetwork:
 # Dette er klassen som representerer "internettet" i spillet,
