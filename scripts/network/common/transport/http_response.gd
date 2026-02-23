@@ -23,11 +23,11 @@ enum ResponseCode {
 	LOOP_DETECTED					= 508,	# Kanskje brukt?
 }
 
-var _response_code: ResponseCode = ResponseCode.OK
+var _response_code: int = ResponseCode.OK
 var _content: Dictionary
 
 
-func _init(response_code: ResponseCode, content: Dictionary) -> void:
+func _init(response_code: int, content: Dictionary) -> void:
 	_response_code = response_code
 	_content = content
 

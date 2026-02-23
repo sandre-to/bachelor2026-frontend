@@ -18,16 +18,16 @@ const method_str: Dictionary[Method, String] = {
 	Method.DELETE: "DELETE"
 }
 
-var _method: Method
+var _method: String
 var _content: Dictionary
 
-func _init(method: Method, content: Dictionary) -> void:
+func _init(method: String, content: Dictionary) -> void:
 	_method = method
 	_content = content
 
 
 func get_method() -> String:
-	return method_str[_method]
+	return _method
 	
 func get_content() -> Dictionary:
 	return _content

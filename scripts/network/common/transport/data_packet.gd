@@ -22,11 +22,11 @@ func _init(_s_ip: String, _r_ip: String, _r_port: int, _content: Variant) -> voi
 	
 	
 # Copy_header():	Lager en ny datapakke med de samme IP-adressene.	[APPLIKASJONEN MÅ SETTE EN PORT HER]
-static func copy_header(datapacket: DataPacket, port, content: Variant) -> DataPacket:
+static func copy_header(datapacket: DataPacket, content: Variant) -> DataPacket:
 	return DataPacket.new(
 		datapacket._receiver_ip,
 		datapacket._sender_ip,
-		port, 
+		datapacket._receiver_port, 
 		content
 	)
 	
