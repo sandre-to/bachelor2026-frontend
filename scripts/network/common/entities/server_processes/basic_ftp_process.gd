@@ -30,7 +30,7 @@ func action(datapacket: DataPacket) -> DataPacket:
 			response
 		)
 
-	var file_names: Array[String] = http_body.get("files")
+	var file_names: Array = http_body.get("files")
 	var files_to_give: Array[FileEntity] = []
 	for file_name in file_names:
 		var resource: FileEntity = _get_resource(file_name)

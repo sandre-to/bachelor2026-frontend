@@ -1,4 +1,4 @@
-extends Resource
+extends PacketData
 class_name HttpReq
 
 # HttpReq(uest):
@@ -31,3 +31,9 @@ func get_method() -> String:
 	
 func get_content() -> Dictionary:
 	return _content
+
+func _to_string() -> String:
+	return str(_content)
+
+func get_type() -> String:
+	return "HTTP Request"

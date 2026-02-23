@@ -10,6 +10,7 @@ class_name SPNetwork
 func route_packet(datapacket: DataPacket) -> DataPacket:
 	var dev: AbstractDevice = _get_dev(datapacket.get_receiver_ip())
 	if dev == null:
+		print("wat")
 		return DataPacket.copy_header(
 			datapacket,
 			ErrorResponse.new(ErrorResponse.NetworkError.ENETUNREACH)
@@ -23,6 +24,7 @@ func let_device_connect(device: AbstractDevice) -> bool:
 	if new_ip.is_empty():
 		return false
 	device.connect_to_network(self, new_ip)
+	connected_entities.append(device)
 	return true
 
 
@@ -41,7 +43,7 @@ func _generate_ip() -> String:
 	# Liten sjekk i tilfellet det er dritmange enheter på nettverket.
 	# Dette burde aldri skje, men man anner ikke hva disse tullingene
 	# kommer til å finne på.
-	if connected_entities.size() < 400000000:
+	if connected_entities.size() > 400000000:
 		return ""
 	
 	while true:
@@ -49,17 +51,17 @@ func _generate_ip() -> String:
 		var ip: String = ""
 		for i in range(4):
 			ip += str(1 + (randi() % 254))
-			if i < 2:
+			if i < 3:
 				ip += "."
 		# Sjekk om IP-en er i bruk
-		if connected_entities.find_custom(func(dev): dev.get_ip() == ip) == -1:
+		if connected_entities.find_custom(func(dev): return dev.get_ip() == ip) == -1:
 			return ip
 	return ""
 	
 	
 # _get_dev():	Returnerer en nettverksenhet basert på IP.
 func _get_dev(ip: String) -> AbstractDevice:
-	var dev_index: int = connected_entities.find_custom(func(dev): dev.get_ip() == ip)
+	var dev_index: int = connected_entities.find_custom(func(dev): return dev.get_ip() == ip)
 	if dev_index == -1:
 		return null
 	return connected_entities[dev_index]

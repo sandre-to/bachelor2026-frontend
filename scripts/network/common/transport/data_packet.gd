@@ -1,4 +1,4 @@
-extends Resource
+extends RefCounted
 class_name DataPacket
 
 # Datapacket:
@@ -11,7 +11,7 @@ var _receiver_ip: String
 var _receiver_port: int
 
 # Innholdet. Dette skal enten være en HTTP-respons, File, ErrorResponse eller tekst.
-var _data: Variant
+var _data: PacketData
 
 
 func _init(_s_ip: String, _r_ip: String, _r_port: int, _content: Variant) -> void:
@@ -43,11 +43,4 @@ func get_data() -> Variant:
 	return _data
 
 func _to_string() -> String:
-	var content_type: String = "Text"
-	if _data is File:
-		content_type = "File"
-	elif _data is HttpResponse:
-		content_type = "HTTP-response"
-	elif _data is ErrorResponse:
-		content_type = "Error"
-	return "Datapacket:\nSender IP:\t\t%s\nReceiver IP:\t%s\nReceiver Port:\t%s\nContent is:\t\t%s\n" % [_sender_ip, _receiver_ip, str(_receiver_port), content_type]
+	return "Datapacket:\nSender IP:\t\t%s\nReceiver IP:\t%s\nReceiver Port:\t%s\nContent is:\t\t%s\n%s" % [_sender_ip, _receiver_ip, str(_receiver_port), _data.get_type(), _data]

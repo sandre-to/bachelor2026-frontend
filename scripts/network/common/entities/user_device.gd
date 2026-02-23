@@ -10,6 +10,8 @@ func _init(hostname: String, ip: String = "") -> void:
 
 # Send_datapacket(): Sender en datapakke og returnerer responsen
 func send_datapacket(datapacket: DataPacket) -> DataPacket:
+	if get_network() == null:
+		return null
 	return get_network().route_packet(datapacket)
 
 

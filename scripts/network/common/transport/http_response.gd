@@ -1,4 +1,4 @@
-extends Resource
+extends PacketData
 class_name HttpResponse
 
 # HttpResponse:
@@ -37,3 +37,9 @@ func get_response_code() -> int:
 	
 func get_content() -> Dictionary:
 	return _content
+
+func _to_string() -> String:
+	return "Response Code: " + str(_response_code) + "\n" + str(_content)	
+
+func get_type() -> String:
+	return "HTTP Response"

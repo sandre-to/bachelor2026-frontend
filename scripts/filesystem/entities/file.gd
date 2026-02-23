@@ -29,6 +29,9 @@ func update_content(content: String) -> void:
 func update_metadata(metadata: String) -> void:
 	_metadata = metadata
 
+func get_content() -> String:
+	return _text_content
+
 # Get_entity(): Gir filen.
 func get_entity(path: String) -> FileEntity:
 	return self

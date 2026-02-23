@@ -22,7 +22,7 @@ func receive_datapacket(datapacket: DataPacket) -> DataPacket:
 	if not port_is_open(datapacket.get_receiver_port()):
 		return DataPacket.copy_header(
 			datapacket,
-			"Connection Refused"
+			RawResponse.new("Connection Refused")
 		)
 	return open_ports.get(datapacket.get_receiver_port()).action(datapacket)
 
