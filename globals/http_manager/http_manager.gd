@@ -21,3 +21,5 @@ func _on_request_completed(
 	headers: PackedStringArray, 
 	body: PackedByteArray) -> void:
 	print("Request finished")
+	
+	var json = JSON.parse_string(body.get_string_from_utf8())

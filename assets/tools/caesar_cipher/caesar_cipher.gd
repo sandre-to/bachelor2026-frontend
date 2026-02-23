@@ -1,7 +1,5 @@
 class_name CaesarCipher extends Tool
 
-@export var tool_type: ToolType = ToolType.CRYPTO_TOOL
-
 @onready var text_input: TextEdit = $MainPanel/TextEdit
 @onready var shift_input: LineEdit = $MainPanel/LineEdit
 @onready var output_label: RichTextLabel = $OutputPanel/OutputLabel

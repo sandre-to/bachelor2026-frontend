@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://benm7d3d0qonl" path="res://globals/scene_manager/scene_manager.gd" id="1_yq64p"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="2_4fvoj"]
+[ext_resource type="PackedScene" uid="uid://b1ylepo62jqiq" path="res://assets/tasks/crypto/crypto_task.tscn" id="3_wt5un"]
 
 [node name="SceneManager" type="Node" unique_id=1294782379]
 script = ExtResource("1_yq64p")
-tools = Array[PackedScene]([ExtResource("2_4fvoj")])
+scenes = Array[PackedScene]([ExtResource("2_4fvoj"), ExtResource("3_wt5un")])

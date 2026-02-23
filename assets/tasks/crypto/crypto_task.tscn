@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://f7m1nc23t8ak"]
+[gd_scene format=3 uid="uid://b1ylepo62jqiq"]
 
-[ext_resource type="Script" uid="uid://bav5kvraew0pu" path="res://assets/tasks/base_task.gd" id="1_ncm2f"]
-[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="1_vjtgf"]
+[ext_resource type="Script" uid="uid://bt6bnwqdouue" path="res://assets/tasks/crypto/crypto_task.gd" id="1_xyd6q"]
+[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="2_8ue8w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -55,14 +55,14 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="BaseTask" type="Control" unique_id=629482100]
+[node name="CryptoTask" type="Control" unique_id=629482100]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ncm2f")
+script = ExtResource("1_xyd6q")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -113,7 +113,7 @@ theme_override_constants/separation = 24
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TASK"
-label_settings = ExtResource("1_vjtgf")
+label_settings = ExtResource("2_8ue8w")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -122,7 +122,7 @@ custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_vertical = 1
 text = "Description
-Solve the puzzle"
+Solve the crypto puzzle"
 label_settings = SubResource("LabelSettings_vjtgf")
 horizontal_alignment = 1
 
@@ -145,6 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 24
+text = "Mjqqt. Nk dtz hfs wjfi ymnx, hwfhp ymnx htij: QKMKWNNM!!"
 autowrap_trim_flags = 128
 context_menu_enabled = true
 selection_enabled = true

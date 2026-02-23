@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://s46xl3ppjspc"]
 
-[ext_resource type="Script" uid="uid://bjnp2il6arv53" path="res://scenes/window/window.gd" id="1_0osky"]
+[ext_resource type="Script" uid="uid://bjnp2il6arv53" path="res://scenes/window/custom_window.gd" id="1_w02qi"]
 
-[node name="Window" type="Window" unique_id=1351884654]
+[node name="CustomWindow" type="Window" unique_id=1351884654]
 oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(1280, 720)
@@ -10,6 +10,6 @@ wrap_controls = true
 sharp_corners = true
 content_scale_size = Vector2i(1600, 900)
 content_scale_aspect = 1
-script = ExtResource("1_0osky")
+script = ExtResource("1_w02qi")
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]

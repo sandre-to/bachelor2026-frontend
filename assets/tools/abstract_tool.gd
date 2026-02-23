@@ -6,3 +6,5 @@ enum ToolType {
 	STEGANO_TOOL,
 	WEB_TOOL
 }
+
+@export var tool_type: ToolType

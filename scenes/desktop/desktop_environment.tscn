@@ -2,30 +2,30 @@
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
-[ext_resource type="PackedScene" uid="uid://s46xl3ppjspc" path="res://scenes/window/window.tscn" id="3_ec86u"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
-[ext_resource type="PackedScene" uid="uid://f7m1nc23t8ak" path="res://assets/tasks/base_task.tscn" id="4_lkv1q"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifu37"]
-shader = ExtResource("3_ndhkw")
-shader_parameter/color_one = Color(0.65056074, 0.8355487, 0.8620154, 1)
-shader_parameter/color_two = Color(0.6064543, 0.8744492, 0.7951445, 1)
-shader_parameter/angle = 59.0
-shader_parameter/line_count = 25.0
-shader_parameter/speed = 0.5
-shader_parameter/blur = 0.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71yap"]
-bg_color = Color(0.82606, 0.82606006, 0.82606, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpu8p"]
+bg_color = Color(0, 0, 0, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ec86u"]
+shader = ExtResource("3_ndhkw")
+shader_parameter/color_one = Color(0, 0.7921569, 0.7019608, 1)
+shader_parameter/color_two = Color(0.627451, 0.8509804, 0.627451, 1)
+shader_parameter/angle = 60.0
+shader_parameter/line_count = 30.0
+shader_parameter/speed = 0.2
+shader_parameter/blur = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71yap"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enld1"]
 bg_color = Color(0.8732984, 0.8732984, 0.8732984, 1)
@@ -74,12 +74,25 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="Panel" type="Panel" parent="MarginContainer" unique_id=788057033]
-material = SubResource("ShaderMaterial_ifu37")
+[node name="OuterPanel" type="Panel" parent="MarginContainer" unique_id=4033988]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpu8p")
+
+[node name="DesktopPanel" type="Panel" parent="MarginContainer/OuterPanel" unique_id=788057033]
+material = SubResource("ShaderMaterial_ec86u")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 15.0
+offset_right = -13.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_71yap")
 
-[node name="Tools" type="HBoxContainer" parent="MarginContainer/Panel" unique_id=561235400]
+[node name="Tools" type="HBoxContainer" parent="MarginContainer/OuterPanel/DesktopPanel" unique_id=561235400]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -95,7 +108,7 @@ grow_vertical = 2
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="CryptoButton" type="Button" parent="MarginContainer/Panel/Tools" unique_id=1147306848]
+[node name="CryptoButton" type="Button" parent="MarginContainer/OuterPanel/DesktopPanel/Tools" unique_id=1147306848]
 custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -104,21 +117,21 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "CRYPTO"
 
-[node name="SteganoButton" type="Button" parent="MarginContainer/Panel/Tools" unique_id=1637416392]
+[node name="SteganoButton" type="Button" parent="MarginContainer/OuterPanel/DesktopPanel/Tools" unique_id=1637416392]
 custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="WebExploit" type="Button" parent="MarginContainer/Panel/Tools" unique_id=311522693]
+[node name="WebExploit" type="Button" parent="MarginContainer/OuterPanel/DesktopPanel/Tools" unique_id=311522693]
 custom_minimum_size = Vector2(180, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="Navigator" type="HBoxContainer" parent="MarginContainer/Panel" unique_id=1235140867]
+[node name="Navigator" type="HBoxContainer" parent="MarginContainer/OuterPanel/DesktopPanel" unique_id=1235140867]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -134,13 +147,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="Button" type="Button" parent="MarginContainer/Panel/Navigator" unique_id=1064756032]
+[node name="Button" type="Button" parent="MarginContainer/OuterPanel/DesktopPanel/Navigator" unique_id=1064756032]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Button2" type="Button" parent="MarginContainer/Panel/Navigator" unique_id=664176648]
+[node name="Button2" type="Button" parent="MarginContainer/OuterPanel/DesktopPanel/Navigator" unique_id=664176648]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -153,10 +166,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -922.0
-offset_top = -99.0
-offset_right = 921.0
-offset_bottom = -40.0
+offset_left = -908.0
+offset_top = -104.0
+offset_right = 907.0
+offset_bottom = -49.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
@@ -204,20 +217,30 @@ text = "10 : 38"
 label_settings = SubResource("LabelSettings_bpu8p")
 horizontal_alignment = 1
 
-[node name="Window" parent="." unique_id=1351884654 instance=ExtResource("3_ec86u")]
-msaa_2d = 1
-msaa_3d = 1
-screen_space_aa = 1
-use_taa = true
-title = "Task"
-size = Vector2i(666, 769)
+[node name="SelectTask" type="OptionButton" parent="." unique_id=1230214088]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -536.0
+offset_top = 175.0
+offset_right = -264.0
+offset_bottom = 275.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+alignment = 1
+selected = 0
+item_count = 4
+popup/item_0/text = "SELECT TASK"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "Cryptography"
+popup/item_1/id = 1
+popup/item_2/text = "Steganography"
+popup/item_2/id = 2
+popup/item_3/text = "Web Exploitatoin"
+popup/item_3/id = 3
 
-[node name="BaseTask" parent="Window" unique_id=629482100 instance=ExtResource("4_lkv1q")]
-z_index = 10
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-
-[connection signal="pressed" from="MarginContainer/Panel/Tools/CryptoButton" to="." method="_on_crypto_button_pressed"]
+[connection signal="pressed" from="MarginContainer/OuterPanel/DesktopPanel/Tools/CryptoButton" to="." method="_on_crypto_button_pressed"]
+[connection signal="item_selected" from="SelectTask" to="." method="_on_select_task_item_selected"]
