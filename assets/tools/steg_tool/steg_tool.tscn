@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c4co1lnveh66q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ot5g"]
+bg_color = Color(0.779894, 0.54698455, 0.71348655, 0.6627451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3kwl"]
+bg_color = Color(0.31764707, 0.16862746, 0.28627452, 0.3764706)
+
+[node name="StegTool" type="Control" unique_id=1224495268]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1967266897]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 391.0
+offset_right = 1351.0
+offset_bottom = 746.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ot5g")
+
+[node name="Panel2" type="Panel" parent="Panel" unique_id=1737370519]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 157.0
+offset_right = 599.0
+offset_bottom = 291.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3kwl")
+
+[node name="Label" type="Label" parent="Panel/Panel2" unique_id=755695923]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 19.0
+offset_right = 480.0
+offset_bottom = 117.0
+
+[node name="Panel3" type="Panel" parent="Panel" unique_id=1176895053]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 41.0
+offset_right = 669.0
+offset_bottom = 125.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3kwl")
+
+[node name="Label" type="Label" parent="Panel/Panel3" unique_id=1887963533]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 19.0
+offset_right = 617.0
+offset_bottom = 67.0
+text = "Skriv inn navnet på filen du vil kjøre en metadata sjekk på. "
