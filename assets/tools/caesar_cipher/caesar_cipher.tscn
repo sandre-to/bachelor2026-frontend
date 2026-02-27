@@ -9,51 +9,68 @@ bg_color = Color(0.09620472, 0.09620475, 0.09620469, 1)
 Button/styles/normal = SubResource("StyleBoxFlat_h2t4e")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ijkx7"]
-font_size = 24
+font_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfr6i"]
+bg_color = Color(0.6, 0.6, 0.6, 0.27058825)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2t4e"]
-font_size = 24
+font_size = 32
 
 [node name="CaesarCipher" type="Control" unique_id=1370531773]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_h2t4e")
 script = ExtResource("1_h2t4e")
 
-[node name="MainPanel" type="Panel" parent="." unique_id=1435255109]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=359150546]
+clip_contents = true
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -628.0
-offset_top = -350.0
-offset_right = 122.0
-offset_bottom = 350.0
+offset_left = -373.0
+offset_top = -461.5
+offset_right = 373.0
+offset_bottom = 461.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
 
-[node name="Title" type="Label" parent="MainPanel" unique_id=2075888956]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -158.0
-offset_top = 20.0
-offset_right = 158.0
-offset_bottom = 85.0
-grow_horizontal = 2
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=2075888956]
+layout_mode = 2
 text = "CAESAR CIPHER"
 label_settings = SubResource("LabelSettings_ijkx7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="MainPanel" unique_id=1474709815]
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=1277880166]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Panel" unique_id=1474709815]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 300)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,72 +78,46 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = -210.0
+offset_top = -150.0
 offset_right = 250.0
-offset_bottom = 141.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter text to be encoded or decoded"
 wrap_mode = 1
+caret_blink = true
 
-[node name="LineEdit" type="LineEdit" parent="MainPanel" unique_id=870649531]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.794
-anchor_right = 0.5
-anchor_bottom = 0.794
-offset_left = -144.0
-offset_top = -35.80005
-offset_right = 144.0
-offset_bottom = 40.799805
-grow_horizontal = 2
-grow_vertical = 2
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=870649531]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
-placeholder_text = "Enter number between 0-9"
+placeholder_text = "0-9"
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel" unique_id=2010700267]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -88.5
-offset_top = -72.0
-offset_right = 88.5
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2010700267]
+layout_mode = 2
 theme_override_constants/separation = 14
+alignment = 1
 
-[node name="Encrypt" type="Button" parent="MainPanel/HBoxContainer" unique_id=1873083127]
-custom_minimum_size = Vector2(100, 50)
+[node name="Encrypt" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1873083127]
+custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 text = "ENCRYPT"
 
-[node name="Decrypt" type="Button" parent="MainPanel/HBoxContainer" unique_id=1834689157]
-custom_minimum_size = Vector2(100, 50)
+[node name="Decrypt" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1834689157]
+custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 text = "DECRYPT"
 
-[node name="OutputPanel" type="Panel" parent="." unique_id=1695460200]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 182.0
-offset_top = -258.0
-offset_right = 588.0
-offset_bottom = 258.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="OutputPanel" type="Panel" parent="VBoxContainer" unique_id=1695460200]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jfr6i")
 
-[node name="Title" type="Label" parent="OutputPanel" unique_id=534488279]
+[node name="Title" type="Label" parent="VBoxContainer/OutputPanel" unique_id=534488279]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -139,17 +130,18 @@ grow_horizontal = 2
 text = "OUTPUT"
 label_settings = SubResource("LabelSettings_h2t4e")
 
-[node name="OutputLabel" type="RichTextLabel" parent="OutputPanel" unique_id=750175508]
+[node name="OutputLabel" type="RichTextLabel" parent="VBoxContainer/OutputPanel" unique_id=750175508]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -141.0
-offset_top = -171.0
-offset_right = 141.0
-offset_bottom = 198.0
+offset_left = -407.0
+offset_top = -73.0
+offset_right = 407.0
+offset_bottom = 111.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
@@ -159,5 +151,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 selection_enabled = true
 
-[connection signal="pressed" from="MainPanel/HBoxContainer/Encrypt" to="." method="_on_encrypt_pressed"]
-[connection signal="pressed" from="MainPanel/HBoxContainer/Decrypt" to="." method="_on_decrypt_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Encrypt" to="." method="_on_encrypt_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Decrypt" to="." method="_on_decrypt_pressed"]

@@ -1,3 +1,4 @@
+@abstract
 class_name BaseTask extends Control
 
 enum TaskType {

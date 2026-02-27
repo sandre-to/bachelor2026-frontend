@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://f7m1nc23t8ak"]
 
-[ext_resource type="Script" uid="uid://bav5kvraew0pu" path="res://assets/tasks/base_task.gd" id="1_ncm2f"]
 [ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="1_vjtgf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
@@ -62,7 +61,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ncm2f")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
