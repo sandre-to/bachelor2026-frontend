@@ -17,7 +17,8 @@ var objects: Dictionary[String, Variant] = {}
 # Tabell med kommandoene som skal kjøres når oppgaven startes
 var task_start_cmds: Array[TaskCMD] = []
 
-
+# Hovednettverket oppgaven kobler til
+var network: AbstractNetwork
 
 
 

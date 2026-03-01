@@ -4,8 +4,8 @@ class_name UserDevice
 # UserDevice:
 # Denne klassen representerer nettverkskortet til spilleren.
 
-func _init(hostname: String, ip: String = "") -> void:
-	super(hostname, ip)
+func _init(hostname: String) -> void:
+	super(hostname)
 
 
 # Send_datapacket(): Sender en datapakke og returnerer responsen

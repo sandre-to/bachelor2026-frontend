@@ -8,8 +8,8 @@ class_name Server
 # Åpne porter som er knyttet til en serverprosess
 var open_ports: Dictionary[int, AbstractServerProcess] = {}
 
-func _init(hostname: String, ip: String = "") -> void:
-	super(hostname, ip)
+func _init(hostname: String) -> void:
+	super(hostname)
 
 
 # Send_datapacket(): Sender en datapakke og returnerer responsen

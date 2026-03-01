@@ -22,7 +22,7 @@ var _method: String
 var _content: Dictionary
 
 func _init(method: String, content: Dictionary) -> void:
-	_method = method
+	_method = method.to_upper()
 	_content = content
 
 

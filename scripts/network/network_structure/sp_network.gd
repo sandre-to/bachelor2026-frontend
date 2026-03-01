@@ -19,7 +19,7 @@ func route_packet(datapacket: DataPacket) -> DataPacket:
 
 
 # Let_device_connect():	Lar en enhet koble til nettverket.
-func let_device_connect(device: AbstractDevice) -> bool:
+func connect_device(device: AbstractDevice) -> bool:
 	var new_ip: String = _generate_ip()
 	if new_ip.is_empty():
 		return false

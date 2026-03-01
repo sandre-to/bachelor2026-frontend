@@ -24,7 +24,7 @@ func route_packet(datapacket: DataPacket) -> DataPacket
 
 @abstract
 # Let_device_connect():	Lar en enhet koble til nettverket.
-func let_device_connect(device: AbstractDevice) -> bool
+func connect_device(device: AbstractDevice) -> bool
 
 @abstract
 # Disconnect_device():	Avkobler en enhet fra nettverket.

@@ -14,9 +14,9 @@ var _ip: String
 # Nettverket enheten er tilkoblet til
 var _connected_network: AbstractNetwork = null
 
-func _init(hostname: String, ip: String = "") -> void:
+func _init(hostname: String) -> void:
 	_hostname = hostname
-	_ip = ip
+
 
 
 @abstract

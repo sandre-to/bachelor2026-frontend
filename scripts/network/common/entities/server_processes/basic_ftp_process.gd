@@ -3,7 +3,7 @@ class_name BasicFTPProcess
 
 # BasicFTPProcess:
 # Denne serverprosessen gir klienten en fil basert på navnet.
-# Datapakken forventer en HTTP-forespørsel med feltene:
+# Datapakken forventer en HTTP:GET-forespørsel med feltene:
 # files: *tabell med filnavn*
 
 func action(datapacket: DataPacket) -> DataPacket:
@@ -51,7 +51,7 @@ func action(datapacket: DataPacket) -> DataPacket:
 
 # _get_resource():	Gir en filressurs
 func _get_resource(file_entity_name: String) -> FileEntity:
-	for name in resources:
-		if name == file_entity_name:
-			return resources[name]
-	return null
+	for file_entity in resources:
+		if file_entity.name == file_entity_name:
+			return file_entity
+	return null	

@@ -15,8 +15,8 @@ func _ready() -> void:
 
 	# Lag nettverket og la brukeren og serveren koble til
 	var network: SPNetwork = SPNetwork.new()
-	network.let_device_connect(ftp_server)
-	network.let_device_connect(user)
+	network.connect_device(ftp_server)
+	network.connect_device(user)
 	
 	# Lag noen filer serveren kan gi
 	var file1: File = File.new("sus-file.txt", null)
@@ -25,9 +25,9 @@ func _ready() -> void:
 	var file3: File = File.new("kinda-sus-file.txt", null)
 
 	# Gi serveren filene
-	ftp_process.resources[file1.name] = file1
-	ftp_process.resources[file2.name] = file2
-	ftp_process.resources[file3.name] = file3
+	ftp_process.append(file1)
+	ftp_process.append(file2)
+	ftp_process.append(file3)
 
 	# Åpne port 21 hos serveren og assosier prosessen med den
 	ftp_server.open_port(21, ftp_process)
