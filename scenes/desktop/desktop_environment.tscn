@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
+[ext_resource type="PackedScene" uid="uid://b1ylepo62jqiq" path="res://assets/tasks/crypto/crypto_task.tscn" id="4_lkv1q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpu8p"]
 bg_color = Color(0, 0, 0, 1)
@@ -155,6 +156,15 @@ popup/item_2/text = "Steganography"
 popup/item_2/id = 2
 popup/item_3/text = "Web Exploitatoin"
 popup/item_3/id = 3
+
+[node name="CryptoTask" parent="MarginContainer/OuterPanel/MarginContainer/DesktopPanel" unique_id=629482100 instance=ExtResource("4_lkv1q")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 549.0
+offset_top = 119.0
+offset_right = 549.0
+offset_bottom = 119.95996
 
 [node name="TimeLabel" type="Label" parent="." unique_id=1826581504]
 layout_mode = 1

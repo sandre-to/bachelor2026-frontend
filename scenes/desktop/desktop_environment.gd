@@ -1,6 +1,9 @@
 class_name Desktop extends Control
 
 const WINDOW: PackedScene = preload("res://scenes/window/custom_window.tscn")
+
+@onready var crypto_task: CryptoTask = %CryptoTask
+
 var root: Node = null
 
 func _ready() -> void:
@@ -12,7 +15,7 @@ func _on_crypto_button_pressed() -> void:
 func _on_select_task_item_selected(index: int) -> void:
 	match index:
 		1:
-			_instantiate_task(BaseTask.TaskType.CRYPTO)
+			crypto_task.visible = not crypto_task.visible
 		2:
 			print("Stegano task")
 		3:
