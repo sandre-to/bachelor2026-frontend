@@ -1,6 +1,7 @@
 extends Node
 
 func _ready() -> void:
+
 	var json_dict: Dictionary = {
 		"objects": {
 			"NPC-messenger": {
@@ -8,7 +9,7 @@ func _ready() -> void:
 				"name": "boss",
 				"app": "skype"
 			},
-			"server": {
+			"ftp-server": {
 				"type": "server",
 				"hostname": "hemmelig-server"	
 			},
@@ -45,31 +46,21 @@ func _ready() -> void:
 			"task-start": {
 				"cmd": [
 					{
-						"type": "send-message",
-						"sender": "NPC-messenger",
-						"text": "denne filen er hella sus, finn ut a'",
-						"attachments": [
-	                        "target-file"
-						]
-					}
+						"type": "open-port",
+						"server": "ftp-server",
+						"port": 21,
+						"process": "ftp-process"
+					},
 				]
 			},
 			"correct-flag-submit": {
 				"cmd": [
-					{
-						"type": "send-message",
-						"sender": "NPC-messenger",
-						"text": "bra jobba bro!!!"
-					}
+
 				]
 			},
 			"wrong-flag-submit": {
 				"cmd": [
-					{
-						"type": "send-message",
-						"sender": "NPC-messenger",
-						"text": "wtf"
-					}
+
 				]
 			}
 		}
@@ -88,23 +79,22 @@ func _ready() -> void:
 		print(task_parser.get_error_desc())
 		return
 
-
-	# Test serverprosess
-	var net: SPNetwork = SPNetwork.new()	
+	# Gi oppgaven en referanse til nettverket
+	task.network = SPNetwork.new()
 	
-	var server: Server = task.objects["server"]
-	server.open_port(21, task.objects["ftp-process"])
-	
-	var user: UserDevice = UserDevice.new("user")
+	# Lag brukerens nettverkskort
+	var user: UserDevice = UserDevice.new("bigsoda")
+	task.network.connect_device(user)
 
-	net.connect_device(server)
-	net.connect_device(user)
-	var datapacket_sent: DataPacket = DataPacket.new(
-		user.get_ip(), server.get_ip(), 21,
-		HttpReq.new("GET", {
-			"files": ["sus-files"]
-		})
+	# Start oppgaven
+	task.start()
+
+	var httpreq: HttpReq = HttpReq.new("GET", {"files": ["sus-files"]})
+	var dp: DataPacket = DataPacket.new(
+		user.get_ip(), task.objects.get("ftp-server").get_ip(), 21,
+		httpreq
 	)
-	
-	var response: DataPacket = user.send_datapacket(datapacket_sent)
+	print(dp)
+	print("----------------------------------------")
+	var response := user.send_datapacket(dp)
 	print(response)

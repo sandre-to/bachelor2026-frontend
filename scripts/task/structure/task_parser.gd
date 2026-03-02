@@ -27,23 +27,13 @@ enum ErrorCode{
 	MISSING_REQUIRED_KEY_EVENTS,
 	NO_EVENT_CMD,
 	MISSING_CMD_TYPE,
-	
+	NONEXISTANT_CMD_OBJECT,
+	NONEXISTANT_CMD_TYPE,
+	INVALID_CMD_DEFINITION,
 }
 var errno: ErrorCode = ErrorCode.OK
 var err_desc: String = ""
 
-# Gyldige kommandoer som oppgaven kan utføre
-const valid_task_cmds: Array[String] = [
-	"send-message",		# Får en NPC-messsenger til å sende en melding til spilleren
-	"open-port",		# Åpner en serverport
-	"close-port"		# Lukker en serverport
-]
-
-# Gyldige triggers
-const valid_triggers: Array[String] = [
-	"timed",
-	"user-message"
-]
 
 
 # Parse_json_task():	Parser ut en oppgave i JSON form.
@@ -85,19 +75,20 @@ func _handle_objects(json_objects: Dictionary, task: Task) -> bool:
 	
 		# Hva slags objekt er det
 		var object_type: String = json_objects[name].get("type")
-		if object_type == "file":
-			ir_obj = _parse_file(name, json_objects[name])
-		elif object_type == "directory":
-			ir_obj = _parse_directory(name, json_objects[name])
-		elif object_type == "npc-messenger":
-			ir_obj = ParsedObject.new(name, "npc-messenger")
-		elif object_type == "server":
-			ir_obj = _parse_server(name, json_objects[name])
-		elif object_type == "server-process":
-			ir_obj = _parse_server_process(name, json_objects[name])
-		else:
-			set_error(ErrorCode.INVALID_OBJECT_TYPE, "_handle_objects(): Ugyldig objekt ("+ object_type +") prøves å parses")
-			return false
+		match object_type:
+			"file":
+				ir_obj = _parse_file(name, json_objects[name])
+			"directory":
+				ir_obj = _parse_directory(name, json_objects[name])
+			"npc-messenger":
+				ir_obj = ParsedObject.new(name, "npc-messenger")
+			"server":
+				ir_obj = _parse_server(name, json_objects[name])
+			"server-process":
+				ir_obj = _parse_server_process(name, json_objects[name])
+			_:
+				set_error(ErrorCode.INVALID_OBJECT_TYPE, "_handle_objects(): Ugyldig objekt ("+ object_type +") prøves å parses")
+				return false
 			
 		# Hvis objektet var definert dårlig (error er satt av parserfunksjonen)
 		if ir_obj == null:
@@ -163,8 +154,9 @@ func _parse_server(ref_name: String, server_object: Dictionary) -> ParsedObject:
 		return null
 	ir_obj.parsed_object = Server.new(server_object.get("hostname"))
 	return ir_obj
-	
-	
+
+
+# _parse_server_process():		Parser en serverprosess og returnerer et ir_objekt.
 func _parse_server_process(ref_name: String, server_process_object: Dictionary) -> ParsedObject:
 	var ir_obj: ParsedObject = ParsedObject.new(ref_name, server_process_object.get("type"))
 	if not server_process_object.has_all(["process-type","resources"]):
@@ -195,24 +187,61 @@ func _handle_key_events(key_events: Dictionary, task: Task) -> bool:
 	# 1: task-start
 	var task_start: Dictionary = key_events.get("task-start")
 	
-	# 1.1: Hent ut kommandoene
+	# 1.1: Kommandoer
 	if not task_start.has("cmd"):
-		set_error(ErrorCode.NO_EVENT_CMD, "_handle_key_events(): Mangler kommandoer for hendelsen 'task-start'")
+		set_error(ErrorCode.NO_EVENT_CMD, "_handle_key_events(): Mangler kommandoer for task-start")
 		return false
 
-	for cmd in task_start.get("cmd"):
+	task.task_start_cmds = _parse_event_cmds(task_start.get("cmd"), task)
+	
+	# 1.2: Andre felt
+	# ... (ingen rn)
+	
+	# 2: correct-flag-submit
+	var correct_flag_submit: Dictionary = key_events.get("correct-flag-submit")
+	
+	# 2.1: Kommandoer
+	if not correct_flag_submit.has("cmd"):
+		set_error(ErrorCode.NO_EVENT_CMD, "_handle_key_events(): Mangler kommandoer for correct-flag-submit")
+		return false
+	
+	task.correct_flag_cmds = _parse_event_cmds(correct_flag_submit.get("cmd"), task)
 
-		if not cmd.has("type"):
-			set_error(ErrorCode.MISSING_CMD_TYPE, "_handle_key_events(): Kommando mangler type")
-			return false
-
-		var cmd_type: String = cmd.get("type")
-		cmd.erase("type")
-		if cmd_type == "open-port":
-			task.task_start_cmds.append()
-				
+	# 2.2: Andre felt
+	# ... (ingen rn)
+	
+	# 3: Andre events
 	
 	return true
+
+
+# _parse_event_cmds():	Parser kommandoene ut ifra en dict.
+func _parse_event_cmds(event_cmds: Array, task: Task) -> Array[TaskCMD]:
+	var cmds: Array[TaskCMD] = []
+	for cmd_dict in event_cmds:
+		if not cmd_dict.has("type"):
+			set_error(ErrorCode.MISSING_CMD_TYPE, "_handle_key_events(): Kommando mangler type")
+			return []
+
+		var cmd_type: String = cmd_dict.get("type")
+		cmd_dict.erase("type")
+
+		var cmd: TaskCMD
+		match cmd_type:
+			"open-port":
+				cmd = OpenPortCMD.create(cmd_dict, task)
+			"close-port":
+				cmd = ClosePortCMD.create(cmd_dict, task)
+			_:
+				set_error(ErrorCode.NONEXISTANT_CMD_TYPE, "_handle_key_events(): Kommando har dårlig definert ellen manglende parameter (" + cmd_type +")")
+				return []
+				
+		if cmd == null:
+			set_error(ErrorCode.INVALID_CMD_DEFINITION, "_handle_key_events(): En kommando (type: " + cmd_type + ") kunne ikke parses")
+			return []
+				
+		cmds.append(cmd)
+	return cmds
 
 
 # ---------------------------------------------------------------- #

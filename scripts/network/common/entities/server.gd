@@ -45,3 +45,7 @@ func close_port(port: int) -> bool:
 # Port_is_open():	Herregud du vet
 func port_is_open(port: int) -> bool:
 	return open_ports.has(port)
+
+# Is_online():	Ya know
+func is_online() -> bool:
+	return _connected_network != null

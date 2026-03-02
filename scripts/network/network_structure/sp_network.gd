@@ -10,7 +10,6 @@ class_name SPNetwork
 func route_packet(datapacket: DataPacket) -> DataPacket:
 	var dev: AbstractDevice = _get_dev(datapacket.get_receiver_ip())
 	if dev == null:
-		print("wat")
 		return DataPacket.copy_header(
 			datapacket,
 			ErrorResponse.new(ErrorResponse.NetworkError.ENETUNREACH)
@@ -35,6 +34,11 @@ func disconnect_device(device: AbstractDevice) -> bool:
 		return false
 	device.disconnect_from_network()
 	return true
+
+
+# dev_on_network():	Selvforklarende.
+func dev_on_network(device: AbstractDevice) -> bool:
+	return connected_entities.has(device)
 
 
 # _generate_ip():	Genererer en ny IP-adresse for for en nytilkoblet enhet.
