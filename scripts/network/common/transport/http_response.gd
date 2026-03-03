@@ -1,4 +1,4 @@
-extends Resource
+extends PacketData
 class_name HttpResponse
 
 # HttpResponse:
@@ -21,13 +21,25 @@ enum ResponseCode {
 	# Serverfeilmeldinger (Spilleren gjorde noe bra)
 	INTERNAL_SERVER_ERROR 			= 500,	# Typisk respons
 	LOOP_DETECTED					= 508,	# Kanskje brukt?
-	NETWORK_AUTHENTICATION_REQUIRED = 511	# Anner ikke :)
 }
 
-var response_code: ResponseCode = ResponseCode.OK
-var content: String
+var _response_code: int = ResponseCode.OK
+var _content: Dictionary
 
 
-func _init(_response_code: ResponseCode, _content: String) -> void:
-	response_code = _response_code
-	content = _content
+func _init(response_code: int, content: Dictionary) -> void:
+	_response_code = response_code
+	_content = content
+
+
+func get_response_code() -> int:
+	return _response_code
+	
+func get_content() -> Dictionary:
+	return _content
+
+func _to_string() -> String:
+	return "Response Code: " + str(_response_code) + "\n" + str(_content)	
+
+func get_type() -> String:
+	return "HTTP Response"

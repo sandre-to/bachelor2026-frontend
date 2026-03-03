@@ -1,4 +1,4 @@
-extends Resource
+extends PacketData
 class_name ErrorResponse
 
 # ErrorResponse:
@@ -29,3 +29,9 @@ var description: String
 func _init(_error_type: NetworkError) -> void:
 	error_type = _error_type
 	description = error_description.get(error_type)
+
+func _to_string() -> String:
+	return description
+
+func get_type() -> String:
+	return "Error"
