@@ -9,15 +9,15 @@ static func create(_params: Dictionary, _task: Task) -> ClosePortCMD:
 		return null
 	
 	var cmd_objects: Dictionary[String, Variant] = {
-		"server": _task._params["server"],
-		"port": _task._params["port"]
+		"server": _task.objects[_params["server"]],
+		"port": _params["port"]
 	}
 	
 	if cmd_objects["server"] is not Server \
-	or cmd_objects["port"] is not int:
+	or cmd_objects["port"] is not float:
 		return null
 	
-	var cmd: ClosePortCMD = ClosePortCMD.new(_params, _task)
+	var cmd: ClosePortCMD = ClosePortCMD.new(cmd_objects, _task)
 	return cmd
 
 

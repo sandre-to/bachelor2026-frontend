@@ -28,7 +28,8 @@ var wrong_flag_cmds: Array[TaskCMD] = []
 var network: SPNetwork
 
 
-
+func _init(_network: AbstractNetwork) -> void:
+	network = _network
 
 
 # Start():	Selvforklarende
@@ -39,7 +40,8 @@ func start() -> void:
 
 # Finish():	Kjører når riktig flagg angis
 func finish() -> void:
-	pass
+	for cmd in correct_flag_cmds:
+		cmd.execute()
 
 
 # Abort():	Rydder opp oppgaven når brukeren avbryter den

@@ -2,16 +2,11 @@ extends Node
 
 func _ready() -> void:
 
-	var json_dict: Dictionary = {
+	var json: String = JSON.stringify({
 		"objects": {
-			"NPC-messenger": {
-				"type": "npc-messenger",
-				"name": "boss",
-				"app": "skype"
-			},
 			"ftp-server": {
 				"type": "server",
-				"hostname": "hemmelig-server"	
+				"hostname": "hemmelig-server"
 			},
 			"ftp-process": {
 				"type": "server-process",
@@ -55,7 +50,11 @@ func _ready() -> void:
 			},
 			"correct-flag-submit": {
 				"cmd": [
-
+					{
+						"type": "close-port",
+						"server": "ftp-server",
+						"port": 21
+					}
 				]
 			},
 			"wrong-flag-submit": {
@@ -64,12 +63,13 @@ func _ready() -> void:
 				]
 			}
 		}
-	} 
+	})
 	
 	var task_parser: TaskParser = TaskParser.new()
+	var task: Task = Task.new(SPNetwork.new())
 	
 	var start_time = Time.get_ticks_usec()
-	var task: Task = task_parser.parse(JSON.stringify(json_dict))
+	task_parser.parse(json, task)
 	var end_time = Time.get_ticks_usec()
 	print("Tid brukt: ", end_time - start_time, "us")
 	
@@ -79,8 +79,6 @@ func _ready() -> void:
 		print(task_parser.get_error_desc())
 		return
 
-	# Gi oppgaven en referanse til nettverket
-	task.network = SPNetwork.new()
 	
 	# Lag brukerens nettverkskort
 	var user: UserDevice = UserDevice.new("bigsoda")

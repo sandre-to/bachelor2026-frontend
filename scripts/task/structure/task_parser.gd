@@ -6,10 +6,21 @@ class_name TaskParser
 # gitt av backenden inn til et Task-objekt.
 
 # Notater (Kristoffer):
-# - Når et objekt parses, så lages alle objektene først, deretter så 
-#	knyttes objekter som har et forhold sammen, f.eks en katalog som 
-#	inneholder en fil. 
-# 
+# - FOR Å LEGGE TIL EN NY TYPE OBJEKT:
+#	1	Lag en ny "_parse_x()"-metode som definerer objektet og lager et ir_objekt. 
+#	2 	Legg til et felt i matchcasen i IR-object-mainloopen i _handle_objects().
+# 	3	Hvis objektet skal kunne ha barn, legg til et felt i matchcasen i Forholdmainloopen (muligens litt fuckass rn).
+#
+# - FOR Å LEGGE TIL EN NY TYPE TASKCMD:
+#	1	I selve klassen, lag en statisk fabrikkmetode (create()) som verifiserer params og lager en instanse.
+#	2	I _parse_event_cmd(), legg til et felt i matchcasen hvor metoden kalles.
+#
+
+
+# TODO:
+# 1 Triggers. Dette skal beskrive hva som skjer når en spiller gjør noe spesifikt.
+#	Dette er bedre å vente med fram til alle introoppgavene er ferdige. 
+# 2 
 
 
 # Errorkoder hvis parsingen gikk galt
@@ -31,15 +42,14 @@ enum ErrorCode{
 	NONEXISTANT_CMD_TYPE,
 	INVALID_CMD_DEFINITION,
 }
-var errno: ErrorCode = ErrorCode.OK
-var err_desc: String = ""
+var _errno: ErrorCode = ErrorCode.OK
+var _err_desc: String = ""
 
 
 
 # Parse_json_task():	Parser ut en oppgave i JSON form.
-func parse(json_str: String) -> Task:
+func parse(json_str: String, task: Task) -> Task:
 
-	var task: Task = Task.new()
 	var json: Dictionary = JSON.parse_string(json_str)
 	
 	if not json.has_all(["objects", "key-events"]):
@@ -67,7 +77,7 @@ func _handle_objects(json_objects: Dictionary, task: Task) -> bool:
 	# Midlertidig parseobjekter
 	var intermediate_objects: Array[ParsedObject]
 	
-	# 1: Konverter JSON til ir_objekter
+	# 1: IR-object mainloop
 	for name in json_objects:
 		
 		# ir = Intermediate representation
@@ -96,7 +106,7 @@ func _handle_objects(json_objects: Dictionary, task: Task) -> bool:
 		
 		intermediate_objects.append(ir_obj)
 		
-	# 2: Knytt objekter sammen
+	# 2: Forhold mainloop
 	for ir_obj in intermediate_objects:
 		if not ir_obj.has_children():
 			continue
@@ -107,11 +117,14 @@ func _handle_objects(json_objects: Dictionary, task: Task) -> bool:
 			if child == null:
 				return false
 
-			# Hva slags objekt er forelderobjektet?			
-			if ir_obj.type == "directory":
-				ir_obj.parsed_object.insert_into(child.parsed_object)
-			elif ir_obj.type == "server-process":
-				ir_obj.parsed_object.resources.append(child.parsed_object)
+			# Hva slags objekt er forelderobjektet?
+			match ir_obj.type:
+				"directory":
+					ir_obj.parsed_object.insert_into(child.parsed_object)
+				"server-process":
+					ir_obj.parsed_object.resources.append(child.parsed_object)
+				_:
+					return false
 		
 	# 3: Gi objekter til task
 	for ir_obj in intermediate_objects:
@@ -223,10 +236,12 @@ func _parse_event_cmds(event_cmds: Array, task: Task) -> Array[TaskCMD]:
 			set_error(ErrorCode.MISSING_CMD_TYPE, "_handle_key_events(): Kommando mangler type")
 			return []
 
+		# CMD-params er egt bare CMD-en minus typen; fjern typen.
 		var cmd_type: String = cmd_dict.get("type")
 		cmd_dict.erase("type")
-
 		var cmd: TaskCMD
+		
+		# Typen CMD
 		match cmd_type:
 			"open-port":
 				cmd = OpenPortCMD.create(cmd_dict, task)
@@ -255,18 +270,18 @@ func _parse_event_cmds(event_cmds: Array, task: Task) -> Array[TaskCMD]:
 
 # Get_error():	Returnerer den nåverende erroren og reset verdien.
 func get_error() -> ErrorCode:
-	var to_return: ErrorCode = errno
-	errno = ErrorCode.OK
+	var to_return: ErrorCode = _errno
+	_errno = ErrorCode.OK
 	return to_return
 
 # Get_error_desc():	Returnerer en beskrivelse av feilen.
 func get_error_desc() -> String:
-	return err_desc
+	return _err_desc
 
 # Set_error():	Setter en ny error.
 func set_error(error: ErrorCode, desc: String) -> void:
-	errno = error
-	err_desc = desc
+	_errno = error
+	_err_desc = desc
 
 
 # ---------------| Miniskule hjelpefunksjoner |--------------- #
