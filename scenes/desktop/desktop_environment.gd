@@ -3,17 +3,17 @@ class_name Desktop extends Control
 const WINDOW: PackedScene = preload("res://scenes/window/custom_window.tscn")
 
 @onready var crypto_task: CryptoTask = %CryptoTask
-
 var root: Node = null
 
 func _ready() -> void:
 	root = get_tree().root
+	crypto_task.hide()
 
 func _on_crypto_button_pressed() -> void:
 	_instantiate_tool(Tool.ToolType.CRYPTO_TOOL)
 
 func _on_select_task_item_selected(index: int) -> void:
-	match index:
+	match index: 
 		1:
 			crypto_task.visible = not crypto_task.visible
 		2:

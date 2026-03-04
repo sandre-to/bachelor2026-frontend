@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ixxriek6xq6m"]
 
 [ext_resource type="Script" uid="uid://sh47vmccqyde" path="res://assets/tools/caesar_cipher/caesar_cipher.gd" id="1_h2t4e"]
+[ext_resource type="Texture2D" uid="uid://c8abi67mrnrg1" path="res://assets/tools/caesar_cipher/arrow_n.png" id="2_fwsiq"]
+[ext_resource type="Texture2D" uid="uid://dhi4kq5ew04dg" path="res://assets/tools/caesar_cipher/arrow_s.png" id="3_kgmua"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2t4e"]
 bg_color = Color(0.09620472, 0.09620475, 0.09620469, 1)
@@ -96,6 +98,34 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
 placeholder_text = "0-9"
 alignment = 1
+max_length = 1
+
+[node name="Up" type="Button" parent="VBoxContainer/LineEdit" unique_id=661653736]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 220.0
+offset_top = 8.5
+offset_right = 52.0
+offset_bottom = -51.5
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("2_fwsiq")
+flat = true
+icon_alignment = 1
+
+[node name="Down" type="Button" parent="VBoxContainer/LineEdit" unique_id=124836631]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.96500003
+offset_left = 220.0
+offset_top = 56.5
+offset_right = 52.0
+icon = ExtResource("3_kgmua")
+flat = true
+icon_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2010700267]
 layout_mode = 2
@@ -151,5 +181,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 selection_enabled = true
 
+[connection signal="pressed" from="VBoxContainer/LineEdit/Up" to="." method="_on_up_shift_pressed"]
+[connection signal="pressed" from="VBoxContainer/LineEdit/Down" to="." method="_on_down_shift_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Encrypt" to="." method="_on_encrypt_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Decrypt" to="." method="_on_decrypt_pressed"]

@@ -55,18 +55,14 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_xyd6q"]
+font_size = 54
+
 [node name="CryptoTask" type="Control" unique_id=629482100]
 z_index = 10
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -0.47998047
-offset_bottom = 0.47998047
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_bottom = 0.95996094
 mouse_filter = 1
 script = ExtResource("1_xyd6q")
 
@@ -163,6 +159,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="EnterFlag" type="LineEdit" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=928400105]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_colors/font_placeholder_color = Color(0.8156863, 0.8156863, 0.8156863, 1)
@@ -170,6 +167,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ncm2f")
 placeholder_text = "ENTER FLAG"
 
 [node name="ConfirmButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=1790146294]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0jfeq")
@@ -181,14 +179,14 @@ layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Button" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=1534878314]
+[node name="Hint1" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=1534878314]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 1"
 
-[node name="Button2" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=601580613]
+[node name="Hint2" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=601580613]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
@@ -196,10 +194,40 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 disabled = true
 text = "HINT 2"
 
-[node name="Button3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
+[node name="Hint3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 disabled = true
 text = "HINT 3"
+
+[node name="Hint1Panel" type="Panel" parent="." unique_id=1837892995]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -967.0
+offset_top = -441.47998
+offset_right = -188.0
+offset_bottom = 30.52002
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Hint1Panel" unique_id=1081107950]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Does the puzzle look weird? Maybe try a tool that deciphers this (crypto)"
+label_settings = SubResource("LabelSettings_xyd6q")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer/Hint1" to="." method="_on_hint_1_pressed"]

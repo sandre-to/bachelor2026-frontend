@@ -31,7 +31,8 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://2wkqvuiwsykv"
-mouse_cursor/tooltip_position_offset=Vector2(10, 5)
+mouse_cursor/custom_image_hotspot=Vector2(5, 5)
+mouse_cursor/tooltip_position_offset=Vector2(2, 5)
 
 [dotnet]
 

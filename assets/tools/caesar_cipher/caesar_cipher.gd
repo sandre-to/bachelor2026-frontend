@@ -3,6 +3,12 @@ class_name CaesarCipher extends Tool
 @onready var text_input: TextEdit = $%TextEdit
 @onready var shift_input: LineEdit = $%LineEdit
 @onready var output_label: RichTextLabel = $%OutputLabel
+@onready var line_edit: LineEdit = %LineEdit
+
+var number: int = 0
+
+func _ready() -> void:
+	line_edit.text = str(number)
 
 func encrypt(text: String, shift: int) -> String:
 	if text_input.text == "":
@@ -44,3 +50,22 @@ func _on_decrypt_pressed() -> void:
 
 func mod(a: int, b: int) -> int:
 	return (a % b + b) % b
+
+func _on_up_shift_pressed() -> void:
+	if number >= 9:
+		number = 9
+		line_edit.text = str(number)
+		return
+		
+	number += 1
+	line_edit.text = str(number)
+	
+
+func _on_down_shift_pressed() -> void:
+	if number <= 0:
+		number = 0
+		line_edit.text = str(number)
+		return
+		
+	number -= 1
+	line_edit.text = str(number)

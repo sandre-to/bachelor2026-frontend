@@ -161,10 +161,10 @@ popup/item_3/id = 3
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_left = 549.0
-offset_top = 119.0
-offset_right = 549.0
-offset_bottom = 119.95996
+offset_left = 1456.0
+offset_top = 597.0
+offset_right = 1456.0
+offset_bottom = 597.95996
 
 [node name="TimeLabel" type="Label" parent="." unique_id=1826581504]
 layout_mode = 1
