@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c4co1lnveh66q"]
 
+[ext_resource type="Script" uid="uid://du6loa87a7vq3" path="res://assets/tools/steg_tool/steg_tool.gd" id="1_u3kwl"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ot5g"]
 bg_color = Color(0.779894, 0.54698455, 0.71348655, 0.6627451)
 
@@ -13,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u3kwl")
 
 [node name="Panel" type="Panel" parent="." unique_id=1967266897]
 layout_mode = 0
