@@ -2,10 +2,13 @@ class_name Desktop extends Control
 
 const WINDOW: PackedScene = preload("res://scenes/window/custom_window.tscn")
 
+@onready var animation: AnimationPlayer = $Animation
 @onready var crypto_task: CryptoTask = %CryptoTask
+
 var root: Node = null
 
 func _ready() -> void:
+	animation.play("fade_in")
 	root = get_tree().root
 	crypto_task.hide()
 

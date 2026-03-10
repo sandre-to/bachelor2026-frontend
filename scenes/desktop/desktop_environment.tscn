@@ -39,6 +39,57 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 8
 shadow_color = Color(0, 0, 0, 0.9372549)
 
+[sub_resource type="Animation" id="Animation_ndhkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lkv1q"]
+resource_name = "fade_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.56666666),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ndhkw"]
+_data = {
+&"RESET": SubResource("Animation_ndhkw"),
+&"fade_in": SubResource("Animation_lkv1q")
+}
+
 [node name="DesktopEnvironment" type="Control" unique_id=1468378510]
 layout_mode = 3
 anchors_preset = 15
@@ -190,6 +241,18 @@ text = "BunOS"
 label_settings = SubResource("LabelSettings_bpu8p")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=108276697]
+libraries/ = SubResource("AnimationLibrary_ndhkw")
+
+[node name="ColorRect" type="ColorRect" parent="Animation" unique_id=216457355]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 
 [connection signal="pressed" from="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/Tools/CryptoButton" to="." method="_on_crypto_button_pressed"]
 [connection signal="item_selected" from="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/SelectTask" to="." method="_on_select_task_item_selected"]

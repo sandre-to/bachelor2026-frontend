@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://c4vxyibebfsbb"]
+
+[ext_resource type="Script" uid="uid://dtdflxmkgexjh" path="res://scenes/intro_scene/intro_scene.gd" id="1_o4me8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j2opu"]
+font_size = 54
+
+[sub_resource type="Animation" id="Animation_o4me8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOut:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jbds7"]
+resource_name = "fade_out"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeOut:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwmsm"]
+_data = {
+&"RESET": SubResource("Animation_o4me8"),
+&"fade_out": SubResource("Animation_jbds7")
+}
+
+[node name="IntroScene" type="Control" unique_id=1029884416]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o4me8")
+
+[node name="Title" type="Label" parent="." unique_id=1306272027]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -267.0
+offset_top = 107.0
+offset_right = 267.0
+offset_bottom = 233.0
+grow_horizontal = 2
+text = "BunOS"
+label_settings = SubResource("LabelSettings_j2opu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsContainer" type="VBoxContainer" parent="." unique_id=1398624164]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -110.0
+offset_right = 150.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="OptionsContainer" unique_id=1522419468]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="ExitButton" type="Button" parent="OptionsContainer" unique_id=1177139722]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[node name="FadeOut" type="ColorRect" parent="." unique_id=1903198730]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.29586652, 0.2958665, 0.2958665, 1)
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1019399826]
+libraries/ = SubResource("AnimationLibrary_hwmsm")
+
+[connection signal="pressed" from="OptionsContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="OptionsContainer/ExitButton" to="." method="_on_exit_button_pressed"]
