@@ -40,6 +40,11 @@ func disconnect_device(device: AbstractDevice) -> bool:
 func dev_on_network(device: AbstractDevice) -> bool:
 	return connected_entities.has(device)
 
+# dev_on_network():	Selvforklarende.
+func devs_on_network() -> void:
+	for ent in connected_entities:
+		print(ent)
+
 
 # _generate_ip():	Genererer en ny IP-adresse for for en nytilkoblet enhet.
 #					Returnerer en tom string dersom det ikke finnes en ledig IP.
