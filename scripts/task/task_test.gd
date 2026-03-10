@@ -17,5 +17,6 @@ func _on_response(result, response_code, headers, body) -> void:
 	
 	parser.parse(body.get_string_from_utf8(), task)
 	task.start()
-	task.network.devs_on_network()
+	print(task)
+
 	
