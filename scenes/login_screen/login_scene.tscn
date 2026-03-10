@@ -103,7 +103,16 @@ placeholder_text = "Password"
 caret_blink = true
 secret = true
 
-[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/LoginPanel" unique_id=1859659473]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LoginPanel" unique_id=1819320411]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackFromLoginButton" type="Button" parent="MarginContainer/VBoxContainer/LoginPanel/HBoxContainer" unique_id=116711801]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+text = "RETURN"
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/LoginPanel/HBoxContainer" unique_id=1859659473]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "CONFIRM"
@@ -146,7 +155,7 @@ secret = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/RegisterPanel/HBoxContainer" unique_id=673229864]
+[node name="BackFromRegisterButton" type="Button" parent="MarginContainer/VBoxContainer/RegisterPanel/HBoxContainer" unique_id=673229864]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 text = "RETURN"
@@ -183,6 +192,9 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Register"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LoginPanel/HBoxContainer/BackFromLoginButton" to="." method="_on_back_from_login_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LoginPanel/HBoxContainer/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RegisterPanel/HBoxContainer/BackFromRegisterButton" to="." method="_on_back_from_register_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RegisterPanel/HBoxContainer/ConfirmRegister" to="." method="_on_confirm_register_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer/ChooseLoginButton" to="." method="_on_choose_login_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChooseLoginOrRegister/VBoxContainer/RegisterUserButton" to="." method="_on_register_user_button_pressed"]
