@@ -21,6 +21,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 [autoload]
 
 SceneManager="*uid://bs5rjynbtaxhk"
+NetworkManager="*uid://db00shqp8vjnj"
 
 [display]
 
