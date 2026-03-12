@@ -6,73 +6,85 @@ extends Node
 # Notater:
 # - Forbindelsen baseres på websocket, ikke websocket secure. Dette må endres.
 
-# Adresser & endepunkter
-const SOCKET_URL: String = "ws://localhost:8080"
-const GAME_ENDPOINT: String = "/game"
-
-const TIMEOUT_SECONDS: int 			= 2	# Antall sekunder klienten venter
-const CONNECTION_ATTEMPTS: int 		= 5	# Antall forsøk på tilkobling
-const POLL_INTERVAL_SECONDS: int 	= 1	# Antall sekunder mellom hver serverpoll
+const BACKEND_URL: String = "ws://localhost:8080/game"
+const CONNECTION_ATTEMPTS: int 				= 5		# Antall forsøk på tilkobling
+const CONNECTION_INTERVAL_SECONDS: float 	= 1.5	# Antall sekunder mellom hver serverpoll
 
 var _socket = WebSocketPeer.new()
-var connected: bool = false
+var _connected: bool = false
 
 
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
-	if not connected:
+	if not _connected:
 		return
 	
 	_socket.poll()
-	var state: WebSocketPeer.State = _socket.get_ready_state()
-	if state == WebSocketPeer.State.STATE_OPEN:
-		read_messages()
-	elif state == WebSocketPeer.State.STATE_CLOSED:
-		_handle_connection_error()
-	elif state == WebSocketPeer.State.STATE_CLOSING:
-		return
+	match _socket.get_ready_state():
+		WebSocketPeer.State.STATE_OPEN:
+			_read_messages()
+		WebSocketPeer.State.STATE_CONNECTING:
+			print("wtf why")
+		WebSocketPeer.State.STATE_CLOSING:
+			return	# La forbindelsen lukke ordentlig
+		WebSocketPeer.State.STATE_CLOSED:
+			_announce_disconnection()
+			
+			
+
+# Connect_to_backend():	Kobler til backenden
+func connect_to_backend() -> bool:
+	var error: Error = _socket.connect_to_url(BACKEND_URL)
+	if error != OK:
+		return false
 		
+	# Vent på at forbindelsen kommer gjennom
+	for attempt in range(CONNECTION_ATTEMPTS):
+		_socket.poll()
+		print("Prøver å koble til...")
+		if _socket.get_ready_state() != WebSocketPeer.State.STATE_OPEN:
+			await get_tree().create_timer(CONNECTION_INTERVAL_SECONDS).timeout
+			continue
+		else:
+			print("Koblet til!! :)))")
+			_connected = true
+			return true
+		
+	print("Kunne ikke koble til :(")	
+	return false
+
+
+# Send():	Sender en melding til backenden
+func send(type: String, data: Dictionary) -> bool:
+	var msg: String = JSON.stringify({
+		"type": type,
+		"data": data
+	})
 	
-func read_messages() -> void:
+	_socket.poll()
+	while _socket.get_ready_state() == WebSocketPeer.State.STATE_CONNECTING:
+		_socket.poll()
+		
+	var state: WebSocketPeer.State = _socket.get_ready_state()
+	if state != WebSocketPeer.State.STATE_OPEN:
+		_announce_disconnection()
+		return false
+
+	_socket.send_text(msg)
+	
+	return true
+
+
+# _read_messages():	Henter meldingene ut i fra meldingskøen
+#					Per nå printes meldingen ut
+func _read_messages() -> void:
 	while _socket.get_available_packet_count() > 0:
 		print(_socket.get_packet().get_string_from_utf8())
-	
-	
-func send_messages() -> void:
-	pass
 
 
-# Connect_to_game():	Kobler forbindelsen til /game -endepunktet
-func connect_to_game() -> void:
-	var error = _socket.connect_to_url(SOCKET_URL + GAME_ENDPOINT)
-	if error != OK:
-		_handle_connection_error()
-		return
-
-	# Vent på på at forbindelsen starter opp
-	connected = await _wait_for_connection()
-
-		
-
-# _handle_connection_error():	Håndterer forbindelsesfeil
-func _handle_connection_error() -> void:
-	pass
-
-
-# _wait_for_connection():	Venter på at forbindelsen oppstår
-func _wait_for_connection() -> bool:
-	
-	var socket_state: WebSocketPeer.State
-	for i in range(CONNECTION_ATTEMPTS):
-
-		# Vent TIMEOUT_SECONDS sekunder og sjekk _sockettilstanden
-		await get_tree().create_timer(TIMEOUT_SECONDS).timeout
-		socket_state = _socket.get_ready_state()
-
-		if socket_state == WebSocketPeer.State.STATE_CLOSED:
-			break
-		elif socket_state == WebSocketPeer.State.STATE_OPEN:
-			return true
-	
-	return false
-	
+# _announce_disconnection():	Skriver ut at en nettverksfeil har tatt plass
+func _announce_disconnection() -> void:
+	_connected = false
+	print("Mistet forbindelsen ;(")
+	print("Kode:  ", _socket.get_close_code())
+	print("Grunn: ", _socket.get_close_reason())
