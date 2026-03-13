@@ -3,7 +3,7 @@ extends Node
 # NetworkManager:
 # Dette er objektet som brukes for å kommunisere med backenden gjennom websocket.
 
-# Brukshenvisning:
+# Bruksanvisning:
 # - SENDING AV MELDINGER:
 #	1. 	Kall på NetworkManager.send(type, data)
 #	2. 	Type skal være en gyldig typeID nevnt i matchcasen 
