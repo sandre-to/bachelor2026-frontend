@@ -3,8 +3,30 @@ extends Node
 # NetworkManager:
 # Dette er objektet som brukes for å kommunisere med backenden gjennom websocket.
 
-# Notater:
-# - Forbindelsen baseres på websocket, ikke websocket secure. Dette må endres.
+# Brukshenvisning:
+# - SENDING AV MELDINGER:
+#	1. 	Kall på NetworkManager.send(type, data)
+#	2. 	Type skal være en gyldig typeID nevnt i matchcasen 
+#	   	metoden: handleMessage(), i filen GameHandler.java i backenden.
+#	3. 	Data skal være en dictionary (JSON), ez as. Hvis du lurer på
+#		dataformatet på det API-et, se javadocs for den metoden API-et
+#		kommer til å kalle på.
+#
+# - MOTTAKELSE AV MELDINGER:
+#	1.	Knytt en funksjon til signalet "message_received" med parameteret "msg".
+#	2.	I funksjonen, gjør sjekket og return hvis false (ikke ment for deg):
+#			if msg.get("type") == "typen du forventer"
+#	3.	Sjekk feltet "status" for å sjekke om en feil oppsto; alle API-er kan 
+#		returnere en feilmelding.
+#	4.	Hent innholdet fra feltet "data", håndter som JSON.
+
+# TODO:
+# - Flere punkter trenger å feilhåndteres.
+# - Signal for nettverksfeil?
+
+
+# Signal som sendes når en ny melding kommer
+signal message_received(message: Dictionary)
 
 const BACKEND_URL: String = "ws://localhost:8080/game"
 const CONNECTION_ATTEMPTS: int 				= 5		# Antall forsøk på tilkobling
@@ -29,8 +51,7 @@ func _process(delta: float) -> void:
 			return	# La forbindelsen lukke ordentlig
 		WebSocketPeer.State.STATE_CLOSED:
 			_announce_disconnection()
-			
-			
+
 
 # Connect_to_backend():	Kobler til backenden
 func connect_to_backend() -> bool:
@@ -61,25 +82,26 @@ func send(type: String, data: Dictionary) -> bool:
 		"data": data
 	})
 	
+	# I tillfellet man sender før man har tilkoblet
 	_socket.poll()
 	while _socket.get_ready_state() == WebSocketPeer.State.STATE_CONNECTING:
 		_socket.poll()
 		
-	var state: WebSocketPeer.State = _socket.get_ready_state()
-	if state != WebSocketPeer.State.STATE_OPEN:
+	if _socket.get_ready_state() != WebSocketPeer.State.STATE_OPEN:
 		_announce_disconnection()
 		return false
 
 	_socket.send_text(msg)
-	
 	return true
 
 
 # _read_messages():	Henter meldingene ut i fra meldingskøen
-#					Per nå printes meldingen ut
 func _read_messages() -> void:
 	while _socket.get_available_packet_count() > 0:
-		print(_socket.get_packet().get_string_from_utf8())
+		var msg: Dictionary = JSON.parse_string(
+			_socket.get_packet().get_string_from_utf8()
+		)
+		emit_signal("message_received", msg)		# Feilhåndter :,(
 
 
 # _announce_disconnection():	Skriver ut at en nettverksfeil har tatt plass
