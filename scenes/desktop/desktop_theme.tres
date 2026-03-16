@@ -1,5 +1,13 @@
 [gd_resource type="Theme" format=3 uid="uid://bg64qtkijul1s"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw7rm"]
+bg_color = Color(0.728822, 0.728822, 0.728822, 0.8117647)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enld1"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 4
@@ -9,4 +17,5 @@ border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
 [resource]
+Button/styles/hover = SubResource("StyleBoxFlat_fw7rm")
 Button/styles/normal = SubResource("StyleBoxFlat_enld1")
