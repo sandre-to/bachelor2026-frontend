@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://c4co1lnveh66q"]
+
+[ext_resource type="Script" uid="uid://du6loa87a7vq3" path="res://assets/tools/steg_tool/steg_tool.gd" id="1_u3kwl"]
+
+[node name="StegTool" type="Control" unique_id=1224495268]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u3kwl")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1334227257]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1558707609]
+custom_minimum_size = Vector2(650, 500)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=222385930]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=766997574]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ToolTitle" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1966619665]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ToolTitle" unique_id=604506994]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 0
+offset_left = 65.0
+offset_top = 35.0
+offset_right = 215.0
+offset_bottom = 85.0
+text = "metaExtract"
+
+[node name="FileInput" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1768300926]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput" unique_id=1091935091]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 600.0
+offset_bottom = 90.0
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer" unique_id=1801869137]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+placeholder_text = "filepath"
+
+[node name="extractButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer" unique_id=1220293005]
+custom_minimum_size = Vector2(110, 40)
+layout_mode = 2
+text = "extract"
+
+[node name="MetaDataPanel" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=300936194]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MetaDataPanel" unique_id=2061830196]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 80.0
+offset_right = 575.0
+offset_bottom = 255.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MetaDataPanel/Panel" unique_id=1104513067]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 475.0
+offset_bottom = 160.0
+
+[node name="Label" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MetaDataPanel/Panel/ScrollContainer" unique_id=1778349888]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FindingsPanel" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2064756369]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FindingsPanel" unique_id=1664735168]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 310.0
+offset_right = 480.0
+offset_bottom = 390.0
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FindingsPanel/Panel" unique_id=452200829]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Findings"
+
+[node name="HBoxContainer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=227786098]
+layout_mode = 2
+
+[node name="clearButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2074793174]
+custom_minimum_size = Vector2(110, 40)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 225.0
+offset_right = 310.0
+offset_bottom = 265.0
+text = "clear"
+
+[node name="analyzeButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1539051935]
+custom_minimum_size = Vector2(110, 40)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 225.0
+offset_right = 460.0
+offset_bottom = 265.0
+text = "analyze"
+
+[connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer/extractButton" to="." method="_on_extract_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/clearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/analyzeButton" to="." method="_on_analyze_button_pressed"]

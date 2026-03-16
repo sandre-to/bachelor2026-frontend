@@ -2,22 +2,14 @@ extends FileEntity
 class_name Directory
 
 var parent_dir: Directory
-var _content: Array[FileEntity] = []
+var _content: Array[FileEntity]
 
 func _init(_name: String, _parent: Directory, _parent_fs: FileSystem) -> void:
 	super(_name, _parent_fs)
 	self.parent_dir = _parent
 
 
-# Get_entity():	Returnerer en entity i filsystemet, starter fra denne katalogen.
-#				Man kan bruke en relativ filsti fra denne katalogen. Kan feile dersom:
-#						- Man prøver å hoppe en katalog tilbake fra root-katalogen (ENOENT).
-#						- Om man ikke har lesetilgang (EACCES).
-#						- Om entiteten ikke eksisterer (ENOENT).
-# Problem:		Hvis man bruker en relativ filsti, finner man ikke entiteten,
-#				dette fikses hvis man legger til "/" forran.
-# Løsning:		Sjekk om stien begynner med "/". Føles ut som en dårlig løsning
-#				men herregud. Jeg lar det være fram til vi lager filexplorer ass.
+# Get_entity():	Implementasjon av en abstrakte metode.
 func get_entity(path: String) -> FileEntity:
 	if path.begins_with("/"):
 		return self._recr_get_entity(path, 1, path.get_slice_count("/"))
@@ -26,7 +18,6 @@ func get_entity(path: String) -> FileEntity:
 
 # _recr_get_entity(): 	Returnerer en entitet rekrusivt. Returnerer null dersom:
 #						- Man prøver å hoppe en katalog tilbake fra root-katalogen (ENOENT).
-#						- Om man ikke har lesetilgang (EACCES).
 #						- Om entiteten ikke eksisterer (ENOENT).
 func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> FileEntity:
 	# Er vi i bunnen av stien?
@@ -46,12 +37,12 @@ func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> File
 
 	# Hvis et annet navn
 	for entity in _content:
-		if entity.name == entity_name && entity.read:
+		if entity.name == entity_name:
 			if is_instance_of(entity, Directory):									#	Hack
 				return entity._recr_get_entity(path, current_depth, path_depth)		#	Hack
 			else:																	#	Hack
 				return entity														#	Hack :(
-		if entity.name == entity_name && not entity.read:
+		if entity.name == entity_name:
 			parent_fs.set_error(FileSystem.FileError.EACCES)
 			return null
 
@@ -83,9 +74,13 @@ func insert_into(entity: FileEntity) -> bool:
 		return true
 
 
-func _to_string() -> String:
-	var stringified_content: String = ""
+# Ls():	En metode som etterligner ls.
+func ls() -> String:
+	var content: String = ""
 	for entity in _content:
-		stringified_content += entity.name + " "
-	return stringified_content
-	
+		content += entity.name + " "
+	return content
+
+
+func _to_string() -> String:
+	return name + ": Directory, " + "Rights: " + get_user_rights()
