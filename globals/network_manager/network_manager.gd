@@ -6,11 +6,16 @@ extends Node
 # Bruksanvisning:
 # - SENDING AV MELDINGER:
 #	1. 	Kall på NetworkManager.send(type, data)
+#		eller NetworkManager.send_with_status(type, status, data) 
+#		Forskjellen mellom disse er at "send()" sender en melding
+#		uten et statusfelt og "send_with_status()" lar deg spesifisere
+#		en status dersom det er nødvendig.
 #	2. 	Type skal være en gyldig typeID nevnt i matchcasen 
 #	   	metoden: handleMessage(), i filen GameHandler.java i backenden.
 #	3. 	Data skal være en dictionary (JSON), ez as. Hvis du lurer på
 #		dataformatet på det API-et, se javadocs for den metoden API-et
 #		kommer til å kalle på.
+
 #
 # - MOTTAKELSE AV MELDINGER:
 #	1.	Knytt en funksjon til signalet "message_received" med parameteret "msg".
@@ -36,6 +41,7 @@ var _socket = WebSocketPeer.new()
 var _connected: bool = false
 
 
+
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if not _connected:
@@ -51,6 +57,7 @@ func _process(delta: float) -> void:
 			return	# La forbindelsen lukke ordentlig
 		WebSocketPeer.State.STATE_CLOSED:
 			_announce_disconnection()
+
 
 
 # Connect_to_backend():	Kobler til backenden
@@ -75,24 +82,50 @@ func connect_to_backend() -> bool:
 	return false
 
 
+
 # Send():	Sender en melding til backenden
 func send(type: String, data: Dictionary) -> bool:
 	var msg: String = JSON.stringify({
 		"type": type,
 		"data": data
 	})
-	
-	# I tillfellet man sender før man har tilkoblet
+	return _send_text(msg)
+
+
+
+# Send_with_status():	Sender en melding til backenden med status
+func send_with_status(type: String, status: String, data: Dictionary) -> bool:
+	var msg: String = JSON.stringify({
+		"type": type,
+		"status": status,
+		"data": data
+	})
+	return _send_text(msg)
+
+
+
+# Send_own():	Sender en helt egendefinert melding til backenden
+#				NB: Alle meldinger skal ha "type": "..."
+func send_own(msg: Dictionary) -> bool:
+	return _send_text(
+		JSON.stringify(msg)
+	)
+
+
+
+# _send_text():	Sender en konstruert melding til backenden
+func _send_text(msg: String) -> bool:
 	_socket.poll()
 	while _socket.get_ready_state() == WebSocketPeer.State.STATE_CONNECTING:
 		_socket.poll()
-		
+	
 	if _socket.get_ready_state() != WebSocketPeer.State.STATE_OPEN:
 		_announce_disconnection()
 		return false
 
 	_socket.send_text(msg)
 	return true
+
 
 
 # _read_messages():	Henter meldingene ut i fra meldingskøen
@@ -102,6 +135,7 @@ func _read_messages() -> void:
 			_socket.get_packet().get_string_from_utf8()
 		)
 		emit_signal("message_received", msg)		# Feilhåndter :,(
+
 
 
 # _announce_disconnection():	Skriver ut at en nettverksfeil har tatt plass
