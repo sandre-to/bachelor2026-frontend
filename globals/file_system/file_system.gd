@@ -1,4 +1,4 @@
-extends Resource
+extends Node
 
 # Dette er filen som håndterer spillerens filsystem
 
