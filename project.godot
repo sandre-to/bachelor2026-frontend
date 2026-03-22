@@ -22,6 +22,9 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 SceneManager="*uid://bs5rjynbtaxhk"
 HttpManager="uid://cavqb22lgnfdx"
+NetworkManager="*uid://db00shqp8vjnj"
+FileSystem="*uid://dqfpai62gs7sp"
+flag_manager="*uid://sgrmelivqb0n"
 
 [display]
 

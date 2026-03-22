@@ -10,8 +10,8 @@ class_name File
 # Midlertidig en tekstfil :)
 var text_content: String
 
-func _init(_name: String, _parent_system: FileSystem) -> void:
-	super(_name, _parent_system)
+func _init(_name: String) -> void:
+	super(_name)
 
 
 @warning_ignore("unused_parameter")
