@@ -20,7 +20,7 @@ func _ready() -> void:
 func run_with_path(abs_path: String) -> Dictionary:
 	current_path = abs_path
 
-	var entity = FileSystem.get_file_entity(abs_path)
+	var entity = get_node("/root/FileSystem").get_file_entity(abs_path)
 	if entity == null:
 		return _error("Fant ikke fil: %s" % abs_path)
 
