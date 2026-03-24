@@ -2,8 +2,23 @@
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
+[ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
+[ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="5_ndhkw"]
+[ext_resource type="Texture2D" uid="uid://dajsn1hgslmh7" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
+[ext_resource type="PackedScene" uid="uid://c31ikj8y3inob" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
+[ext_resource type="Texture2D" uid="uid://pn33flb7geb" path="res://assets/13727924.png" id="7_tysdv"]
+[ext_resource type="Texture2D" uid="uid://ppu4k7mp8abc" path="res://assets/tools/lock.png" id="8_l15fl"]
+[ext_resource type="Script" uid="uid://bnc3uiqrbkxu4" path="res://scenes/desktop/task_manager.gd" id="11_f6qo7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.9372549)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpu8p"]
 bg_color = Color(0, 0, 0, 1)
@@ -32,12 +47,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
+[sub_resource type="LabelSettings" id="LabelSettings_l15fl"]
 font_size = 32
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 8
-shadow_color = Color(0, 0, 0, 0.9372549)
 
 [sub_resource type="Animation" id="Animation_ndhkw"]
 length = 0.001
@@ -100,7 +111,15 @@ grow_vertical = 2
 theme = ExtResource("1_enld1")
 script = ExtResource("2_bpu8p")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1323275562]
+[node name="Visuals" type="Control" parent="." unique_id=616387900]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Visuals" unique_id=1323275562]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,7 +128,33 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.20905915, 0.49290454, 0.47409248, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2089317787]
+[node name="TimeLabel" type="Label" parent="Visuals" unique_id=1826581504]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 3.0
+offset_right = 300.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "10 : 38"
+label_settings = SubResource("LabelSettings_bpu8p")
+horizontal_alignment = 1
+script = ExtResource("3_lwt6y")
+
+[node name="OSName" type="Label" parent="Visuals" unique_id=1103319372]
+layout_mode = 1
+offset_left = 53.0
+offset_top = -7.0
+offset_right = 258.0
+offset_bottom = 61.0
+text = "BunOS"
+label_settings = SubResource("LabelSettings_bpu8p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DesktopPanel" type="MarginContainer" parent="." unique_id=2089317787]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,11 +166,11 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="OuterPanel" type="Panel" parent="MarginContainer" unique_id=4033988]
+[node name="OuterPanel" type="Panel" parent="DesktopPanel" unique_id=4033988]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpu8p")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/OuterPanel" unique_id=215052771]
+[node name="MarginContainer" type="MarginContainer" parent="DesktopPanel/OuterPanel" unique_id=215052771]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,12 +182,12 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="DesktopPanel" type="Panel" parent="MarginContainer/OuterPanel/MarginContainer" unique_id=788057033]
+[node name="DesktopPanel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer" unique_id=788057033]
 material = SubResource("ShaderMaterial_ec86u")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_71yap")
 
-[node name="TaskBar" type="Panel" parent="MarginContainer/OuterPanel/MarginContainer/DesktopPanel" unique_id=1363785015]
+[node name="TaskBar" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=1363785015]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -156,7 +201,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/TaskBar" unique_id=682762469]
+[node name="MarginContainer" type="MarginContainer" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar" unique_id=682762469]
 layout_mode = 0
 offset_left = -2.0
 offset_right = 1791.0
@@ -167,72 +212,199 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer" unique_id=2042285297]
+[node name="HBoxContainer" type="HBoxContainer" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer" unique_id=2042285297]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="HomeButton" type="Button" parent="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1515162580]
-custom_minimum_size = Vector2(64, 32)
+[node name="HomeButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1515162580]
+custom_minimum_size = Vector2(84, 32)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "HOME"
 
-[node name="FilesButton" type="Button" parent="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1543493324]
-custom_minimum_size = Vector2(64, 32)
+[node name="FilesButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1543493324]
+custom_minimum_size = Vector2(84, 32)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "FILES"
 
-[node name="ToolsButton" type="Button" parent="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1825985518]
+[node name="ToolsButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1825985518]
+custom_minimum_size = Vector2(84, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "TOOLS"
 
-[node name="TimeLabel" type="Label" parent="." unique_id=1826581504]
+[node name="ToolPanel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=371145754]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(600, 800)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_top = 7.0
-offset_right = 300.0
-offset_bottom = 52.0
-grow_horizontal = 2
-text = "10 : 38"
-label_settings = SubResource("LabelSettings_bpu8p")
-horizontal_alignment = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -474.0
+offset_right = 600.0
+offset_bottom = 406.0
+grow_vertical = 2
 
-[node name="OSName" type="Label" parent="." unique_id=1103319372]
+[node name="CaesarCipher" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=1370531773 instance=ExtResource("4_lh7yh")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
-offset_left = 53.0
-offset_top = -7.0
-offset_right = 258.0
-offset_bottom = 61.0
-text = "BunOS"
-label_settings = SubResource("LabelSettings_bpu8p")
-horizontal_alignment = 1
-vertical_alignment = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="WebExploit" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=375065791 instance=ExtResource("6_lwt6y")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="FileExplorer" parent="." unique_id=1560975105 instance=ExtResource("5_ndhkw")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.29200003
-anchor_top = 0.63100004
-anchor_right = 0.29200003
-anchor_bottom = 0.63100004
-offset_left = 0.35992432
-offset_top = -0.4800415
-offset_right = 0.35992432
-offset_bottom = -0.4800415
+offset_left = -20.0
+offset_right = -20.0
 
-[node name="Preview" parent="FileExplorer" index="1" unique_id=1755326574]
-offset_left = 649.0
-offset_top = -130.0
-offset_right = 1105.0
-offset_bottom = 80.0
+[node name="ToolSelector" type="Control" parent="." unique_id=246908298]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 92.0
+offset_top = -79.0
+offset_right = 92.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("6_oveh5")
+
+[node name="Panel" type="Panel" parent="ToolSelector" unique_id=1371374537]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -161.0
+offset_right = 183.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ToolSelector/Panel" unique_id=1940958585]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Crypto" type="Button" parent="ToolSelector/Panel/HBoxContainer" unique_id=2128780651]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("8_l15fl")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Stegano" type="Button" parent="ToolSelector/Panel/HBoxContainer" unique_id=487231194]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("6_ifu37")
+expand_icon = true
+
+[node name="Web" type="Button" parent="ToolSelector/Panel/HBoxContainer" unique_id=2105951009]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("7_tysdv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TaskManager" type="Control" parent="." unique_id=368341897]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -552.0
+offset_top = 75.0
+offset_right = -71.0
+offset_bottom = -141.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("11_f6qo7")
+
+[node name="TaskButton" type="Button" parent="TaskManager" unique_id=495483369]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_left = 230.0
+offset_top = 879.0
+offset_right = 480.0
+offset_bottom = 937.0
+size_flags_horizontal = 8
+text = "TASKS"
+
+[node name="Panel" type="Panel" parent="TaskManager" unique_id=1286714973]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TaskManager/Panel" unique_id=154020763]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskManager/Panel/MarginContainer" unique_id=1636311537]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1824578837]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "MISSIONS"
+label_settings = SubResource("LabelSettings_l15fl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Task1" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1785560712]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "TASK 1 - Not completed"
+
+[node name="Task2" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1991206588]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+disabled = true
+
+[node name="Task3" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=548578250]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+disabled = true
 
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=108276697]
 libraries/ = SubResource("AnimationLibrary_ndhkw")
@@ -247,6 +419,13 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 
-[connection signal="pressed" from="MarginContainer/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="." method="_on_files_button_pressed"]
-
-[editable path="FileExplorer"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="." method="_on_files_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="." method="_on_tools_button_pressed"]
+[connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/Crypto" to="ToolSelector" method="_on_crypto_pressed"]
+[connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/Stegano" to="ToolSelector" method="_on_stegano_pressed"]
+[connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/Web" to="ToolSelector" method="_on_web_pressed"]
+[connection signal="pressed" from="TaskManager/TaskButton" to="TaskManager" method="_on_task_button_pressed"]
+[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TaskManager" method="_on_task_1_pressed"]
+[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="TaskManager" method="_on_task_2_pressed"]
+[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="TaskManager" method="_on_task_3_pressed"]
