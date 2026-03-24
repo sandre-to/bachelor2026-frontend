@@ -144,9 +144,9 @@ func _parse_file(ref_name: String, file_object: Dictionary) -> ParsedObject:
 	if not file_object.has_all(["name", "metadata", "content"]):
 		set_error(ErrorCode.INVALID_OBJECT_ATTRIBUTES, "_parse_file(): Mangler et påkrevd objektattributt for objektet '" + ref_name + "'")
 		return null
-	ir_obj.parsed_object = File.new(file_object.get("name"), null)
-	ir_obj.parsed_object.update_content(file_object.get("content"))
-	ir_obj.parsed_object.update_metadata(file_object.get("metadata"))
+	ir_obj.parsed_object = File.new(file_object.get("name"))
+	ir_obj.parsed_object.text_content = file_object.get("content")
+	#ir_obj.parsed_object.metadata = file_object.get("metadata")
 	return ir_obj
 
 
@@ -156,7 +156,7 @@ func _parse_directory(ref_name: String, dir_object: Dictionary) -> ParsedObject:
 	if not dir_object.has_all(["name", "content"]):
 		set_error(ErrorCode.INVALID_OBJECT_ATTRIBUTES, "_parse_dir(): Mangler et påkrevd objektattributt for objektet '" + ref_name + "'")
 		return null
-	ir_obj.parsed_object = Directory.new(dir_object.get("name"), null, null)
+	ir_obj.parsed_object = Directory.new(dir_object.get("name"), null)
 	ir_obj.children = dir_object.get("content")
 	return ir_obj
 	
