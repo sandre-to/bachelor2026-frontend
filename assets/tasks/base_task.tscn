@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://f7m1nc23t8ak"]
 
+[ext_resource type="Script" uid="uid://cjlrds15q0udc" path="res://assets/tasks/base_task.gd" id="1_ncm2f"]
 [ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="1_vjtgf"]
+[ext_resource type="Resource" uid="uid://d2ceyhnqxblsd" path="res://assets/tasks/crypto.tres" id="2_0jfeq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -61,6 +63,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ncm2f")
+task = ExtResource("2_0jfeq")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -183,7 +187,6 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
-disabled = true
 text = "HINT 2"
 
 [node name="Button3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
@@ -191,5 +194,4 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
-disabled = true
 text = "HINT 3"

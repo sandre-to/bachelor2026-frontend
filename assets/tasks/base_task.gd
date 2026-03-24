@@ -1,10 +1,11 @@
-@abstract
 class_name BaseTask extends Control
 
 enum TaskType {
-	CRYPTO,
-	STEGANO,
-	WEB
+	CRYPTO_TASK,
+	STEGANO_TASK,
+	WEB_TASK
 }
 
-@export var task_type: TaskType
+@export var type: TaskType
+@export var task: Task = null
+var socket: WebSocketPeer = WebSocketPeer.new()

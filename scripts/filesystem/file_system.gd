@@ -107,15 +107,3 @@ func _path_is_valid(path: String) -> bool:
 		return false
 	
 	return true
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
