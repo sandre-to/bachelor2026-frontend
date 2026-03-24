@@ -48,7 +48,9 @@ var _err_desc: String = ""
 
 
 # Parse_json_task():	Parser ut en oppgave i JSON form.
-func parse(json_str: String, task: Task) -> Task:
+func parse(json_str: String) -> Task:
+
+	var task: Task = Task.new()
 
 	var json: Dictionary = JSON.parse_string(json_str)
 	
