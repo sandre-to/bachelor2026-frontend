@@ -1,5 +1,4 @@
-extends Resource
-class_name FileSystem
+extends Node
 
 # Dette er filen som håndterer spillerens filsystem
 
@@ -15,7 +14,7 @@ enum FileError {OK, ENOENT, ENODIR, EACCES, EEXIST, EINPTH}
 var errno: FileError = FileError.OK
 
 func _init() -> void:
-	root_directory = Directory.new("/", null, self)
+	root_directory = Directory.new("/", null)
 
 
 # Get_file_entity():	Henter en file-entity hvor som helst i filsystemet.
@@ -50,7 +49,7 @@ func mkdir(path: String) -> bool:
 		set_error(FileError.ENODIR)
 		return false
 	
-	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir, self))
+	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir))
 
 
 # Touch():	Lager en tom fil på en gitt filsti. Kan feile dersom:
@@ -70,7 +69,7 @@ func touch(path: String) -> bool:
 		set_error(FileError.ENOENT)
 		return false
 	
-	return (parent_dir as Directory).insert_into(File.new(file_name, self))
+	return (parent_dir as Directory).insert_into(File.new(file_name))
 
 
 # Exists():	Returnerer en bool basert på om et element eksisterer eller ikke

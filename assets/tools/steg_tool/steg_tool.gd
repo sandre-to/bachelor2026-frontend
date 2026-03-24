@@ -2,7 +2,7 @@ extends Tool
 class_name StegTool
 
 # Hvis Tool har en type property dere bruker:
-@export var tool_type: ToolType = ToolType.STEGANOTOOL
+# @export var tool_type: ToolType = ToolType.STEGANOTOOL
 
 var current_path: String = ""
 var last_result: Dictionary = {}
@@ -20,7 +20,7 @@ func _ready() -> void:
 func run_with_path(abs_path: String) -> Dictionary:
 	current_path = abs_path
 
-	var entity = Filesystem.get_file_entity(abs_path)
+	var entity = get_node("/root/FileSystem").get_file_entity(abs_path)
 	if entity == null:
 		return _error("Fant ikke fil: %s" % abs_path)
 

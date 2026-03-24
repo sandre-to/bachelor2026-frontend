@@ -4,9 +4,9 @@ class_name Directory
 var parent_dir: Directory
 var _content: Array[FileEntity]
 
-func _init(_name: String, _parent: Directory, _parent_fs: FileSystem) -> void:
-	super(_name, _parent_fs)
-	self.parent_dir = _parent
+func _init(_name: String, _parent: Directory) -> void:
+	super(_name)
+	parent_dir = _parent
 
 
 # Get_entity():	Implementasjon av en abstrakte metode.
@@ -43,10 +43,10 @@ func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> File
 			else:																	#	Hack
 				return entity														#	Hack :(
 		if entity.name == entity_name:
-			parent_fs.set_error(FileSystem.FileError.EACCES)
+			FileSystem.set_error(FileSystem.FileError.EACCES)
 			return null
 
-	parent_fs.set_error(FileSystem.FileError.ENOENT)
+	FileSystem.set_error(FileSystem.FileError.ENOENT)
 	return null
 
 
@@ -64,10 +64,10 @@ func entity_exists(entity_name: String) -> bool:
 #					- En entitet med samme navn eksisterer (EEXIST).
 func insert_into(entity: FileEntity) -> bool:
 	if not write:
-		parent_fs.set_error(FileSystem.FileError.EACCES)
+		FileSystem.set_error(FileSystem.FileError.EACCES)
 		return false
 	elif entity_exists(entity.name):
-		parent_fs.set_error(FileSystem.FileError.EEXIST)
+		FileSystem.set_error(FileSystem.FileError.EEXIST)
 		return false
 	else:
 		_content.append(entity)

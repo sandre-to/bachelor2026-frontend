@@ -10,12 +10,9 @@ var read: bool	= true
 var write: bool	= true
 var exec: bool  = false
 
-# Filsystemet enheten tilhører
-var parent_fs
 
-func _init(_name: String, _parent_fs: FileSystem) -> void:
+func _init(_name: String) -> void:
 	self.name = _name
-	self.parent_fs = _parent_fs
 
 
 @abstract
