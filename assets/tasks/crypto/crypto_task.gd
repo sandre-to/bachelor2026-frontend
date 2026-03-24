@@ -1,4 +1,4 @@
-class_name CryptoTask extends BaseTask
+class_name CryptoTask extends Control
 
 var flag_solution: String = "hellothere"
 
@@ -7,7 +7,6 @@ var flag_solution: String = "hellothere"
 @onready var title: Label = %Title
 @onready var puzzle: RichTextLabel = %Puzzle
 
-
 # --- Knapper ---
 @onready var hint_1: Button = %Hint1
 @onready var hint_2: Button = %Hint2
@@ -15,7 +14,6 @@ var flag_solution: String = "hellothere"
 
 @onready var hint_container: HBoxContainer = %HintContainer
 @onready var confirm_button: Button = %ConfirmButton
-
 
 func _ready() -> void:
 	hint_1_panel.hide()

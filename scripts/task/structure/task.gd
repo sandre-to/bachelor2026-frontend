@@ -7,25 +7,26 @@ class_name Task
 # om oppgavestrukturen, så lages en instanse av dette objektet med det i JSON-filen.
 
 # Metadata
-var id: int
-var name: String
-var description: String
+@export var id: int
+@export var name: String
+@export var description: String
 
 # Tabell av objekter som lever i oppgaven
-var objects: Dictionary[String, Variant] = {}
+@export_category("Objects")
+@export var objects: Dictionary[String, Variant] = {}
 
 # Kommandoene som kjøres når oppgaven startes
-var task_start_cmds: Array[TaskCMD] = []
+@export var task_start_cmds: Array[TaskCMD] = []
 
 # Kommandoene som kjøres når riktig flagg angis
-var correct_flag_cmds: Array[TaskCMD] = []
+@export var correct_flag_cmds: Array[TaskCMD] = []
 
 # Kommandoene som kjøres når et feil flagg angis
-var wrong_flag_cmds: Array[TaskCMD] = []
+@export var wrong_flag_cmds: Array[TaskCMD] = []
 
 # Hovednettverket oppgaven kobler til
 # Midlertidig oversettet til SPNetwork, sett til AbstractNetwork senere
-var network: SPNetwork
+@export var network: SPNetwork
 
 
 func _init(_network: AbstractNetwork) -> void:
