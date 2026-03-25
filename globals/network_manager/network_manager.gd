@@ -40,6 +40,7 @@ const CONNECTION_INTERVAL_SECONDS: float 	= 1.5	# Antall sekunder mellom hver se
 var _socket = WebSocketPeer.new()
 var _connected: bool = false
 
+var _pending_requests: Dictionary = {}
 
 
 @warning_ignore("unused_parameter")
@@ -84,37 +85,34 @@ func connect_to_backend() -> bool:
 
 
 # Send():	Sender en melding til backenden
-func send(type: String, data: Dictionary) -> bool:
-	var msg: String = JSON.stringify({
+func send(type: String, data: Dictionary) -> int:
+	var msg: Dictionary = {
 		"type": type,
 		"data": data
-	})
-	return _send_text(msg)
-
-
-
-# Send_with_status():	Sender en melding til backenden med status
-func send_with_status(type: String, status: String, data: Dictionary) -> bool:
-	var msg: String = JSON.stringify({
-		"type": type,
-		"status": status,
-		"data": data
-	})
+	}
 	return _send_text(msg)
 
 
 
 # Send_own():	Sender en helt egendefinert melding til backenden
 #				NB: Alle meldinger skal ha "type": "..."
-func send_own(msg: Dictionary) -> bool:
-	return _send_text(
-		JSON.stringify(msg)
-	)
+func send_own(msg: Dictionary) -> int:
+	return _send_text(msg)
+
+
+
+func await_message(request_id: int) -> Dictionary:
+	while _pending_requests.get(request_id) == null:
+		await get_tree().process_frame
+	
+	var result = _pending_requests.get(request_id)
+	_pending_requests.erase(request_id)
+	return result
 
 
 
 # _send_text():	Sender en konstruert melding til backenden
-func _send_text(msg: String) -> bool:
+func _send_text(msg: Dictionary) -> int:
 	_socket.poll()
 	while _socket.get_ready_state() == WebSocketPeer.State.STATE_CONNECTING:
 		_socket.poll()
@@ -123,8 +121,12 @@ func _send_text(msg: String) -> bool:
 		_announce_disconnection()
 		return false
 
-	_socket.send_text(msg)
-	return true
+	var request_id: int = randi() % 10000000
+	msg.set("requestID", request_id)
+	_pending_requests[request_id] = null
+
+	_socket.send_text(JSON.stringify(msg))
+	return request_id
 
 
 
@@ -134,8 +136,16 @@ func _read_messages() -> void:
 		var msg: Dictionary = JSON.parse_string(
 			_socket.get_packet().get_string_from_utf8()
 		)
-		emit_signal("message_received", msg)		# Feilhåndter :,(
+		_handle_msg(msg)
+		
 
+
+
+func _handle_msg(msg: Dictionary) -> void:
+	if msg.has("requestID") and int(msg.get("requestID")) in _pending_requests:
+		_pending_requests.set(int(msg.get("requestID")), msg)
+	else:
+		emit_signal("message_received", msg)		# Feilhåndter :,(
 
 
 # _announce_disconnection():	Skriver ut at en nettverksfeil har tatt plass
