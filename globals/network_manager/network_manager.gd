@@ -40,6 +40,8 @@ const CONNECTION_INTERVAL_SECONDS: float 	= 1.5	# Antall sekunder mellom hver se
 var _socket = WebSocketPeer.new()
 var _connected: bool = false
 
+# Forespørsler som er på vei
+var pending_requests: Dictionary = {}
 
 
 @warning_ignore("unused_parameter")
@@ -83,48 +85,63 @@ func connect_to_backend() -> bool:
 
 
 
+# Await_message():	Venter på svaret backenden gir
+func await_message(request_id: float) -> Dictionary:
+	while pending_requests.get(request_id) == null:
+		await get_tree().process_frame
+		
+	var result: Dictionary = pending_requests.get(request_id)
+	pending_requests.erase(request_id)
+	
+	return result
+
+
+
 # Send():	Sender en melding til backenden
-func send(type: String, data: Dictionary) -> bool:
-	var msg: String = JSON.stringify({
+func send(type: String, data: Dictionary) -> int:
+	var msg: Dictionary = {
 		"type": type,
 		"data": data
-	})
+	}
 	return _send_text(msg)
 
 
 
 # Send_with_status():	Sender en melding til backenden med status
-func send_with_status(type: String, status: String, data: Dictionary) -> bool:
-	var msg: String = JSON.stringify({
+func send_with_status(type: String, status: String, data: Dictionary) -> int:
+	var msg: Dictionary = {
 		"type": type,
 		"status": status,
 		"data": data
-	})
+	}
 	return _send_text(msg)
 
 
 
 # Send_own():	Sender en helt egendefinert melding til backenden
 #				NB: Alle meldinger skal ha "type": "..."
-func send_own(msg: Dictionary) -> bool:
-	return _send_text(
-		JSON.stringify(msg)
-	)
+func send_own(msg: Dictionary) -> int:
+	return _send_text(msg)
 
 
 
 # _send_text():	Sender en konstruert melding til backenden
-func _send_text(msg: String) -> bool:
+func _send_text(msg: Dictionary) -> int:
 	_socket.poll()
 	while _socket.get_ready_state() == WebSocketPeer.State.STATE_CONNECTING:
 		_socket.poll()
 	
 	if _socket.get_ready_state() != WebSocketPeer.State.STATE_OPEN:
 		_announce_disconnection()
-		return false
+		return -1
 
-	_socket.send_text(msg)
-	return true
+	# Request-ID som knytter en melding med et svar
+	var request_id: int = randi() % 1000000
+	msg.set("requestID", request_id)
+	pending_requests[request_id] = null
+
+	_socket.send_text(JSON.stringify(msg))
+	return request_id
 
 
 
@@ -134,7 +151,16 @@ func _read_messages() -> void:
 		var msg: Dictionary = JSON.parse_string(
 			_socket.get_packet().get_string_from_utf8()
 		)
-		emit_signal("message_received", msg)		# Feilhåndter :,(
+		_handle_message(msg)
+
+
+
+# _handle_message():	Putter meldingen i pending_requests, eller broadcaster den
+func _handle_message(msg: Dictionary) -> void:
+	if msg.has("requestID") and int(msg["requestID"]) in pending_requests:
+		pending_requests.set(msg.get("requestID"), msg)
+	else:
+		emit_signal("message_received", msg)	# Events
 
 
 
