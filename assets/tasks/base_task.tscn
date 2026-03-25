@@ -169,18 +169,21 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ncm2f")
 placeholder_text = "ENTER FLAG"
 
 [node name="ConfirmButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=1790146294]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0jfeq")
 text = "CONFIRM"
 
 [node name="HintContainer" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=897604010]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Hint1" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=1534878314]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
@@ -188,6 +191,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 1"
 
 [node name="Hint2" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=601580613]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
@@ -195,14 +199,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 2"
 
 [node name="Hint3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
-
-[connection signal="text_submitted" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/EnterFlag" to="." method="_on_enter_flag_text_submitted"]
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer/Hint1" to="." method="_on_hint_1_pressed"]
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer/Hint2" to="." method="_on_hint_2_pressed"]
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer/Hint3" to="." method="_on_hint_3_pressed"]

@@ -147,9 +147,19 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Files" type="ItemList" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer" unique_id=2093044169]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer" unique_id=2050464423]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer" unique_id=381950390]
 unique_name_in_owner = true
 layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Files" type="ItemList" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer" unique_id=2093044169]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 tooltip_auto_translate_mode = 2
 theme_override_font_sizes/font_size = 24
 allow_reselect = true
@@ -169,5 +179,5 @@ stretch_mode = 3
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/PicturesButton" to="." method="_on_pictures_button_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/DocumentsButton" to="." method="_on_documents_button_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/SecretButton" to="." method="_on_secret_button_pressed"]
-[connection signal="item_activated" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/Files" to="." method="_on_files_item_activated"]
-[connection signal="item_selected" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/Files" to="." method="_on_files_item_selected"]
+[connection signal="item_activated" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/Files" to="." method="_on_files_item_activated"]
+[connection signal="item_selected" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/Files" to="." method="_on_files_item_selected"]

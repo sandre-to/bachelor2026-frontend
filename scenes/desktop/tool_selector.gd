@@ -4,6 +4,7 @@ class_name ToolSelector extends Control
 @onready var tool_panel: Panel = %ToolPanel
 @onready var caesar_cipher: CaesarCipher = %CaesarCipher
 @onready var web_exploit: WebExploit = %WebExploit
+@onready var steg_tool: StegTool = %StegTool
 
 func _on_crypto_pressed() -> void:
 	var was_visible = caesar_cipher.visible
@@ -11,7 +12,9 @@ func _on_crypto_pressed() -> void:
 	caesar_cipher.visible = not was_visible
 
 func _on_stegano_pressed() -> void:
-	pass
+	var was_visible = steg_tool.visible
+	hide_selected_tools()
+	steg_tool.visible = not was_visible
 
 func _on_web_pressed() -> void:
 	var was_visible = web_exploit.visible

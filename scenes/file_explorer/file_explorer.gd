@@ -8,6 +8,7 @@ const SECRET: String = "Secret"
 @onready var files: ItemList = %Files
 @onready var folders_list: VBoxContainer = %FoldersList
 @onready var preview: TextureRect = $Preview
+@onready var title: Label = %Title
 
 var file_system = {
 	"Pictures": [] as Array[FakeFile],
@@ -39,6 +40,7 @@ func _ready() -> void:
 func _show_folder(folder: String) -> void:
 	# Rydd bort forrige filer
 	files.clear()
+	title.text = folder
 	
 	for file in file_system[folder]:
 		files.add_item(file.name)

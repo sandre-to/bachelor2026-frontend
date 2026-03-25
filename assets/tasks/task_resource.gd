@@ -8,4 +8,5 @@ enum TaskType {
 
 @export var type: TaskType
 @export var name: String = "" 
+@export var completed: bool = false
 @export_multiline() var description: String = ""

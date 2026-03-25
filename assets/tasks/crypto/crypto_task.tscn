@@ -200,7 +200,6 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
-disabled = true
 text = "HINT 2"
 
 [node name="Hint3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
@@ -209,7 +208,4 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
-disabled = true
 text = "HINT 3"
-
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer/Hint1" to="." method="_on_hint_1_pressed"]

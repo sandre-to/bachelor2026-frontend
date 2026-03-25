@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dajsn1hgslmh7" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
 [ext_resource type="PackedScene" uid="uid://c31ikj8y3inob" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
 [ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
+[ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_ctsuf"]
 [ext_resource type="Texture2D" uid="uid://pn33flb7geb" path="res://assets/13727924.png" id="7_tysdv"]
 [ext_resource type="Texture2D" uid="uid://ppu4k7mp8abc" path="res://assets/tools/lock.png" id="8_l15fl"]
 [ext_resource type="Script" uid="uid://bnc3uiqrbkxu4" path="res://scenes/desktop/task_manager.gd" id="11_f6qo7"]
@@ -262,6 +263,12 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="StegTool" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=1224495268 instance=ExtResource("7_ctsuf")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+tool_type = 0
+
 [node name="FileExplorer" parent="." unique_id=1560975105 instance=ExtResource("5_ndhkw")]
 layout_mode = 1
 offset_left = -20.0
@@ -392,16 +399,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Task1" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1785560712]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "TASK 1 - Not completed"
 
 [node name="Task2" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1991206588]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 disabled = true
 
 [node name="Task3" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=548578250]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 disabled = true
