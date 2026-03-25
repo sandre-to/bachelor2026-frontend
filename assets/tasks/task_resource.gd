@@ -6,6 +6,7 @@ enum TaskType {
 	WEB_EXPLOIT
 }
 
+@export var id: String
 @export var type: TaskType
 @export var name: String = "" 
 @export var completed: bool = false

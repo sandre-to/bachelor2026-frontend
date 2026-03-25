@@ -1,6 +1,6 @@
 class_name TaskManager extends Control
 
-const CRYPTO_TASK_1: PackedScene = preload(
+const TASK_1: PackedScene = preload(
 	"res://assets/tasks/crypto/crypto_task.tscn")
 
 @onready var missions_panel: Panel = $Panel
@@ -12,15 +12,17 @@ const CRYPTO_TASK_1: PackedScene = preload(
 @onready var task_3: Button = %Task3
 
 var current_task: BaseTask = null
-var task_states: Dictionary[String, bool] = {
-	"task_1": false,
-	"task_2": false,
-	"task_3": false
-}
+var task_buttons: Dictionary
 
 func _ready() -> void:
+	task_buttons = {
+		"task_1": task_1,
+		"task_2": task_2,
+		"task_3": task_3
+	}
+	
 	missions_panel.hide()
-	SignalBus.task_completed.connect(_task_completed)
+	SignalBus.task_completed.connect(_on_task_completed)
 		
 func _on_task_button_pressed() -> void:
 	if missions_panel.visible:
@@ -43,8 +45,7 @@ func fade_out(panel: Control) -> void:
 	tween.tween_callback(func(): panel.hide())
 
 func _on_task_1_pressed() -> void:
-	_task_completed()
-	spawn_task(CRYPTO_TASK_1)
+	spawn_task(TASK_1)
 
 func _on_task_2_pressed() -> void:
 	pass
@@ -61,11 +62,12 @@ func spawn_task(task_scene: PackedScene) -> void:
 	task.global_position += Vector2(-80, 0)
 	fade_in(task)
 
-func _task_completed() -> void:
-	if current_task: 
-		fade_out(missions_panel)
-		
-		if current_task.task.completed:
-			task_1.disabled = true
-			task_1.text = "TASK 1 - COMPLETED!"
-		return
+func _on_task_completed(id: String) -> void:
+	if current_task and current_task.task.completed:
+		var button: Button = task_buttons[id]
+		if not button: 
+			push_error("Button does not exist. Check name spelling. ")
+			return
+			
+		button.disabled = true
+		button.text = id.to_upper() + ": COMPLETED!"
