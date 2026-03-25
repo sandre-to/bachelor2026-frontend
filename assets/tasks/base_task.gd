@@ -8,4 +8,3 @@ enum TaskType {
 
 @export var type: TaskType
 @export var task: Task = null
-var socket: WebSocketPeer = WebSocketPeer.new()
