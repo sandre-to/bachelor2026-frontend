@@ -63,7 +63,14 @@ var task_parser: TaskParser = TaskParser.new()
 
 func _ready() -> void:
 	retrieve_task(0)
+	var ip = active_task.objects["main-server"].get_ip()
+	var response = GameNetwork.user_device.send_datapacket(
+		ip, 21, HttpReq.new(
+			"GET", {}
+		)
+	)
 	
+	print(response)
 	
 	
 # Retrieve_task():	Henter en oppgave og parser den (midlertidig avkoblet fra backenden)

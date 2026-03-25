@@ -30,6 +30,4 @@ static func create(_params: Dictionary, _task: Task) -> OpenPortCMD:
 
 
 func execute() -> bool:
-	if not params["server"].is_online():
-		task.network.connect_device(params["server"])
 	return params["server"].open_port(params["port"], params["process"])

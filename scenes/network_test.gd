@@ -31,7 +31,7 @@ func _ready() -> void:
 			"flag": "feil flagg :("
 		}
 	})
-
+	
 	NetworkManager.send_own({
 		"type": "validate-flag",
 		"data": {

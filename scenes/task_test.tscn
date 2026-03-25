@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvjk2pv43viwo"]
 
-[ext_resource type="Script" uid="uid://cjmp4ays88e5j" path="res://scripts/task/task_test.gd" id="1_qjbpi"]
+[ext_resource type="Script" uid="uid://cjmp4ays88e5j" path="res://scripts/task-(IKKE-BRUKT-LENGER)/task_test.gd" id="1_qjbpi"]
+
 
 [node name="Node" type="Node" unique_id=1495783256]
 script = ExtResource("1_qjbpi")

@@ -25,6 +25,7 @@ NetworkManager="*uid://db00shqp8vjnj"
 HttpManager="uid://cavqb22lgnfdx"
 FileSystem="*uid://dqfpai62gs7sp"
 flag_manager="*uid://sgrmelivqb0n"
+GameNetwork="*uid://cfy7v87qnh6rm"
 
 [display]
 
@@ -45,6 +46,7 @@ project/assembly_name="CTF Project"
 
 folder_colors={
 "res://assets/": "red",
+"res://globals/game_network/": "orange",
 "res://scenes/": "green",
 "res://scripts/": "purple"
 }
