@@ -1,5 +1,4 @@
-extends Resource
-class_name FileSystem
+extends Node
 
 # Dette er filen som håndterer spillerens filsystem
 
@@ -14,26 +13,20 @@ var root_directory: Directory
 enum FileError {OK, ENOENT, ENODIR, EACCES, EEXIST, EINPTH}
 var errno: FileError = FileError.OK
 
-
 func _init() -> void:
-	root_directory = Directory.new("/", null, self)
+	root_directory = Directory.new("/", null)
 
 
 # Get_file_entity():	Henter en file-entity hvor som helst i filsystemet.
 #						Kan feile dersom:
 #						- Filstien ikke er gyldig formatert (EINPTH).
-#						- get_entity() feiler (ENOENT, EACCES)
+#						- get_entity() feiler (ENOENT)
 func get_file_entity(path: String) -> FileEntity:
 	if not _path_is_valid(path):
 		set_error(FileError.EINPTH)
 		return null
 
-	var file_entity: FileEntity = root_directory.get_entity(path)
-	if not file_entity.read:
-		set_error(FileError.EACCES)
-		return null
-	
-	return file_entity
+	return root_directory.get_entity(path)
 
 
 # Mkdir():	Lager en katalog på en gitt filsti
@@ -56,7 +49,7 @@ func mkdir(path: String) -> bool:
 		set_error(FileError.ENODIR)
 		return false
 	
-	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir, self))
+	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir))
 
 
 # Touch():	Lager en tom fil på en gitt filsti. Kan feile dersom:
@@ -76,7 +69,7 @@ func touch(path: String) -> bool:
 		set_error(FileError.ENOENT)
 		return false
 	
-	return (parent_dir as Directory).insert_into(File.new(file_name, self))
+	return (parent_dir as Directory).insert_into(File.new(file_name))
 
 
 # Exists():	Returnerer en bool basert på om et element eksisterer eller ikke
@@ -94,7 +87,6 @@ func check_error() -> FileError:
 # Set_error():		Setter innholdet i errno
 func set_error(err_code: FileError) -> void:
 	errno = err_code
-	print("Error: ", errno)		# Husk å fjern
 	
 
 # _path_is_valid():	Sjekker om en gitt filsti er gyldig formatert.

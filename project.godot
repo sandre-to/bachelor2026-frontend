@@ -23,6 +23,14 @@ run/max_fps=60
 
 SignalBus="*uid://dkpaul1rx55de"
 
+[autoload]
+
+SceneManager="*uid://bs5rjynbtaxhk"
+HttpManager="uid://cavqb22lgnfdx"
+NetworkManager="*uid://db00shqp8vjnj"
+FileSystem="*uid://dqfpai62gs7sp"
+flag_manager="*uid://sgrmelivqb0n"
+
 [display]
 
 window/size/viewport_width=1920
