@@ -58,20 +58,20 @@ func entity_exists(entity_name: String) -> bool:
 	return false
 
 
-# Insert_into():	Legger til en entitet i katalogen. Returenere en bool
+# Insert_into():	Legger til en entitet i katalogen. Returenerer entiteten.
 #					basert på om det fungerte. Kan feile dersom:
 #					- Man har ikke skriverettigheter (EACCES).
 #					- En entitet med samme navn eksisterer (EEXIST).
-func insert_into(entity: FileEntity) -> bool:
+func insert_into(entity: FileEntity) -> FileEntity:
 	if not write:
 		FileSystem.set_error(FileSystem.FileError.EACCES)
-		return false
+		return null
 	elif entity_exists(entity.name):
 		FileSystem.set_error(FileSystem.FileError.EEXIST)
-		return false
+		return null
 	else:
 		_content.append(entity)
-		return true
+		return entity
 
 
 # Ls():	En metode som etterligner ls.

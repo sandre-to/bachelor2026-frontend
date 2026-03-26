@@ -13,8 +13,18 @@ var root_directory: Directory
 enum FileError {OK, ENOENT, ENODIR, EACCES, EEXIST, EINPTH}
 var errno: FileError = FileError.OK
 
-func _init() -> void:
+func _ready() -> void:
 	root_directory = Directory.new("/", null)
+	mkdir("/home")
+	mkdir("/home/pictures")
+	mkdir("/home/documents")
+	mkdir("/home/secrets")
+	touch("/home/pictures/cat.png")
+	touch("/home/documents/tutorial.txt").text_content = "lær det idgaf"
+
+	
+	
+	
 
 
 # Get_file_entity():	Henter en file-entity hvor som helst i filsystemet.
@@ -34,42 +44,42 @@ func get_file_entity(path: String) -> FileEntity:
 #			- Filstien ikke er gyldig formatert (EINPTH).
 #			- Entiteten get_entity() returnerte var en fil (ENOTDIR).
 #			- get_entity() feiler (ENOENT, EACCES)
-func mkdir(path: String) -> bool:
+func mkdir(path: String) -> Directory:
 	if not _path_is_valid(path):
 		set_error(FileError.EINPTH)
-		return false
+		return null
 	
 	var dir_name: String = path.get_file()	# get_file() fordi navnet kan ha en extention
 	
 	var parent_dir: FileEntity = root_directory.get_entity(path.get_base_dir())
 	
 	if parent_dir == null:
-		return false
+		return null
 	if not is_instance_of(parent_dir, Directory):
 		set_error(FileError.ENODIR)
-		return false
+		return null
 	
-	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir))
+	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir)) as Directory
 
 
 # Touch():	Lager en tom fil på en gitt filsti. Kan feile dersom:
 #			- Filstien ikke er gyldig formatert (EINPTH).
 #			- Entiteten get_entity() returnerte var en katalog (ENOTDIR).
 #			- get_entity() feiler (ENOENT, EACCES)
-func touch(path: String) -> bool:
+func touch(path: String) -> File:
 	if not _path_is_valid(path):
 		set_error(FileError.EINPTH)
-		return false
+		return null
 	
 	var file_name: String = path.get_file()
 	var parent_dir: FileEntity = root_directory.get_entity(path.get_base_dir())
 	if parent_dir == null:
-		return false
+		return null
 	elif not is_instance_of(parent_dir, Directory):
 		set_error(FileError.ENOENT)
-		return false
+		return null
 	
-	return (parent_dir as Directory).insert_into(File.new(file_name))
+	return (parent_dir as Directory).insert_into(File.new(file_name)) as File
 
 
 # Exists():	Returnerer en bool basert på om et element eksisterer eller ikke
