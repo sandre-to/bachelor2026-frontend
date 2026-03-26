@@ -15,8 +15,11 @@ class_name BaseTask extends Control
 @onready var hint_3: Button = %Hint3
 
 func _ready() -> void:
+	# Hente data fra backend
+	
 	if not task:
 		push_error("Missing task resource. Please add one.")
+		return
 	
 	# Koble til knapper slik at det funker i inherited klasser
 	confirm_button.pressed.connect(_on_confirm_button_pressed)

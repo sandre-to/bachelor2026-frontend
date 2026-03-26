@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://grrjoleob158" path="res://assets/tasks/crypto/crypto_task.gd" id="1_xyd6q"]
 [ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="2_8ue8w"]
-[ext_resource type="Resource" uid="uid://dv5ei1ig3tcrl" path="res://assets/tasks/crypto/test_task.tres" id="2_yh7e3"]
+[ext_resource type="Resource" uid="uid://b362ugoaxe3q0" path="res://assets/tasks/crypto/task_2.tres" id="2_yh7e3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)

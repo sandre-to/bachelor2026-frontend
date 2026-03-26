@@ -19,11 +19,11 @@ var file_system = {
 func _ready() -> void:
 	hide()
 	
-	#var cat := FakeFile.new()
-	#cat.name = "cat"
-	#cat.type = "IMAGE"
-	#cat.path = "res://scenes/file_explorer/pictures/cat.jpg"
-	#file_system[PICTURES].append(cat)
+	var cat := FakeFile.new()
+	cat.name = "cat"
+	cat.type = "IMAGE"
+	cat.path = "res://scenes/file_explorer/pictures/cat.jpg"
+	file_system[PICTURES].append(cat)
 	#
 	#var text_file := FakeFile.new()
 	#text_file.name = "todo list"
