@@ -110,6 +110,7 @@ grow_vertical = 2
 theme_override_constants/separation = 24
 
 [node name="Title" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=198418054]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TASK"
@@ -118,13 +119,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=1429868216]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Description
-Solve the puzzle"
+text = "Description"
 label_settings = SubResource("LabelSettings_vjtgf")
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PuzzlePanel" type="Panel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=246550945]
 custom_minimum_size = Vector2(0, 160)
@@ -132,6 +135,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ncm2f")
 
 [node name="Puzzle" type="RichTextLabel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel" unique_id=1290987728]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 1
 anchors_preset = 15
@@ -155,6 +159,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="EnterFlag" type="LineEdit" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=928400105]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_colors/font_placeholder_color = Color(0.8156863, 0.8156863, 0.8156863, 1)
@@ -162,32 +167,37 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ncm2f")
 placeholder_text = "ENTER FLAG"
 
 [node name="ConfirmButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=1790146294]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_0jfeq")
 text = "CONFIRM"
 
 [node name="HintContainer" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=897604010]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Button" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=1534878314]
+[node name="Hint1" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=1534878314]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 1"
 
-[node name="Button2" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=601580613]
+[node name="Hint2" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=601580613]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 2"
 
-[node name="Button3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
+[node name="Hint3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")

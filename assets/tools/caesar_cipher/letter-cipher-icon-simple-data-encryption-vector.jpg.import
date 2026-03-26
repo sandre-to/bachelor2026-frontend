@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2wkqvuiwsykv"
-path="res://.godot/imported/hand_small_point.png-bc0b3cb446df874c09489255d872e8a1.ctex"
+uid="uid://uh2rj6s10iwc"
+path="res://.godot/imported/letter-cipher-icon-simple-data-encryption-vector.jpg-86e25daf77b0d1dd28dcf4cccf7e33cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hand_small_point.png"
-dest_files=["res://.godot/imported/hand_small_point.png-bc0b3cb446df874c09489255d872e8a1.ctex"]
+source_file="res://assets/tools/caesar_cipher/letter-cipher-icon-simple-data-encryption-vector.jpg"
+dest_files=["res://.godot/imported/letter-cipher-icon-simple-data-encryption-vector.jpg-86e25daf77b0d1dd28dcf4cccf7e33cc.ctex"]
 
 [params]
 

@@ -40,15 +40,16 @@ theme = ExtResource("1_ee4v2")
 script = ExtResource("1_tsstm")
 
 [node name="Panel" type="Panel" parent="." unique_id=434919941]
+self_modulate = Color(1, 1, 0.99607843, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -449.0
+offset_left = -350.0
 offset_top = -245.5
-offset_right = 449.0
+offset_right = 350.0
 offset_bottom = 245.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -61,10 +62,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -422.0
-offset_top = -223.0
-offset_right = 422.0
-offset_bottom = 210.0
+offset_left = -264.0
+offset_top = -169.0
+offset_right = 264.0
+offset_bottom = 156.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_actcg")
@@ -85,6 +86,7 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/TabContainer/Home/HBoxContainer" unique_id=947246875]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 3
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
@@ -93,39 +95,40 @@ theme_override_constants/margin_bottom = 24
 
 [node name="FoldersList" type="VBoxContainer" parent="Panel/TabContainer/Home/HBoxContainer/MarginContainer" unique_id=1507455418]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 24
 alignment = 1
 
 [node name="Label" type="Label" parent="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList" unique_id=1543740058]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 28
 text = "FOLDERS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PicturesButton" type="Button" parent="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList" unique_id=1624570796]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "PICTURES"
 
 [node name="DocumentsButton" type="Button" parent="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList" unique_id=461680670]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "DOCUMENTS"
 
 [node name="SecretButton" type="Button" parent="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList" unique_id=1819173234]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "SECRET DO NOT CLICK!"
+text = "SECRET"
 
 [node name="Info" type="Panel" parent="Panel/TabContainer/Home/HBoxContainer" unique_id=421078985]
 layout_mode = 2
@@ -144,11 +147,21 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="Files" type="ItemList" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer" unique_id=2093044169]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer" unique_id=2050464423]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer" unique_id=381950390]
 unique_name_in_owner = true
 layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Files" type="ItemList" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer" unique_id=2093044169]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 tooltip_auto_translate_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 allow_reselect = true
 scroll_hint_mode = 2
 icon_scale = 0.2
@@ -166,5 +179,5 @@ stretch_mode = 3
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/PicturesButton" to="." method="_on_pictures_button_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/DocumentsButton" to="." method="_on_documents_button_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/SecretButton" to="." method="_on_secret_button_pressed"]
-[connection signal="item_activated" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/Files" to="." method="_on_files_item_activated"]
-[connection signal="item_selected" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/Files" to="." method="_on_files_item_selected"]
+[connection signal="item_activated" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/Files" to="." method="_on_files_item_activated"]
+[connection signal="item_selected" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/Files" to="." method="_on_files_item_selected"]

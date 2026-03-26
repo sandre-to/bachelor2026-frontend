@@ -8,6 +8,7 @@ const SECRET: String = "Secret"
 @onready var files: ItemList = %Files
 @onready var folders_list: VBoxContainer = %FoldersList
 @onready var preview: TextureRect = $Preview
+@onready var title: Label = %Title
 
 var file_system = {
 	"Pictures": [] as Array[FakeFile],
@@ -16,27 +17,30 @@ var file_system = {
 }
 
 func _ready() -> void:
+	hide()
+	
 	var cat := FakeFile.new()
 	cat.name = "cat"
 	cat.type = "IMAGE"
 	cat.path = "res://scenes/file_explorer/pictures/cat.jpg"
 	file_system[PICTURES].append(cat)
-	
-	var text_file := FakeFile.new()
-	text_file.name = "todo list"
-	text_file.type = "TEXT"
-	text_file.path = "Unknown"
-	file_system[DOCUMENTS].append(text_file)
-	
-	var secret := FakeFile.new()
-	secret.name = "password list"
-	secret.type = "TEXT"
-	secret.path = "Unknown"
-	file_system[SECRET].append(secret)
+	#
+	#var text_file := FakeFile.new()
+	#text_file.name = "todo list"
+	#text_file.type = "TEXT"
+	#text_file.path = "Unknown"
+	#file_system[DOCUMENTS].append(text_file)
+	#
+	#var secret := FakeFile.new()
+	#secret.name = "password list"
+	#secret.type = "TEXT"
+	#secret.path = "Unknown"
+	#file_system[SECRET].append(secret)
 	
 func _show_folder(folder: String) -> void:
-	# Rydd bort tidligere filer
+	# Rydd bort forrige filer
 	files.clear()
+	title.text = folder
 	
 	for file in file_system[folder]:
 		files.add_item(file.name)
@@ -57,11 +61,3 @@ func _on_secret_button_pressed() -> void:
 func _on_files_item_selected(index: int) -> void:
 	var file: FakeFile = files.get_item_metadata(index)
 	print("Valgt fil: %s Type: %s" % [file.name, file.type])
-
-func _on_files_item_activated(index: int) -> void:
-	var file: FakeFile = files.get_item_metadata(index)
-	
-	if file.type == "IMAGE":
-		var texture := load(file.path)
-		preview.texture = texture
-		preview.show()

@@ -1,40 +1,33 @@
-class_name CryptoTask extends Control
-
-var flag_solution: String = "hellothere"
-
-@onready var enter_flag: LineEdit = %EnterFlag
-@onready var hint_1_panel: Panel = $Hint1Panel
-@onready var title: Label = %Title
-@onready var puzzle: RichTextLabel = %Puzzle
-
-# --- Knapper ---
-@onready var hint_1: Button = %Hint1
-@onready var hint_2: Button = %Hint2
-@onready var hint_3: Button = %Hint3
-
-@onready var hint_container: HBoxContainer = %HintContainer
-@onready var confirm_button: Button = %ConfirmButton
+class_name CryptoTask extends BaseTask
 
 func _ready() -> void:
-	hint_1_panel.hide()
+	super._ready()
+	set_task_info()
+
+func set_task_info() -> void:
+	title.text = task.name
+	description.text = task.description
+	puzzle.text = task.cipher_text
 
 func _on_confirm_button_pressed() -> void:
-	if enter_flag.text.to_lower() == flag_solution:
+	if validate_flag(enter_flag.text):
 		completed_task()
-	else:
-		print("wrong answer")
 
-func _on_hint_1_pressed() -> void:
-	hint_1_panel.visible = not hint_1_panel.visible
+func _on_enter_flag_text_submitted(new_text: String) -> void:
+	if validate_flag(new_text):
+		completed_task()
 
 func completed_task() -> void:
-		title.text = "Task completed!"
-		puzzle.text = ""
-		
-		for button in hint_container.get_children():
-			button.disabled = true
-		
-		confirm_button.disabled = true
-		enter_flag.editable = false
-		enter_flag.drag_and_drop_selection_enabled = false
-		enter_flag.selecting_enabled = false
+	super.completed_task()
+
+func validate_flag(input: String) -> bool:
+	return input == task.flag
+
+func _on_hint_pressed(index: int) -> void:
+	match index:
+		1:
+			description.text = "Find a tool that deciphers this."
+		2:
+			description.text = "Try out different numbers in the shift bar (1 - 9)."
+		3:
+			description.text = "There is one word in the paragraph that stands out."

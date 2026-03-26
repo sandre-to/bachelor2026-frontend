@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5id45wykg3m5"
-path="res://.godot/imported/bunny.webp-77d46fa42fd77a7ab57400a4a7c72bec.ctex"
+uid="uid://cd1tmc4e0u7d5"
+path="res://.godot/imported/140-1407521_lock-icon-png-transparent-png.png-a3e05450f43cb2b894f12ec19614b809.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bunny.webp"
-dest_files=["res://.godot/imported/bunny.webp-77d46fa42fd77a7ab57400a4a7c72bec.ctex"]
+source_file="res://assets/tools/140-1407521_lock-icon-png-transparent-png.png"
+dest_files=["res://.godot/imported/140-1407521_lock-icon-png-transparent-png.png-a3e05450f43cb2b894f12ec19614b809.ctex"]
 
 [params]
 
