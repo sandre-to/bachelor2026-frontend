@@ -2,7 +2,7 @@ extends FileEntity
 class_name Directory
 
 var parent_dir: Directory
-var _content: Array[FileEntity]
+var content: Array[FileEntity]
 
 func _init(_name: String, _parent: Directory) -> void:
 	super(_name)
@@ -36,7 +36,7 @@ func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> File
 		return self._recr_get_entity(path, current_depth, path_depth)
 
 	# Hvis et annet navn
-	for entity in _content:
+	for entity in content:
 		if entity.name == entity_name:
 			if is_instance_of(entity, Directory):									#	Hack
 				return entity._recr_get_entity(path, current_depth, path_depth)		#	Hack
@@ -52,7 +52,7 @@ func _recr_get_entity(path: String, current_depth: int, path_depth: int) -> File
 
 # Entity_exists():	Finner ut om en entitet eksisterer i katalogen
 func entity_exists(entity_name: String) -> bool:
-	for entity in _content:
+	for entity in content:
 		if entity.name == entity_name:
 			return true
 	return false
@@ -70,16 +70,16 @@ func insert_into(entity: FileEntity) -> FileEntity:
 		FileSystem.set_error(FileSystem.FileError.EEXIST)
 		return null
 	else:
-		_content.append(entity)
+		content.append(entity)
 		return entity
 
 
 # Ls():	En metode som etterligner ls.
 func ls() -> String:
-	var content: String = ""
-	for entity in _content:
-		content += entity.name + " "
-	return content
+	var entities: String = ""
+	for entity in content:
+		entities += entity.name + " "
+	return entities
 
 
 func _to_string() -> String:
