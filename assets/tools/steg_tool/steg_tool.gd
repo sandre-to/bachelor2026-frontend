@@ -20,13 +20,16 @@ func _ready() -> void:
 func run_with_path(abs_path: String) -> Dictionary:
 	current_path = abs_path
 
-	var entity = get_node("/root/FileSystem").get_file_entity(abs_path)
+	var entity: FileEntity = FileSystem.get_file_entity(abs_path)
 	if entity == null:
 		return _error("Fant ikke fil: %s" % abs_path)
 
-	var metadata := extract_metadata(entity, abs_path)
+	var metadata := extract_metadata(entity)
+	metadata["file_name"] = abs_path.get_file()
+	metadata["abs_path"] = abs_path
+	
 	var findings := analyze_metadata(metadata)
-
+	
 	last_result = {
 		"metadata": metadata,
 		"findings": findings
@@ -34,17 +37,13 @@ func run_with_path(abs_path: String) -> Dictionary:
 
 	return last_result
 
-func extract_metadata(entity: Variant, abs_path: String) -> Dictionary:
+func extract_metadata(entity: FileEntity) -> Dictionary:
 	var data: Dictionary = {}
-	data["file_name"] = abs_path.get_file()
-	data["abs_path"] = abs_path
 
 	# Tilpass etter hva file-entity faktisk har:
-	if entity is Dictionary:
-		if entity.has("size"): data["file_size"] = entity["size"]
-		if entity.has("mime"): data["mime"] = entity["mime"]
-	elif entity.has_method("get_size"):
-		data["file_size"] = entity.get_size()
+	if entity.has("type"): data["type"] = entity["type"]
+	if entity.has("size"): data["file_size"] = entity["size"]
+	if entity.has("mime"): data["mime"] = entity["mime"]
 
 	# MVP: legg inn felter dere kan bruke i CTF-levels
 	# Senere: parse PNG tEXt/iTXt, enkel EXIF, GPS osv.
