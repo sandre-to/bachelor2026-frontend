@@ -7,6 +7,7 @@ var content: Array[FileEntity]
 func _init(_name: String, _parent: Directory) -> void:
 	super(_name)
 	parent_dir = _parent
+	metadata["type"] = "directory"
 
 
 # Get_entity():	Implementasjon av en abstrakte metode.
