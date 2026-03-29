@@ -9,6 +9,7 @@ var texture: ImageTexture = null
 func _init(_name: String, real_path: String) -> void:
 	super(_name)
 	_real_path = real_path
+	metadata["type"] = "image"
 
 
 
