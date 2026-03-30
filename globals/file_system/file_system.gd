@@ -124,6 +124,7 @@ func _init_file_structure() -> void:
 		FileAccess.READ
 	).get_as_text()
 	pass_list_one.update_content(list1_content)
+	pass_list_one.chmod("r--")
 	
 	var pass_list_two: TextFile = touch(SECRET_DIR + "/liste2.txt")
 	var list2_content: String = FileAccess.open(
@@ -131,6 +132,7 @@ func _init_file_structure() -> void:
 		FileAccess.READ
 	).get_as_text()
 	pass_list_two.update_content(list2_content)
+	pass_list_two.chmod("r--")
 	
 	var pass_list_three: TextFile = touch(SECRET_DIR + "/liste3.txt")
 	var list3_content: String = FileAccess.open(
@@ -138,3 +140,4 @@ func _init_file_structure() -> void:
 		FileAccess.READ
 	).get_as_text()
 	pass_list_three.update_content(list3_content)
+	pass_list_three.chmod("r--")

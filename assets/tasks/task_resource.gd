@@ -58,5 +58,5 @@ func _alert_backend(id: int) -> bool:
 		extra_description = task_metadata.get("extraDescription")
 	if task_metadata.has("hintCosts"):
 		hint_costs = task_metadata.get("hintCosts")
-		
+	
 	return true
