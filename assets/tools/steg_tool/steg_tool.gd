@@ -41,9 +41,12 @@ func extract_metadata(entity: FileEntity) -> Dictionary:
 	var data: Dictionary = {}
 
 	# Tilpass etter hva file-entity faktisk har:
-	if entity.metadata.has("type"): data["type"] = entity.metadata["type"]
-	if entity.metadata.has("size"): data["file_size"] = entity.metadata["size"]
-	if entity.metadata.has("mime"): data["mime"] = entity.metadata["mime"]
+	for field in entity.metadata:
+		data.set(field, entity.metadata[field])
+	
+	#if entity.metadata.has("type"): data["type"] = entity.metadata["type"]
+	#if entity.metadata.has("size"): data["file_size"] = entity.metadata["size"]
+	#if entity.metadata.has("mime"): data["mime"] = entity.metadata["mime"]
 
 	# MVP: legg inn felter dere kan bruke i CTF-levels
 	# Senere: parse PNG tEXt/iTXt, enkel EXIF, GPS osv.
@@ -56,7 +59,7 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 
 	for k in metadata.keys():
 		var v := str(metadata[k])
-
+		
 		if v.find("flag{") != -1 or v.find("ctf{") != -1:
 			results.append({
 				"type": "flag",
