@@ -3,6 +3,9 @@ class_name TaskManager extends Control
 const TASK_1: PackedScene = preload(
 	"res://assets/tasks/crypto/crypto_task.tscn")
 
+const TASK_2: PackedScene = preload(
+	"res://assets/tasks/web_exploit/web_task.tscn")
+
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
 
@@ -48,7 +51,7 @@ func _on_task_1_pressed() -> void:
 	spawn_task(TASK_1)
 
 func _on_task_2_pressed() -> void:
-	pass
+	spawn_task(TASK_2)
 
 func _on_task_3_pressed() -> void:
 	pass
