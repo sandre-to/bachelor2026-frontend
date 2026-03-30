@@ -41,9 +41,9 @@ func extract_metadata(entity: FileEntity) -> Dictionary:
 	var data: Dictionary = {}
 
 	# Tilpass etter hva file-entity faktisk har:
-	if entity.has("type"): data["type"] = entity["type"]
-	if entity.has("size"): data["file_size"] = entity["size"]
-	if entity.has("mime"): data["mime"] = entity["mime"]
+	if entity.metadata.has("type"): data["type"] = entity.metadata["type"]
+	if entity.metadata.has("size"): data["file_size"] = entity.metadata["size"]
+	if entity.metadata.has("mime"): data["mime"] = entity.metadata["mime"]
 
 	# MVP: legg inn felter dere kan bruke i CTF-levels
 	# Senere: parse PNG tEXt/iTXt, enkel EXIF, GPS osv.

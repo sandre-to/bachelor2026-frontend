@@ -6,6 +6,7 @@ var _content: String
 
 
 func _init(_name: String) -> void:
+	super(_name)
 	metadata["type"] = "text-file"
 
 
