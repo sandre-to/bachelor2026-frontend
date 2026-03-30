@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Task" format=3 uid="uid://d2ceyhnqxblsd"]
-
-[ext_resource type="Script" uid="uid://cy7qi3hhu3mqx" path="res://scripts/task/structure/task.gd" id="1_x18cb"]
-[ext_resource type="Script" uid="uid://dv8o2jw8638qa" path="res://scripts/task/cmds/task_cmd.gd" id="1_xjka0"]
-
-[resource]
-script = ExtResource("1_x18cb")
-metadata/_custom_type_script = "uid://cy7qi3hhu3mqx"

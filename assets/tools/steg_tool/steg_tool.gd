@@ -176,5 +176,5 @@ func _on_analyze_button_pressed() -> void:
 	_on_analyze_pressed()
 
 
-func _on_line_edit_text_submitted(new_text: String) -> void:
+func _on_line_edit_text_submitted(_new_text: String) -> void:
 	_on_extract_pressed()

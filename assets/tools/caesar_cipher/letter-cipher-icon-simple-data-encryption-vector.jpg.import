@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5id45wykg3m5"
-path="res://.godot/imported/bunny.webp-77d46fa42fd77a7ab57400a4a7c72bec.ctex"
+uid="uid://h7ui2hkp4kv7"
+path="res://.godot/imported/letter-cipher-icon-simple-data-encryption-vector.jpg-86e25daf77b0d1dd28dcf4cccf7e33cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bunny.webp"
-dest_files=["res://.godot/imported/bunny.webp-77d46fa42fd77a7ab57400a4a7c72bec.ctex"]
+source_file="res://assets/tools/caesar_cipher/letter-cipher-icon-simple-data-encryption-vector.jpg"
+dest_files=["res://.godot/imported/letter-cipher-icon-simple-data-encryption-vector.jpg-86e25daf77b0d1dd28dcf4cccf7e33cc.ctex"]
 
 [params]
 

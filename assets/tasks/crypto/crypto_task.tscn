@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b1ylepo62jqiq"]
 
-[ext_resource type="Script" uid="uid://bt6bnwqdouue" path="res://assets/tasks/crypto/crypto_task.gd" id="1_xyd6q"]
+[ext_resource type="Script" uid="uid://grrjoleob158" path="res://assets/tasks/crypto/crypto_task.gd" id="1_xyd6q"]
 [ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="2_8ue8w"]
+[ext_resource type="Resource" uid="uid://b362ugoaxe3q0" path="res://assets/tasks/crypto/task_2.tres" id="2_yh7e3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -55,16 +56,21 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="LabelSettings" id="LabelSettings_xyd6q"]
-font_size = 54
-
 [node name="CryptoTask" type="Control" unique_id=629482100]
 z_index = 10
 layout_mode = 3
-anchors_preset = 0
-offset_bottom = 0.95996094
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -0.47998047
+offset_bottom = 0.47998047
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_xyd6q")
+task = ExtResource("2_yh7e3")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -122,13 +128,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=1429868216]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Description
-Solve the puzzle"
 label_settings = SubResource("LabelSettings_vjtgf")
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="PuzzlePanel" type="Panel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=246550945]
 custom_minimum_size = Vector2(0, 160)
@@ -150,9 +157,6 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 24
-text = "Li brx fdq uhdg wklv, fudfn wklv frgh: pmttwbpmzm"
-autowrap_trim_flags = 128
-context_menu_enabled = true
 selection_enabled = true
 
 [node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
@@ -196,7 +200,6 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
-disabled = true
 text = "HINT 2"
 
 [node name="Hint3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
@@ -205,37 +208,4 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
-disabled = true
 text = "HINT 3"
-
-[node name="Hint1Panel" type="Panel" parent="." unique_id=1837892995]
-z_index = 100
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1233.0
-offset_top = -232.47998
-offset_right = -454.0
-offset_bottom = 239.52002
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_43dnk")
-
-[node name="Label" type="Label" parent="Hint1Panel" unique_id=1081107950]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Does the puzzle look weird? Maybe try a tool that deciphers this (crypto)"
-label_settings = SubResource("LabelSettings_xyd6q")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer/Hint1" to="." method="_on_hint_1_pressed"]
