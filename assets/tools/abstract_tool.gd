@@ -1,6 +1,5 @@
 @abstract
-class_name Tool
-extends Control
+class_name Tool extends Control
 
 enum ToolType {
 	CRYPTO_TOOL,
@@ -26,6 +25,8 @@ func _ready() -> void:
 
 func _on_help_pressed() -> void:
 	print("HELP CLICKED")
+	print(get_help_data())
+	
 	if help_popup_instance != null:
 		help_popup_instance.open(get_help_data())
 
@@ -34,28 +35,28 @@ func get_help_data() -> Dictionary:
 		ToolType.CRYPTO_TOOL:
 			return {
 				"title": "Crypto Tool",
-				"usage": "Skriv inn tekst og prøv dekryptering.",
-				"example": "HELLO → KHOOR (shift 3)",
-				"theory": "Kryptografi handler om å skjule og dekode informasjon."
+				"usage": "Enter text and try different decoding methods.",
+				"example": "HELLO → KHOOR with a shift of 3.",
+				"theory": "Cryptography is about hiding and decoding information."
 			}
 		ToolType.STEGANO_TOOL:
 			return {
-				"title": "Steganografi Tool",
-				"usage": "Analyser bilder for skjult informasjon.",
-				"example": "image.png → hidden comment: flag{...}",
-				"theory": "Steganografi skjuler data i andre filer, ofte bilder."
+				"title": "Steganography Tool",
+				"usage": "Inspect image files for hidden information in metadata or other embedded content.",
+				"example": "An image file may contain a hidden comment or other metadata with useful clues.",
+				"theory": "Steganography is the practice of hiding information inside other files, often images."
 			}
 		ToolType.WEB_TOOL:
 			return {
 				"title": "Web Tool",
-				"usage": "Undersøk nettsider og requests.",
-				"example": "/admin → skjult endpoint",
-				"theory": "Web-sikkerhet handler om hvordan applikasjoner håndterer data."
+				"usage": "Inspect pages, requests, and responses to find hidden clues or vulnerable endpoints.",
+				"example": "A hidden route such as /admin may still be accessible even if it is not linked.",
+				"theory": "Web security focuses on how applications handle input, access control, and data exposure."
 			}
 
 	return {
 		"title": "Help",
-		"usage": "No help available.",
+		"usage": "No help is available for this tool yet.",
 		"example": "",
 		"theory": ""
 	}

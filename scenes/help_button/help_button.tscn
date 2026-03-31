@@ -4,8 +4,7 @@
 [ext_resource type="Script" uid="uid://uc17o7k7aerb" path="res://scenes/help_button/helpButton.gd" id="1_v2g1h"]
 
 [node name="HelpButton" type="Button" unique_id=2072855675]
-custom_minimum_size = Vector2(40, 40)
-layout_direction = 3
+custom_minimum_size = Vector2(60, 60)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
