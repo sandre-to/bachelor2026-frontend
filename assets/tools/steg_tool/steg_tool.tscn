@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c4co1lnveh66q"]
 
 [ext_resource type="Script" uid="uid://du6loa87a7vq3" path="res://assets/tools/steg_tool/steg_tool.gd" id="1_u3kwl"]
+[ext_resource type="PackedScene" uid="uid://cqec0fpmq5tsg" path="res://scenes/help_button/help_button.tscn" id="2_ryevl"]
 
 [node name="StegTool" type="Control" unique_id=1224495268]
 layout_mode = 3
@@ -34,10 +35,13 @@ theme_override_constants/margin_left = 0
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="ToolTitle" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1966619665]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=288923978]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ToolTitle" unique_id=604506994]
+[node name="ToolTitle" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1966619665]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ToolTitle" unique_id=604506994]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 0
 offset_left = 65.0
@@ -45,6 +49,10 @@ offset_top = 35.0
 offset_right = 215.0
 offset_bottom = 85.0
 text = "metaExtract"
+
+[node name="HelpButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2072855675 instance=ExtResource("2_ryevl")]
+layout_mode = 2
+size_flags_horizontal = 1
 
 [node name="FileInput" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1768300926]
 layout_mode = 2
@@ -100,9 +108,11 @@ offset_bottom = 390.0
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FindingsPanel/Panel" unique_id=452200829]
 layout_mode = 0
-offset_right = 40.0
+offset_left = 5.0
+offset_right = 70.0
 offset_bottom = 23.0
-text = "Findings"
+rotation = 0.001210255
+text = "findings"
 
 [node name="HBoxContainer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=227786098]
 layout_mode = 2

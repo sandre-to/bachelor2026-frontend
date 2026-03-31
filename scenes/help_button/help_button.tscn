@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cqec0fpmq5tsg"]
+
+[ext_resource type="Texture2D" uid="uid://8r3l1aqpbit2" path="res://assets/icons/helpToolButton.png" id="1_fyidn"]
+[ext_resource type="Script" uid="uid://uc17o7k7aerb" path="res://scenes/help_button/helpButton.gd" id="1_v2g1h"]
+
+[node name="HelpButton" type="Button" unique_id=2072855675]
+custom_minimum_size = Vector2(40, 40)
+layout_direction = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource("1_fyidn")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_v2g1h")

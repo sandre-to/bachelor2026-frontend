@@ -14,8 +14,17 @@ var last_result: Dictionary = {}
 @onready var analyze_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/analyzeButton
 
 func _ready() -> void:
-	pass
+	tool_type = ToolType.STEGANO_TOOL
+	super()
 
+func get_help_data() -> Dictionary:
+	return {
+		"title": "Metadata Tool",
+		"usage": "Skriv inn filstien til en fil og trykk Extract for å hente metadata. Trykk Analyze for å analysere metadataen.",
+		"example": "Eksempel: /images/photo.png kan inneholde skjult tekst i kommentarfeltet eller annen metadata.",
+		"theory": "Metadata er informasjon om en fil, som navn, kommentar, format eller andre skjulte felt som kan brukes i en CTF-oppgave."
+	}
+	
 # Denne kaller du fra UI når spiller har valgt fil.
 func run_with_path(abs_path: String) -> Dictionary:
 	current_path = abs_path
@@ -181,3 +190,5 @@ func _on_analyze_button_pressed() -> void:
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	_on_extract_pressed()
+	
+	
