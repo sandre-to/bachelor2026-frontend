@@ -26,6 +26,9 @@ HttpManager="uid://cavqb22lgnfdx"
 NetworkManager="*uid://db00shqp8vjnj"
 FileSystem="*uid://dqfpai62gs7sp"
 flag_manager="*uid://sgrmelivqb0n"
+SceneManager="*uid://bs5rjynbtaxhk"
+GameNetwork="*uid://cfy7v87qnh6rm"
+<<<<<<<HEADSceneManager="*uid://bs5rjynbtaxhk"
 
 [display]
 
@@ -35,8 +38,8 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://2wkqvuiwsykv"
-mouse_cursor/custom_image_hotspot=Vector2(10, 5)
-mouse_cursor/tooltip_position_offset=Vector2(5, 5)
+mouse_cursor/custom_image_hotspot=Vector2(5, 5)
+mouse_cursor/tooltip_position_offset=Vector2(2, 5)
 
 [dotnet]
 
@@ -67,3 +70,7 @@ left_click={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

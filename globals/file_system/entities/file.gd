@@ -7,8 +7,6 @@ class_name File
 # Notater:
 # - Trenger metadatafelt for steganografioppgaver
 
-# Midlertidig en tekstfil :)
-var text_content: String
 
 func _init(_name: String) -> void:
 	super(_name)

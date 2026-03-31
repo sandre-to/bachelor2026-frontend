@@ -13,8 +13,17 @@ var root_directory: Directory
 enum FileError {OK, ENOENT, ENODIR, EACCES, EEXIST, EINPTH}
 var errno: FileError = FileError.OK
 
-func _init() -> void:
+# Initialiserte katalogstier
+const HOME_DIR: String = "/home"
+const PICTURE_DIR: String = "/home/pictures"
+const DOCUMENT_DIR: String = "/home/documents"
+const SECRET_DIR: String = "/home/secrets"
+
+
+func _ready() -> void:
 	root_directory = Directory.new("/", null)
+	_init_file_structure()
+
 
 
 # Get_file_entity():	Henter en file-entity hvor som helst i filsystemet.
@@ -34,42 +43,42 @@ func get_file_entity(path: String) -> FileEntity:
 #			- Filstien ikke er gyldig formatert (EINPTH).
 #			- Entiteten get_entity() returnerte var en fil (ENOTDIR).
 #			- get_entity() feiler (ENOENT, EACCES)
-func mkdir(path: String) -> bool:
+func mkdir(path: String) -> Directory:
 	if not _path_is_valid(path):
 		set_error(FileError.EINPTH)
-		return false
+		return null
 	
 	var dir_name: String = path.get_file()	# get_file() fordi navnet kan ha en extention
 	
 	var parent_dir: FileEntity = root_directory.get_entity(path.get_base_dir())
 	
 	if parent_dir == null:
-		return false
+		return null
 	if not is_instance_of(parent_dir, Directory):
 		set_error(FileError.ENODIR)
-		return false
+		return null
 	
-	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir))
+	return (parent_dir as Directory).insert_into(Directory.new(dir_name, parent_dir)) as Directory
 
 
-# Touch():	Lager en tom fil på en gitt filsti. Kan feile dersom:
+# Touch():	Lager en tom tekstfil på en gitt filsti. Kan feile dersom:
 #			- Filstien ikke er gyldig formatert (EINPTH).
 #			- Entiteten get_entity() returnerte var en katalog (ENOTDIR).
 #			- get_entity() feiler (ENOENT, EACCES)
-func touch(path: String) -> bool:
+func touch(path: String) -> TextFile:
 	if not _path_is_valid(path):
 		set_error(FileError.EINPTH)
-		return false
+		return null
 	
 	var file_name: String = path.get_file()
 	var parent_dir: FileEntity = root_directory.get_entity(path.get_base_dir())
 	if parent_dir == null:
-		return false
+		return null
 	elif not is_instance_of(parent_dir, Directory):
 		set_error(FileError.ENOENT)
-		return false
+		return null
 	
-	return (parent_dir as Directory).insert_into(File.new(file_name))
+	return (parent_dir as Directory).insert_into(TextFile.new(file_name)) as TextFile
 
 
 # Exists():	Returnerer en bool basert på om et element eksisterer eller ikke
@@ -99,3 +108,36 @@ func _path_is_valid(path: String) -> bool:
 		return false
 	
 	return true
+
+
+
+func _init_file_structure() -> void:
+	mkdir(HOME_DIR)
+	mkdir(PICTURE_DIR)
+	mkdir(DOCUMENT_DIR)
+	mkdir(SECRET_DIR)
+	
+	# Passordlister
+	var pass_list_one: TextFile = touch(SECRET_DIR + "/liste1.txt")
+	var list1_content: String = FileAccess.open(
+		"res://assets/tools/password_breaker/liste1test.txt",
+		FileAccess.READ
+	).get_as_text()
+	pass_list_one.update_content(list1_content)
+	pass_list_one.chmod("r--")
+	
+	var pass_list_two: TextFile = touch(SECRET_DIR + "/liste2.txt")
+	var list2_content: String = FileAccess.open(
+		"res://assets/tools/password_breaker/liste2.txt",
+		FileAccess.READ
+	).get_as_text()
+	pass_list_two.update_content(list2_content)
+	pass_list_two.chmod("r--")
+	
+	var pass_list_three: TextFile = touch(SECRET_DIR + "/liste3.txt")
+	var list3_content: String = FileAccess.open(
+		"res://assets/tools/password_breaker/liste3.txt",
+		FileAccess.READ
+	).get_as_text()
+	pass_list_three.update_content(list3_content)
+	pass_list_three.chmod("r--")

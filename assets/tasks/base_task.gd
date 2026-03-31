@@ -1,48 +1,62 @@
 class_name BaseTask extends Control
 
-enum TaskType {
-	CRYPTO_TASK,
-	STEGANO_TASK,
-	WEB_TASK
-}
+@export var task: TaskData = null
 
-# Legacy
-#@export var task: Task = null
+@onready var title: Label = %Title
+@onready var description: Label = %Description
+@onready var puzzle: RichTextLabel = %Puzzle
+@onready var enter_flag: LineEdit = %EnterFlag
 
-@export var type: TaskType
-@export var dynamic_data: Dictionary[String, Variant] = {}
+# --- KNAPPER ---
+@onready var confirm_button: Button = %ConfirmButton
+@onready var hint_container: HBoxContainer = %HintContainer
+@onready var hint_1: Button = %Hint1
+@onready var hint_2: Button = %Hint2
+@onready var hint_3: Button = %Hint3
 
 func _ready() -> void:
-	NetworkManager.connect("message_received", _on_message)
+	# Hente data fra backend
+	if not task:
+		push_error("Missing task resource. Please add one.")
+		return
+		
+	# Koble til knapper slik at det funker i inherited klasser
+	confirm_button.pressed.connect(_on_confirm_button_pressed)
+	enter_flag.text_submitted.connect(_on_enter_flag_text_submitted)
+	
+	var buttons = hint_container.get_children()
+	for i in range(buttons.size()):
+		buttons[i].pressed.connect(_on_hint_pressed.bind(i + 1))
+
+# Override disse funksjonene i de ulike oppgavene
+func set_task_info() -> void: pass
 
 
 
+func _on_confirm_button_pressed() -> void: 
+	print("SUBMIT")
 
-# Initialize_objects():	Funksjonen som initialiserer objektene brukt i oppgaven
-func initialize_objects() -> void:
+
+
+func _on_enter_flag_text_submitted(_new_text: String) -> void: 
+	_on_confirm_button_pressed()
+	
+	
+	
+func _on_hint_pressed(_index: int) -> void: pass
+
+func completed_task() -> void:
+	var hints := hint_container.get_children()
+	for hint in hints:
+		hint.disabled = true
+	
+	description.text = "COMPLETED, GOOD JOB!"
+	confirm_button.disabled = true
+	task.completed = true
+	SignalBus.task_completed.emit(task.id)
+
+
+
+func get_task_data() -> void:
+	
 	pass
-	
-
-
-
-# _handle_task_msg():	Kjører når backenden sender oppgaven
-func _handle_task_msg(msg: Dictionary) -> void:
-	pass
-	
-	
-	
-# _handle_task_init_msg():	Kjører når backenden får ACK fra backenden ang oppgaveinitialiseringen
-func _handle_task_init_msg(msg: Dictionary) -> void:
-	pass
-
-
-
-# _on_message():	Meldingsruteren for baseTask (koblet opp mot NetworkManagers signal)	
-func _on_message(msg: Dictionary) -> void:
-	var type: String = msg.get("type")
-
-	if type == "task":
-		_handle_task_msg(msg)
-	elif type == "task-init-status":	# ER FORTSATT PARSE-STATUS I BACKEND !!!
-		_handle_task_init_msg(msg)
-	return
