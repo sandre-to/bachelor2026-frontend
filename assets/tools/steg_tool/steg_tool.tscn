@@ -18,6 +18,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = 89.0
+offset_right = -10.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -36,19 +40,25 @@ layout_mode = 2
 theme_override_constants/separation = 25
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=288923978]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 220
 
 [node name="ToolTitle" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1966619665]
+z_as_relative = false
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ToolTitle" unique_id=604506994]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 0
-offset_left = 65.0
-offset_top = 35.0
-offset_right = 215.0
-offset_bottom = 85.0
+offset_right = 150.0
+offset_bottom = 50.0
 text = "metaExtract"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HelpButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2072855675 instance=ExtResource("2_ryevl")]
 layout_mode = 2
@@ -59,18 +69,19 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput" unique_id=1091935091]
 layout_mode = 0
-offset_left = 50.0
+offset_left = 75.0
 offset_top = 50.0
-offset_right = 600.0
+offset_right = 575.0
 offset_bottom = 90.0
 
 [node name="LineEdit" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer" unique_id=1801869137]
-custom_minimum_size = Vector2(400, 40)
+custom_minimum_size = Vector2(385, 40)
 layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "filepath"
 
 [node name="extractButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer" unique_id=1220293005]
-custom_minimum_size = Vector2(110, 40)
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "extract"
 
@@ -108,9 +119,10 @@ offset_bottom = 390.0
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FindingsPanel/Panel" unique_id=452200829]
 layout_mode = 0
-offset_left = 5.0
-offset_right = 70.0
-offset_bottom = 23.0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 75.0
+offset_bottom = 28.0
 rotation = 0.001210255
 text = "findings"
 

@@ -53,6 +53,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=784684818]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/line_spacing = 10
 
 [node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=219819272]
 layout_mode = 2
@@ -65,6 +66,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 10
 
 [node name="HowToUse" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=180878123]
 custom_minimum_size = Vector2(100, 50)
