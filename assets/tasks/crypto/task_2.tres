@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CryptoData" format=3 uid="uid://b362ugoaxe3q0"]
+
+[ext_resource type="Script" uid="uid://bj57pqfjp5sl3" path="res://assets/tasks/crypto/crypto_data.gd" id="1_q8klb"]
+
+[resource]
+script = ExtResource("1_q8klb")
+cipher_text = "saoidjsa djoaidjosaj dao dwqn dowqin don oisandoi nasdaoindqndw oin joijoi jiiojojoj"
+id = "task_2"
+name = "noe"
+metadata/_custom_type_script = "uid://bj57pqfjp5sl3"

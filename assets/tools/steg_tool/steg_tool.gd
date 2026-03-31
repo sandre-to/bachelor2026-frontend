@@ -14,19 +14,23 @@ var last_result: Dictionary = {}
 @onready var analyze_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/analyzeButton
 
 func _ready() -> void:
-	pass
+	tool_type = ToolType.STEGANO_TOOL
+	super()
 
 # Denne kaller du fra UI når spiller har valgt fil.
 func run_with_path(abs_path: String) -> Dictionary:
 	current_path = abs_path
 
-	var entity = get_node("/root/FileSystem").get_file_entity(abs_path)
+	var entity: FileEntity = FileSystem.get_file_entity(abs_path)
 	if entity == null:
-		return _error("Fant ikke fil: %s" % abs_path)
+		return _error("Could not find file: %s" % abs_path)
 
-	var metadata := extract_metadata(entity, abs_path)
+	var metadata := extract_metadata(entity)
+	metadata["file_name"] = abs_path.get_file()
+	metadata["abs_path"] = abs_path
+	
 	var findings := analyze_metadata(metadata)
-
+	
 	last_result = {
 		"metadata": metadata,
 		"findings": findings
@@ -34,17 +38,16 @@ func run_with_path(abs_path: String) -> Dictionary:
 
 	return last_result
 
-func extract_metadata(entity: Variant, abs_path: String) -> Dictionary:
+func extract_metadata(entity: FileEntity) -> Dictionary:
 	var data: Dictionary = {}
-	data["file_name"] = abs_path.get_file()
-	data["abs_path"] = abs_path
 
 	# Tilpass etter hva file-entity faktisk har:
-	if entity is Dictionary:
-		if entity.has("size"): data["file_size"] = entity["size"]
-		if entity.has("mime"): data["mime"] = entity["mime"]
-	elif entity.has_method("get_size"):
-		data["file_size"] = entity.get_size()
+	for field in entity.metadata:
+		data.set(field, entity.metadata[field])
+	
+	#if entity.metadata.has("type"): data["type"] = entity.metadata["type"]
+	#if entity.metadata.has("size"): data["file_size"] = entity.metadata["size"]
+	#if entity.metadata.has("mime"): data["mime"] = entity.metadata["mime"]
 
 	# MVP: legg inn felter dere kan bruke i CTF-levels
 	# Senere: parse PNG tEXt/iTXt, enkel EXIF, GPS osv.
@@ -57,7 +60,7 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 
 	for k in metadata.keys():
 		var v := str(metadata[k])
-
+		
 		if v.find("flag{") != -1 or v.find("ctf{") != -1:
 			results.append({
 				"type": "flag",
@@ -71,7 +74,7 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 			results.append({
 				"type": "base64",
 				"severity": "warn",
-				"title": "Ser ut som Base64",
+				"title": "Detected possible Base64",
 				"path": str(k),
 				"value": v
 			})
@@ -80,7 +83,7 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 			results.append({
 				"type": "long_string",
 				"severity": "info",
-				"title": "Uvanlig lang tekst",
+				"title": "Unusually long text",
 				"path": str(k),
 				"preview": v.substr(0, 80) + "..."
 			})
@@ -179,3 +182,5 @@ func _on_analyze_button_pressed() -> void:
 
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	_on_extract_pressed()
+	
+	

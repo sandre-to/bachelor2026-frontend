@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uh2rj6s10iwc"
-path="res://.godot/imported/letter-cipher-icon-simple-data-encryption-vector.jpg-86e25daf77b0d1dd28dcf4cccf7e33cc.ctex"
+uid="uid://cs4xj7h4pr0s"
+path="res://.godot/imported/helpToolIcon.png-5ad004369719d8e75b3c34001d95ec40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tools/caesar_cipher/letter-cipher-icon-simple-data-encryption-vector.jpg"
-dest_files=["res://.godot/imported/letter-cipher-icon-simple-data-encryption-vector.jpg-86e25daf77b0d1dd28dcf4cccf7e33cc.ctex"]
+source_file="res://assets/icons/helpToolIcon.png"
+dest_files=["res://.godot/imported/helpToolIcon.png-5ad004369719d8e75b3c34001d95ec40.ctex"]
 
 [params]
 

@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_kgmua"]
 [ext_resource type="Texture2D" uid="uid://c8abi67mrnrg1" path="res://assets/tools/caesar_cipher/arrow_n.png" id="2_fwsiq"]
 [ext_resource type="Texture2D" uid="uid://dhi4kq5ew04dg" path="res://assets/tools/caesar_cipher/arrow_s.png" id="3_kgmua"]
+[ext_resource type="PackedScene" uid="uid://cqec0fpmq5tsg" path="res://scenes/help_button/help_button.tscn" id="5_ftf01"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ijkx7"]
 font_size = 34
@@ -161,6 +162,9 @@ context_menu_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 selection_enabled = true
+
+[node name="HelpButton" parent="Panel/VBoxContainer" unique_id=2072855675 instance=ExtResource("5_ftf01")]
+layout_mode = 2
 
 [connection signal="pressed" from="Panel/VBoxContainer/LineEdit/Up" to="." method="_on_up_shift_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/LineEdit/Down" to="." method="_on_down_shift_pressed"]

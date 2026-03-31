@@ -15,9 +15,11 @@ class_name BaseTask extends Control
 @onready var hint_3: Button = %Hint3
 
 func _ready() -> void:
+	# Hente data fra backend
 	if not task:
 		push_error("Missing task resource. Please add one.")
-	
+		return
+		
 	# Koble til knapper slik at det funker i inherited klasser
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
 	enter_flag.text_submitted.connect(_on_enter_flag_text_submitted)
@@ -28,8 +30,19 @@ func _ready() -> void:
 
 # Override disse funksjonene i de ulike oppgavene
 func set_task_info() -> void: pass
-func _on_confirm_button_pressed() -> void: pass
-func _on_enter_flag_text_submitted(_new_text: String) -> void: pass
+
+
+
+func _on_confirm_button_pressed() -> void: 
+	print("SUBMIT")
+
+
+
+func _on_enter_flag_text_submitted(_new_text: String) -> void: 
+	_on_confirm_button_pressed()
+	
+	
+	
 func _on_hint_pressed(_index: int) -> void: pass
 
 func completed_task() -> void:
@@ -41,3 +54,9 @@ func completed_task() -> void:
 	confirm_button.disabled = true
 	task.completed = true
 	SignalBus.task_completed.emit(task.id)
+
+
+
+func get_task_data() -> void:
+	
+	pass

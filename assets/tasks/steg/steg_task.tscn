@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://f7m1nc23t8ak"]
+[gd_scene format=3 uid="uid://boq5k0846yj02"]
 
-[ext_resource type="Script" uid="uid://cjlrds15q0udc" path="res://assets/tasks/base_task.gd" id="1_ncm2f"]
-[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="1_vjtgf"]
+[ext_resource type="Script" uid="uid://b6qfcavjpda1m" path="res://assets/tasks/steg/steg_task.gd" id="1_3hfx2"]
+[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="2_bj12d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -55,14 +55,14 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="BaseTask" type="Control" unique_id=629482100]
+[node name="StegTask" type="Control" unique_id=629482100]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ncm2f")
+script = ExtResource("1_3hfx2")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -114,7 +114,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TASK"
-label_settings = ExtResource("1_vjtgf")
+label_settings = ExtResource("2_bj12d")
 horizontal_alignment = 1
 vertical_alignment = 1
 

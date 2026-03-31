@@ -10,9 +10,12 @@ var read: bool	= true
 var write: bool	= true
 var exec: bool  = false
 
+var metadata: Dictionary = {}
+const MIN_FILE_SIZE_BYTES = 64
 
 func _init(_name: String) -> void:
 	self.name = _name
+	metadata["size"] = MIN_FILE_SIZE_BYTES
 
 
 @abstract
