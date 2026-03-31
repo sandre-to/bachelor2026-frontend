@@ -22,7 +22,7 @@ func run_with_path(abs_path: String) -> Dictionary:
 
 	var entity: FileEntity = FileSystem.get_file_entity(abs_path)
 	if entity == null:
-		return _error("Fant ikke fil: %s" % abs_path)
+		return _error("Could not find file: %s" % abs_path)
 
 	var metadata := extract_metadata(entity)
 	metadata["file_name"] = abs_path.get_file()
@@ -73,7 +73,7 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 			results.append({
 				"type": "base64",
 				"severity": "warn",
-				"title": "Ser ut som Base64",
+				"title": "Detected possible Base64",
 				"path": str(k),
 				"value": v
 			})
@@ -82,7 +82,7 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 			results.append({
 				"type": "long_string",
 				"severity": "info",
-				"title": "Uvanlig lang tekst",
+				"title": "Unusually long text",
 				"path": str(k),
 				"preview": v.substr(0, 80) + "..."
 			})
