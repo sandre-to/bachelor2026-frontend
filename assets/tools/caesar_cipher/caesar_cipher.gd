@@ -9,6 +9,8 @@ var number: int = 0
 
 func _ready() -> void:
 	line_edit.text = str(number)
+	tool_type = ToolType.CRYPTO_TOOL
+	super()
 
 func encrypt(text: String, shift: int) -> String:
 	if text_input.text == "":
