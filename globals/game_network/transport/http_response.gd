@@ -1,5 +1,4 @@
 extends PacketData
-class_name HttpResponse
 
 # HttpResponse:
 # Et objekt som representerer en HTTP-response

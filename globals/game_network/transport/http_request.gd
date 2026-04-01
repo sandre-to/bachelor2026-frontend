@@ -1,5 +1,4 @@
 extends PacketData
-class_name HttpReq
 
 # HttpReq(uest):
 # Denne klassen er en representasjon av en HTTP-forespørsel.

@@ -4,37 +4,26 @@ class_name Network
 # Network:
 # Det simulerte nettverket
 
+# Brukerens IP-adresse
+@export var user_ip: String
+
 # Tilkoblede enheter
 @export var connected_entities: Array[AbstractDevice]
 
-# Brukerens nettverkskort
-@export var user_device: UserDevice
 
 func _ready() -> void:
-	user_device = UserDevice.new("brukernavn ig")
+	user_ip = _generate_ip()
 
 
 
 # Send_from_user():	Sender en datapakke fra brukeren til en enhet på nettverket
 func send_from_user(to_ip: String, to_port: int, content: PacketData) -> DataPacket:
 	var to_send: DataPacket = DataPacket.new(
-		user_device.get_ip(),
+		user_ip,
 		to_ip, to_port,
 		content
 	)
 	return _route_packet(to_send)
-
-
-
-# Send_to_user():	Sender en datapakke fra en IP-adresse
-#					IP-adressen trenger ikke å eksistere på nettet og porten er bare for show
-func send_to_user(from_ip: String, to_port: int, content: PacketData) -> void:
-	var to_send: DataPacket = DataPacket.new(
-		from_ip,
-		user_device.get_ip(), to_port,
-		content
-	)
-	user_device.receive_datapacket(to_send)
 
 
 

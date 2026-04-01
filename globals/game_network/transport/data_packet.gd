@@ -1,5 +1,5 @@
 extends RefCounted
-class_name DataPacket
+
 
 # Datapacket:
 # Et objekt som representerer en datapakke sendt over nettverket.
@@ -12,6 +12,7 @@ var _receiver_port: int
 
 # Innholdet. Dette skal enten være en HTTP-respons, File, ErrorResponse eller tekst.
 var _data: PacketData
+var _data_type: PacketType
 
 
 func _init(_s_ip: String, _r_ip: String, _r_port: int, _content: Variant) -> void:
