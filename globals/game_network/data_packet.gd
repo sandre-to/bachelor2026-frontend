@@ -10,33 +10,29 @@ var _sender_ip: String
 var _receiver_ip: String
 var _receiver_port: int
 
-# Typen innhold, altså protokollen brukt, f.eks: HTTP, Fil eller rå-tekst.
-var _packet_type: Variant
-
-# Selve innholdet, kan være en Array, Dictionary, String eller File.
-var _data: Variant
-
+# Innholdet, formulert som JSON
+var _content: Dictionary
 
 
 func _init(
-		_s_ip: String, _r_ip: String, _r_port: int, _content_type: Variant, _content: Variant
+		s_ip: String, r_ip: String, r_port: int, content: Dictionary
 	) -> void:
-	self._sender_ip = _s_ip
-	self._receiver_ip = _r_ip
-	self._receiver_port = _r_port
-	self._data = _content
+	self._sender_ip = s_ip
+	self._receiver_ip = r_ip
+	self._receiver_port = r_port
+	self._content = content
 
 
 
 # Create_reply_packet():	Lager en datapakke med byttet sender og mottaker IP-adresse
 static func create_reply_packet(
-		recipient_packet: DataPacket, packet_type: Variant, packet_data: Variant
+		recipient_packet: DataPacket, content: Dictionary
 	) -> DataPacket:
 	return DataPacket.new(
 		recipient_packet.get_receiver_ip(),
 		recipient_packet.get_sender_ip(),
 		recipient_packet.get_receiver_port(),
-		packet_type, packet_data
+		content
 	)
 
 
@@ -50,8 +46,5 @@ func get_receiver_ip() -> String:
 func get_receiver_port() -> int:
 	return _receiver_port
 
-func get_packet_type() -> Variant:
-	return _packet_type
-
-func get_data() -> Variant:
-	return _data
+func get_content() -> Dictionary:
+	return _content

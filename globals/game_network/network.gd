@@ -7,79 +7,106 @@ class_name Network
 # Brukerens IP-adresse
 @export var user_ip: String
 
-# Tilkoblede enheter
-@export var connected_entities: Array[AbstractDevice]
+# Tilkoblede servere
+@export var connected_servers: Array[Server]
+
+# Statiske servere
+var _dns: Server = DnsServer.new()
+
 
 
 func _ready() -> void:
 	user_ip = _generate_ip()
+	
+	# Koble til statiske servere
+	connect_server(_dns, DnsServer.static_ip)	# DNS
 
 
 
-# Send_from_user():	Sender en datapakke fra brukeren til en enhet på nettverket
-func send_from_user(to_ip: String, to_port: int, content: PacketData) -> DataPacket:
+# Send_from_user():	Sender en datapakke fra brukeren til en server på nettverket
+func send_from_user(recipient_address: String, recipient_port: int, content: Dictionary) -> DataPacket:
+	# Sjekk om man trenger DNS
+	if not recipient_address.is_valid_ip_address():
+		var dns_request: DataPacket = DataPacket.new(
+			user_ip, DnsServer.static_ip, 53, {"domain": recipient_address}
+		)
+		var dns_response: DataPacket = _route_packet(dns_request)
+		if dns_response.get_content().has("error"):
+			return dns_response
+		
+		recipient_address = dns_response.get_content().get("ip")
+		if recipient_address == "no-match":
+			return dns_response
+	
 	var to_send: DataPacket = DataPacket.new(
 		user_ip,
-		to_ip, to_port,
+		recipient_address, recipient_port,
 		content
 	)
 	return _route_packet(to_send)
 
 
 
-# _route_packet():	Ruter en datapakke til en enhet på nettverket
-func _route_packet(datapacket: DataPacket) -> DataPacket:
-	var dev: AbstractDevice = _get_dev(datapacket.get_receiver_ip())
-	if dev == null:
-		return DataPacket.copy_header(
-			datapacket,
-			ErrorResponse.new(ErrorResponse.NetworkError.ENETUNREACH)
-		)
-	return dev.receive_datapacket(datapacket)
-
-
-
-# Get_dev_by_hostname():	Gir nettverksenheten basert på vertsnavnet
-func get_dev_by_hostname(hostname: String) -> AbstractDevice:
-	for dev in connected_entities:
-		if dev.get_hostname() == hostname:
-			return dev
+# Get_dev_by_hostname():	Gir serveren basert på vertsnavnet
+func get_server_by_hostname(hostname: String) -> Server:
+	for server in connected_servers:
+		if server.get_hostname() == hostname:
+			return server
 	return null
 
 
 
-# Connect_device():	Kobler til en enhet til nettverket
+# Connect_server():	Kobler til en server til nettverket
 #					Returnerer en bool for å sjekke om det gikk
-func connect_device(device: AbstractDevice) -> bool:
-	var new_ip: String = _generate_ip()
-	if new_ip == "":
-		return false
-	device.set_ip(new_ip)
-	connected_entities.append(device)
+func connect_server(server: Server, static_ip = "") -> bool:
+	var valid_ip: String
+	if static_ip.is_valid_ip_address() && not _ip_in_use(static_ip):
+		valid_ip = static_ip
+	else:
+		valid_ip = _generate_ip()
+	server.set_ip(valid_ip)
+	connected_servers.append(server)
 	return true
 
 
 
-# Disconnect_device():	Avkobler en enhet
+# Disconnect_server():	Avkobler en server
 #						Returnerer en bool for å indikere om noe skjedde
-func disconnect_device(device: AbstractDevice) -> bool:
-	var dumbass_index: int = connected_entities.find(device)
+func disconnect_server(server: Server) -> bool:
+	var dumbass_index: int = connected_servers.find(server)
 	if dumbass_index == -1:
 		return false
-	connected_entities.remove_at(dumbass_index)
+	connected_servers.remove_at(dumbass_index)
 	return true
-	
-	
-	
+
+
+
+# Dns():	Returnerer DNS-serveren (Navnet indikerer at man jobber med DNS)
+func dns() -> DnsServer:
+	return _dns
+
+
+
+# _route_packet():	Ruter en datapakke til en server på nettverket
+func _route_packet(datapacket: DataPacket) -> DataPacket:
+	var server: Server = _get_server(datapacket.get_receiver_ip())
+	if server == null:
+		return DataPacket.create_reply_packet(
+			datapacket,
+			{
+				"error": "Connection Timed Out"
+			}
+		)
+	return server.receive_datapacket(datapacket)
+
+
+
 # _generate_ip():	Genererer en ny IP-adresse for for en nytilkoblet enhet.
 #					Returnerer en tom string dersom det ikke finnes en ledig IP.
+#		   Notat:	Denne funksjonen kan muligens holde på for ALLTID, det er ganske 
+#					usannsynlig, men vi bor i en grusom verden så det kommer 
+#					HELT sikkert til å skje; refaktorer.
 func _generate_ip() -> String:
-	# Liten sjekk i tilfellet det er dritmange enheter på nettverket.
-	# Dette burde aldri skje, men man anner ikke hva disse tullingene
-	# kommer til å finne på.
-	if connected_entities.size() > 400000000:
-		return ""
-	
 	while true:
 		# Generer en tilfeldig IP
 		var ip: String = ""
@@ -88,15 +115,24 @@ func _generate_ip() -> String:
 			if i < 3:
 				ip += "."
 		# Sjekk om IP-en er i bruk
-		if connected_entities.find_custom(func(dev): return dev.get_ip() == ip) == -1:
+		if not _ip_in_use(ip):
 			return ip
 	return ""
-	
-	
-	
-# _get_dev():	Returnerer en nettverksenhet basert på IP.
-func _get_dev(ip: String) -> AbstractDevice:
-	var dev_index: int = connected_entities.find_custom(func(dev): return dev.get_ip() == ip)
-	if dev_index == -1:
+
+
+
+# _ip_in_user():	Sjekker om en IP-adresse er tatt i bruk
+func _ip_in_use(ip: String) -> bool:
+	for server in connected_servers:
+		if server.get_ip() == ip:
+			return true
+	return false
+
+
+
+# _get_server():	Returnerer en nettverksenhet basert på IP.
+func _get_server(ip: String) -> Server:
+	var server_index: int = connected_servers.find_custom(func(server): return server.get_ip() == ip)
+	if server_index == -1:
 		return null
-	return connected_entities[dev_index]
+	return connected_servers[server_index]

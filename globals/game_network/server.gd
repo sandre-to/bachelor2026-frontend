@@ -1,27 +1,32 @@
-extends AbstractDevice
+extends Resource
 class_name Server
 
 # Server:
 # Dette er klassen som representerer hvordan servere 
 # kontrollert av oppgaver oppfører seg.
 
+var _hostname: String
+var _ip: String
+
 # Åpne porter som er knyttet til en serverprosess
 var open_ports: Dictionary[int, Callable] = {}
 
 func _init(hostname: String) -> void:
-	super(hostname)
+	_hostname = hostname
 
 
 
 # Receive_datapacket(): Metoden som kjører når nettverket ruter en pakke
 func receive_datapacket(datapacket: DataPacket) -> DataPacket:
 	if not port_is_open(datapacket.get_receiver_port()):
-		return DataPacket.copy_header(
+		return DataPacket.create_reply_packet(
 			datapacket,
-			RawResponse.new("Connection Refused")
+			{
+				"error": "Connection Refused"
+			}
 		)
-	return open_ports.get(datapacket.get_receiver_port()).action(datapacket)
-	
+	return open_ports.get(datapacket.get_receiver_port()).call(datapacket)
+
 
 
 # Open_port():	Åpner en gitt port med en gitt serverprosess
@@ -33,9 +38,9 @@ func open_port(port: int, process: Callable) -> bool:
 		
 	open_ports[port] = process
 	return true
-	
-	
-	
+
+
+
 # Close_port():	Lukker en gitt port
 func close_port(port: int) -> bool:
 	return open_ports.erase(port)
@@ -43,3 +48,9 @@ func close_port(port: int) -> bool:
 # Port_is_open():	Herregud du vet
 func port_is_open(port: int) -> bool:
 	return open_ports.has(port)
+
+func set_ip(ip: String) -> void:
+	_ip = ip
+
+func get_ip() -> String:
+	return _ip

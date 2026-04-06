@@ -1,5 +1,4 @@
 extends AbstractDevice
-class_name Server
 
 # Server:
 # Dette er klassen som representerer hvordan servere 
