@@ -1,5 +1,4 @@
 extends Node
-class_name Network
 
 # Network:
 # Det simulerte nettverket
