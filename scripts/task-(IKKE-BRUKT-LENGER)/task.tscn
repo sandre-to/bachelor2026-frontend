@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2dobqxl28hec"]
+
+[ext_resource type="Script" uid="uid://ditll3tlb11o5" path="res://scripts/task-(IKKE-BRUKT-LENGER)/task_scene.gd" id="1_3u04r"]
+
+[node name="Task" type="Node" unique_id=2133488574]
+script = ExtResource("1_3u04r")

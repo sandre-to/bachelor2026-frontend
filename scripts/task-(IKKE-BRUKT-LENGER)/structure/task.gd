@@ -24,13 +24,6 @@ class_name Task
 # Kommandoene som kjøres når et feil flagg angis
 @export var wrong_flag_cmds: Array[TaskCMD] = []
 
-# Hovednettverket oppgaven kobler til
-# Midlertidig oversettet til SPNetwork, sett til AbstractNetwork senere
-@export var network: SPNetwork
-
-
-func _init(_network: AbstractNetwork) -> void:
-	network = _network
 
 
 # Start():	Selvforklarende

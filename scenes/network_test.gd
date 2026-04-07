@@ -5,7 +5,7 @@ var task_requested: bool 	= false	# 1.
 var task_ready: bool 		= false	# 2.
 
 var task_parser: TaskParser = TaskParser.new()
-var task: Task = Task.new(SPNetwork.new())
+var task: Task = Task.new()
 
 
 func _ready() -> void:
@@ -31,7 +31,7 @@ func _ready() -> void:
 			"flag": "feil flagg :("
 		}
 	})
-
+	
 	NetworkManager.send_own({
 		"type": "validate-flag",
 		"data": {
