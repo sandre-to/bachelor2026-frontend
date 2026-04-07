@@ -22,7 +22,7 @@ func _ready() -> void:
 	}
 	
 	missions_panel.hide()
-	SignalBus.task_completed.connect(_on_task_completed)
+	#SignalBus.task_completed.connect(_on_task_completed)
 		
 func _on_task_button_pressed() -> void:
 	if missions_panel.visible:

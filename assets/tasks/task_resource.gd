@@ -31,14 +31,14 @@ func _init(_id: int, _name: String, _type: TaskType, _desc: String) -> void:
 
 
 func _alert_backend(id: int) -> bool:
-	var req_id: int = NetworkManager.send_own({
+	var req_id: int = Backend.send_own({
 		"type": "task",
 		"data": {
 			"taskID": id
 		}
 	})
 	
-	var response: Dictionary = await NetworkManager.await_message(req_id)
+	var response: Dictionary = await Backend.await_message(req_id)
 	if response.get("status") == "error":
 		# FEILHÅNDTER #
 		return false
