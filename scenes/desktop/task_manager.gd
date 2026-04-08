@@ -1,7 +1,7 @@
 class_name TaskManager extends Control
 
 const TASK_1: PackedScene = preload(
-	"res://assets/tasks/steg/steg_task.tscn")
+	"res://tasks/steg/steg_task.tscn")
 
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton

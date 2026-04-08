@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://boq5k0846yj02"]
 
-[ext_resource type="Script" uid="uid://b6qfcavjpda1m" path="res://assets/tasks/steg/steg_task.gd" id="1_3hfx2"]
-[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="2_bj12d"]
+[ext_resource type="Script" uid="uid://b6qfcavjpda1m" path="res://tasks/steg/steg_task.gd" id="1_3hfx2"]
+[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://tasks/task_label.tres" id="2_bj12d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bs5rjynbtaxhk"]
 
-[ext_resource type="Script" uid="uid://benm7d3d0qonl" path="res://globals/scene_manager/scene_manager.gd" id="1_yq64p"]
+[ext_resource type="Script" path="res://globals/scene_manager/scene_manager.gd" id="1_yq64p"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="2_4fvoj"]
-[ext_resource type="PackedScene" uid="uid://b1ylepo62jqiq" path="res://assets/tasks/crypto/crypto_task.tscn" id="3_wt5un"]
-[ext_resource type="PackedScene" uid="uid://c31ikj8y3inob" path="res://assets/tools/password_breaker/web_exploit.tscn" id="4_bbvon"]
+[ext_resource type="PackedScene" uid="uid://b1ylepo62jqiq" path="res://tasks/crypto/crypto_task.tscn" id="3_wt5un"]
+[ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="4_bbvon"]
 
 [node name="SceneManager" type="Node" unique_id=1294782379]
 script = ExtResource("1_yq64p")
