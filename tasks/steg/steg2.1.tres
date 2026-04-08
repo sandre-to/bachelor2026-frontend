@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://di5d2jxncqmfd"]
+
+[ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/task_resource.gd" id="1_kdpks"]
+
+[resource]
+script = ExtResource("1_kdpks")
+metadata/_custom_type_script = "uid://wlwnowr21m8v"
