@@ -141,3 +141,6 @@ func _init_file_structure() -> void:
 	).get_as_text()
 	pass_list_three.update_content(list3_content)
 	pass_list_three.chmod("r--")
+
+	var image_file: ImageFile = ImageFile.new("carrotEater", "res://assets/tools/steg_tool/pictures/prince.png")
+	(get_file_entity(FileSystem.PICTURE_DIR) as Directory).insert_into(image_file)

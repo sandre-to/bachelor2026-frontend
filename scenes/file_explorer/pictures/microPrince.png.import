@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4os8hi3dulw0"
-path="res://.godot/imported/petter.jpeg-5a02c19ceab6c2483dfd9965cd2e2b7b.ctex"
+uid="uid://8r7iou66htx3"
+path="res://.godot/imported/microPrince.png-1b675d64db467c4b674225188a09078e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tools/steg_tool/pictures/petter.jpeg"
-dest_files=["res://.godot/imported/petter.jpeg-5a02c19ceab6c2483dfd9965cd2e2b7b.ctex"]
+source_file="res://scenes/file_explorer/pictures/microPrince.png"
+dest_files=["res://.godot/imported/microPrince.png-1b675d64db467c4b674225188a09078e.ctex"]
 
 [params]
 
