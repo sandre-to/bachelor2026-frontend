@@ -4,4 +4,8 @@
 
 [resource]
 script = ExtResource("1_kdpks")
+id = 2
+type = 1
+name = "Bunny’s Secret Diary"
+description = "Rumor has it that this rabbit prefers hiding messages within images rather than writing them down"
 metadata/_custom_type_script = "uid://wlwnowr21m8v"

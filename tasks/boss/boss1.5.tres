@@ -4,4 +4,12 @@
 
 [resource]
 script = ExtResource("1_2byew")
+id = 1
+type = 3
+name = "Down the Rabbit Hole"
+description = "You followed the digital footprints… and now you’re deep in the rabbit hole.
+
+Strange files are scattered everywhere. One of them seems corrupted.
+
+Maybe the rabbit left something behind for curious minds."
 metadata/_custom_type_script = "uid://wlwnowr21m8v"

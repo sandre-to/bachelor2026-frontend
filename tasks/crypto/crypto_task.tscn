@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b1ylepo62jqiq"]
 
-[ext_resource type="Script" uid="uid://cby35ml5hvjt1" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
-[ext_resource type="Script" uid="uid://xbk8w8ch8nbg" path="res://tasks/crypto/crypto_data.gd" id="2_mkcnv"]
-[ext_resource type="Resource" uid="uid://ce3eoioh75at0" path="res://tasks/crypto/level_1.tres" id="2_r7fc5"]
-[ext_resource type="Resource" uid="uid://ca78hfp3xu2cx" path="res://tasks/crypto/level_2.tres" id="4_imn07"]
+[ext_resource type="Script" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
+[ext_resource type="Script" path="res://tasks/crypto/crypto_data.gd" id="2_mkcnv"]
+[ext_resource type="Resource" path="res://tasks/crypto/level_1.tres" id="2_r7fc5"]
+[ext_resource type="Resource" path="res://tasks/crypto/level_2.tres" id="4_imn07"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)

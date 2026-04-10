@@ -3,7 +3,8 @@ class_name TaskData extends Resource
 enum TaskType {
 	CRYPTO,
 	STEGANO,
-	WEB_EXPLOIT
+	WEB_EXPLOIT,
+	BOSS
 }
 
 @export var id: int
