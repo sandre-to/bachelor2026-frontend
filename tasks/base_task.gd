@@ -31,8 +31,6 @@ func _ready() -> void:
 # Override disse funksjonene i de ulike oppgavene
 func set_task_info() -> void: pass
 
-
-
 func _on_confirm_button_pressed() -> void: 
 	print("SUBMIT")
 
@@ -41,9 +39,8 @@ func _on_confirm_button_pressed() -> void:
 func _on_enter_flag_text_submitted(_new_text: String) -> void: 
 	_on_confirm_button_pressed()
 	
-	
-	
 func _on_hint_pressed(_index: int) -> void: pass
+
 
 func completed_task() -> void:
 	var hints := hint_container.get_children()

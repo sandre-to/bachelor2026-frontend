@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b1ylepo62jqiq"]
 
-[ext_resource type="Script" path="res://assets/tasks/crypto/crypto_task.gd" id="1_xyd6q"]
-[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://tasks/task_label.tres" id="2_8ue8w"]
-[ext_resource type="Resource" uid="uid://b362ugoaxe3q0" path="res://tasks/crypto/task_2.tres" id="2_yh7e3"]
+[ext_resource type="Script" uid="uid://cby35ml5hvjt1" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
+[ext_resource type="Script" uid="uid://xbk8w8ch8nbg" path="res://tasks/crypto/crypto_data.gd" id="2_mkcnv"]
+[ext_resource type="Resource" uid="uid://ce3eoioh75at0" path="res://tasks/crypto/level_1.tres" id="2_r7fc5"]
+[ext_resource type="Resource" uid="uid://ca78hfp3xu2cx" path="res://tasks/crypto/level_2.tres" id="4_imn07"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -27,6 +28,9 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_qx4og"]
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_vjtgf"]
 font_size = 32
@@ -69,8 +73,12 @@ offset_bottom = 0.47998047
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_xyd6q")
-task = ExtResource("2_yh7e3")
+script = ExtResource("1_qx4og")
+tasks = Dictionary[int, ExtResource("2_mkcnv")]({
+1: ExtResource("2_r7fc5"),
+2: ExtResource("4_imn07")
+})
+current_level = 2
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -123,7 +131,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TASK"
-label_settings = ExtResource("2_8ue8w")
+label_settings = SubResource("LabelSettings_qx4og")
 horizontal_alignment = 1
 vertical_alignment = 1
 
