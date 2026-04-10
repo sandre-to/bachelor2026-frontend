@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CryptoData" format=3 uid="uid://ca78hfp3xu2cx"]
+
+[ext_resource type="Script" uid="uid://xbk8w8ch8nbg" path="res://tasks/crypto/crypto_data.gd" id="1_tfnoi"]
+
+[resource]
+script = ExtResource("1_tfnoi")
+cipher_text = "Hsiw fyrrc hvmro sxliv hvmrow xler aexiv. M hsrx orsa."
+flag = "carrotjuice"
+id = 1
+name = "Level 2"
+description = "What does this say? Can you help me solve it?"
+metadata/_custom_type_script = "uid://xbk8w8ch8nbg"
