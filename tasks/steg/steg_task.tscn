@@ -29,7 +29,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_vjtgf"]
-font_size = 32
+font_size = 20
 outline_size = 8
 outline_color = Color(0.19215687, 0.19215687, 0.19215687, 0.69411767)
 shadow_size = 12

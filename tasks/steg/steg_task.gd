@@ -8,6 +8,7 @@ func _ready() -> void:
 	var file_with_flag: File = File.new("mega-fil.txt")
 	
 	title.text = task.name
+	description.text = task.description
 	# Sett metadatafeltet "super-hemmelig" til data hentet fra backenden
 	#file_with_flag.metadata["super-hemmelig"] = task.dynamic_data["flagget"]
 	

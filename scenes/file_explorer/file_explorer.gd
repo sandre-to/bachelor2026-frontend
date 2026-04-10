@@ -25,24 +25,6 @@ func _ready() -> void:
 	cwd = FileSystem.get_file_entity("/")
 	hide()
 
-	# Legacykode #
-	#var cat := FakeFile.new()
-	#cat.name = "cat"
-	#cat.type = "IMAGE"
-	#cat.path = "res://scenes/file_explorer/pictures/cat.jpg"
-	#pinned_directories[PICTURES].append(cat)
-	#
-	#var text_file := FakeFile.new()
-	#text_file.name = "todo list"
-	#text_file.type = "TEXT"
-	#text_file.path = "Unknown"
-	#pinned_directories[DOCUMENTS].append(text_file)
-	#
-	#var secret := FakeFile.new()
-	#secret.name = "password list"
-	#secret.type = "TEXT"
-	#secret.path = "Unknown"
-	#pinned_directories[SECRET].append(secret)
 	
 func _show_folder_from_path(path: String) -> void:
 	_show_folder(
