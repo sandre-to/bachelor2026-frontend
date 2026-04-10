@@ -1,14 +1,8 @@
-[gd_scene format=3 uid="uid://yghdr8ejvmj6"]
+[gd_scene format=3 uid="uid://boq5k0846yj02"]
 
-<<<<<<<< HEAD:tasks/steg/steg_task.tscn
 [ext_resource type="Script" uid="uid://b6qfcavjpda1m" path="res://tasks/steg/steg_task.gd" id="1_3hfx2"]
 [ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://tasks/task_label.tres" id="2_bj12d"]
 [ext_resource type="Resource" uid="uid://dtlmdqyfea1ln" path="res://tasks/steg/steg1.2.tres" id="2_lfggm"]
-========
-[ext_resource type="Script" uid="uid://by3aey1c7lsib" path="res://web_exploit/web_task.gd" id="1_yx7jm"]
-[ext_resource type="Resource" uid="uid://fr61n2osghi6" path="res://web_exploit/web2.2.tres" id="2_h1mhp"]
-[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://assets/tasks/task_label.tres" id="3_c83ct"]
->>>>>>>> web-exploit:web_exploit/web_task.tscn
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -62,20 +56,15 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="WebTask" type="Control" unique_id=629482100]
+[node name="StegTask" type="Control" unique_id=629482100]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-<<<<<<<< HEAD:tasks/steg/steg_task.tscn
 script = ExtResource("1_3hfx2")
 task = ExtResource("2_lfggm")
-========
-script = ExtResource("1_yx7jm")
-task = ExtResource("2_h1mhp")
->>>>>>>> web-exploit:web_exploit/web_task.tscn
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -127,7 +116,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TASK"
-label_settings = ExtResource("3_c83ct")
+label_settings = ExtResource("2_bj12d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
