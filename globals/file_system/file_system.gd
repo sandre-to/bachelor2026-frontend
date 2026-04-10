@@ -22,7 +22,7 @@ const SECRET_DIR: String = "/home/secrets"
 
 func _ready() -> void:
 	root_directory = Directory.new("/", null)
-	_init_file_structure()
+	#_init_file_structure()
 
 
 
@@ -111,33 +111,33 @@ func _path_is_valid(path: String) -> bool:
 
 
 
-func _init_file_structure() -> void:
-	mkdir(HOME_DIR)
-	mkdir(PICTURE_DIR)
-	mkdir(DOCUMENT_DIR)
-	mkdir(SECRET_DIR)
-	
-	# Passordlister
-	var pass_list_one: TextFile = touch(SECRET_DIR + "/liste1.txt")
-	var list1_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/liste1test.txt",
-		FileAccess.READ
-	).get_as_text()
-	pass_list_one.update_content(list1_content)
-	pass_list_one.chmod("r--")
-	
-	var pass_list_two: TextFile = touch(SECRET_DIR + "/liste2.txt")
-	var list2_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/liste2.txt",
-		FileAccess.READ
-	).get_as_text()
-	pass_list_two.update_content(list2_content)
-	pass_list_two.chmod("r--")
-	
-	var pass_list_three: TextFile = touch(SECRET_DIR + "/liste3.txt")
-	var list3_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/liste3.txt",
-		FileAccess.READ
-	).get_as_text()
-	pass_list_three.update_content(list3_content)
-	pass_list_three.chmod("r--")
+#func _init_file_structure() -> void:
+	#mkdir(HOME_DIR)
+	#mkdir(PICTURE_DIR)
+	#mkdir(DOCUMENT_DIR)
+	#mkdir(SECRET_DIR)
+	#
+	## Passordlister
+	#var pass_list_one: TextFile = touch(SECRET_DIR + "/liste1.txt")
+	#var list1_content: String = FileAccess.open(
+		#"res://assets/tools/password_breaker/liste1test.txt",
+		#FileAccess.READ
+	#).get_as_text()
+	#pass_list_one.update_content(list1_content)
+	#pass_list_one.chmod("r--")
+	#
+	#var pass_list_two: TextFile = touch(SECRET_DIR + "/liste2.txt")
+	#var list2_content: String = FileAccess.open(
+		#"res://assets/tools/password_breaker/liste2.txt",
+		#FileAccess.READ
+	#).get_as_text()
+	#pass_list_two.update_content(list2_content)
+	#pass_list_two.chmod("r--")
+	#
+	#var pass_list_three: TextFile = touch(SECRET_DIR + "/liste3.txt")
+	#var list3_content: String = FileAccess.open(
+		#"res://assets/tools/password_breaker/liste3.txt",
+		#FileAccess.READ
+	#).get_as_text()
+	#pass_list_three.update_content(list3_content)
+	#pass_list_three.chmod("r--")
