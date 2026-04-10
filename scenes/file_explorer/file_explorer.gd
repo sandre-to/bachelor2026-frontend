@@ -67,8 +67,14 @@ func _on_files_item_selected(index: int) -> void:
 func _on_files_item_activated(index: int) -> void:
 	var file_entity: FileEntity = files.get_item_metadata(index)
 	
+	
 	if file_entity is TextFile:
 		print((file_entity as TextFile).get_content())
+		
+	elif file_entity is ImageFile:
+		var image_file = preload("res://scenes/file_explorer/pictureView.tscn")
+		add_child(image_file.instantiate())
+	
 	elif file_entity is Directory:
 		_show_folder(file_entity as Directory)
 	

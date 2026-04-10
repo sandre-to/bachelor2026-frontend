@@ -2,6 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_ee4v2"]
 [ext_resource type="Script" uid="uid://c5wewhbgso4s0" path="res://scenes/file_explorer/file_explorer.gd" id="1_tsstm"]
+[ext_resource type="PackedScene" uid="uid://cybjjxhg2rby5" path="res://scenes/file_explorer/pictureView.tscn" id="3_ee4v2"]
+[ext_resource type="Texture2D" uid="uid://8r7iou66htx3" path="res://scenes/file_explorer/pictures/microPrince.png" id="4_0xeun"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee4v2"]
 bg_color = Color(0.18359044, 0.18359047, 0.18359032, 1)
@@ -149,6 +151,7 @@ theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer" unique_id=2050464423]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer" unique_id=381950390]
 unique_name_in_owner = true
@@ -165,6 +168,19 @@ theme_override_font_sizes/font_size = 24
 allow_reselect = true
 scroll_hint_mode = 2
 icon_scale = 0.2
+
+[node name="PictureView" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/Files" unique_id=12355339 instance=ExtResource("3_ee4v2")]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
+anchors_preset = 0
+theme_override_constants/h_separation = 5
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 20
+text = "carrotEater.jpg"
+icon = ExtResource("4_0xeun")
+autowrap_mode = 3
+autowrap_trim_flags = 192
+clip_text = true
 
 [node name="Preview" type="TextureRect" parent="." unique_id=1755326574]
 custom_minimum_size = Vector2(128, 128)
