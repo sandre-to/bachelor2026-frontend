@@ -14,8 +14,9 @@ func set_data_info() -> void:
 	puzzle.text = task.cipher_text
 
 func set_task(i: int) -> void:
-	if not tasks.has(i) || tasks.get(i) == null:
-		push_error("Invalid number! Task does not exist. Check dictionary for available keys")
+	if not tasks.has(i) or tasks.get(i) == null:
+		push_error("Invalid number! Task does not exist. 
+			Check dictionary for available keys.")
 		return
 	
 	task = tasks[i]

@@ -78,7 +78,6 @@ tasks = Dictionary[int, ExtResource("2_mkcnv")]({
 1: ExtResource("2_r7fc5"),
 2: ExtResource("4_imn07")
 })
-current_level = 2
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)

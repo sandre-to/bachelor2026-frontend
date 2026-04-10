@@ -1,8 +1,14 @@
 class_name TaskManager extends Control
 
-const TASK_1: PackedScene = preload(
+const CRYPTO_TASK: PackedScene = preload(
+	"res://tasks/crypto/crypto_task.tscn")
+
+const STEGANO_TASK: PackedScene = preload(
 	"res://tasks/steg/steg_task.tscn")
 
+# Huske å oppdatere
+const WEB_TASK: PackedScene = null
+	
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
 
@@ -10,26 +16,16 @@ const TASK_1: PackedScene = preload(
 @onready var task_1: Button = %Task1
 @onready var task_2: Button = %Task2
 @onready var task_3: Button = %Task3
-
-var current_task: BaseTask = null
-var task_buttons: Dictionary
+@onready var task_4: Button = %Task4
 
 func _ready() -> void:
-	task_buttons = {
-		"task_1": task_1,
-		"task_2": task_2,
-		"task_3": task_3
-	}
-	
 	missions_panel.hide()
-	#SignalBus.task_completed.connect(_on_task_completed)
-		
+	
 func _on_task_button_pressed() -> void:
 	if missions_panel.visible:
 		fade_out(missions_panel)
 	else:
-		if current_task:
-			fade_out(current_task)
+		close_tasks()
 		fade_in(missions_panel)
 
 func fade_in(panel: Control) -> void:
@@ -45,29 +41,28 @@ func fade_out(panel: Control) -> void:
 	tween.tween_callback(func(): panel.hide())
 
 func _on_task_1_pressed() -> void:
-	spawn_task(TASK_1)
+	spawn_task(CRYPTO_TASK)
 
 func _on_task_2_pressed() -> void:
-	pass
-
+	spawn_task(STEGANO_TASK)
+		
 func _on_task_3_pressed() -> void:
+	spawn_task(WEB_TASK)
+
+func _on_task_4_pressed() -> void: 
 	pass
 
 func spawn_task(task_scene: PackedScene) -> void:
+	if task_scene == null: return
 	fade_out(missions_panel)
 	
 	var task := task_scene.instantiate()
-	current_task = task
+	
 	add_child(task)
-	task.global_position += Vector2(-80, 0)
+	task.global_position += Vector2(-100, 0)
 	fade_in(task)
 
-func _on_task_completed(id: String) -> void:
-	if current_task and current_task.task.completed:
-		var button: Button = task_buttons[id]
-		if not button: 
-			push_error("Button does not exist. Check name spelling. ")
-			return
-			
-		button.disabled = true
-		button.text = id.to_upper() + ": COMPLETED!"
+func close_tasks() -> void:
+	for child in get_children():
+		if child is BaseTask:
+			child.queue_free()
