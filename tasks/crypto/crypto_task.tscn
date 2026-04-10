@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://b1ylepo62jqiq"]
 
-[ext_resource type="Script" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
-[ext_resource type="Script" path="res://tasks/crypto/crypto_data.gd" id="2_mkcnv"]
-[ext_resource type="Resource" path="res://tasks/crypto/level_1.tres" id="2_r7fc5"]
-[ext_resource type="Resource" path="res://tasks/crypto/level_2.tres" id="4_imn07"]
+[ext_resource type="Script" uid="uid://cby35ml5hvjt1" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
+[ext_resource type="Resource" uid="uid://ce3eoioh75at0" path="res://tasks/crypto/crypto_1.tres" id="2_r7fc5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -74,10 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qx4og")
-tasks = Dictionary[int, ExtResource("2_mkcnv")]({
-1: ExtResource("2_r7fc5"),
-2: ExtResource("4_imn07")
-})
+task = ExtResource("2_r7fc5")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)

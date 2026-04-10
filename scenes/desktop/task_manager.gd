@@ -5,9 +5,9 @@ const CRYPTO_TASK: PackedScene = preload(
 
 const STEGANO_TASK: PackedScene = preload(
 	"res://tasks/steg/steg_task.tscn")
-
-# Huske å oppdatere
-const WEB_TASK: PackedScene = null
+	
+const WEB_TASK: PackedScene = preload(
+	"res://tasks/web_exploit/web_task.tscn")
 	
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
