@@ -70,10 +70,12 @@ func _on_files_item_activated(index: int) -> void:
 	
 	if file_entity is TextFile:
 		print((file_entity as TextFile).get_content())
+		var file_file = preload("res://scenes/file_explorer/fileView.tscn")
+		add_child(file_file.instantiate())
 		
-	elif file_entity is ImageFile:
-		var image_file = preload("res://scenes/file_explorer/pictureView.tscn")
-		add_child(image_file.instantiate())
+	#elif file_entity is ImageFile:
+		#var image_file = preload("res://scenes/file_explorer/pictureView.tscn")
+		#add_child(image_file.instantiate())
 	
 	elif file_entity is Directory:
 		_show_folder(file_entity as Directory)
