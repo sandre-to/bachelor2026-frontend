@@ -18,11 +18,11 @@ enum TaskType {
 var hint_costs: Array[float] = []
 
 
-func _init(_id: int, _name: String, _type: TaskType, _desc: String) -> void:
-	id = _id
-	name = _name
-	type = _type
-	description = _desc
+#func _init(_id: int, _name: String, _type: TaskType, _desc: String) -> void:
+	#id = _id
+	#name = _name
+	#type = _type
+	#description = _desc
 	
 	# Denne funksjonen kontakter backenden, starter oppgavesesjonen og henter data
 	# For å slippe å sette opp backenden må du sette "dynamic_data" og "extra_description" selv.

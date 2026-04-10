@@ -23,6 +23,7 @@ var cwd: Directory
 
 func _ready() -> void:
 	cwd = FileSystem.get_file_entity("/")
+	hide()
 
 	# Legacykode #
 	#var cat := FakeFile.new()

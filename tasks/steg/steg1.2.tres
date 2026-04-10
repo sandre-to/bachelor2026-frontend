@@ -4,5 +4,8 @@
 
 [resource]
 script = ExtResource("1_ro8kv")
+id = 1
 type = 1
+name = "Stegonopraphy"
+description = "The files look sus, 67"
 metadata/_custom_type_script = "uid://wlwnowr21m8v"
