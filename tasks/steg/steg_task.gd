@@ -6,7 +6,7 @@ func _ready() -> void:
 	
 	# Lag en tom fil
 	var file_with_flag: File = File.new("mega-fil.txt")
-	
+	var image_file: ImageFile = ImageFile.new("bunnyEnemy.jpg", "res://scenes/file_explorer/pictures/petter.jpeg")
 	
 	title.text = task.name
 	description.text = task.description
@@ -15,6 +15,7 @@ func _ready() -> void:
 	
 	# Putt filen inn i filsystemet på stien: "/home/documents". 
 	(FileSystem.get_file_entity("/home/documents") as Directory).insert_into(file_with_flag)
+	(FileSystem.get_file_entity("/home/pictures") as Directory).insert_into(image_file)
 
 # mini preview bilde, som en knapp. de trykker den twice så kommer 
 # bilde opp stort, egen scene. filsti på "baren" på bilde vindu
