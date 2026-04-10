@@ -6,6 +6,9 @@
 script = ExtResource("1_ro8kv")
 id = 1
 type = 1
-name = "Stegonopraphy"
-description = "The files look sus, 67"
+name = "Carrot in Plain Sight"
+description = "The bunny swears this image is just a normal carrot…
+but something feels off.
+
+Maybe the carrot is hiding more than just vitamins?"
 metadata/_custom_type_script = "uid://wlwnowr21m8v"
