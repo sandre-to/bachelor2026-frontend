@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CryptoData" format=3 uid="uid://dnasrhksqpk1d"]
+
+[ext_resource type="Script" path="res://tasks/crypto/crypto_data.gd" id="1_864bp"]
+
+[resource]
+script = ExtResource("1_864bp")
+cipher_text = "bitchass"
+flag = "carrotjuice"
+id = 9
+name = "EXPERIMENTATION"
+description = "Hent flagget fra backenden; sjekk filens metadata."
