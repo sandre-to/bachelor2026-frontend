@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvbj4g2g310ni"]
 
 [ext_resource type="Script" uid="uid://buf71u2ouoear" path="res://tasks/experimentation/exp_task.gd" id="1_x7812"]
-[ext_resource type="Resource" uid="uid://dnasrhksqpk1d" path="res://tasks/experimentation/exp_task.tres" id="2_6mi5j"]
+[ext_resource type="Resource" uid="uid://cdsdr2pisv864" path="res://tasks/experimentation/exp_data.tres" id="2_6mi5j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)

@@ -1,6 +1,6 @@
 class_name BaseTask extends Control
 
-@export var task: TaskData = null
+@export var task: TaskData
 
 @onready var title: Label = %Title
 @onready var description: Label = %Description
@@ -29,36 +29,50 @@ func _ready() -> void:
 		buttons[i].pressed.connect(_on_hint_pressed.bind(i + 1))
 	
 
+# start():	Metoden som kjører når oppgaven startes
 func start() -> void:
-	await request_task()
-	_on_start()
-	await parse_finished()
+	# Spør backenden om å starte
+	var request_success: bool = await request_task()
+	if not request_success:
+		return
 	
+	set_task_info()
 	
+	# Initialiser den spesifike oppgaven
+	var init_success: bool = _on_start()
+	if not init_success:
+		return
+	
+	# Fortell backenden at initen fungerte
+	var backend_synced: bool = await parse_finished()
+	if not backend_synced:
+		return
+	
+
+
+# _on_start():	Metoden hvor alle oppgaver initialiserer seg selv;
+#				alle oppgaver implementerer metoden selv.
+#				Returnerer en bool for å indikere om initialiseringen fungerte.
 func _on_start() -> bool:
 	return false
 
-# Override disse funksjonene i de ulike oppgavene
-func set_task_info() -> void: pass
+
+
+func set_task_info() -> void: 
+	title.text = task.name
+	description.text = task.description
 
 func _on_confirm_button_pressed() -> void: 
+	var flag_correct: bool = await verify_flag()
+	if flag_correct:
+		completed_task()
+
 	print("SUBMIT")
-	var req_id: int = Backend.send_own({
-		"type": "validate-flag",
-		"data": {
-			"flag": enter_flag.text
-		}
-	})
-	var response: Dictionary = await Backend.await_message(req_id)
-	print(response)
-
-
-
+	
 func _on_enter_flag_text_submitted(_new_text: String) -> void: 
 	_on_confirm_button_pressed()
 	
 func _on_hint_pressed(_index: int) -> void: pass
-
 
 func completed_task() -> void:
 	var hints := hint_container.get_children()
@@ -69,15 +83,14 @@ func completed_task() -> void:
 	confirm_button.disabled = true
 	task.completed = true
 	
-
-
-
 func get_task_data() -> void:
 	
 	pass
 
 
 
+# request_task():	Spør backenden om å starte oppgaven
+#					Kaller på API-et: respondToTask
 func request_task() -> bool:
 	var req_id: int = Backend.send_own({
 		"type": "task",
@@ -108,12 +121,15 @@ func request_task() -> bool:
 	var task_metadata: Dictionary = response_data.get("metadata")
 	if task_metadata.has("extraDescription"):
 		task.extra_description = task_metadata.get("extraDescription")
-#	if task_metadata.has("hintCosts"):
-#		task.hint_costs = task_metadata.get("hintCosts")
+	if task_metadata.has("hintCosts"):
+		task_metadata.get("hintCosts")
 	
 	return true
 
 
+
+# parse_finished():	Forteller backenden at oppgaven er ferdig initialisert
+#					Kaller på API-et: respondToParseStatus
 func parse_finished() -> bool:
 	var req_id: int = Backend.send_own({
 		"type": "parse-status",
@@ -122,3 +138,28 @@ func parse_finished() -> bool:
 	
 	var response: Dictionary = await Backend.await_message(req_id)
 	return response.get("status") == "success"
+
+
+
+# verify_flag():	Verifiserer et flagg ved å spørre backenden
+#					Kaller på API-et: respondToValidateFlag
+func verify_flag() -> bool:
+	var req_id: int = Backend.send_own({
+		"type": "validate-flag",
+		"data": {
+			"flag": enter_flag.text
+		}
+	})
+	
+	var response: Dictionary = await Backend.await_message(req_id)
+
+	if response.get("status") != "success":
+		# Noe har gått MEGA DEGA galt og er 
+		# grunnet spilleren mest sannsynlig (emoji i flagget els)
+		print(response)
+		return false
+
+	if response.get("data").get("result") == "correct":
+		return true
+	
+	return false
