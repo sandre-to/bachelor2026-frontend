@@ -38,6 +38,18 @@ func get_file_entity(path: String) -> FileEntity:
 	return root_directory.get_entity(path)
 
 
+
+# Insert_into():	Legger en filentitet til en filsti
+func insert_into(path: String, file_entity: FileEntity) -> bool:
+	var parent: FileEntity = get_file_entity(path)
+	if parent is not Directory:
+		set_error(FileError.ENODIR)
+		return false
+	
+	return (parent as Directory).insert_into(file_entity) != null
+
+
+
 # Mkdir():	Lager en katalog på en gitt filsti
 #			Kan feile dersom:
 #			- Filstien ikke er gyldig formatert (EINPTH).
