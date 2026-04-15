@@ -1,8 +1,7 @@
 extends BaseTask
 class_name StegTask
 
-func _ready() -> void:
-	super()
+func _on_start() -> bool:
 	
 	# Lag en tom fil
 	var file_with_flag: File = File.new("mega-fil.txt")
@@ -17,6 +16,8 @@ func _ready() -> void:
 	(FileSystem.get_file_entity("/home/documents") as Directory).insert_into(file_with_flag)
 	(FileSystem.get_file_entity("/home/pictures") as Directory).insert_into(image_file)
 
+	return true
+	
 # mini preview bilde, som en knapp. de trykker den twice så kommer 
 # bilde opp stort, egen scene. filsti på "baren" på bilde vindu
 # metadata vil være hardkodet med dynamisk flagg variabel

@@ -125,6 +125,13 @@ func send_own(msg: Dictionary) -> int:
 
 
 
+# Purge_request_promise():	Fjerner request_id fra pending_requests
+#							Dette brukes etter API-kall når man ikke forventer et svar; en slags free();
+func purge_request_promise(request_id: int) -> void:
+	pending_requests.erase(request_id)
+
+
+
 # _send_text():	Sender en konstruert melding til backenden
 func _send_text(msg: Dictionary) -> int:
 	_socket.poll()

@@ -14,6 +14,16 @@ class_name BaseTask extends Control
 @onready var hint_2: Button = %Hint2
 @onready var hint_3: Button = %Hint3
 
+enum CancelReason{
+	USER, BAD_MESSAGE,
+	UNSTABLE, FORCE
+}
+const CANCEL_REASON_STR: Dictionary[CancelReason, String] = {
+	CancelReason.BAD_MESSAGE: "fikk mange dårlige meldinger",
+	CancelReason.UNSTABLE: "ustabil forbindelse",
+	CancelReason.FORCE: "fuck denne karen her"
+}
+
 func _ready() -> void:
 	# Hente data fra backend
 	if not task:
@@ -61,18 +71,23 @@ func _on_start() -> bool:
 func set_task_info() -> void: 
 	title.text = task.name
 	description.text = task.description
+	puzzle.text = task.extra_description
 
 func _on_confirm_button_pressed() -> void: 
 	var flag_correct: bool = await verify_flag()
 	if flag_correct:
 		completed_task()
+	else:
+		# Feil :,(
+		print("bruh")
 
 	print("SUBMIT")
 	
 func _on_enter_flag_text_submitted(_new_text: String) -> void: 
 	_on_confirm_button_pressed()
 	
-func _on_hint_pressed(_index: int) -> void: pass
+func _on_hint_pressed(_index: int) -> void: 
+	pass
 
 func completed_task() -> void:
 	var hints := hint_container.get_children()
@@ -85,6 +100,14 @@ func completed_task() -> void:
 	
 func get_task_data() -> void:
 	
+	pass
+
+# skal avbryte oppgaven etter spilleren trykker på en knapp
+func remove_task() -> void:
+	# Forteller backenden at brukeren avbryter
+	cancel_task(CancelReason.USER)
+	
+	# UI-magi
 	pass
 
 
@@ -163,3 +186,43 @@ func verify_flag() -> bool:
 		return true
 	
 	return false
+
+
+
+# request_hint():	Henter et hint fra backenden
+#					Kaller på API-et: respondToGetHint (IKKE IMPLEMENTERT)
+func request_hint(hint_index: int) -> String:
+	var req_id: int = Backend.send_own({
+		"type": "get-hint",
+		"data": {
+			"hint-index": hint_index
+		}
+	})
+	
+	var response: Dictionary = await Backend.await_message(req_id)
+	if response.get("status") == "error":
+		print("wtf :,(")
+	
+	
+	return "HOW SWAY"
+
+
+
+# cancel_task():	Avbryter oppgaven
+#					Kaller på API-et: respondToCancelTask
+func cancel_task(reason: CancelReason) -> void:
+	var request: Dictionary
+	if reason != CancelReason.USER:
+		request = {
+			"type": "cancel-task",
+			"status": "error",
+			"data": {"desc": CANCEL_REASON_STR[reason]}
+		}
+	else:
+		request = {
+			"type": "cancel-task",
+			"status": "normal"
+		}
+	
+	var req_id: int = Backend.send_own(request)
+	Backend.purge_request_promise(req_id)
