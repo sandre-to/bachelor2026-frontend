@@ -61,6 +61,7 @@ func spawn_task(task_scene: PackedScene) -> void:
 	add_child(task)
 	task.global_position += Vector2(-100, 0)
 	fade_in(task)
+	task.start()
 
 func close_tasks() -> void:
 	for child in get_children():

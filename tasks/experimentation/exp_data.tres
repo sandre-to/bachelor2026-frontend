@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://cdsdr2pisv864"]
+
+[ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/task_resource.gd" id="1_bowak"]
+
+[resource]
+script = ExtResource("1_bowak")
+id = 9
+name = "EXPERIMENTAL"
+description = "fuck bitches"
+extra_description = "get money"
+metadata/_custom_type_script = "uid://wlwnowr21m8v"

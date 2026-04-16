@@ -17,11 +17,3 @@ enum TaskType {
 @export var backend_data: Dictionary = {}
 @export_multiline() var extra_description: String = ""
 var hint_costs: Array[float] = []
-
-
-func _init(_id: int, _name: String, _type: TaskType, _desc: String) -> void:
-	id = _id
-	name = _name
-	type = _type
-	description = _desc
-	
