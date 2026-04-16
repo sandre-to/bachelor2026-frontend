@@ -6,7 +6,7 @@ const WINDOW: PackedScene = preload("res://scenes/window/custom_window.tscn")
 @onready var color_rect: ColorRect = $Animation/ColorRect
 
 @onready var file_explorer: Control = $FileExplorer
-@onready var tool_selector: Control = $ToolSelector
+@onready var tool_selector: Control = %ToolSelector
 @onready var tool_panel: Panel = %ToolPanel
 @onready var task_manager: Control = %TaskManager
 

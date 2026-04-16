@@ -1,7 +1,7 @@
 class_name TutorialTasks extends Control
 
 const TASK_1: PackedScene = preload(
-	"res://assets/tasks/crypto/crypto_task.tscn")
+	"res://tasks/crypto/crypto_task.tscn")
 
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
