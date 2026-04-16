@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dbbosia67rvq7"]
+[gd_scene format=3 uid="uid://cxyin4j1dgwpy"]
 
-[ext_resource type="Texture2D" uid="uid://drihvfhc6vert" path="res://assets/icons/txtFil (1).png" id="1_t5o5y"]
+[ext_resource type="Texture2D" path="res://assets/icons/txtFil (1).png" id="1_t5o5y"]
 
 [node name="FileView" type="Button" unique_id=1248425920]
 custom_minimum_size = Vector2(128, 128)
