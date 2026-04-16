@@ -30,15 +30,19 @@ extends Node
 # - Signal for nettverksfeil?
 
 
-# Signal som sendes når en ny melding kommer
+# Signal som sendes når en ny melding kommer (bare broadcastmeldinger)
 signal message_received(message: Dictionary)
 
 const BACKEND_URL: String = "ws://localhost:8080/game"
-const CONNECTION_ATTEMPTS: int 				= 5		# Antall forsøk på tilkobling
+const MAX_CONNECTION_ATTEMPTS: int 			= 5		# Antall forsøk på tilkobling
 const CONNECTION_INTERVAL_SECONDS: float 	= 1.5	# Antall sekunder mellom hver serverpoll
 
 var _socket = WebSocketPeer.new()
 var _connected: bool = false
+
+# Knyttet til gjennoppretting av forbindelsen
+var _is_reconnecting: bool = false
+var _current_reattempts: int = 0
 
 # Forespørsler som er på vei
 var pending_requests: Dictionary = {}
@@ -63,27 +67,29 @@ func _process(delta: float) -> void:
 
 
 # Connect_to_backend():	Kobler til backenden
-func connect_to_backend() -> bool:
+func connect_to_backend() -> void:
 	var error: Error = _socket.connect_to_url(BACKEND_URL)
 	if error != OK:
-		return false
-		
-	# Vent på at forbindelsen kommer gjennom
-	for attempt in range(CONNECTION_ATTEMPTS):
-		_socket.poll()
-		print("Prøver å koble til...")
-		if _socket.get_ready_state() != WebSocketPeer.State.STATE_OPEN:
-			await get_tree().create_timer(CONNECTION_INTERVAL_SECONDS).timeout
-			continue
-		else:
-			print("Koblet til!! :)))")
-			_connected = true
-			return true
-		
-	print("Kunne ikke koble til :(")	
-	return false
+		_reconnect()
+	
+	
 
-
+# _reconnect():	Selvbeskrivene.
+func _reconnect() -> void:
+	if _is_reconnecting:
+		return
+	
+	_is_reconnecting = true
+	for attempt in range(MAX_CONNECTION_ATTEMPTS):
+		await get_tree().create_timer(CONNECTION_INTERVAL_SECONDS).timeout
+	
+		var error: Error = _socket.connect_to_url(BACKEND_URL)
+		if error == OK:
+			_is_reconnecting = false
+			return
+	
+	_is_reconnecting = false
+			
 
 # Await_message():	Venter på svaret backenden gir
 func await_message(request_id: float) -> Dictionary:
