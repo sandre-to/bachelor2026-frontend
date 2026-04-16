@@ -17,11 +17,19 @@ const WEB_TASK: PackedScene = preload(
 @onready var task_2: Button = %Task2
 @onready var task_3: Button = %Task3
 
-var ordered_tasks: Array[BaseTask] = []
 var current_task: BaseTask = null
+var buttons: Dictionary[int, Button] = {}
+var index: int = 1
 
 func _ready() -> void:
 	missions_panel.hide()
+	SignalBus.task_completed.connect(_on_task_completed)
+	
+	buttons = {
+		1: task_1,
+		2: task_2,
+		3: task_3
+	}
 	
 func _on_task_button_pressed() -> void:
 	if missions_panel.visible:
@@ -46,10 +54,10 @@ func _on_task_1_pressed() -> void:
 	spawn_task(CRYPTO_TASK)
 
 func _on_task_2_pressed() -> void:
-	spawn_task(STEGANO_TASK)
+	spawn_task(CRYPTO_TASK)
 		
 func _on_task_3_pressed() -> void:
-	spawn_task(WEB_TASK)
+	spawn_task(CRYPTO_TASK)
 
 func spawn_task(task_scene: PackedScene) -> void:
 	if task_scene == null || current_task != null: return
@@ -67,3 +75,20 @@ func close_tasks() -> void:
 	for child in get_children():
 		if child is BaseTask:
 			child.queue_free()
+
+func _on_task_completed() -> void:
+	if current_task:
+		current_task.queue_free()
+		current_task = null
+	
+	fade_in(missions_panel)
+	
+	# Starter alltid på første oppgave
+	# Når riktig flagg er skrevet inn
+	# Lås oppgaveknappen, og åpne neste [Task 1 låst -> Task 2 åpen]
+	buttons[index].disabled = true
+	buttons[index].text = "TASK %d - COMPLETED" % [index]
+	index += 1
+	if index > buttons.size():
+		return
+	buttons[index].disabled = false

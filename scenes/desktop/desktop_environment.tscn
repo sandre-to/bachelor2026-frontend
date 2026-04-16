@@ -5,14 +5,17 @@
 [ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
+[ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="5_jyxi7"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="5_ndhkw"]
+[ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="6_0nmlt"]
 [ext_resource type="Texture2D" uid="uid://4q8o53gb77ch" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
 [ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
 [ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_ctsuf"]
-[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="9_ybhkl"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="9_ybhkl"]
 [ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_f6qo7"]
 [ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="11_ctsuf"]
 [ext_resource type="Script" uid="uid://bnc3uiqrbkxu4" path="res://scenes/desktop/task_manager.gd" id="11_f6qo7"]
+[ext_resource type="Texture2D" uid="uid://djfe8ocr5cmfj" path="res://assets/icons/skrive (1).png" id="12_k7yd3"]
 [ext_resource type="Texture2D" uid="uid://baw0kwh6lcdcm" path="res://assets/icons/12027971.png" id="13_ybhkl"]
 [ext_resource type="PackedScene" uid="uid://bmeqfysgvuf4y" path="res://scenes/desktop/notepad/notepad.tscn" id="15_cwh75"]
 
@@ -230,14 +233,20 @@ alignment = 1
 [node name="FilesButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1543493324]
 custom_minimum_size = Vector2(84, 32)
 layout_mode = 2
-text = "FILES"
+icon = ExtResource("5_jyxi7")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ToolsButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1825985518]
 custom_minimum_size = Vector2(84, 0)
 layout_mode = 2
 shortcut_feedback = false
 shortcut_in_tooltip = false
-text = "TOOLS"
+icon = ExtResource("6_0nmlt")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ToolSelector" type="Control" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" unique_id=246908298]
 unique_name_in_owner = true
@@ -297,8 +306,12 @@ tool_info = "Crack passwords by looking through files"
 
 [node name="NotepadButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-text = "NOTEPAD"
+icon = ExtResource("12_k7yd3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="HomeButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar" unique_id=1515162580]
 z_index = 20
@@ -379,6 +392,7 @@ size_flags_horizontal = 8
 text = "TASKS"
 
 [node name="Panel" type="Panel" parent="TaskManager" unique_id=1286714973]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

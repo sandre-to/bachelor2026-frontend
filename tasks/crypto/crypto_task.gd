@@ -16,8 +16,9 @@ func _on_hint_pressed(index: int) -> void:
 		2:
 			description.text = "Open the tools button"
 		3:
-			description.task = "Try with differet shift (1 - 9)"
-
+			description.text = "Try with differet shift (1 - 9)"
+			
 func _on_confirm_button_pressed() -> void:
 	if enter_flag.text == task.flag:
+		print("nice")
 		SignalBus.task_completed.emit()

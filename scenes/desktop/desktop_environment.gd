@@ -10,6 +10,7 @@ const WINDOW: PackedScene = preload("res://scenes/window/custom_window.tscn")
 @onready var tool_panel: Panel = %ToolPanel
 @onready var task_manager: Control = %TaskManager
 @onready var notepad: NotepadApp = %NotepadApp
+@onready var task_display: Panel = %Panel
 
 var root: Node = null
 
@@ -27,6 +28,8 @@ func _on_files_button_pressed() -> void:
 func _on_home_button_pressed() -> void:
 	file_explorer.hide()
 	tool_selector.hide()
+	task_display.hide()
+	notepad.hide()
 	for tool in tool_panel.get_children():
 		tool.hide()
 
