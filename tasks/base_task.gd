@@ -38,9 +38,9 @@ func _ready() -> void:
 # start():	Metoden som kjører når oppgaven startes
 func start() -> void:
 	# Spør backenden om å starte
-	var request_success: bool = await request_task()
-	if not request_success:
-		return
+#	var request_success: bool = await request_task()
+#	if not request_success:
+#		return
 	
 	set_task_info()
 	
@@ -50,9 +50,9 @@ func start() -> void:
 		return
 	
 	# Fortell backenden at initen fungerte
-	var backend_synced: bool = await parse_finished()
-	if not backend_synced:
-		return
+#	var backend_synced: bool = await parse_finished()
+#	if not backend_synced:
+#		return
 	
 
 
