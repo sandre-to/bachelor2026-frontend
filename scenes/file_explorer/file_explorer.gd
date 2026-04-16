@@ -18,7 +18,7 @@ var cwd: Directory
 @onready var files: ItemList = %Files
 @onready var folders_list: VBoxContainer = %FoldersList
 @onready var preview: TextureRect = $Preview
-
+@onready var tool_selector: ToolSelector = $"../ToolSelector"
 
 
 func _ready() -> void:
@@ -85,7 +85,12 @@ func _on_files_item_activated(index: int) -> void:
 	var file_entity: FileEntity = files.get_item_metadata(index)
 	
 	if file_entity is TextFile:
-		print((file_entity as TextFile).get_content())
+		var text_file := file_entity as TextFile
+	
+		tool_selector.hide_selected_tools()
+		tool_selector.notepad.visible = true
+		tool_selector.notepad.open_reference_file(text_file.name, text_file.get_content())
+	
 	elif file_entity is Directory:
 		_show_folder(file_entity as Directory)
 	

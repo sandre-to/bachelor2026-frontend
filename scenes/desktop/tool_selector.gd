@@ -5,6 +5,7 @@ class_name ToolSelector extends Control
 @onready var caesar_cipher: CaesarCipher = %CaesarCipher
 @onready var web_exploit: WebExploit = %WebExploit
 @onready var steg_tool: StegTool = %StegTool
+@onready var notepad: NotepadApp = %NotepadApp
 
 func _on_crypto_pressed() -> void:
 	var was_visible = caesar_cipher.visible
@@ -25,3 +26,11 @@ func hide_selected_tools() -> void:
 	for panel in tool_panel.get_children():
 		if panel.visible:
 			panel.hide()
+			
+func _on_notepad_pressed() -> void:
+	var was_visible = notepad.visible
+	hide_selected_tools()
+	notepad.visible = not was_visible
+	
+	if notepad.visible:
+		notepad.open_personal_notes()
