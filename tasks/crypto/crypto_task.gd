@@ -20,4 +20,4 @@ func _on_hint_pressed(index: int) -> void:
 
 func _on_confirm_button_pressed() -> void:
 	if enter_flag.text == task.flag:
-		print("correct")
+		SignalBus.task_completed.emit()

@@ -6,9 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://dhi4kq5ew04dg" path="res://assets/tools/caesar_cipher/arrow_s.png" id="3_kgmua"]
 [ext_resource type="PackedScene" uid="uid://cqec0fpmq5tsg" path="res://scenes/help_button/help_button.tscn" id="5_ftf01"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_ijkx7"]
-font_size = 34
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgmua"]
+bg_color = Color(0.792726, 0.48190427, 0.26339424, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.11267877, 0.112678744, 0.11267876, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2t4e"]
 
@@ -25,20 +34,19 @@ theme = ExtResource("1_kgmua")
 script = ExtResource("1_h2t4e")
 
 [node name="Panel" type="Panel" parent="." unique_id=1458508492]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(400, 400)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -290.0
-offset_right = 200.0
-offset_bottom = 290.0
+offset_left = -174.0
+offset_top = -266.0
+offset_right = 174.0
+offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kgmua")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=359150546]
 clip_contents = true
@@ -50,15 +58,16 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 24
+theme_override_constants/separation = 18
 
-[node name="Title" type="Label" parent="Panel/VBoxContainer" unique_id=2075888956]
-custom_minimum_size = Vector2(0, 42)
+[node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer" unique_id=2087250503]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Message Solver"
-label_settings = SubResource("LabelSettings_ijkx7")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[wave amp=35.0 freq=5.0 connected=1]MESSAGE SOLVER[/wave]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -69,7 +78,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "Enter text "
 wrap_mode = 1
-caret_type = 1
 caret_blink = true
 
 [node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer" unique_id=870649531]
@@ -115,17 +123,14 @@ size_flags_horizontal = 4
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Encrypt" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1873083127]
-layout_mode = 2
-text = "ENCRYPT"
-
 [node name="Decrypt" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=1834689157]
 layout_mode = 2
 text = "DECRYPT"
 
 [node name="Panel" type="Panel" parent="Panel/VBoxContainer" unique_id=1923885932]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(300, 120)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Output" type="Label" parent="Panel/VBoxContainer/Panel" unique_id=534488279]
 layout_mode = 1
@@ -151,9 +156,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -50.0
+offset_top = -45.0
 offset_right = 150.0
-offset_bottom = 50.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
@@ -166,7 +171,7 @@ selection_enabled = true
 [node name="HelpButton" parent="Panel/VBoxContainer" unique_id=2072855675 instance=ExtResource("5_ftf01")]
 layout_mode = 2
 
+[connection signal="text_changed" from="Panel/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="Panel/VBoxContainer/LineEdit/Up" to="." method="_on_up_shift_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/LineEdit/Down" to="." method="_on_down_shift_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Encrypt" to="." method="_on_encrypt_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Decrypt" to="." method="_on_decrypt_pressed"]

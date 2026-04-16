@@ -44,9 +44,6 @@ func encrypt(text: String, shift: int) -> String:
 func valid_shift(input: String) -> bool:
 	return input.is_valid_int()
 
-func _on_encrypt_pressed() -> void:
-	output_label.text = encrypt(text_input.text, int(shift_input.text))
-
 func _on_decrypt_pressed() -> void:
 	output_label.text = encrypt(text_input.text, -int(shift_input.text))
 
@@ -71,3 +68,6 @@ func _on_down_shift_pressed() -> void:
 		
 	number -= 1
 	line_edit.text = str(number)
+
+func _on_line_edit_text_changed(new_text: String) -> void:
+	number = new_text.to_int()
