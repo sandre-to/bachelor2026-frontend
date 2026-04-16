@@ -18,11 +18,7 @@ enum CancelReason{
 	USER, BAD_MESSAGE,
 	UNSTABLE, FORCE
 }
-const CANCEL_REASON_STR: Dictionary[CancelReason, String] = {
-	CancelReason.BAD_MESSAGE: "fikk mange dårlige meldinger",
-	CancelReason.UNSTABLE: "ustabil forbindelse",
-	CancelReason.FORCE: "fuck denne karen her"
-}
+
 
 func _ready() -> void:
 	# Hente data fra backend
@@ -202,6 +198,7 @@ func request_hint(hint_index: int) -> String:
 	var response: Dictionary = await Backend.await_message(req_id)
 	if response.get("status") == "error":
 		print("wtf :,(")
+		return "invalid-hint"
 	
 	
 	return "HOW SWAY"
@@ -216,7 +213,7 @@ func cancel_task(reason: CancelReason) -> void:
 		request = {
 			"type": "cancel-task",
 			"status": "error",
-			"data": {"desc": CANCEL_REASON_STR[reason]}
+			"data": {"desc": reason}
 		}
 	else:
 		request = {
