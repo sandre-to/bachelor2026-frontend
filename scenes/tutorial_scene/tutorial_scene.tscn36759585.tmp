@@ -1,0 +1,675 @@
+[gd_scene format=3 uid="uid://c5fg1k3ovy0cq"]
+
+[ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_u14mm"]
+[ext_resource type="Script" uid="uid://c7fyx4smum14o" path="res://scenes/tutorial_scene/tutorial_scene.gd" id="2_u14mm"]
+[ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_rc1i8"]
+[ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="5_rxhm2"]
+[ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="8_8o7cq"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="9_7xf8h"]
+[ext_resource type="Texture2D" uid="uid://buoxij8abd4ks" path="res://assets/icons/lock.png" id="10_45jow"]
+[ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_ucsme"]
+[ext_resource type="Texture2D" uid="uid://4q8o53gb77ch" path="res://assets/icons/logo_stego.png" id="11_tm5ph"]
+[ext_resource type="Texture2D" uid="uid://boqhh5ff3owrs" path="res://assets/icons/12027971.png" id="13_rc1i8"]
+[ext_resource type="Script" uid="uid://c2rturuwo0jp6" path="res://scenes/tutorial_scene/tutorial_task_manager.gd" id="14_rc1i8"]
+[ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/dialogue_panel.gd" id="14_ucsme"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.9372549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpu8p"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Shader" id="Shader_ucsme"]
+code = "shader_type canvas_item;
+
+uniform vec3 color_one : source_color; 
+uniform vec3 color_two : source_color;  
+
+uniform float angle = 20.0;
+uniform float line_count = 20.0; 
+uniform float speed = 10.0; 
+uniform float blur : hint_range(0.0, 2.0, 0); 
+
+vec2 rotate(vec2 uv, float rotation_angle) {
+    float radians_angle = radians(rotation_angle);
+    float cos_angle = cos(radians_angle);
+    float sin_angle = sin(radians_angle);
+    mat2 rotation_matrix = mat2(vec2(cos_angle, -sin_angle), vec2(sin_angle, cos_angle));
+    return uv * rotation_matrix;
+}
+
+float stripe(vec2 uv) {
+    return cos(uv.x * 0.0 - TIME*speed + uv.y * -line_count/2.0);
+}
+
+void fragment() {
+    vec2 uv = UV;
+    vec2 resolution = 1.0 / TEXTURE_PIXEL_SIZE;
+    float a = TEXTURE_PIXEL_SIZE.x / TEXTURE_PIXEL_SIZE.y;
+    uv.x *= a;
+    uv = rotate(uv, angle);
+    float g = stripe(uv);
+    vec3 col = mix(color_one, color_two, smoothstep(0.0, blur, g));
+    COLOR = vec4(col, 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ec86u"]
+shader = SubResource("Shader_ucsme")
+shader_parameter/color_one = Color(0, 0.7921569, 0.7019608, 1)
+shader_parameter/color_two = Color(0.627451, 0.8509804, 0.627451, 1)
+shader_parameter/angle = 60.0
+shader_parameter/line_count = 30.0
+shader_parameter/speed = 0.2
+shader_parameter/blur = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71yap"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_l15fl"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u14mm"]
+bg_color = Color(0.6378432, 0.6378432, 0.6378431, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u14mm"]
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_ndhkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DialoguePanel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vhyu0"]
+resource_name = "clear_button"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lkv1q"]
+resource_name = "fade_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animation/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ucsme"]
+resource_name = "files_button"
+length = 1.01
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u14mm"]
+resource_name = "panel_popup"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialoguePanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rc1i8"]
+resource_name = "tools_button"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ndhkw"]
+_data = {
+&"RESET": SubResource("Animation_ndhkw"),
+&"clear_button": SubResource("Animation_vhyu0"),
+&"fade_in": SubResource("Animation_lkv1q"),
+&"files_button": SubResource("Animation_ucsme"),
+&"panel_popup": SubResource("Animation_u14mm"),
+&"tools_button": SubResource("Animation_rc1i8")
+}
+
+[node name="TutorialScene" type="Control" unique_id=1468378510]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_u14mm")
+script = ExtResource("2_u14mm")
+
+[node name="Visuals" type="Control" parent="." unique_id=616387900]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Visuals" unique_id=1323275562]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.20905915, 0.49290454, 0.47409248, 1)
+
+[node name="TimeLabel" type="Label" parent="Visuals" unique_id=1826581504]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 3.0
+offset_right = 300.0
+offset_bottom = 48.0
+grow_horizontal = 2
+text = "10 : 38"
+label_settings = SubResource("LabelSettings_bpu8p")
+horizontal_alignment = 1
+script = ExtResource("3_rc1i8")
+
+[node name="OSName" type="Label" parent="Visuals" unique_id=1103319372]
+layout_mode = 1
+offset_left = 53.0
+offset_top = -7.0
+offset_right = 258.0
+offset_bottom = 61.0
+text = "BunOS"
+label_settings = SubResource("LabelSettings_bpu8p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DesktopPanel" type="MarginContainer" parent="." unique_id=2089317787]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="OuterPanel" type="Panel" parent="DesktopPanel" unique_id=4033988]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpu8p")
+
+[node name="MarginContainer" type="MarginContainer" parent="DesktopPanel/OuterPanel" unique_id=215052771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="DesktopPanel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer" unique_id=788057033]
+material = SubResource("ShaderMaterial_ec86u")
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_71yap")
+
+[node name="TaskBar" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=1363785015]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -897.0
+offset_top = -66.0
+offset_right = 898.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar" unique_id=682762469]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 1791.0
+offset_bottom = 70.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer" unique_id=2042285297]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="FilesButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1543493324]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 32)
+layout_mode = 2
+text = "FILES"
+
+[node name="ToolsButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1825985518]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 0)
+layout_mode = 2
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "TOOLS"
+
+[node name="ToolPanel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=371145754]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(600, 800)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -474.0
+offset_right = 600.0
+offset_bottom = 406.0
+grow_vertical = 2
+
+[node name="CaesarCipher" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=1370531773 instance=ExtResource("5_rxhm2")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="WebExploit" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=375065791]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="StegTool" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=1224495268]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+tool_type = 0
+
+[node name="ClearButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=1515162580]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 32)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -54.0
+offset_right = 203.0
+offset_bottom = -10.0
+grow_vertical = 0
+disabled = true
+text = "CLEAR SCREEN"
+
+[node name="FileExplorer" parent="." unique_id=1560975105 instance=ExtResource("8_8o7cq")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = -20.0
+offset_right = -20.0
+
+[node name="ToolSelector" type="Control" parent="." unique_id=246908298]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 46.0
+offset_top = -95.0
+offset_right = 46.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("9_7xf8h")
+
+[node name="Panel" type="Panel" parent="ToolSelector" unique_id=1371374537]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -161.0
+offset_right = 183.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ToolSelector/Panel" unique_id=1940958585]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ToolButton" parent="ToolSelector/Panel/HBoxContainer" unique_id=1782323474 instance=ExtResource("10_ucsme")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("10_45jow")
+tool_title = "CRYPTO"
+
+[node name="ToolButton2" parent="ToolSelector/Panel/HBoxContainer" unique_id=778638717 instance=ExtResource("10_ucsme")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("11_tm5ph")
+tool_title = "STEGANO"
+tool_info = "Find hidden data in files or pictures"
+
+[node name="ToolButton3" parent="ToolSelector/Panel/HBoxContainer" unique_id=352237737 instance=ExtResource("10_ucsme")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("13_rc1i8")
+tool_title = "WEB"
+tool_info = "Search through files for the correct password"
+
+[node name="TutorialTaskManager" type="Control" parent="." unique_id=368341897]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -552.0
+offset_top = 75.0
+offset_right = -71.0
+offset_bottom = -141.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("14_rc1i8")
+
+[node name="TaskButton" type="Button" parent="TutorialTaskManager" unique_id=495483369]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 0
+offset_left = 230.0
+offset_top = 879.0
+offset_right = 480.0
+offset_bottom = 937.0
+size_flags_horizontal = 8
+text = "TASKS"
+
+[node name="Panel" type="Panel" parent="TutorialTaskManager" unique_id=1286714973]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialTaskManager/Panel" unique_id=154020763]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialTaskManager/Panel/MarginContainer" unique_id=1636311537]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="TutorialTaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1824578837]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "MISSIONS"
+label_settings = SubResource("LabelSettings_l15fl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Task1" type="Button" parent="TutorialTaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1785560712]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "TASK 1"
+
+[node name="DialoguePanel" type="Panel" parent="." unique_id=602928932]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -222.0
+offset_right = 244.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_ucsme")
+dialog_move_speed = 0.35
+
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel" unique_id=60505658]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer" unique_id=1607456242]
+layout_mode = 2
+
+[node name="ChatBoxTitle" type="Label" parent="DialoguePanel/MarginContainer/VBoxContainer" unique_id=657327371]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_u14mm")
+text = "TUTORIAL"
+label_settings = SubResource("LabelSettings_u14mm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialText" type="RichTextLabel" parent="DialoguePanel/MarginContainer/VBoxContainer" unique_id=1202760107]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="DialoguePanel" unique_id=1922976521]
+process_mode = 3
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -76.0
+offset_right = -19.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "NEXT"
+
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=108276697]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ndhkw")
+
+[node name="ColorRect" type="ColorRect" parent="Animation" unique_id=216457355]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.3779188, 0.37791887, 0.37791884, 1)
+
+[node name="PlayButton" type="Button" parent="." unique_id=2104999791]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = 241.0
+offset_right = 167.0
+offset_bottom = 363.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "PLAY!"
+
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="." method="_on_files_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="DialoguePanel" method="_on_files_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="." method="_on_tools_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="DialoguePanel" method="_on_tools_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="DialoguePanel" method="_on_clear_button_pressed"]
+[connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/ToolButton" to="ToolSelector" method="_on_crypto_pressed"]
+[connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/ToolButton2" to="ToolSelector" method="_on_stegano_pressed"]
+[connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/ToolButton3" to="ToolSelector" method="_on_web_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/TaskButton" to="TutorialTaskManager" method="_on_task_button_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TutorialTaskManager" method="_on_task_1_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="DialoguePanel" method="_on_task_1_pressed"]
+[connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

@@ -1,0 +1,47 @@
+{
+	"intro": [
+	"We have a newcomer here!",
+	"Welcome to BunOS, the environment for bunny hackers.",
+	"Let me show you how it works!",
+    "- Your boss, BunBoss"
+	],
+	
+	"files": [
+		"The files button at the bottom shows all the files on your computer.",
+	],
+	
+	"files_folder": [
+		"NICE WORK!",
+		"Try out the different folders. For now they do nothing!"
+	],
+	
+	"tools": [
+		"This is your toolkit.",
+	],
+	
+	"tools_info": [
+		"Place your mouse on it."
+	],
+	
+	"clear_button": [
+		"If too much are shown on screen, press the clear button."
+	],
+	"tasks": [
+		"You're doing great so far!!",
+		"The last thing I want you to know",
+		"Is how tasks work in this environment",
+	],
+	"last_section": [
+		"Let me show you how cryptography works.",
+		"Slow and steady wins the race right?",
+		"BUT I'M TOO QUICK!!",
+	],
+	
+	"crypto_task": [
+		"What kind of tool should you use for solving messages like this?"
+	],
+	
+	"finished": [
+		"NICE! Now you are a certified hacker."
+	]
+}
