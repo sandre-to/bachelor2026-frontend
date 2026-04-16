@@ -360,9 +360,9 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -552.0
+offset_left = -555.0
 offset_top = 75.0
-offset_right = -71.0
+offset_right = -74.0
 offset_bottom = -141.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -426,12 +426,14 @@ text = "TASK 1 - Not completed"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+disabled = true
 text = "TASK 2 - Not completed"
 
 [node name="Task3" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=548578250]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+disabled = true
 text = "TASK 3 - Not completed"
 
 [node name="NotepadApp" parent="." unique_id=1016672914 instance=ExtResource("15_cwh75")]

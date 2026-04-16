@@ -16,7 +16,9 @@ const WEB_TASK: PackedScene = preload(
 @onready var task_1: Button = %Task1
 @onready var task_2: Button = %Task2
 @onready var task_3: Button = %Task3
-@onready var task_4: Button = %Task4
+
+var ordered_tasks: Array[BaseTask] = []
+var current_task: BaseTask = null
 
 func _ready() -> void:
 	missions_panel.hide()
@@ -49,14 +51,12 @@ func _on_task_2_pressed() -> void:
 func _on_task_3_pressed() -> void:
 	spawn_task(WEB_TASK)
 
-func _on_task_4_pressed() -> void: 
-	pass
-
 func spawn_task(task_scene: PackedScene) -> void:
-	if task_scene == null: return
+	if task_scene == null || current_task != null: return
 	fade_out(missions_panel)
 	
 	var task := task_scene.instantiate()
+	current_task = task
 	
 	add_child(task)
 	task.global_position += Vector2(-100, 0)

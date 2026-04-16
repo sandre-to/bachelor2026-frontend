@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://c3pmtlqnrkt26"]
-
-[ext_resource type="Script" path="res://assets/tools/steg_tool/test.hihi/testing.gd" id="1_37kl0"]
-
-[node name="Test" type="Node" unique_id=453212452]
-script = ExtResource("1_37kl0")
