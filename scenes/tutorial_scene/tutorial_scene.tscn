@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="5_rxhm2"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="8_8o7cq"]
 [ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="8_r3qa2"]
-[ext_resource type="Script" path="res://scenes/desktop/tool_selector.gd" id="9_7xf8h"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="9_7xf8h"]
 [ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_ucsme"]
 [ext_resource type="Script" uid="uid://c2rturuwo0jp6" path="res://scenes/tutorial_scene/tutorial_task_manager.gd" id="14_rc1i8"]
 [ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/dialogue_panel.gd" id="14_ucsme"]
