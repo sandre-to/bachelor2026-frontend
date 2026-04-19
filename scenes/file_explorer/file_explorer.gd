@@ -61,6 +61,10 @@ func _on_files_item_selected(index: int) -> void:
 	print("Valgt fil: %s" % [file.name])
 
 
+func _open_image_popup(texture: Texture2D) -> void:
+		var popup = preload("res://scenes/file_explorer/imgPopUp.tscn").instantiate()
+		add_child(popup)
+		popup.show_image(texture)
 
 # _on_files_item_activated():	Kjøres når en valgt fil/katalog åpnes.
 #								Den bestemmer hvilke "program" filen skal åpnes i.
@@ -78,17 +82,9 @@ func _on_files_item_activated(index: int) -> void:
 		#add_child(image_file.instantiate())
 		
 	elif file_entity is ImageFile:
-		var image_popup = preload("res://scenes/file_explorer/imgPopUp.tscn").instantiate()
-		add_child(image_popup)
-		
-		var tex = (file_entity as ImageFile).get_texture()
-		print("TEXTURE:", tex)
-		image_popup.show_image((file_entity as ImageFile).get_texture())
+		_open_image_popup((file_entity as ImageFile).get_texture())
 	
 	elif file_entity is Directory:
 		_show_folder(file_entity as Directory)
 	
-	#if file.type == "IMAGE":
-		#var texture := load(file.path)
-		#preview.texture = texture
-		#preview.show()
+	

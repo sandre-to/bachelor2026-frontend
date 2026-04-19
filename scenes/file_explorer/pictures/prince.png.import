@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnjxu8xot2ies"
-path="res://.godot/imported/devEdwina.png-cbe1eea758620e4539b28fcf3bb7db39.ctex"
+uid="uid://ecbs7h5std7p"
+path="res://.godot/imported/prince.png-895a08d2ba85ab63c8bd6d4c389500ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tools/steg_tool/pictures/devEdwina.png"
-dest_files=["res://.godot/imported/devEdwina.png-cbe1eea758620e4539b28fcf3bb7db39.ctex"]
+source_file="res://scenes/file_explorer/pictures/prince.png"
+dest_files=["res://.godot/imported/prince.png-895a08d2ba85ab63c8bd6d4c389500ab.ctex"]
 
 [params]
 
