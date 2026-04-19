@@ -76,6 +76,14 @@ func _on_files_item_activated(index: int) -> void:
 	#elif file_entity is ImageFile:
 		#var image_file = preload("res://scenes/file_explorer/pictureView.tscn")
 		#add_child(image_file.instantiate())
+		
+	elif file_entity is ImageFile:
+		var image_popup = preload("res://scenes/file_explorer/imgPopUp.tscn").instantiate()
+		add_child(image_popup)
+		
+		var tex = (file_entity as ImageFile).get_texture()
+		print("TEXTURE:", tex)
+		image_popup.show_image((file_entity as ImageFile).get_texture())
 	
 	elif file_entity is Directory:
 		_show_folder(file_entity as Directory)
