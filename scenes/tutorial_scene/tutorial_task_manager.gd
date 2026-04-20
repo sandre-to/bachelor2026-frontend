@@ -38,8 +38,9 @@ func _on_task_1_pressed() -> void:
 func spawn_task(task_scene: PackedScene) -> void:
 	fade_out(missions_panel)
 	
-	var task := task_scene.instantiate()
-	current_task = task
+	var task := task_scene.instantiate() as CryptoScene
 	add_child(task)
+	task.set_data_info("tutorial_task")
+	current_task = task
 	task.global_position += Vector2(-80, 0)
 	fade_in(task)

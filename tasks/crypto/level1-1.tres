@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CryptoData" format=3 uid="uid://baw67gns5b373"]
+
+[ext_resource type="Script" uid="uid://xbk8w8ch8nbg" path="res://tasks/crypto/crypto_data.gd" id="1_8x17k"]
+
+[resource]
+script = ExtResource("1_8x17k")
+cipher_text = "Kv fvb aopur hwwslz mhss myvt aol zrf? Vy kv aolf vusf lepza vu aol lhyao? mbbxqoupqd"
+flag = "applecider"
+id = 1
+name = "I don't understand"
+description = "These messages give me conniptions"
+metadata/_custom_type_script = "uid://xbk8w8ch8nbg"

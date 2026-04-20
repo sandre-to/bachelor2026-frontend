@@ -22,9 +22,6 @@ enum CancelReason{
 
 func _ready() -> void:
 	# Hente data fra backend
-	if not task:
-		push_error("Missing task resource. Please add one.")
-		return
 	
 	# Koble til knapper slik at det funker i inherited klasser
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
@@ -61,8 +58,6 @@ func start() -> void:
 #				Returnerer en bool for å indikere om initialiseringen fungerte.
 func _on_start() -> bool:
 	return false
-
-
 
 func set_task_info() -> void: 
 	title.text = task.name

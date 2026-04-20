@@ -3,7 +3,9 @@
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_u14mm"]
 [ext_resource type="Script" uid="uid://c7fyx4smum14o" path="res://scenes/tutorial_scene/tutorial_scene.gd" id="2_u14mm"]
 [ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_rc1i8"]
+[ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="4_eeqkd"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="5_rxhm2"]
+[ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="5_vdb40"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="8_8o7cq"]
 [ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="8_r3qa2"]
 [ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="9_7xf8h"]
@@ -381,7 +383,10 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(84, 32)
 layout_mode = 2
-text = "FILES"
+icon = ExtResource("4_eeqkd")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ToolsButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1825985518]
 unique_name_in_owner = true
@@ -389,7 +394,10 @@ custom_minimum_size = Vector2(84, 0)
 layout_mode = 2
 shortcut_feedback = false
 shortcut_in_tooltip = false
-text = "TOOLS"
+icon = ExtResource("5_vdb40")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ToolPanel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=371145754]
 unique_name_in_owner = true
@@ -435,6 +443,7 @@ visible = false
 layout_mode = 1
 offset_left = -20.0
 offset_right = -20.0
+script = null
 
 [node name="ToolSelector" type="Control" parent="." unique_id=246908298]
 visible = false

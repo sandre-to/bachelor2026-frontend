@@ -8,7 +8,7 @@ class_name DialoguePanel extends Panel
 @onready var files_button: Button = %FilesButton
 @onready var tools_button: Button = %ToolsButton
 @onready var animation: AnimationPlayer = %Animation
-@onready var file_explorer: FileExplorer = %FileExplorer
+@onready var file_explorer := %FileExplorer
 @onready var tutorial_task_manager: TutorialTasks = %TutorialTaskManager
 @onready var play_button: Button = %PlayButton
 
@@ -152,5 +152,6 @@ func _on_task_1_pressed() -> void:
 
 func _on_tutorial_task_completed() -> void:
 	start_dialogue("finished")
+	tutorial_task_manager.hide()
 	play_button.show()
 	next_button.hide()

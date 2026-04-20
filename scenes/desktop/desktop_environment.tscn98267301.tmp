@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="6_0nmlt"]
 [ext_resource type="Texture2D" uid="uid://4q8o53gb77ch" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
 [ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
-[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="7_0nmlt"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="7_0nmlt"]
 [ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_ctsuf"]
 [ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_f6qo7"]
 [ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="11_ctsuf"]
@@ -293,14 +293,12 @@ icon = ExtResource("11_ctsuf")
 tool_title = "CRYPTO"
 
 [node name="Stegano" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer" unique_id=2003665036 instance=ExtResource("10_f6qo7")]
-unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("6_ifu37")
 tool_title = "STEGANO"
 tool_info = "Search files or pictures for hidden information"
 
 [node name="Web" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer" unique_id=1772742238 instance=ExtResource("10_f6qo7")]
-unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("13_ybhkl")
 tool_title = "WEB"
@@ -400,9 +398,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -25.0
-offset_top = 47.0
+offset_top = 135.0
 offset_right = -25.0
-offset_bottom = -47.0
+offset_bottom = -135.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cwh75")
@@ -452,13 +450,6 @@ layout_mode = 2
 disabled = true
 text = "TASK 3 - Not completed"
 
-[node name="Task4" type="Button" parent="TaskManager/Panel/MarginContainer/VBoxContainer" unique_id=902763062]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-disabled = true
-text = "TASK 4 - Not completed"
-
 [node name="NotepadApp" parent="." unique_id=1016672914 instance=ExtResource("15_cwh75")]
 unique_name_in_owner = true
 visible = false
@@ -496,4 +487,3 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="TaskManager" method="_on_task_2_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="TaskManager" method="_on_task_3_pressed"]
-[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_4_pressed"]

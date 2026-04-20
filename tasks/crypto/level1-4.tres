@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CryptoData" format=3 uid="uid://4yo1x80200fk"]
+
+[ext_resource type="Script" uid="uid://xbk8w8ch8nbg" path="res://tasks/crypto/crypto_data.gd" id="1_as5mb"]
+
+[resource]
+script = ExtResource("1_as5mb")
+cipher_text = "IJHNUMJW YMNX IJHNUMJW YMNX GJGTU [rjxxflj]"
+flag = "message"
+id = 4
+name = "This one is easier"
+description = "I'm getting tired of reading these"
+metadata/_custom_type_script = "uid://xbk8w8ch8nbg"

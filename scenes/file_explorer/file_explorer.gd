@@ -18,7 +18,7 @@ var cwd: Directory
 @onready var files: ItemList = %Files
 @onready var folders_list: VBoxContainer = %FoldersList
 @onready var preview: TextureRect = $Preview
-@onready var tool_selector: ToolSelector = %ToolSelector
+@onready var tool_selector = %ToolSelector
 
 
 func _ready() -> void:
