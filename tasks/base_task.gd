@@ -128,20 +128,24 @@ func request_task() -> bool:
 	if response == Backend.NO_RESPONSE_MSG:
 		return false
 	
-	print(response)
-	
 	if response.get("status") == "error":
 		# FEILHÅNDTER #
-		print(response["data"])
+		print("Errorstatus returnert")
+		print("Begrunnet:  " + response["data"]["desc"])
+		print(JSON.stringify(response, '\t'))
 		return false
 	
 	var response_data = response.get("data")
 	if not response_data.has("metadata"):
 		# FEILHÅNDTER #
+		print("Oppgavedata magler metadatafeltet")
+		print(JSON.stringify(response, '\t'))
 		return false
 	
 	if not response_data.has("data"):
 		# FEILHÅNDTER #
+		print("Oppgavedata mangler datafeltet")
+		print(JSON.stringify(response, '\t'))
 		return false
 		
 	task.backend_data = response_data.get("data")
