@@ -77,7 +77,8 @@ func connect_to_backend() -> void:
 	
 	_connected = true
 	if _was_connected:
-		_flush_message_queue()
+		#_flush_message_queue()
+		pass
 	
 	_was_connected = true
 	_is_connecting = false
@@ -88,7 +89,7 @@ func connect_to_backend() -> void:
 # Send():	Sender en konstruert melding til backenden
 func send(msg: Dictionary) -> int:
 	if not _connected:
-		_append_to_message_queue(msg)
+		#_append_to_message_queue(msg)
 		_announce_network_error("Tilkobling mislykket (_send_text)")
 		return COULD_NOT_SEND
 
@@ -159,21 +160,6 @@ func _handle_message(msg: Dictionary) -> void:
 
 
 
-# _append_to_message_queue():	Legger en melding til i meldingskøen
-func _append_to_message_queue(msg: Dictionary) -> void:
-	for i in range(len(_message_set_queue)):
-		if _message_set_queue[i].get("type") == msg.get("type"):
-			_message_set_queue[i] = msg
-
-
-
-# _flush_message_queue():	Tømmer meldingskøen
-func _flush_message_queue() -> void:
-	for msg in _message_set_queue:
-		send(msg)
-
-
-
 # _announce_network_error():	Skriver ut at en nettverksfeil har tatt plass
 func _announce_network_error(process_desc: String) -> void:
 	_connected = false
@@ -224,6 +210,6 @@ func _let_open() -> bool:
 
 
 
-# _should_timeout():	Regner ut om det har gått "time_to_elapse" tid fra "start_time"
+# _should_timeout():	Regner ut om det har gått "time_to_elapse" ms fra "start_time"
 func _should_timeout(start_time: int, time_to_elapse: int) -> bool:
 	return Time.get_ticks_msec() - start_time >= time_to_elapse
