@@ -19,7 +19,6 @@ func set_data_info(key: String) -> void:
 	else:
 		push_error("Key does not exist in tasks: ", key)
 	
-
 func _on_hint_pressed(index: int) -> void:
 	match index:
 		1:

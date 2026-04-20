@@ -1,16 +1,14 @@
 class_name Desktop extends Control
 
-const WINDOW: PackedScene = preload("res://scenes/window/custom_window.tscn")
-
 @onready var animation: AnimationPlayer = $Animation
 @onready var color_rect: ColorRect = $Animation/ColorRect
 
 @onready var file_explorer: Control = $FileExplorer
-@onready var tool_selector: Control = %ToolSelector
 @onready var tool_panel: Panel = %ToolPanel
 @onready var task_manager: Control = %TaskManager
 @onready var notepad: NotepadApp = %NotepadApp
 @onready var task_display: Panel = %Panel
+@onready var tool_selector: ToolSelector = %ToolSelector
 
 var root: Node = null
 

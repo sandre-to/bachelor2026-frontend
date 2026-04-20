@@ -2,9 +2,9 @@ class_name TutorialScene extends Control
 
 @onready var tutorial_task_manager: TutorialTasks = %TutorialTaskManager
 @onready var file_explorer: Control = $FileExplorer
-@onready var tool_selector: Control = $ToolSelector
 @onready var tool_panel: Panel = %ToolPanel
 @onready var main_buttons: HBoxContainer = %HBoxContainer
+@onready var tool_selector: TutorialToolSelector = $TutorialToolSelector
 
 @onready var animation: AnimationPlayer = $Animation
 @onready var color_rect: ColorRect = $Animation/ColorRect
@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	animation.play("panel_popup")
 	disable_main_buttons()
-	#tutorial_task_manager.hide()
+	tutorial_task_manager.hide()
 
 func _on_files_button_pressed() -> void:
 	file_explorer.visible = not file_explorer.visible

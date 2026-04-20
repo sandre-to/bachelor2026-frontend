@@ -155,3 +155,6 @@ func _on_tutorial_task_completed() -> void:
 	tutorial_task_manager.hide()
 	play_button.show()
 	next_button.hide()
+	active_tween = create_tween()
+	active_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	active_tween.tween_property(self, "position", position + Vector2(100, 200), dialog_move_speed)

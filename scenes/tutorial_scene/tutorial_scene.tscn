@@ -7,9 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="5_rxhm2"]
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="5_vdb40"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="8_8o7cq"]
-[ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="8_r3qa2"]
-[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="9_7xf8h"]
-[ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_ucsme"]
+[ext_resource type="PackedScene" uid="uid://7pl1y0n2mdj7" path="res://scenes/tutorial_scene/tutorial_tool_selector.tscn" id="8_r3qa2"]
+[ext_resource type="Script" uid="uid://bn5o1ti33645b" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="9_eeqkd"]
 [ext_resource type="Script" uid="uid://c2rturuwo0jp6" path="res://scenes/tutorial_scene/tutorial_task_manager.gd" id="14_rc1i8"]
 [ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/dialogue_panel.gd" id="14_ucsme"]
 
@@ -445,52 +444,9 @@ offset_left = -20.0
 offset_right = -20.0
 script = null
 
-[node name="ToolSelector" type="Control" parent="." unique_id=246908298]
-visible = false
+[node name="TutorialToolSelector" parent="." unique_id=1798708503 instance=ExtResource("8_r3qa2")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 46.0
-offset_top = -95.0
-offset_right = 46.0
-offset_bottom = -95.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("9_7xf8h")
-
-[node name="Panel" type="Panel" parent="ToolSelector" unique_id=1371374537]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -183.0
-offset_top = -161.0
-offset_right = 183.0
-offset_bottom = -53.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ToolSelector/Panel" unique_id=1940958585]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="ToolButton" parent="ToolSelector/Panel/HBoxContainer" unique_id=1782323474 instance=ExtResource("10_ucsme")]
-unique_name_in_owner = true
-layout_mode = 2
-icon = ExtResource("8_r3qa2")
-tool_title = "CRYPTO"
+script = ExtResource("9_eeqkd")
 
 [node name="TutorialTaskManager" type="Control" parent="." unique_id=368341897]
 unique_name_in_owner = true
@@ -668,7 +624,6 @@ text = "PLAY!"
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="DialoguePanel" method="_on_tools_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="." method="_on_clear_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="DialoguePanel" method="_on_clear_button_pressed"]
-[connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/ToolButton" to="ToolSelector" method="_on_crypto_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/TaskButton" to="TutorialTaskManager" method="_on_task_button_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TutorialTaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="DialoguePanel" method="_on_task_1_pressed"]

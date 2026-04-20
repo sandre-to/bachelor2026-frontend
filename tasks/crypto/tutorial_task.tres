@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_fhyhl")
-cipher_text = "Znk igxxuz zurj sk \"Nuc gxk eua hatte? O cgtz zu yge yuskznotm zu eua.\" Znoy igxxuz igt zgrq! znoy oy znk lrgm 1"
-flag = "1"
+cipher_text = "Mj e fyrrc ger xepo, ger e gevvsx epws xepo? Jpek: xepomrkgevvsx"
+flag = "talkingcarrot"
 name = "What is this gibberish??"
 description = "What does this say? Can you help me solve it?"
 metadata/_custom_type_script = "uid://xbk8w8ch8nbg"

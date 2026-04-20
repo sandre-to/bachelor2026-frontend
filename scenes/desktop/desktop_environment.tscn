@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="6_0nmlt"]
 [ext_resource type="Texture2D" uid="uid://4q8o53gb77ch" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
 [ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
-[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="7_0nmlt"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="7_0nmlt"]
 [ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_ctsuf"]
 [ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_f6qo7"]
 [ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="11_ctsuf"]
@@ -248,63 +248,49 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ToolSelector" type="Control" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" unique_id=246908298]
+[node name="ToolSelector" type="Control" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" unique_id=1714930008]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_top = -25.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("7_0nmlt")
-
-[node name="Panel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" unique_id=1371374537]
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -183.0
-offset_top = -161.0
-offset_right = 183.0
-offset_bottom = -53.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("7_0nmlt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel" unique_id=1940958585]
+[node name="HBoxContainer" type="HBoxContainer" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" unique_id=763374860]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -154.0
+offset_top = -115.0
+offset_right = 154.0
+offset_bottom = -35.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-alignment = 1
 
-[node name="Crypto" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer" unique_id=1782323474 instance=ExtResource("10_f6qo7")]
+[node name="Crypto" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer" unique_id=1782323474 instance=ExtResource("10_f6qo7")]
 layout_mode = 2
 icon = ExtResource("11_ctsuf")
 tool_title = "CRYPTO"
 
-[node name="Stegano" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer" unique_id=2003665036 instance=ExtResource("10_f6qo7")]
-unique_name_in_owner = true
+[node name="Stegano" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer" unique_id=1005146078 instance=ExtResource("10_f6qo7")]
 layout_mode = 2
 icon = ExtResource("6_ifu37")
 tool_title = "STEGANO"
-tool_info = "Search files or pictures for hidden information"
+tool_info = ""
 
-[node name="Web" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer" unique_id=1772742238 instance=ExtResource("10_f6qo7")]
-unique_name_in_owner = true
+[node name="Web" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer" unique_id=764735397 instance=ExtResource("10_f6qo7")]
 layout_mode = 2
 icon = ExtResource("13_ybhkl")
 tool_title = "WEB"
-tool_info = "Crack passwords by looking through files"
+tool_info = ""
 
 [node name="NotepadButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true
@@ -487,9 +473,9 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="." method="_on_files_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="." method="_on_tools_button_pressed"]
-[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer/Crypto" to="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" method="_on_crypto_pressed"]
-[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer/Stegano" to="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" method="_on_stegano_pressed"]
-[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/Panel/HBoxContainer/Web" to="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" method="_on_web_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer/Crypto" to="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" method="_on_crypto_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer/Stegano" to="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" method="_on_stegano_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer/Web" to="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector" method="_on_web_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/NotepadButton" to="." method="_on_notepad_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="TaskManager/TaskButton" to="TaskManager" method="_on_task_button_pressed"]

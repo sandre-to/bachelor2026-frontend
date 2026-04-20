@@ -19,8 +19,6 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[sub_resource type="LabelSettings" id="LabelSettings_h2t4e"]
-
 [node name="CaesarCipher" type="Control" unique_id=1370531773]
 layout_mode = 3
 anchors_preset = 8
@@ -40,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -174.0
-offset_top = -266.0
-offset_right = 174.0
-offset_bottom = 266.0
+offset_left = -235.0
+offset_top = -322.0
+offset_right = 235.0
+offset_bottom = 322.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kgmua")
@@ -73,9 +71,10 @@ vertical_alignment = 1
 
 [node name="TextEdit" type="TextEdit" parent="Panel/VBoxContainer" unique_id=1474709815]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 130)
+custom_minimum_size = Vector2(340, 180)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 placeholder_text = "Enter text "
 wrap_mode = 1
 caret_blink = true
@@ -84,7 +83,7 @@ caret_blink = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 28
 placeholder_text = "0-9"
 alignment = 1
 max_length = 1
@@ -128,47 +127,29 @@ layout_mode = 2
 text = "DECRYPT"
 
 [node name="Panel" type="Panel" parent="Panel/VBoxContainer" unique_id=1923885932]
-custom_minimum_size = Vector2(300, 120)
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="Output" type="Label" parent="Panel/VBoxContainer/Panel" unique_id=534488279]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_right = 150.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "OUTPUT"
-label_settings = SubResource("LabelSettings_h2t4e")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="OutputLabel" type="RichTextLabel" parent="Panel/VBoxContainer/Panel" unique_id=750175508]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -45.0
-offset_right = 150.0
-offset_bottom = 55.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
 focus_mode = 2
+theme_override_font_sizes/normal_font_size = 32
 context_menu_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 selection_enabled = true
 
 [node name="HelpButton" parent="Panel/VBoxContainer" unique_id=2072855675 instance=ExtResource("5_ftf01")]
+visible = false
 layout_mode = 2
 
 [connection signal="text_changed" from="Panel/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

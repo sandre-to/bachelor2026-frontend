@@ -26,7 +26,6 @@ NetworkManager="*uid://db00shqp8vjnj"
 FileSystem="*uid://dqfpai62gs7sp"
 flag_manager="*uid://sgrmelivqb0n"
 GameNetwork="*uid://cfy7v87qnh6rm"
-<<<<<<<HEADSceneManager="*uid://bs5rjynbtaxhk"
 Backend="*uid://db00shqp8vjnj"
 Network="*uid://cfy7v87qnh6rm"
 
