@@ -76,19 +76,19 @@ func _on_files_item_activated(index: int) -> void:
 		print((file_entity as TextFile).get_content())
 		#var file_file = preload("res://scenes/file_explorer/fileView.tscn")
 		#add_child(file_file.instantiate())
-		
-	#elif file_entity is ImageFile:
-		#var image_file = preload("res://scenes/file_explorer/pictureView.tscn")
-		#add_child(image_file.instantiate())
-		
-	elif file_entity is ImageFile:
-		_open_image_popup((file_entity as ImageFile).get_texture())
 		var text_file := file_entity as TextFile
 	
 		tool_selector.hide_selected_tools()
 		tool_selector.notepad.visible = true
 		tool_selector.notepad.open_reference_file(text_file.name, text_file.get_content())
 	
+	#elif file_entity is ImageFile:
+		#var image_file = preload("res://scenes/file_explorer/pictureView.tscn")
+		#add_child(image_file.instantiate())
+		
+	elif file_entity is ImageFile:
+		_open_image_popup((file_entity as ImageFile).get_texture())
+		
 	elif file_entity is Directory:
 		_show_folder(file_entity as Directory)
 	
