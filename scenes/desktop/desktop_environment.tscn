@@ -241,8 +241,7 @@ expand_icon = true
 [node name="ToolsButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1825985518]
 custom_minimum_size = Vector2(84, 0)
 layout_mode = 2
-shortcut_feedback = false
-shortcut_in_tooltip = false
+mouse_filter = 1
 icon = ExtResource("6_0nmlt")
 flat = true
 icon_alignment = 1
@@ -250,16 +249,15 @@ expand_icon = true
 
 [node name="ToolSelector" type="Control" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" unique_id=1714930008]
 unique_name_in_owner = true
+z_index = -1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
 offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_0nmlt")
@@ -284,13 +282,13 @@ tool_title = "CRYPTO"
 layout_mode = 2
 icon = ExtResource("6_ifu37")
 tool_title = "STEGANO"
-tool_info = ""
+tool_info = "Find hidden information in files or pictures"
 
 [node name="Web" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer" unique_id=764735397 instance=ExtResource("10_f6qo7")]
 layout_mode = 2
 icon = ExtResource("13_ybhkl")
 tool_title = "WEB"
-tool_info = ""
+tool_info = "Crack some passwordsg"
 
 [node name="NotepadButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true

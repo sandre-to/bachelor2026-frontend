@@ -10,12 +10,9 @@ class_name Desktop extends Control
 @onready var task_display: Panel = %Panel
 @onready var tool_selector: ToolSelector = %ToolSelector
 
-var root: Node = null
-
 func _ready() -> void:
 	color_rect.show()
 	animation.play("fade_in")
-	root = get_tree().root
 	
 	tool_selector.hide()
 	Backend.connect_to_backend()	# MIDLERTIDIG
