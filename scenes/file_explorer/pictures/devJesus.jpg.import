@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0cobryslkjcp"
-valid=false
+uid="uid://susvng4pg1a7"
+path="res://.godot/imported/devJesus.jpg-c89d15cbfa44597e9aab65dc80db342b.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://scenes/file_explorer/pictures/devJesus.jpg"
+dest_files=["res://.godot/imported/devJesus.jpg-c89d15cbfa44597e9aab65dc80db342b.ctex"]
 
 [params]
 

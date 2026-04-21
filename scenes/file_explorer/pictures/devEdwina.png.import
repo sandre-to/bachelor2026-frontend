@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://60r34l5jvs5a"
-valid=false
+uid="uid://bg3e5o3s46sh5"
+path="res://.godot/imported/devEdwina.png-29d44ff966fbae57f40b3ec8126ef3cc.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://scenes/file_explorer/pictures/devEdwina.png"
+dest_files=["res://.godot/imported/devEdwina.png-29d44ff966fbae57f40b3ec8126ef3cc.ctex"]
 
 [params]
 

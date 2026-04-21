@@ -121,7 +121,10 @@ func _path_is_valid(path: String) -> bool:
 	
 	return true
 
-
+func add_image_file(name: String, real_path: String, target_dir: String = PICTURE_DIR) -> ImageFile:
+	var image_file: ImageFile = ImageFile.new(name, real_path)
+	insert_into(target_dir, image_file)
+	return image_file
 
 func _init_file_structure() -> void:
 	mkdir(HOME_DIR)
@@ -154,5 +157,8 @@ func _init_file_structure() -> void:
 	pass_list_three.update_content(list3_content)
 	pass_list_three.chmod("r--")
 
-	var image_file: ImageFile = ImageFile.new("carrotEater", "res://assets/tools/steg_tool/pictures/prince.png")
-	(get_file_entity(FileSystem.PICTURE_DIR) as Directory).insert_into(image_file)
+	add_image_file("carrotEater", "res://scenes/file_explorer/pictures/prince.png")
+	add_image_file("bunnyEater", "res://scenes/file_explorer/pictures/petter.jpeg")
+	add_image_file("saintSofelin", "res://scenes/file_explorer/pictures/devSofie.png")
+	add_image_file("merlinsBeard", "res://scenes/file_explorer/pictures/devJesus.jpg")
+	add_image_file("bunnySaintEddie", "res://scenes/file_explorer/pictures/devEdwina.png")

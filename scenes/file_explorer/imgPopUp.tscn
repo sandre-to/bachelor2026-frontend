@@ -1,16 +1,46 @@
 [gd_scene format=3 uid="uid://3ssxhkhx3ps3"]
 
+[ext_resource type="Script" uid="uid://bf8ejpk07s2xi" path="res://scenes/file_explorer/img_pop_up.gd" id="1_4neok"]
+
 [node name="ImgPopUp" type="Control" unique_id=1782949988]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4neok")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1302022667]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=566821279]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27204677, 0.2720468, 0.2720468, 1)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=566821279]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=434360992]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect" unique_id=499564254]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VinduPanel" type="Panel" parent="CenterContainer" unique_id=747582269]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VinduPanel" unique_id=499564254]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+pivot_offset_ratio = Vector2(-10, -10)
+expand_mode = 1
+stretch_mode = 5

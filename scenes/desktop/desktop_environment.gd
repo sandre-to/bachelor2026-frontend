@@ -6,6 +6,10 @@ class_name Desktop extends Control
 @onready var file_explorer: Control = $FileExplorer
 @onready var tool_panel: Panel = %ToolPanel
 @onready var task_manager: Control = %TaskManager
+@onready var browser: Browser = %Browser
+@onready var notepad: Control = %NotepadApp
+
+var root: Node = null
 @onready var notepad: NotepadApp = %NotepadApp
 @onready var task_display: Panel = %Panel
 @onready var tool_selector: ToolSelector = %ToolSelector
@@ -30,8 +34,12 @@ func _on_home_button_pressed() -> void:
 
 func _on_tools_button_pressed() -> void:
 	tool_selector.visible = not tool_selector.visible
-	
+
+func _on_button_pressed() -> void:
+	browser.visible = not browser.visible
+
 func _on_notepad_button_pressed() -> void:
+	print("notepad button pressed")
 	notepad.visible = not notepad.visible
 	
 	if notepad.visible:
