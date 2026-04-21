@@ -1,23 +1,77 @@
+class_name StegScene 
 extends BaseTask
-class_name StegTask
 
-func _on_start() -> bool:
-	
-	# Lag en tom fil
-	var file_with_flag: File = File.new("mega-fil.txt")
-	var image_file: ImageFile = ImageFile.new("bunnyEnemy.jpg", "res://scenes/file_explorer/pictures/petter.jpeg")
-	
+func _ready() -> void:
+	super._ready()
+	set_data_info()
+	start()
+
+func set_data_info() -> void:
 	title.text = task.name
 	description.text = task.description
-	# Sett metadatafeltet "super-hemmelig" til data hentet fra backenden
-	#file_with_flag.metadata["super-hemmelig"] = task.dynamic_data["flagget"]
-	
-	# Putt filen inn i filsystemet på stien: "/home/documents". 
-	(FileSystem.get_file_entity("/home/documents") as Directory).insert_into(file_with_flag)
-	(FileSystem.get_file_entity("/home/pictures") as Directory).insert_into(image_file)
+	puzzle.text = task.extra_description
+
+func _on_start() -> bool:
+	var steg_task := task as StegData
+	if steg_task == null:
+		push_error("Task is not StegData")
+		return false
+
+	var full_path := steg_task.virtual_directory.path_join(steg_task.image_name)
+	var existing := FileSystem.get_file_entity(full_path)
+
+	if existing != null:
+		print("FOUND EXISTING FILE:", full_path)
+		print("BEFORE UPDATE:", existing.metadata)
+
+		existing.metadata["type"] = "image"
+		existing.metadata["Author"] = steg_task.author
+		existing.metadata["Software"] = steg_task.software
+		existing.metadata["Comment"] = steg_task.comment
+		existing.metadata[steg_task.flag_metadata_key] = steg_task.flag
+
+		print("AFTER UPDATE:", existing.metadata)
+		return true
+
+	var image_file := ImageFile.new(
+		steg_task.image_name,
+		steg_task.real_image_path
+	)
+
+	image_file.metadata["type"] = "image"
+	image_file.metadata["Author"] = steg_task.author
+	image_file.metadata["Software"] = steg_task.software
+	image_file.metadata["Comment"] = steg_task.comment
+	image_file.metadata[steg_task.flag_metadata_key] = steg_task.flag
+
+	print("NEW FILE METADATA:", image_file.metadata)
+
+	var target_dir := FileSystem.get_file_entity(steg_task.virtual_directory) as Directory
+	if target_dir == null:
+		push_error("Fant ikke katalogen: " + steg_task.virtual_directory)
+		return false
+
+	target_dir.insert_into(image_file)
+
+	var inserted := FileSystem.get_file_entity(full_path)
+	print("INSERTED FILE:", inserted)
+	if inserted != null:
+		print("INSERTED METADATA:", inserted.metadata)
 
 	return true
-	
-# mini preview bilde, som en knapp. de trykker den twice så kommer 
-# bilde opp stort, egen scene. filsti på "baren" på bilde vindu
-# metadata vil være hardkodet med dynamisk flagg variabel
+
+func verify_flag() -> bool:
+	var steg_task := task as StegData
+	if steg_task == null:
+		return false
+
+	return enter_flag.text.strip_edges() == steg_task.flag
+
+func _on_hint_pressed(index: int) -> void:
+	match index:
+		1:
+			print("Check the image metadata.")
+		2:
+			print("Use the correct in-game file path.")
+		3:
+			print("Look for unusual text fields.")
