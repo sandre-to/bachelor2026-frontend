@@ -7,9 +7,6 @@ class_name Desktop extends Control
 @onready var tool_panel: Panel = %ToolPanel
 @onready var task_manager: Control = %TaskManager
 @onready var browser: Browser = %Browser
-@onready var notepad: Control = %NotepadApp
-
-var root: Node = null
 @onready var notepad: NotepadApp = %NotepadApp
 @onready var task_display: Panel = %Panel
 @onready var tool_selector: ToolSelector = %ToolSelector
@@ -29,6 +26,7 @@ func _on_home_button_pressed() -> void:
 	tool_selector.hide()
 	task_display.hide()
 	notepad.hide()
+	browser.hide()
 	for tool in tool_panel.get_children():
 		tool.hide()
 

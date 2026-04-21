@@ -59,7 +59,7 @@ func _on_task_2_pressed() -> void:
 	spawn_task(CRYPTO_TASK, "level_1.1")
 
 func _on_task_3_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "level_1.1")
+	spawn_task(WEB_TASK, "")
 
 func _on_task_4_pressed() -> void:
 	spawn_task(CRYPTO_TASK, "level_1.4")
@@ -96,7 +96,7 @@ func _on_task_completed() -> void:
 	# Når riktig flagg er skrevet inn
 	# Lås oppgaveknappen, og åpne neste [Task 1 låst -> Task 2 åpen]
 	buttons[index].disabled = true
-	buttons[index].text = "TASK %d - COMPLETED" % [index]
+	buttons[index].text = "COMPLETED"
 	index += 1
 	if index > buttons.size():
 		return
