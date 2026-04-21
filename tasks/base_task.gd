@@ -111,31 +111,45 @@ func remove_task() -> void:
 # request_task():	Spør backenden om å starte oppgaven
 #					Kaller på API-et: respondToTask
 func request_task() -> bool:
-	var req_id: int = Backend.send_own({
+	var req_id: int = Backend.send({
 		"type": "task",
 		"data": {
 			"taskID": task.id
 		}
 	})
 	
-	var response: Dictionary = await Backend.await_message(req_id)
-	print(response)
+	# Forbindelsen var lukket
+	if req_id == Backend.COULD_NOT_SEND:
+		return false
+	
+	var response: Dictionary = await Backend.recieve(req_id)
+	
+	# Fikk ingen respons i tide
+	if response == Backend.NO_RESPONSE_MSG:
+		return false
 	
 	if response.get("status") == "error":
 		# FEILHÅNDTER #
-		print(response["data"])
+		print("Errorstatus returnert")
+		print("Begrunnet:  " + response["data"]["desc"])
+		print(JSON.stringify(response, '\t'))
 		return false
 	
 	var response_data = response.get("data")
 	if not response_data.has("metadata"):
 		# FEILHÅNDTER #
+		print("Oppgavedata magler metadatafeltet")
+		print(JSON.stringify(response, '\t'))
 		return false
-		
+	
 	if not response_data.has("data"):
 		# FEILHÅNDTER #
+		print("Oppgavedata mangler datafeltet")
+		print(JSON.stringify(response, '\t'))
 		return false
 		
 	task.backend_data = response_data.get("data")
+	task.backend_data.make_read_only()
 	
 	var task_metadata: Dictionary = response_data.get("metadata")
 	if task_metadata.has("extraDescription"):
@@ -150,31 +164,40 @@ func request_task() -> bool:
 # parse_finished():	Forteller backenden at oppgaven er ferdig initialisert
 #					Kaller på API-et: respondToParseStatus
 func parse_finished() -> bool:
-	var req_id: int = Backend.send_own({
+	var req_id: int = Backend.send({
 		"type": "parse-status",
 		"status": "success"
 	})
+	if req_id == Backend.COULD_NOT_SEND:
+		return false
 	
-	var response: Dictionary = await Backend.await_message(req_id)
-	return response.get("status") == "success"
+	var response: Dictionary = await Backend.recieve(req_id)
+	if response == Backend.NO_RESPONSE_MSG:
+		return false
+	
+	if response.get("status") != "success":
+		# FEILHÅNDTER #
+		return false
+	
+	return true
 
 
 
 # verify_flag():	Verifiserer et flagg ved å spørre backenden
 #					Kaller på API-et: respondToValidateFlag
 func verify_flag() -> bool:
-	var req_id: int = Backend.send_own({
+	var req_id: int = Backend.send({
 		"type": "validate-flag",
 		"data": {
 			"flag": enter_flag.text
 		}
 	})
 	
-	var response: Dictionary = await Backend.await_message(req_id)
+	var response: Dictionary = await Backend.recieve(req_id)
 
 	if response.get("status") != "success":
 		# Noe har gått MEGA DEGA galt og er 
-		# grunnet spilleren mest sannsynlig (emoji i flagget els)
+		# grunnet spilleren, mest sannsynlig (emoji i flagget elns)
 		print(response)
 		return false
 
@@ -188,16 +211,21 @@ func verify_flag() -> bool:
 # request_hint():	Henter et hint fra backenden
 #					Kaller på API-et: respondToGetHint (IKKE IMPLEMENTERT)
 func request_hint(hint_index: int) -> String:
-	var req_id: int = Backend.send_own({
+	var req_id: int = Backend.send({
 		"type": "get-hint",
 		"data": {
 			"hint-index": hint_index
 		}
 	})
+	if req_id == Backend.COULD_NOT_SEND:
+		return "no-response"
 	
-	var response: Dictionary = await Backend.await_message(req_id)
+	var response: Dictionary = await Backend.recieve(req_id)
+	if response == Backend.NO_RESPONSE_MSG:
+		return "no-response"
+	
 	if response.get("status") == "error":
-		print("wtf :,(")
+		print("evil hint request")
 		return "invalid-hint"
 	
 	
@@ -221,5 +249,8 @@ func cancel_task(reason: CancelReason) -> void:
 			"status": "normal"
 		}
 	
-	var req_id: int = Backend.send_own(request)
+	var req_id: int = Backend.send(request)
+	if req_id == Backend.COULD_NOT_SEND:
+		return
+	
 	Backend.purge_request_promise(req_id)
