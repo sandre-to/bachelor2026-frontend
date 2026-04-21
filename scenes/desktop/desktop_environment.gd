@@ -18,6 +18,7 @@ func _ready() -> void:
 	root = get_tree().root
 	
 	tool_selector.hide()
+	Backend.connect_to_backend()	# MIDLERTIDIG
 
 func _on_files_button_pressed() -> void:
 	file_explorer.visible = not file_explorer.visible

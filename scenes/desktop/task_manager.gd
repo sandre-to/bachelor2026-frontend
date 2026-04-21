@@ -4,10 +4,10 @@ const CRYPTO_TASK: PackedScene = preload(
 	"res://tasks/crypto/crypto_task.tscn")
 
 const STEGANO_TASK: PackedScene = preload(
-	"res://tasks/steg/steg_task.tscn")
-
-# Huske å oppdatere
-const WEB_TASK: PackedScene = null
+	"res://tasks/experimentation/exp_task.tscn")
+	
+const WEB_TASK: PackedScene = preload(
+	"res://tasks/web_exploit/web_task.tscn")
 	
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
@@ -61,6 +61,7 @@ func spawn_task(task_scene: PackedScene) -> void:
 	add_child(task)
 	task.global_position += Vector2(-100, 0)
 	fade_in(task)
+	task.start()
 
 func close_tasks() -> void:
 	for child in get_children():

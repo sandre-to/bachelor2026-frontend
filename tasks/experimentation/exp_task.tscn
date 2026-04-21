@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://b1ylepo62jqiq"]
+[gd_scene format=3 uid="uid://dvbj4g2g310ni"]
 
-[ext_resource type="Script" uid="uid://cby35ml5hvjt1" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
-[ext_resource type="Resource" uid="uid://ce3eoioh75at0" path="res://tasks/crypto/crypto_1.tres" id="2_r7fc5"]
+[ext_resource type="Script" uid="uid://buf71u2ouoear" path="res://tasks/experimentation/exp_task.gd" id="1_x7812"]
+[ext_resource type="Resource" uid="uid://cdsdr2pisv864" path="res://tasks/experimentation/exp_data.tres" id="2_6mi5j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -26,9 +26,6 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-
-[sub_resource type="LabelSettings" id="LabelSettings_qx4og"]
-font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_vjtgf"]
 font_size = 32
@@ -58,21 +55,15 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="CryptoTask" type="Control" unique_id=629482100]
-z_index = 10
+[node name="BaseTask" type="Control" unique_id=629482100]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -0.47998047
-offset_bottom = 0.47998047
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("1_qx4og")
-task = ExtResource("2_r7fc5")
+script = ExtResource("1_x7812")
+task = ExtResource("2_6mi5j")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -88,7 +79,6 @@ offset_right = 320.0
 offset_bottom = 335.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_43dnk")
 
 [node name="MarginContainer" type="MarginContainer" parent="OuterPanel" unique_id=1848680035]
@@ -125,7 +115,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "TASK"
-label_settings = SubResource("LabelSettings_qx4og")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -134,6 +123,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 110)
 layout_mode = 2
 size_flags_vertical = 1
+text = "Description"
 label_settings = SubResource("LabelSettings_vjtgf")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -159,6 +149,8 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 24
+autowrap_trim_flags = 128
+context_menu_enabled = true
 selection_enabled = true
 
 [node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
@@ -211,3 +203,5 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
+
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]

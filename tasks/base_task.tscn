@@ -201,3 +201,5 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
+
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]

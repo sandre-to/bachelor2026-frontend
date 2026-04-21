@@ -6,6 +6,7 @@
 script = ExtResource("1_ftrfi")
 cipher_text = "Znk igxxuz zurj sk \"Nuc gxk eua hatte? O cgtz zu yge yuskznotm zu eua.\" Znoy zgrqotmhatte igxxuz igt zgrq!"
 flag = "talkingbunny"
-name = "Level 1 "
+id = 1
+name = "What is this gibberish??"
 description = "What does this say? Can you help me solve it?"
 metadata/_custom_type_script = "uid://xbk8w8ch8nbg"

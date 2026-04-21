@@ -51,9 +51,10 @@ project/assembly_name="CTF Project"
 
 folder_colors={
 "res://assets/": "red",
-"res://globals/game_network/": "orange",
+"res://globals/": "teal",
 "res://scenes/": "green",
-"res://scripts/": "purple"
+"res://scripts/": "purple",
+"res://tasks/": "blue"
 }
 
 [input]

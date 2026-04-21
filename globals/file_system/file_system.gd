@@ -38,6 +38,18 @@ func get_file_entity(path: String) -> FileEntity:
 	return root_directory.get_entity(path)
 
 
+
+# Insert_into():	Legger en filentitet til en filsti
+func insert_into(path: String, file_entity: FileEntity) -> bool:
+	var parent: FileEntity = get_file_entity(path)
+	if parent is not Directory:
+		set_error(FileError.ENODIR)
+		return false
+	
+	return (parent as Directory).insert_into(file_entity) != null
+
+
+
 # Mkdir():	Lager en katalog på en gitt filsti
 #			Kan feile dersom:
 #			- Filstien ikke er gyldig formatert (EINPTH).
@@ -109,7 +121,10 @@ func _path_is_valid(path: String) -> bool:
 	
 	return true
 
-
+func add_image_file(name: String, real_path: String, target_dir: String = PICTURE_DIR) -> ImageFile:
+	var image_file: ImageFile = ImageFile.new(name, real_path)
+	insert_into(target_dir, image_file)
+	return image_file
 
 func _init_file_structure() -> void:
 	mkdir(HOME_DIR)
@@ -141,3 +156,9 @@ func _init_file_structure() -> void:
 	).get_as_text()
 	pass_list_three.update_content(list3_content)
 	pass_list_three.chmod("r--")
+
+	add_image_file("carrotEater", "res://scenes/file_explorer/pictures/prince.png")
+	add_image_file("bunnyEater", "res://scenes/file_explorer/pictures/petter.jpeg")
+	add_image_file("saintSofelin", "res://scenes/file_explorer/pictures/devSofie.png")
+	add_image_file("merlinsBeard", "res://scenes/file_explorer/pictures/devJesus.jpg")
+	add_image_file("bunnySaintEddie", "res://scenes/file_explorer/pictures/devEdwina.png")

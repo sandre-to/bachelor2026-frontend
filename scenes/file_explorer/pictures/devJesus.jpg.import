@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnjxu8xot2ies"
-path="res://.godot/imported/devEdwina.png-cbe1eea758620e4539b28fcf3bb7db39.ctex"
+uid="uid://p1bpe0647naj"
+path="res://.godot/imported/devJesus.jpg-c89d15cbfa44597e9aab65dc80db342b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tools/steg_tool/pictures/devEdwina.png"
-dest_files=["res://.godot/imported/devEdwina.png-cbe1eea758620e4539b28fcf3bb7db39.ctex"]
+source_file="res://scenes/file_explorer/pictures/devJesus.jpg"
+dest_files=["res://.godot/imported/devJesus.jpg-c89d15cbfa44597e9aab65dc80db342b.ctex"]
 
 [params]
 
