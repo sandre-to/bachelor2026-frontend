@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://pn33flb7geb" path="res://assets/13727924.png" id="7_tysdv"]
 [ext_resource type="Texture2D" uid="uid://buoxij8abd4ks" path="res://assets/tools/lock.png" id="8_l15fl"]
 [ext_resource type="Script" uid="uid://bnc3uiqrbkxu4" path="res://scenes/desktop/task_manager.gd" id="11_f6qo7"]
+[ext_resource type="PackedScene" uid="uid://6ci887btl5lm" path="res://tasks/web_exploit/browser.tscn" id="14_ybhkl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
 font_size = 32
@@ -235,6 +236,11 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "TOOLS"
 
+[node name="Button" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1732648240]
+layout_mode = 2
+text = "BROWSER
+"
+
 [node name="ToolPanel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=371145754]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
@@ -421,6 +427,15 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "TASK 4 - Not completed"
 
+[node name="Browser" parent="." unique_id=1900007620 instance=ExtResource("14_ybhkl")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 307.0
+offset_top = 221.0
+offset_right = -307.0
+offset_bottom = -221.0
+
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=108276697]
 libraries/ = SubResource("AnimationLibrary_ndhkw")
 
@@ -437,6 +452,7 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="." method="_on_files_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="." method="_on_tools_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/Crypto" to="ToolSelector" method="_on_crypto_pressed"]
 [connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/Stegano" to="ToolSelector" method="_on_stegano_pressed"]
 [connection signal="pressed" from="ToolSelector/Panel/HBoxContainer/Web" to="ToolSelector" method="_on_web_pressed"]
