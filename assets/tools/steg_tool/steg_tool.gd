@@ -1,11 +1,9 @@
 extends Tool
 class_name StegTool
 
-# Hvis Tool har en type property dere bruker:
-# @export var tool_type: ToolType = ToolType.STEGANOTOOL
-
 var current_path: String = ""
 var last_result: Dictionary = {}
+
 @onready var file_path_input: LineEdit = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer/LineEdit
 @onready var extract_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer/extractButton
 @onready var metadata_output: RichTextLabel = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MetaDataPanel/Panel/ScrollContainer/Label
@@ -17,13 +15,15 @@ func _ready() -> void:
 	tool_type = ToolType.STEGANO_TOOL
 	super()
 
-# Denne kaller du fra UI når spiller har valgt fil.
 func run_with_path(abs_path: String) -> Dictionary:
 	current_path = abs_path
 
 	var entity: FileEntity = FileSystem.get_file_entity(abs_path)
 	if entity == null:
 		return _error("Could not find file: %s" % abs_path)
+
+	if not (entity is ImageFile):
+		return _error("This tool only works on image files.")
 
 	var metadata := extract_metadata(entity)
 	metadata["file_name"] = abs_path.get_file()
@@ -41,17 +41,8 @@ func run_with_path(abs_path: String) -> Dictionary:
 func extract_metadata(entity: FileEntity) -> Dictionary:
 	var data: Dictionary = {}
 
-	# Tilpass etter hva file-entity faktisk har:
-	for field in entity.metadata:
-		data.set(field, entity.metadata[field])
-	
-	#if entity.metadata.has("type"): data["type"] = entity.metadata["type"]
-	#if entity.metadata.has("size"): data["file_size"] = entity.metadata["size"]
-	#if entity.metadata.has("mime"): data["mime"] = entity.metadata["mime"]
-
-	# MVP: legg inn felter dere kan bruke i CTF-levels
-	# Senere: parse PNG tEXt/iTXt, enkel EXIF, GPS osv.
-	data["comment"] = "example metadata"
+	for key in entity.metadata.keys():
+		data[key] = entity.metadata[key]
 
 	return data
 
@@ -60,12 +51,13 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 
 	for k in metadata.keys():
 		var v := str(metadata[k])
+		var lower_v := v.to_lower()
 		
-		if v.find("flag{") != -1 or v.find("ctf{") != -1:
+		if "flag{" in lower_v or "ctf{" in lower_v:
 			results.append({
 				"type": "flag",
 				"severity": "high",
-				"title": "Mulig flagg",
+				"title": "Possible flag",
 				"path": str(k),
 				"value": v
 			})
@@ -99,8 +91,6 @@ func _is_base64_like(text: String) -> bool:
 
 func _error(msg: String) -> Dictionary:
 	return {"error": true, "message": msg}
-	
-	
 
 func _on_extract_pressed() -> void:
 	var path := file_path_input.text.strip_edges()
@@ -123,7 +113,6 @@ func _on_extract_pressed() -> void:
 	metadata_output.text = _format_metadata(metadata)
 	findings_output.text = "Metadata extracted. Ready for analysis."
 
-## SOFIE: logikken bak analyse knappen
 func _on_analyze_pressed() -> void:
 	if last_result.is_empty():
 		findings_output.text = "No extracted metadata to analyze."
@@ -135,14 +124,12 @@ func _on_analyze_pressed() -> void:
 	last_result["findings"] = findings
 	findings_output.text = _format_findings(findings)
 
-## SOFIE: Funksjonalitet for tøm-knappen:D
 func _on_clear_pressed() -> void:
 	file_path_input.text = ""
 	metadata_output.text = ""
 	findings_output.text = ""
 	last_result.clear()
 	current_path = ""
-	
 
 func _format_metadata(metadata: Dictionary) -> String:
 	var lines: Array[String] = []
@@ -151,7 +138,6 @@ func _format_metadata(metadata: Dictionary) -> String:
 		lines.append("%s: %s" % [str(key), str(metadata[key])])
 
 	return "\n".join(lines)
-
 
 func _format_findings(findings: Array) -> String:
 	if findings.is_empty():
@@ -166,21 +152,14 @@ func _format_findings(findings: Array) -> String:
 
 	return "\n".join(lines)
 
-## SOFIE: Trykke knapper hihi 
-
 func _on_extract_button_pressed() -> void:
 	_on_extract_pressed()
-
 
 func _on_clear_button_pressed() -> void:
 	_on_clear_pressed()
 
-
 func _on_analyze_button_pressed() -> void:
 	_on_analyze_pressed()
 
-
 func _on_line_edit_text_submitted(_new_text: String) -> void:
 	_on_extract_pressed()
-	
-	

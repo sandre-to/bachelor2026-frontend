@@ -1,4 +1,5 @@
-class_name TaskData extends Resource
+class_name TaskData 
+extends Resource
 
 enum TaskType {
 	CRYPTO,

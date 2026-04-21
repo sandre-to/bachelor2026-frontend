@@ -4,7 +4,7 @@ const CRYPTO_TASK: PackedScene = preload(
 	"res://tasks/crypto/crypto_task.tscn")
 
 const STEGANO_TASK: PackedScene = preload(
-	"res://tasks/experimentation/exp_task.tscn")
+	"res://tasks/steg/steg_task.tscn")
 	
 const WEB_TASK: PackedScene = preload(
 	"res://tasks/web_exploit/web_task.tscn")
