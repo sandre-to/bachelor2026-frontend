@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bxrsa5in13360"]
+[gd_scene format=3 uid="uid://6s7wlkmpy20s"]
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="5_ndhkw"]
 [ext_resource type="Texture2D" uid="uid://4q8o53gb77ch" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
-[ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
-[ext_resource type="Script" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
+[ext_resource type="PackedScene" uid="uid://c31ikj8y3inob" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
 [ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_ctsuf"]
 [ext_resource type="Texture2D" uid="uid://pn33flb7geb" path="res://assets/13727924.png" id="7_tysdv"]
 [ext_resource type="Texture2D" uid="uid://buoxij8abd4ks" path="res://assets/tools/lock.png" id="8_l15fl"]
