@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_as5mb")
 cipher_text = "IJHNUMJW YMNX IJHNUMJW YMNX GJGTU [rjxxflj]"
-flag = "message"
+flag = "1"
 id = 4
 name = "This one is easier"
 description = "I'm getting tired of reading these"

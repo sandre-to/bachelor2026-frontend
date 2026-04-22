@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bn5o1ti33645b" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="9_eeqkd"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="12_u14mm"]
 [ext_resource type="Script" uid="uid://c2rturuwo0jp6" path="res://scenes/tutorial_scene/tutorial_task_manager.gd" id="14_rc1i8"]
-[ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/dialogue_panel.gd" id="14_ucsme"]
+[ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/tutorial_dialogue_panel.gd" id="14_ucsme"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
 font_size = 32

@@ -11,6 +11,7 @@ const WEB_TASK: PackedScene = preload(
 	
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
+@onready var dialogue_panel: DialoguePanel = %DialoguePanel
 
 # --- Oppgave knapper ---
 @onready var task_1: Button = %Task1
@@ -21,6 +22,7 @@ const WEB_TASK: PackedScene = preload(
 var current_task: BaseTask = null
 var buttons: Dictionary[int, Button] = {}
 var index: int = 1
+var completed_bulk: bool = false
 
 func _ready() -> void:
 	missions_panel.hide()
@@ -86,6 +88,8 @@ func close_tasks() -> void:
 			child.queue_free()
 
 func _on_task_completed() -> void:
+	if completed_bulk: return
+	
 	if current_task:
 		current_task.queue_free()
 		current_task = null
@@ -99,5 +103,9 @@ func _on_task_completed() -> void:
 	buttons[index].text = "COMPLETED"
 	index += 1
 	if index > buttons.size():
+		completed_bulk = true
+		dialogue_panel.show()
+		fade_out(missions_panel)
+		task_button.hide()
 		return
 	buttons[index].disabled = false

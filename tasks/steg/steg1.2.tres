@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="StegData" format=3 uid="uid://bylxc2f72yl4p"]
 
-[ext_resource type="Script" path="res://tasks/steg/stegData.gd" id="1"]
+[ext_resource type="Script" uid="uid://brcdhiw7q1eva" path="res://tasks/steg/stegData.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
 real_image_path = "res://scenes/file_explorer/pictures/prince.png"
-flag = "flag{test123}"
+flag = "1"
 id = 1
 type = 1
 name = "Carrot in Plain Sight"

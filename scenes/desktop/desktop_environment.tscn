@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://6ci887btl5lm" path="res://tasks/web_exploit/browser.tscn" id="14_ybhkl"]
 [ext_resource type="PackedScene" uid="uid://bmeqfysgvuf4y" path="res://scenes/desktop/notepad/notepad.tscn" id="15_cwh75"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="20_pghv4"]
+[ext_resource type="Script" uid="uid://c80f14ksnidug" path="res://scenes/desktop/dialogue_panel.gd" id="23_itp14"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
 font_size = 32
@@ -79,6 +80,25 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.3372549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itp14"]
+bg_color = Color(0.71677977, 0.5288252, 0.6928995, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0kxn"]
+bg_color = Color(0.70864487, 0.39911774, 0.45740485, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nd566"]
+font_size = 34
+outline_size = 4
+shadow_size = 4
+shadow_color = Color(0.14509805, 0.14901961, 0.16862746, 0.627451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgb4e"]
+bg_color = Color(0.40735757, 0.38808337, 0.42705312, 1)
 
 [sub_resource type="Animation" id="Animation_ndhkw"]
 length = 0.001
@@ -504,6 +524,74 @@ text = "CLEAR  "
 icon = ExtResource("14_3lj0i")
 expand_icon = true
 
+[node name="DialoguePanel" type="Panel" parent="." unique_id=991831837]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -222.0
+offset_right = 244.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_itp14")
+script = ExtResource("23_itp14")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel" unique_id=1120537975]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer" unique_id=1464609196]
+layout_mode = 2
+
+[node name="ChatBoxTitle" type="Label" parent="DialoguePanel/MarginContainer/VBoxContainer" unique_id=362972201]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_f0kxn")
+text = "BOSS HEHE"
+label_settings = SubResource("LabelSettings_nd566")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="DialoguePanel/MarginContainer/VBoxContainer" unique_id=501153021]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_pgb4e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="DialoguePanel" unique_id=1264057142]
+process_mode = 3
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -79.0
+offset_right = 64.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "NEXT"
+
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=108276697]
 libraries/ = SubResource("AnimationLibrary_ndhkw")
 
@@ -531,3 +619,4 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_4_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_3_pressed"]
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
