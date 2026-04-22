@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6qfcavjpda1m" path="res://tasks/steg/steg_task.gd" id="1_3hfx2"]
 [ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://tasks/task_label.tres" id="2_bj12d"]
-[ext_resource type="Resource" uid="uid://dtlmdqyfea1ln" path="res://tasks/steg/steg1.2.tres" id="2_lfggm"]
+[ext_resource type="Resource" uid="uid://bylxc2f72yl4p" path="res://tasks/steg/steg1.2.tres" id="2_lfggm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
