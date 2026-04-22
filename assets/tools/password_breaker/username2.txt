@@ -1,0 +1,7 @@
+ftp
+pi
+puppet
+ansible
+ec2-user
+vagrant
+azureuser
