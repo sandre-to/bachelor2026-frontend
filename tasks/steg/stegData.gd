@@ -1,7 +1,7 @@
 class_name StegData
 extends TaskData
 
-@export var image_name: String = "carrotEater"
+@export var image_name: String = ""
 @export_file("*.jpg", "*.jpeg", "*.png", "*.webp") var real_image_path: String = ""
 @export var virtual_directory: String = "/home/pictures"
 

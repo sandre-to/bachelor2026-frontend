@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="StegData" format=3 uid="uid://d4af3hwt2adbn"]
+
+[ext_resource type="Script" uid="uid://brcdhiw7q1eva" path="res://tasks/steg/stegData.gd" id="1_twef6"]
+
+[resource]
+script = ExtResource("1_twef6")
+image_name = "thisISme"
+real_image_path = "res://scenes/file_explorer/pictures/bunboss"
+flag = "O ZXOIQKJ EUA! ZNKXK OY TU LRGM GNGNGNGN"
+author = "bunBoss"
+metadata/_custom_type_script = "uid://brcdhiw7q1eva"

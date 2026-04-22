@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://6s7wlkmpy20s"]
+[gd_scene format=3 uid="uid://bxrsa5in13360"]
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
-[ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
+[ext_resource type="Script" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
 [ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="5_jyxi7"]
@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://6ci887btl5lm" path="res://tasks/web_exploit/browser.tscn" id="14_ybhkl"]
 [ext_resource type="PackedScene" uid="uid://bmeqfysgvuf4y" path="res://scenes/desktop/notepad/notepad.tscn" id="15_cwh75"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="20_pghv4"]
-[ext_resource type="Script" uid="uid://c80f14ksnidug" path="res://scenes/desktop/dialogue_panel.gd" id="23_itp14"]
+[ext_resource type="Script" path="res://scenes/desktop/dialogue_panel.gd" id="23_itp14"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
 font_size = 32
@@ -616,7 +616,7 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="TaskManager" method="_on_task_2_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="TaskManager" method="_on_task_3_pressed"]
-[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_4_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_3_pressed"]
+[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_4_pressed"]
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
