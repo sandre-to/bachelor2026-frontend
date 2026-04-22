@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://6s7wlkmpy20s"]
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
-[ext_resource type="Script" uid="uid://c578e8tta54m8" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
+[ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
 [ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
@@ -624,6 +624,7 @@ text = "NEXT"
 
 [node name="BunBoss" type="Panel" parent="." unique_id=827372502]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(160, 60)
 layout_mode = 1
 anchors_preset = 8

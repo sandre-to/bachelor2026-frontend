@@ -59,7 +59,9 @@ func type_text() -> void:
 func end_of_dialogue() -> void:
 	match current_dialogue_key:
 		"boss_start":
-			SignalBus.sent_boss_url.emit("https://tryHackBunBoss.com")
+			var web_data := load(
+				"res://tasks/web_exploit/web1.boss.tres")
+			SignalBus.send_boss_web.emit(web_data)
 			next_button.disabled = true
 			active_tween = create_tween()
 			active_tween.set_ease(Tween.EASE_IN)
