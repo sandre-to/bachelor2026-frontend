@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="StegData" format=3 uid="uid://bylxc2f72yl4p"]
 
-[ext_resource type="Script" uid="uid://brcdhiw7q1eva" path="res://tasks/steg/stegData.gd" id="1"]
+[ext_resource type="Script" path="res://tasks/steg/stegData.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
