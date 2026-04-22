@@ -22,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://6ci887btl5lm" path="res://tasks/web_exploit/browser.tscn" id="14_ybhkl"]
 [ext_resource type="PackedScene" uid="uid://bmeqfysgvuf4y" path="res://scenes/desktop/notepad/notepad.tscn" id="15_cwh75"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="20_pghv4"]
-[ext_resource type="Script" path="res://scenes/desktop/dialogue_panel.gd" id="23_itp14"]
 [ext_resource type="Script" uid="uid://c80f14ksnidug" path="res://scenes/desktop/dialogue_panel.gd" id="23_itp14"]
 [ext_resource type="Texture2D" uid="uid://bn4lq8jhttxlf" path="res://scenes/file_explorer/pictures/bunboss.png" id="24_f0kxn"]
 
