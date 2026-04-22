@@ -8,6 +8,6 @@ extends TaskData
 @export var flag: String = ""
 @export var flag_metadata_key: String = "UserComment"
 
-@export var author: String = "Unknown"
+@export var author: String = ""
 @export var software: String = "BunOS Image Exporter"
 @export var comment: String = "Look closer"
