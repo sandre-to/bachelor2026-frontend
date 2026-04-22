@@ -12,6 +12,9 @@ const WEB_TASK: PackedScene = preload(
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
 @onready var dialogue_panel: DialoguePanel = %DialoguePanel
+@onready var bun_boss: Panel = %BunBoss
+@onready var boss_flag: LineEdit = %BossFlag
+
 
 # --- Oppgave knapper ---
 @onready var task_1: Button = %Task1
@@ -102,10 +105,17 @@ func _on_task_completed() -> void:
 	buttons[index].disabled = true
 	buttons[index].text = "COMPLETED"
 	index += 1
+	
 	if index > buttons.size():
+		# Starter boss nivå når alle oppgavene er ferdig
 		completed_bulk = true
-		dialogue_panel.show()
 		fade_out(missions_panel)
 		task_button.hide()
+		await get_tree().create_timer(0.15).timeout
+		
+		dialogue_panel.show()
+		bun_boss.show()
+		dialogue_panel.start_dialogue("boss_start")
 		return
+	
 	buttons[index].disabled = false

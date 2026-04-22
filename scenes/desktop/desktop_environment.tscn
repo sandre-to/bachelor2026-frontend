@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://6s7wlkmpy20s"]
+[gd_scene format=3 uid="uid://bxrsa5in13360"]
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_enld1"]
 [ext_resource type="Script" uid="uid://boyuscxxnyxtc" path="res://scenes/desktop/desktop_environment.gd" id="2_bpu8p"]
-[ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
+[ext_resource type="Script" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
 [ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="5_jyxi7"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bmeqfysgvuf4y" path="res://scenes/desktop/notepad/notepad.tscn" id="15_cwh75"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="20_pghv4"]
 [ext_resource type="Script" uid="uid://c80f14ksnidug" path="res://scenes/desktop/dialogue_panel.gd" id="23_itp14"]
+[ext_resource type="Texture2D" uid="uid://bn4lq8jhttxlf" path="res://scenes/file_explorer/pictures/bunboss.png" id="24_f0kxn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
 font_size = 32
@@ -99,6 +100,35 @@ shadow_color = Color(0.14509805, 0.14901961, 0.16862746, 0.627451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgb4e"]
 bg_color = Color(0.40735757, 0.38808337, 0.42705312, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d20cb"]
+bg_color = Color(0.71677977, 0.5288252, 0.6928995, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_itp14"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd566"]
+bg_color = Color(0.71677977, 0.5288252, 0.6928995, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
 
 [sub_resource type="Animation" id="Animation_ndhkw"]
 length = 0.001
@@ -592,6 +622,76 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "NEXT"
 
+[node name="BunBoss" type="Panel" parent="." unique_id=827372502]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -467.0
+offset_right = 95.0
+offset_bottom = -390.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d20cb")
+
+[node name="BunnyImage" type="TextureRect" parent="BunBoss" unique_id=515796851]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 390.0
+offset_top = -66.5
+offset_right = 848.0
+offset_bottom = 354.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("24_f0kxn")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="BunBoss" unique_id=654039648]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -11.0
+offset_right = 34.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BUNBOSS"
+label_settings = SubResource("LabelSettings_itp14")
+
+[node name="BossFlag" type="LineEdit" parent="BunBoss" unique_id=1927830510]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = 49.0
+offset_right = 247.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nd566")
+placeholder_text = "HIDDEN FLAG"
+alignment = 1
+max_length = 18
+
 [node name="Animation" type="AnimationPlayer" parent="." unique_id=108276697]
 libraries/ = SubResource("AnimationLibrary_ndhkw")
 
@@ -616,7 +716,7 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="TaskManager" method="_on_task_2_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="TaskManager" method="_on_task_3_pressed"]
-[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_4_pressed"]
 [connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_3_pressed"]
+[connection signal="pressed" from="TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="TaskManager" method="_on_task_4_pressed"]
 [connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
