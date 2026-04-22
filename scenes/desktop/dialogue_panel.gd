@@ -1,7 +1,9 @@
 class_name DialoguePanel extends Panel
 
 @export var entry_dialogue: String = "boss_start"
-@export var dialog_move_speed: float = 0.25
+@export var dialog_move_speed: float = 0.35
+@onready var next_button: Button = $NextButton
+@onready var bunny_image: TextureRect = $"../BunBoss/BunnyImage"
 
 @onready var text: RichTextLabel = %Text
 
@@ -10,8 +12,8 @@ var dialogue := []
 var current_index := 0
 var current_dialogue_key := ""
 
-var is_typing := false
 var active_tween: Tween
+var is_typing := false
 
 func _ready() -> void:
 	load_dialogue()
@@ -55,6 +57,15 @@ func type_text() -> void:
 		await get_tree().create_timer(0.028, false).timeout
 
 func end_of_dialogue() -> void:
-	if current_dialogue_key == "boss_start":
-		SignalBus.sent_boss_url.emit("https://tryHackBunBoss.com")
-		hide()
+	match current_dialogue_key:
+		"boss_start":
+			SignalBus.sent_boss_url.emit("https://tryHackBunBoss.com")
+			next_button.disabled = true
+			active_tween = create_tween()
+			active_tween.set_ease(Tween.EASE_IN)
+			active_tween.tween_property(
+				self,
+				"position",
+				position + Vector2(650, 180),
+				0.24
+			)
