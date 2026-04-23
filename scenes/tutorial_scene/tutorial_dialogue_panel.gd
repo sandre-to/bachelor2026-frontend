@@ -107,7 +107,7 @@ func end_of_dialogue() -> void:
 		start_dialogue("crypto_task")
 		active_tween = create_tween()
 		active_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-		active_tween.tween_property(self, "position", position + Vector2(-100, -200), dialog_move_speed)
+		active_tween.tween_property(self, "position", position + Vector2(-70, -200), dialog_move_speed)
 
 func _on_files_button_pressed() -> void:
 	if files_pressed: return
