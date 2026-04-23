@@ -62,14 +62,14 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 				"value": v
 			})
 
-		if _is_base64_like(v):
-			results.append({
-				"type": "base64",
-				"severity": "warn",
-				"title": "Detected possible Base64",
-				"path": str(k),
-				"value": v
-			})
+		#if _is_base64_like(v):
+			#results.append({
+				#"type": "base64",
+				#"severity": "warn",
+				#"title": "Detected possible Base64",
+				#"path": str(k),
+				#"value": v
+			#})
 
 		if v.length() > 120:
 			results.append({
@@ -82,12 +82,12 @@ func analyze_metadata(metadata: Dictionary) -> Array:
 
 	return results
 
-func _is_base64_like(text: String) -> bool:
-	if text.length() < 16:
-		return false
-	var r := RegEx.new()
-	r.compile("^[A-Za-z0-9+/]+={0,2}$")
-	return r.search(text) != null
+#func _is_base64_like(text: String) -> bool:
+	#if text.length() < 16:
+		#return false
+	#var r := RegEx.new()
+	#r.compile("^[A-Za-z0-9+/]+={0,2}$")
+	#return r.search(text) != null
 
 func _error(msg: String) -> Dictionary:
 	return {"error": true, "message": msg}

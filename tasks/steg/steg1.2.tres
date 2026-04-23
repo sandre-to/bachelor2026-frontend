@@ -4,8 +4,10 @@
 
 [resource]
 script = ExtResource("1")
+image_name = "carrotEater"
 real_image_path = "res://scenes/file_explorer/pictures/prince.png"
 flag = "1"
+author = "Unknown"
 id = 1
 type = 1
 name = "Carrot in Plain Sight"

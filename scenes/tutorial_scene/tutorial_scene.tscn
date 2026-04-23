@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bg64qtkijul1s" path="res://scenes/desktop/desktop_theme.tres" id="1_u14mm"]
 [ext_resource type="Script" uid="uid://c7fyx4smum14o" path="res://scenes/tutorial_scene/tutorial_scene.gd" id="2_u14mm"]
-[ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_rc1i8"]
+[ext_resource type="Script" path="res://scenes/desktop/time_label.gd" id="3_rc1i8"]
 [ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="4_eeqkd"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="5_rxhm2"]
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="5_vdb40"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bn5o1ti33645b" path="res://scenes/tutorial_scene/tutorial_tool_selector.gd" id="9_eeqkd"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="12_u14mm"]
 [ext_resource type="Script" uid="uid://c2rturuwo0jp6" path="res://scenes/tutorial_scene/tutorial_task_manager.gd" id="14_rc1i8"]
-[ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/tutorial_dialogue_panel.gd" id="14_ucsme"]
+[ext_resource type="Script" path="res://scenes/tutorial_scene/tutorial_dialogue_panel.gd" id="14_ucsme"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bpu8p"]
 font_size = 32
