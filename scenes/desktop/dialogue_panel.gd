@@ -4,6 +4,7 @@ class_name DialoguePanel extends Panel
 @export var dialog_move_speed: float = 0.35
 @onready var next_button: Button = $NextButton
 @onready var bunny_image: TextureRect = $"../BunBoss/BunnyImage"
+@onready var boss_flag: LineEdit = %BossFlag
 
 @onready var text: RichTextLabel = %Text
 
@@ -71,3 +72,8 @@ func end_of_dialogue() -> void:
 				position + Vector2(650, 180),
 				0.24
 			)
+
+func _on_boss_flag_text_submitted(new_text: String) -> void:
+	if new_text == "carrot":
+		boss_flag.editable = false
+		text.text = "You did it!"
