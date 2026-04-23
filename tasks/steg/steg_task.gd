@@ -22,15 +22,13 @@ func _on_start() -> bool:
 
 	if existing != null:
 		print("FOUND EXISTING FILE:", full_path)
-		print("BEFORE UPDATE:", existing.metadata)
-
+		
 		existing.metadata["type"] = "image"
 		existing.metadata["Author"] = steg_task.author
 		existing.metadata["Software"] = steg_task.software
 		existing.metadata["Comment"] = steg_task.comment
 		existing.metadata[steg_task.flag_metadata_key] = steg_task.flag
 
-		print("AFTER UPDATE:", existing.metadata)
 		return true
 
 	var image_file := ImageFile.new(
@@ -66,12 +64,3 @@ func verify_flag() -> bool:
 		return false
 
 	return enter_flag.text.strip_edges() == steg_task.flag
-
-func _on_hint_pressed(index: int) -> void:
-	match index:
-		1:
-			print("Check the image metadata.")
-		2:
-			print("Use the correct in-game file path.")
-		3:
-			print("Look for unusual text fields.")
