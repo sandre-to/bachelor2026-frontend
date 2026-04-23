@@ -133,29 +133,45 @@ func _init_file_structure() -> void:
 	mkdir(SECRET_DIR)
 	
 	# Passordlister
-	var pass_list_one: TextFile = touch(SECRET_DIR + "/liste1.txt")
+	var pass_list_one: TextFile = touch(SECRET_DIR + "/top_10_passwords.txt")
 	var list1_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/liste1test.txt",
+		"res://assets/tools/password_breaker/top_10_passwords.txt",
 		FileAccess.READ
 	).get_as_text()
 	pass_list_one.update_content(list1_content)
 	pass_list_one.chmod("r--")
 	
-	var pass_list_two: TextFile = touch(SECRET_DIR + "/liste2.txt")
+	var pass_list_two: TextFile = touch(SECRET_DIR + "/top_bunny_passwords.txt")
 	var list2_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/liste2.txt",
+		"res://assets/tools/password_breaker/top_bunny_passwords.txt",
 		FileAccess.READ
 	).get_as_text()
 	pass_list_two.update_content(list2_content)
 	pass_list_two.chmod("r--")
 	
-	var pass_list_three: TextFile = touch(SECRET_DIR + "/liste3.txt")
+	var pass_list_three: TextFile = touch(SECRET_DIR + "/phone_codes.txt")
 	var list3_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/liste3.txt",
+		"res://assets/tools/password_breaker/phone_codes.txt",
 		FileAccess.READ
 	).get_as_text()
 	pass_list_three.update_content(list3_content)
 	pass_list_three.chmod("r--")
+	
+	var user_list_one: TextFile = touch(SECRET_DIR + "/username1.txt")
+	var userlist1_content: String = FileAccess.open(
+		"res://assets/tools/password_breaker/username1.txt",
+		FileAccess.READ
+	).get_as_text()
+	user_list_one.update_content(userlist1_content)
+	user_list_one.chmod("r--")
+	
+	var user_list_two: TextFile = touch(SECRET_DIR + "/username2.txt")
+	var userlist2_content: String = FileAccess.open(
+		"res://assets/tools/password_breaker/username2.txt",
+		FileAccess.READ
+	).get_as_text()
+	user_list_two.update_content(userlist2_content)
+	user_list_two.chmod("r--")
 
 	add_image_file("carrotEater", "res://scenes/file_explorer/pictures/prince.png")
 	add_image_file("bunnyEater", "res://scenes/file_explorer/pictures/petter.jpeg")
