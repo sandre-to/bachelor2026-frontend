@@ -35,11 +35,11 @@ func _ready() -> void:
 # start():	Metoden som kjører når oppgaven startes
 func start() -> void:
 	# Spør backenden om å starte
-#	var request_success: bool = await request_task()
-#	if not request_success:
-#		return
+	var request_success: bool = await request_task()
+	if not request_success:
+		return
 	
-	#set_task_info()
+	set_task_info()
 	
 	# Initialiser den spesifike oppgaven
 	var init_success: bool = _on_start()
@@ -47,9 +47,9 @@ func start() -> void:
 		return
 	
 	# Fortell backenden at initen fungerte
-#	var backend_synced: bool = await parse_finished()
-#	if not backend_synced:
-#		return
+	var backend_synced: bool = await parse_finished()
+	if not backend_synced:
+		return
 	
 
 
@@ -78,7 +78,11 @@ func _on_enter_flag_text_submitted(_new_text: String) -> void:
 	_on_confirm_button_pressed()
 	
 func _on_hint_pressed(_index: int) -> void: 
-	pass
+	var hint: String = await request_hint(_index)
+	if hint == "invalid-hint":
+		print("evil hint")
+		return
+	puzzle.text = hint
 
 func completed_task() -> void:
 	var hints := hint_container.get_children()
@@ -91,7 +95,6 @@ func completed_task() -> void:
 	SignalBus.task_completed.emit()
 	
 func get_task_data() -> void:
-	
 	pass
 
 # skal avbryte oppgaven etter spilleren trykker på en knapp
@@ -130,11 +133,6 @@ func request_task() -> bool:
 		return false
 	
 	var response_data = response.get("data")
-	if not response_data.has("metadata"):
-		# FEILHÅNDTER #
-		print("Oppgavedata magler metadatafeltet")
-		print(JSON.stringify(response, '\t'))
-		return false
 	
 	if not response_data.has("data"):
 		# FEILHÅNDTER #
@@ -145,11 +143,8 @@ func request_task() -> bool:
 	task.backend_data = response_data.get("data")
 	task.backend_data.make_read_only()
 	
-	var task_metadata: Dictionary = response_data.get("metadata")
-	if task_metadata.has("extraDescription"):
-		task.extra_description = task_metadata.get("extraDescription")
-	if task_metadata.has("hintCosts"):
-		task_metadata.get("hintCosts")
+	if response_data.has("extraDesc"):
+		task.extra_description = response_data.get("extraDesc")
 	
 	return true
 
@@ -208,7 +203,7 @@ func request_hint(hint_index: int) -> String:
 	var req_id: int = Backend.send({
 		"type": "get-hint",
 		"data": {
-			"hint-index": hint_index
+			"index": hint_index
 		}
 	})
 	if req_id == Backend.COULD_NOT_SEND:
@@ -222,7 +217,7 @@ func request_hint(hint_index: int) -> String:
 		print("evil hint request")
 		return "invalid-hint"
 	
-	return "HOW SWAY"
+	return response.get("data").get("hint")
 
 
 
