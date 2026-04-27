@@ -102,8 +102,6 @@ func remove_task() -> void:
 	# UI-magi
 	pass
 
-
-
 # request_task():	Spør backenden om å starte oppgaven
 #					Kaller på API-et: respondToTask
 func request_task() -> bool:
@@ -223,7 +221,6 @@ func request_hint(hint_index: int) -> String:
 	if response.get("status") == "error":
 		print("evil hint request")
 		return "invalid-hint"
-	
 	
 	return "HOW SWAY"
 

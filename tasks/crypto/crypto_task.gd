@@ -8,6 +8,7 @@ var crypto_tasks := {
 
 func _ready() -> void:
 	super._ready()
+	#request_hint(task.id)
 
 func set_data_info(key: String) -> void:
 	if key in crypto_tasks.keys():
@@ -19,15 +20,6 @@ func set_data_info(key: String) -> void:
 	else:
 		push_error("Key does not exist in tasks: ", key)
 	
-func _on_hint_pressed(index: int) -> void:
-	match index:
-		1:
-			description.text = "What kind of tool is needed for weird messages?"
-		2:
-			description.text = "Click and drag to copy the text"
-		3:
-			description.text = "Try with differet shift (1 - 9)"
-			
 func _on_confirm_button_pressed() -> void:
 	if enter_flag.text == task.flag:
 		confirm_button.disabled = true
