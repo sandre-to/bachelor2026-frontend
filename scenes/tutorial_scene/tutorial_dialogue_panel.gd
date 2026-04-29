@@ -11,6 +11,7 @@ class_name TutorialDialoguePanel extends Panel
 @onready var file_explorer := %FileExplorer
 @onready var tutorial_task_manager: TutorialTasks = %TutorialTaskManager
 @onready var play_button: Button = %PlayButton
+@onready var tutorial_tool_selector: TutorialToolSelector = $"../TutorialToolSelector"
 
 var dialogue_data := {}
 var dialogue := []
@@ -102,7 +103,8 @@ func end_of_dialogue() -> void:
 		start_dialogue("clear_button")
 	elif current_dialogue_key == "tasks":
 		tutorial_task_manager.show()
-		hide()
+		animation.play("tasks_animation")
+		start_dialogue("next_tasks")
 	elif current_dialogue_key == "last_section":
 		start_dialogue("crypto_task")
 		active_tween = create_tween()
@@ -144,6 +146,7 @@ func _on_task_1_pressed() -> void:
 	if task_pressed: return
 	
 	task_pressed = true
+	animation.stop()
 	show()
 	start_dialogue("last_section")
 	clear_button.disabled = false
@@ -155,6 +158,11 @@ func _on_tutorial_task_completed() -> void:
 	tutorial_task_manager.hide()
 	play_button.show()
 	next_button.hide()
+	clear_button.disabled = true
+	tools_button.disabled = true
+	files_button.disabled = true
+	tutorial_tool_selector.hide_selected_tools()
+	clear_button.pressed.emit()
 	active_tween = create_tween()
 	active_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	active_tween.tween_property(self, "position", position + Vector2(75, 200), dialog_move_speed)
+	active_tween.tween_property(self, "position", position + Vector2(70, 200), dialog_move_speed)

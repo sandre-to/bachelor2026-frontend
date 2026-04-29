@@ -5,10 +5,11 @@ var crypto_tasks := {
 	"level_1.1": "res://tasks/crypto/level1-1.tres",
 	"level_1.4": "res://tasks/crypto/level1-4.tres"
 }
+@onready var error_panel: Panel = $ErrorPanel
 
 func _ready() -> void:
 	super._ready()
-	#request_hint(task.id)
+	error_panel.hide()
 
 func set_data_info(key: String) -> void:
 	if key in crypto_tasks.keys():
@@ -24,3 +25,15 @@ func _on_confirm_button_pressed() -> void:
 	if enter_flag.text == task.flag:
 		confirm_button.disabled = true
 		SignalBus.task_completed.emit()
+	else:
+		error_panel.show()
+
+#func _on_start() -> bool:
+	#print(task.backend_data["felt_1"])
+	#return true
+
+func _on_exit_button_pressed() -> void:
+	error_panel.hide()
+
+func _on_copy_button_pressed() -> void:
+	DisplayServer.clipboard_set(puzzle.text)

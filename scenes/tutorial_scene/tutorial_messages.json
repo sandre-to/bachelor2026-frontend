@@ -31,6 +31,9 @@
 		"The last thing I want you to know",
 		"Is how tasks work in this environment",
 	],
+	"next_tasks": [
+		"Look! Something appeared in the right corner."
+	],
 	"last_section": [
 		"Let me show you how cryptography works.",
 		"Slow and steady wins the race right?",
@@ -38,7 +41,12 @@
 	],
 	
 	"crypto_task": [
-		"What kind of tool should you use for solving messages like this?"
+		"What kind of tool should you use for solving messages like this?",
+		"Open the crypto tool I showed you earlier.",
+		"1. Copy the text you want to decipher",
+		"2. Paste it in the INPUT area in Message Solver.",
+		"3. Enter a number (Use arrows UP / DOWN)",
+		"4. Press [Decipher]",
 	],
 	
 	"finished": [
