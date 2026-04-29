@@ -1,7 +1,7 @@
 class_name TaskManager extends Control
 
 const CRYPTO_TASK: PackedScene = preload(
-	"res://tasks/crypto/crypto_task.tscn")
+	"res://tasks/experimentation/exp_task.tscn")
 
 const STEGANO_TASK: PackedScene = preload(
 	"res://tasks/steg/steg_task.tscn")
