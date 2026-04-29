@@ -11,8 +11,8 @@ class_name TutorialScene extends Control
 
 func _ready() -> void:
 	animation.play("fade_in")
-	tool_selector.hide()
 	file_explorer.hide()
+	tool_selector.hide()
 	
 	animation.play("panel_popup")
 	disable_main_buttons()
@@ -36,3 +36,6 @@ func _on_clear_button_pressed() -> void:
 	tool_selector.hide()
 	for tool in tool_panel.get_children():
 		tool.hide()
+
+func _on_skip_tutorial_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/desktop/desktop_environment.tscn")

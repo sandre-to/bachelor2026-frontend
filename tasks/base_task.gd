@@ -105,8 +105,6 @@ func remove_task() -> void:
 	# UI-magi
 	pass
 
-
-
 # request_task():	Spør backenden om å starte oppgaven
 #					Kaller på API-et: respondToTask
 func request_task() -> bool:

@@ -54,7 +54,7 @@ func fade_in(panel: Control) -> void:
 
 func fade_out(panel: Control) -> void:
 	var tween = create_tween()
-	tween.tween_property(panel, "modulate:a", 0.0, 0.25)
+	tween.tween_property(panel, "modulate:a", 0.0, 0.025)
 	tween.tween_callback(func(): panel.hide())
 
 func _on_task_1_pressed() -> void:

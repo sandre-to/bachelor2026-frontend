@@ -66,12 +66,7 @@ func end_of_dialogue() -> void:
 			next_button.disabled = true
 			active_tween = create_tween()
 			active_tween.set_ease(Tween.EASE_IN)
-			active_tween.tween_property(
-				self,
-				"position",
-				position + Vector2(650, 180),
-				0.24
-			)
+			active_tween.tween_property(self, "position", position + Vector2(650, 180), 0.24)
 
 func _on_boss_flag_text_submitted(new_text: String) -> void:
 	if new_text == "carrot":

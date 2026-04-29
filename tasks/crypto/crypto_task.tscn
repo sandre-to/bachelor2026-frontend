@@ -1,30 +1,26 @@
 [gd_scene format=3 uid="uid://b1ylepo62jqiq"]
 
 [ext_resource type="Script" uid="uid://cby35ml5hvjt1" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
+[ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="2_r7fc5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkcnv"]
+shader = ExtResource("2_r7fc5")
+shader_parameter/color_one = Color(1, 0, 0, 1)
+shader_parameter/color_two = Color(0, 0, 0, 1)
+shader_parameter/angle = 107.0
+shader_parameter/line_count = 32.62
+shader_parameter/speed = 0.77
+shader_parameter/blur = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
-bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0, 0, 0, 1)
+bg_color = Color(0, 0, 0, 0.6509804)
 corner_radius_top_left = 32
 corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjtgf"]
-bg_color = Color(0, 0, 0, 0.8)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.04303915, 0.043039165, 0.04303909, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+bg_color = Color(0.18932778, 0.1893278, 0.18932769, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qx4og"]
 font_size = 32
@@ -57,6 +53,19 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7fc5"]
+bg_color = Color(0.6057733, 0.094179206, 0.14435059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r7fc5"]
+font_size = 52
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qx4og"]
+bg_color = Color(0.2702219, 0.27022195, 0.27022177, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
 [node name="CryptoTask" type="Control" unique_id=629482100]
 z_index = 10
 layout_mode = 3
@@ -73,6 +82,7 @@ mouse_filter = 1
 script = ExtResource("1_qx4og")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
+material = SubResource("ShaderMaterial_mkcnv")
 custom_minimum_size = Vector2(640, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -96,10 +106,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="InnerPanel" type="Panel" parent="OuterPanel/MarginContainer" unique_id=732732529]
 layout_mode = 2
@@ -129,7 +139,7 @@ vertical_alignment = 1
 
 [node name="Description" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=1429868216]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 110)
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_vertical = 1
 label_settings = SubResource("LabelSettings_vjtgf")
@@ -138,7 +148,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="PuzzlePanel" type="Panel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=246550945]
-custom_minimum_size = Vector2(0, 160)
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ncm2f")
 
@@ -157,17 +167,21 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 2
 theme_override_font_sizes/normal_font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
 selection_enabled = true
 
 [node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_constants/separation = 20
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
 
 [node name="EnterFlag" type="LineEdit" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=928400105]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
+size_flags_horizontal = 6
 theme_override_colors/font_placeholder_color = Color(0.8156863, 0.8156863, 0.8156863, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_ncm2f")
 placeholder_text = "ENTER FLAG"
@@ -181,6 +195,7 @@ text = "CONFIRM"
 
 [node name="HintContainer" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=897604010]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_constants/separation = 12
@@ -209,3 +224,77 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
+
+[node name="CopyButton" type="Button" parent="OuterPanel" unique_id=1247903015]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 72.5
+offset_right = 75.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "COPY TEXT"
+
+[node name="ErrorPanel" type="Panel" parent="." unique_id=499173941]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1005.0
+offset_top = -229.0
+offset_right = -165.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r7fc5")
+
+[node name="MarginContainer" type="MarginContainer" parent="ErrorPanel" unique_id=528531086]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Label" type="Label" parent="ErrorPanel/MarginContainer" unique_id=1708573910]
+layout_mode = 2
+size_flags_vertical = 1
+text = "ERROR
+OH NO! WRONG FLAG."
+label_settings = SubResource("LabelSettings_r7fc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ExitButton" type="Button" parent="ErrorPanel" unique_id=181860722]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = 94.0
+offset_right = 194.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_qx4og")
+text = "EXIT"
+
+[connection signal="pressed" from="OuterPanel/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="pressed" from="ErrorPanel/ExitButton" to="." method="_on_exit_button_pressed"]

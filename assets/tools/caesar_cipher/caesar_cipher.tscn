@@ -93,28 +93,30 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
+offset_left = 72.0
 offset_top = 0.5
-offset_right = 40.0
+offset_right = 52.0
 offset_bottom = 1.5
 grow_horizontal = 2
 grow_vertical = 2
 icon = ExtResource("2_fwsiq")
 flat = true
 icon_alignment = 1
+expand_icon = true
 
 [node name="Down" type="Button" parent="Panel/VBoxContainer/LineEdit" unique_id=124836631]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.96500003
-offset_left = -38.0
+offset_left = -52.0
 offset_top = 0.5
-offset_right = -58.0
+offset_right = -72.0
 offset_bottom = 2.7249985
 icon = ExtResource("3_kgmua")
 flat = true
 icon_alignment = 1
+expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=2010700267]
 layout_mode = 2
