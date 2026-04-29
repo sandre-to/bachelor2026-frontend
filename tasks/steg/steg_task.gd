@@ -4,7 +4,7 @@ extends BaseTask
 func _ready() -> void:
 	super._ready()
 	set_data_info()
-	start()
+	#start()
 
 func set_data_info() -> void:
 	title.text = task.name

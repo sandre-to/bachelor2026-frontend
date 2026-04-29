@@ -174,7 +174,7 @@ func _init_file_structure() -> void:
 	user_list_two.chmod("r--")
 
 	add_image_file("carrotEater", "res://scenes/file_explorer/pictures/prince.png")
-	add_image_file("bunnyEater", "res://scenes/file_explorer/pictures/petter.jpeg")
+	add_image_file("bunnyEater", "res://scenes/file_explorer/pictures/petter.jpg")
 	add_image_file("saintSofelin", "res://scenes/file_explorer/pictures/devSofie.png")
 	add_image_file("merlinsBeard", "res://scenes/file_explorer/pictures/devJesus.jpg")
 	add_image_file("bunnySaintEddie", "res://scenes/file_explorer/pictures/devEdwina.png")
