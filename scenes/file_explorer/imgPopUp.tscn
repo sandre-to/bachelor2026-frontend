@@ -6,11 +6,11 @@
 bg_color = Color(0.9490196, 0.83137256, 0.92156863, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4neok"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
 
 [node name="ImgPopUp" type="Control" unique_id=1782949988]
 custom_minimum_size = Vector2(700, 900)
@@ -72,7 +72,6 @@ stretch_mode = 5
 
 [node name="ExitButton" type="Button" parent="CenterContainer/VinduPanel" unique_id=1055664215]
 unique_name_in_owner = true
-modulate = Color(0.79313433, 0.69161093, 1, 1)
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 0
 offset_left = 660.0
@@ -81,10 +80,9 @@ offset_right = 690.0
 offset_bottom = 67.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.9490196, 0.83137256, 0.92156863, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_4neok")
 text = "x"
