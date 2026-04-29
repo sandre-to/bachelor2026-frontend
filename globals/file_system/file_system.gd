@@ -121,10 +121,24 @@ func _path_is_valid(path: String) -> bool:
 	
 	return true
 
-func add_image_file(name: String, real_path: String, target_dir: String = PICTURE_DIR) -> ImageFile:
-	var image_file: ImageFile = ImageFile.new(name, real_path)
-	insert_into(target_dir, image_file)
-	return image_file
+
+# add_image_file():	Legger til en bildefil med bildet fra en reel fil
+func add_image_file(_name: String, _real_path: String, _target_dir: String = PICTURE_DIR) -> ImageFile:
+	var _image_file: ImageFile = ImageFile.new(_name, _real_path)
+	return _image_file if insert_into(_target_dir, _image_file) else null
+
+
+# add_text_file():	Legger til en tekstfil med innholdet fra en reel fil
+func add_text_file(_name: String, _target_dir: String, _real_path: String, _rights: String = "r--") -> TextFile:
+	var file: TextFile = touch(_target_dir + "/" + _name)
+	var file_access: FileAccess = FileAccess.open(_real_path, FileAccess.READ)
+	if file_access == null or file == null:
+		return null
+		
+	file.update_content(file_access.get_as_text())
+	file.chmod(_rights)
+	return file
+	
 
 func _init_file_structure() -> void:
 	mkdir(HOME_DIR)
@@ -133,13 +147,13 @@ func _init_file_structure() -> void:
 	mkdir(SECRET_DIR)
 	
 	# Passordlister
-	var pass_list_one: TextFile = touch(SECRET_DIR + "/top_10_passwords.txt")
-	var list1_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/top_10_passwords.txt",
-		FileAccess.READ
-	).get_as_text()
-	pass_list_one.update_content(list1_content)
-	pass_list_one.chmod("r--")
+	print(add_text_file(
+		"top_10_passwords.txt",
+		SECRET_DIR,
+		"res://assets/tools/password_breaker/top_10_passwords.txt"
+	))
+	
+
 	
 	var pass_list_two: TextFile = touch(SECRET_DIR + "/top_bunny_passwords.txt")
 	var list2_content: String = FileAccess.open(
