@@ -1,9 +1,9 @@
 extends Control
 class_name NotepadApp
 
-@onready var panel: PanelContainer = $PanelContainer
+@onready var panel: Panel = $PanelContainer
 @onready var text_edit: TextEdit = $PanelContainer/MarginContainer/VBoxContainer/TextEdit
-@onready var status_label: Label = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StatusLabel
+@onready var status_label: Label = $PanelContainer/MarginContainer/VBoxContainer/StatusLabel
 @onready var save_button: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Save
 @onready var load_button: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Load
 @onready var clear_button: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Clear
@@ -105,8 +105,11 @@ func _on_load_pressed() -> void:
 func _on_clear_pressed() -> void:
 	clear_note()
 
+func _on_exit_button_pressed() -> void:
+	hide()
 
-func _on_panel_container_gui_input(event: InputEvent) -> void:
+
+func _on_h_box_container_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			dragging = true

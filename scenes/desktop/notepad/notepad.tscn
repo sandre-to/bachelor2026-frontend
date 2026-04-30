@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bn5h5m4i54t0m" path="res://scenes/desktop/notepad/notepad.gd" id="1_kyvvf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyvvf"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
 [node name="NotepadApp" type="Control" unique_id=1016672914]
 custom_minimum_size = Vector2(450, 575)
 layout_mode = 3
@@ -13,18 +20,26 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_kyvvf")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1769919581]
+[node name="PanelContainer" type="Panel" parent="." unique_id=1486820354]
 modulate = Color(0.8869721, 1.1594497, 1.4141567, 1)
-custom_minimum_size = Vector2(450, 600)
+custom_minimum_size = Vector2(500, 650)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.5
+offset_right = 20.0
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=170360778]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=170360778]
-layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1485289611]
 layout_mode = 2
@@ -51,10 +66,18 @@ custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
 text = "Clear"
 
-[node name="StatusLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=963813711]
-custom_minimum_size = Vector2(120, 20)
+[node name="ExitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1936998377]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-text = "Status: Open"
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kyvvf")
+text = "x"
 
 [node name="TxtNameInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=329900267]
 custom_minimum_size = Vector2(0, 40)
@@ -65,7 +88,16 @@ custom_minimum_size = Vector2(350, 500)
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
+[node name="StatusLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=963813711]
+custom_minimum_size = Vector2(120, 20)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Status: Open"
+clip_text = true
+text_overrun_behavior = 5
+
+[connection signal="gui_input" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" to="." method="_on_h_box_container_gui_input"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
