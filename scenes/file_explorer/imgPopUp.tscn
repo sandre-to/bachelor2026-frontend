@@ -86,3 +86,6 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_4neok")
 text = "x"
+
+[connection signal="gui_input" from="CenterContainer/VinduPanel" to="." method="_on_vindu_panel_gui_input"]
+[connection signal="pressed" from="CenterContainer/VinduPanel/ExitButton" to="." method="_on_exit_button_pressed"]

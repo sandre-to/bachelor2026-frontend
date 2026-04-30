@@ -3,8 +3,12 @@ class_name ImagePopUp
 
 @onready var bg: ColorRect = $ColorRect
 @onready var image_rect: TextureRect = $CenterContainer/VinduPanel/TextureRect
-@onready var close_button: Button = $CloseButton
+@onready var exit_button: Button = $%ExitButton
 @onready var panel: Panel = $CenterContainer/VinduPanel
+
+# SOFIE: For å gjøre vinduet dragable
+var dragging: bool = false
+var drag_offset: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	visible = true
@@ -40,9 +44,26 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		queue_free()
 
-func _on_close_button_pressed() -> void:
+func _on_exit_button_pressed() -> void:
 	queue_free()
 
 func _on_color_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		queue_free()
+
+func _on_vindu_panel_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			dragging = true
+			drag_offset = get_global_mouse_position() - panel.global_position
+		else:
+			dragging = false
+
+	if event is InputEventMouseMotion and dragging:
+		var new_pos := get_global_mouse_position() - drag_offset
+		var desktop_size := get_viewport_rect().size
+
+		new_pos.x = clamp(new_pos.x, 0.0, desktop_size.x - panel.size.x)
+		new_pos.y = clamp(new_pos.y, 0.0, desktop_size.y - panel.size.y)
+
+		panel.global_position = new_pos
