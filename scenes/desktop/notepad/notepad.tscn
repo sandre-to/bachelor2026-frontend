@@ -65,6 +65,7 @@ custom_minimum_size = Vector2(350, 500)
 layout_mode = 2
 size_flags_vertical = 3
 
+[connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Clear" to="." method="_on_clear_pressed"]

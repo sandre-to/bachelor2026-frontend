@@ -11,6 +11,8 @@ class_name NotepadApp
 
 var current_file_path: String = ""
 var is_read_only_file: bool = false
+var dragging: bool = false
+var drag_offset: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	open_personal_notes()
@@ -102,3 +104,21 @@ func _on_load_pressed() -> void:
 
 func _on_clear_pressed() -> void:
 	clear_note()
+
+
+func _on_panel_container_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			dragging = true
+			drag_offset = get_global_mouse_position() - global_position
+		else:
+			dragging = false
+
+	if event is InputEventMouseMotion and dragging:
+		var new_pos := get_global_mouse_position() - drag_offset
+		var screen_size := get_viewport_rect().size
+
+		new_pos.x = clamp(new_pos.x, 0.0, screen_size.x - panel.size.x)
+		new_pos.y = clamp(new_pos.y, 0.0, screen_size.y - panel.size.y)
+
+		global_position = new_pos
