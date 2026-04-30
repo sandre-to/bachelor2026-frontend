@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://biqu5mcmarjwi"]
+
+[ext_resource type="Texture2D" uid="uid://b2o8a28p2g515" path="res://assets/icons/confidensial.png" id="1_tagao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu4cm"]
+bg_color = Color(0.9318973, 0.93189716, 0.93189716, 1)
+border_width_left = 15
+border_width_top = 25
+border_width_right = 15
+border_width_bottom = 25
+shadow_size = 6
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xu2xb"]
+texture = ExtResource("1_tagao")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sluk5"]
+bg_color = Color(0.6117647, 0.4862745, 0.36862746, 1)
+border_width_left = 7
+border_width_top = 4
+border_width_right = 7
+border_width_bottom = 4
+border_color = Color(0.5058824, 0.43137255, 0.40392157, 1)
+corner_radius_top_left = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34jot"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.928753, 0.8695222, 0.7827353, 0.58431375)
+
+[node name="Dosier" type="Control" unique_id=842274027]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1248946247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=932607107]
+modulate = Color(0.83137256, 0.8627451, 0.9490196, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fu4cm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel" unique_id=635938750]
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 550.0
+offset_top = 700.0
+offset_right = -1170.0
+offset_bottom = -230.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/Panel/VBoxContainer" unique_id=20281600]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_xu2xb")
+
+[node name="Dossier" type="CenterContainer" parent="MarginContainer" unique_id=1754990974]
+layout_mode = 2
+
+[node name="EnvelopePanel" type="Panel" parent="MarginContainer/Dossier" unique_id=671951980]
+custom_minimum_size = Vector2(1000, 700)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sluk5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Dossier/EnvelopePanel" unique_id=1325607699]
+custom_minimum_size = Vector2(900, 600)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 950.0
+offset_bottom = 650.0
+size_flags_vertical = 6
+
+[node name="PagePanel" type="Panel" parent="MarginContainer/Dossier/EnvelopePanel/HBoxContainer" unique_id=263192654]
+modulate = Color(1, 0.96862745, 0.91764706, 1)
+custom_minimum_size = Vector2(450, 600)
+layout_direction = 3
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_34jot")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Dossier/EnvelopePanel/HBoxContainer/PagePanel" unique_id=124971218]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
