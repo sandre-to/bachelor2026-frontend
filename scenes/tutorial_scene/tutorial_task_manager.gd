@@ -40,7 +40,7 @@ func spawn_task(task_scene: PackedScene) -> void:
 	
 	var task := task_scene.instantiate() as CryptoScene
 	add_child(task)
-	task.set_data_info("tutorial_task")
+	task.set_data_info("tutorial")
 	current_task = task
 	task.global_position += Vector2(-80, 0)
 	fade_in(task)

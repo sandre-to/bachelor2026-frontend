@@ -39,7 +39,7 @@ func start() -> void:
 	#if not request_success:
 		#return
 	
-	set_task_info()
+	#set_task_info()
 	
 	# Initialiser den spesifike oppgaven
 	var init_success: bool = _on_start()
@@ -107,46 +107,46 @@ func remove_task() -> void:
 
 # request_task():	Spør backenden om å starte oppgaven
 #					Kaller på API-et: respondToTask
-func request_task() -> bool:
-	var req_id: int = Backend.send({
-		"type": "task",
-		"data": {
-			"taskID": task.id
-		}
-	})
-	
-	# Forbindelsen var lukket
-	if req_id == Backend.COULD_NOT_SEND:
-		return false
-	
-	var response: Dictionary = await Backend.recieve(req_id)
-	
-	# Fikk ingen respons i tide
-	if response == Backend.NO_RESPONSE_MSG:
-		return false
-	
-	if response.get("status") == "error":
-		# FEILHÅNDTER #
-		print("Errorstatus returnert")
-		print("Begrunnet:  " + response["data"]["desc"])
-		print(JSON.stringify(response, '\t'))
-		return false
-	
-	var response_data = response.get("data")
-	
-	if not response_data.has("data"):
-		# FEILHÅNDTER #
-		print("Oppgavedata mangler datafeltet")
-		print(JSON.stringify(response, '\t'))
-		return false
-		
-	task.backend_data = response_data.get("data")
-	task.backend_data.make_read_only()
-	
-	if response_data.has("extraDesc"):
-		task.extra_description = response_data.get("extraDesc")
-	
-	return true
+#func request_task() -> bool:
+	#var req_id: int = Backend.send({
+		#"type": "task",
+		#"data": {
+			#"taskID": task.id
+		#}
+	#})
+	#
+	## Forbindelsen var lukket
+	#if req_id == Backend.COULD_NOT_SEND:
+		#return false
+	#
+	#var response: Dictionary = await Backend.recieve(req_id)
+	#
+	## Fikk ingen respons i tide
+	#if response == Backend.NO_RESPONSE_MSG:
+		#return false
+	#
+	#if response.get("status") == "error":
+		## FEILHÅNDTER #
+		#print("Errorstatus returnert")
+		#print("Begrunnet:  " + response["data"]["desc"])
+		#print(JSON.stringify(response, '\t'))
+		#return false
+	#
+	#var response_data = response.get("data")
+	#
+	#if not response_data.has("data"):
+		## FEILHÅNDTER #
+		#print("Oppgavedata mangler datafeltet")
+		#print(JSON.stringify(response, '\t'))
+		#return false
+		#
+	#task.backend_data = response_data.get("data")
+	#task.backend_data.make_read_only()
+	#
+	#if response_data.has("extraDesc"):
+		#task.extra_description = response_data.get("extraDesc")
+	#
+	#return true
 
 
 

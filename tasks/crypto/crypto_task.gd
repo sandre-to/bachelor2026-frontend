@@ -1,9 +1,9 @@
 class_name CryptoScene extends BaseTask
 
-var crypto_tasks := {
-	"tutorial_task": "res://tasks/crypto/tutorial_task.tres",
-	"level_1.1": "res://tasks/crypto/level1-1.tres",
-	"level_1.4": "res://tasks/crypto/level1-4.tres"
+@export var crypto_tasks := {
+	"tutorial": "res://tasks/crypto/tutorial_task.tres",
+	"1.1": "res://tasks/crypto/level1-1.tres",
+	"1.4": "res://tasks/crypto/level1-4.tres"
 }
 @onready var error_panel: Panel = $ErrorPanel
 
