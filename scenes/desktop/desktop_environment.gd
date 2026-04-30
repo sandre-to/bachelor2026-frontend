@@ -3,13 +3,13 @@ class_name Desktop extends Control
 @onready var animation: AnimationPlayer = $Animation
 @onready var color_rect: ColorRect = $Animation/ColorRect
 
-@onready var file_explorer: Control = $FileExplorer
 @onready var tool_panel: Panel = %ToolPanel
 @onready var task_manager: Control = %TaskManager
 @onready var task_display: Panel = %Panel
 @onready var tool_selector: ToolSelector = %ToolSelector
 @onready var notepad_app: NotepadApp = %NotepadApp
 @onready var browser: Browser = %Browser
+@onready var file_explorer: FileExplorer = %FileExplorer
 
 func _ready() -> void:
 	color_rect.show()

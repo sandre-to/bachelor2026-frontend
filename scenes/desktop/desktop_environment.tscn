@@ -24,15 +24,14 @@
 [ext_resource type="PackedScene" uid="uid://bmeqfysgvuf4y" path="res://scenes/desktop/notepad/notepad.tscn" id="15_cwh75"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="20_pghv4"]
 [ext_resource type="Script" uid="uid://c80f14ksnidug" path="res://scenes/desktop/dialogue_panel.gd" id="23_itp14"]
-[ext_resource type="Texture2D" uid="uid://bn4lq8jhttxlf" path="res://scenes/file_explorer/pictures/bunboss.png" id="24_f0kxn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ec86u"]
 shader = ExtResource("3_ndhkw")
 shader_parameter/color_one = Color(0.28228635, 0.7162696, 0.7725609, 1)
 shader_parameter/color_two = Color(0.8813623, 0.76217747, 0.60553944, 1)
-shader_parameter/angle = 108.975
-shader_parameter/line_count = 32.53
-shader_parameter/speed = 0.4
+shader_parameter/angle = 200.0
+shader_parameter/line_count = 30.0
+shader_parameter/speed = 0.25
 shader_parameter/blur = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8lvk"]
@@ -76,22 +75,6 @@ shadow_color = Color(0.14509805, 0.14901961, 0.16862746, 0.627451)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgb4e"]
 bg_color = Color(0.40735757, 0.38808337, 0.42705312, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d20cb"]
-bg_color = Color(0.71677977, 0.5288252, 0.6928995, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-corner_detail = 10
-
-[sub_resource type="LabelSettings" id="LabelSettings_itp14"]
-font_size = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd566"]
 bg_color = Color(0.71677977, 0.5288252, 0.6928995, 1)
@@ -261,7 +244,6 @@ theme_override_constants/separation = 15
 layout_mode = 2
 icon = ExtResource("11_ctsuf")
 tool_title = "CRYPTO"
-tool_info = "An important equipment to solve weird messagesq"
 
 [node name="Stegano" parent="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer" unique_id=1005146078 instance=ExtResource("10_f6qo7")]
 layout_mode = 2
@@ -277,6 +259,7 @@ tool_info = "Crack some passwords"
 
 [node name="NotepadButton" type="Button" parent="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 icon = ExtResource("12_k7yd3")
@@ -326,6 +309,15 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 328.0
+offset_top = -125.0
+offset_right = 328.0
+offset_bottom = -125.0
+grow_horizontal = 1
 
 [node name="TaskManager" type="Control" parent="DekstopLayout/VBoxContainer/TaskBar" unique_id=368341897]
 unique_name_in_owner = true
@@ -439,31 +431,6 @@ text = "CLEAR  "
 icon = ExtResource("14_3lj0i")
 expand_icon = true
 
-[node name="FileExplorer" parent="." unique_id=1560975105 instance=ExtResource("5_ndhkw")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-offset_left = -20.0
-offset_right = -20.0
-
-[node name="NotepadApp" parent="." unique_id=1016672914 instance=ExtResource("15_cwh75")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 0
-anchor_top = 0.0
-anchor_bottom = 0.0
-offset_left = 67.0
-offset_top = 75.0
-offset_right = 517.0
-offset_bottom = 650.0
-grow_vertical = 1
-
-[node name="Browser" parent="." unique_id=1900007620 instance=ExtResource("14_ybhkl")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-
 [node name="DialoguePanel" type="Panel" parent="." unique_id=991831837]
 unique_name_in_owner = true
 process_mode = 3
@@ -475,9 +442,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -244.0
-offset_top = -222.0
+offset_top = -164.0
 offset_right = 244.0
-offset_bottom = 222.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_itp14")
@@ -511,7 +478,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_pgb4e")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -519,7 +486,7 @@ selection_enabled = true
 
 [node name="NextButton" type="Button" parent="DialoguePanel" unique_id=1264057142]
 process_mode = 3
-custom_minimum_size = Vector2(128, 64)
+custom_minimum_size = Vector2(128, 50)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -527,65 +494,14 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -64.0
-offset_top = -79.0
+offset_top = -62.0
 offset_right = 64.0
-offset_bottom = -15.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "NEXT"
 
-[node name="BunBoss" type="Panel" parent="." unique_id=827372502]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(160, 60)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -467.0
-offset_right = 95.0
-offset_bottom = -390.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_d20cb")
-
-[node name="BunnyImage" type="TextureRect" parent="BunBoss" unique_id=515796851]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 390.0
-offset_top = -66.5
-offset_right = 848.0
-offset_bottom = 354.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("24_f0kxn")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="BunBoss" unique_id=654039648]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -11.0
-offset_right = 34.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "BUNBOSS"
-label_settings = SubResource("LabelSettings_itp14")
-
-[node name="BossFlag" type="LineEdit" parent="BunBoss" unique_id=1927830510]
+[node name="BossFlag" type="LineEdit" parent="DialoguePanel" unique_id=1927830510]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -594,9 +510,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -247.0
-offset_top = 49.0
+offset_top = -256.0
 offset_right = 247.0
-offset_bottom = 140.0
+offset_bottom = -165.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
@@ -604,6 +520,35 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nd566")
 placeholder_text = "HIDDEN FLAG"
 alignment = 1
 max_length = 18
+
+[node name="Apps" type="Node" parent="." unique_id=231535814]
+
+[node name="FileExplorer" parent="Apps" unique_id=1560975105 instance=ExtResource("5_ndhkw")]
+unique_name_in_owner = true
+visible = false
+offset_left = -20.0
+offset_right = -20.0
+
+[node name="NotepadApp" parent="Apps" unique_id=1016672914 instance=ExtResource("15_cwh75")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 67.0
+offset_top = 75.0
+offset_right = 517.0
+offset_bottom = 650.0
+grow_vertical = 1
+
+[node name="Browser" parent="Apps" unique_id=1900007620 instance=ExtResource("14_ybhkl")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="Visuals" type="Control" parent="." unique_id=616387900]
 layout_mode = 1
@@ -672,5 +617,5 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/TaskButton" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_button_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
-[connection signal="text_submitted" from="BunBoss/BossFlag" to="." method="_on_boss_flag_text_submitted"]
-[connection signal="text_submitted" from="BunBoss/BossFlag" to="DialoguePanel" method="_on_boss_flag_text_submitted"]
+[connection signal="text_submitted" from="DialoguePanel/BossFlag" to="." method="_on_boss_flag_text_submitted"]
+[connection signal="text_submitted" from="DialoguePanel/BossFlag" to="DialoguePanel" method="_on_boss_flag_text_submitted"]

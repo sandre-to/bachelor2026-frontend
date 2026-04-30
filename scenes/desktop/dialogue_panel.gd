@@ -1,11 +1,9 @@
 class_name DialoguePanel extends Panel
 
-@export var entry_dialogue: String = "boss_start"
 @export var dialog_move_speed: float = 0.35
 @onready var next_button: Button = $NextButton
 @onready var bunny_image: TextureRect = $"../BunBoss/BunnyImage"
 @onready var boss_flag: LineEdit = %BossFlag
-
 @onready var text: RichTextLabel = %Text
 
 var dialogue_data := {}
@@ -18,7 +16,6 @@ var is_typing := false
 
 func _ready() -> void:
 	load_dialogue()
-	start_dialogue(entry_dialogue)
 	
 func start_dialogue(key: String) -> void:
 	if key in dialogue_data:
@@ -66,7 +63,8 @@ func end_of_dialogue() -> void:
 			next_button.disabled = true
 			active_tween = create_tween()
 			active_tween.set_ease(Tween.EASE_IN)
-			active_tween.tween_property(self, "position", position + Vector2(650, 180), 0.24)
+			active_tween.tween_property(
+				self, "position", position + Vector2(700, 280), 0.38)
 
 func _on_boss_flag_text_submitted(new_text: String) -> void:
 	if new_text == "carrot":
