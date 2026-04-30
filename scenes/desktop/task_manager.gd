@@ -61,10 +61,10 @@ func _on_task_1_pressed() -> void:
 	spawn_task(CRYPTO_TASK, "level_1.1")
 
 func _on_task_2_pressed() -> void:
-	spawn_task(STEGANO_TASK, "")
+	spawn_task(STEGANO_TASK, "level_1.2")
 
 func _on_task_3_pressed() -> void:
-	spawn_task(WEB_TASK, "")
+	spawn_task(WEB_TASK, "level_1.3")
 
 func _on_task_4_pressed() -> void:
 	spawn_task(CRYPTO_TASK, "level_1.4")
@@ -76,7 +76,7 @@ func spawn_task(task_scene: PackedScene, key: String) -> void:
 	var task := task_scene.instantiate()
 	add_child(task)
 	
-	if task is CryptoScene:
+	if task is BaseTask:
 		task.set_data_info(key)
 	
 	current_task = task

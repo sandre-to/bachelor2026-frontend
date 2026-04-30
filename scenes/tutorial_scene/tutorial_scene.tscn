@@ -488,7 +488,6 @@ visible = false
 layout_mode = 1
 offset_left = -20.0
 offset_right = -20.0
-script = null
 
 [node name="TutorialToolSelector" parent="." unique_id=1798708503 instance=ExtResource("8_r3qa2")]
 layout_mode = 1
@@ -569,7 +568,21 @@ vertical_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "TASK 1"
+text = "CRYPTO TASK"
+
+[node name="Task2" type="Button" parent="TutorialTaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1195510407]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "STEG TASK"
+
+[node name="Task3" type="Button" parent="TutorialTaskManager/Panel/MarginContainer/VBoxContainer" unique_id=927918751]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "WEB TASK"
 
 [node name="DialoguePanel" type="Panel" parent="." unique_id=602928932]
 process_mode = 3
@@ -688,6 +701,10 @@ text = "SKIP TUTORIAL"
 [connection signal="pressed" from="TutorialTaskManager/TaskButton" to="TutorialTaskManager" method="_on_task_button_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TutorialTaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="DialoguePanel" method="_on_task_1_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="TutorialTaskManager" method="_on_task_2_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="TutorialTaskManager" method="_on_task_3_pressed"]
 [connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SkipTutorial" to="." method="_on_skip_tutorial_pressed"]
+
+[editable path="TutorialToolSelector"]

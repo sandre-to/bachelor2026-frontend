@@ -80,6 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qx4og")
+task_type = "\"crypto\""
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 material = SubResource("ShaderMaterial_mkcnv")
@@ -242,7 +243,6 @@ grow_vertical = 2
 text = "COPY TEXT"
 
 [node name="ErrorPanel" type="Panel" parent="." unique_id=499173941]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -255,6 +255,7 @@ offset_right = -165.0
 offset_bottom = 251.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_r7fc5")
 
 [node name="MarginContainer" type="MarginContainer" parent="ErrorPanel" unique_id=528531086]

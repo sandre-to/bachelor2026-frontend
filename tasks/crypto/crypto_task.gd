@@ -24,9 +24,7 @@ func set_data_info(key: String) -> void:
 func _on_confirm_button_pressed() -> void:
 	if enter_flag.text == task.flag:
 		confirm_button.disabled = true
-		SignalBus.task_completed.emit()
-	else:
-		error_panel.show()
+		completed_task()
 
 #func _on_start() -> bool:
 	#print(task.backend_data["felt_1"])

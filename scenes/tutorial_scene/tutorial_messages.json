@@ -7,7 +7,7 @@
 	],
 	
 	"files": [
-		"The files button at the bottom shows all the files on your computer.",
+		"The files button at the bottom right shows all the files on your computer.",
 	],
 	
 	"files_folder": [
@@ -16,7 +16,7 @@
 	],
 	
 	"tools": [
-		"This is your toolkit.",
+		"This is your toolkit. For now you can only see the crypto tool.",
 	],
 	
 	"tools_info": [
@@ -24,7 +24,7 @@
 	],
 	
 	"clear_button": [
-		"If too much are shown on screen, press the clear button."
+		"If too much is shown on screen, press the clear button."
 	],
 	"tasks": [
 		"You're doing great so far!!",
@@ -48,7 +48,52 @@
 		"3. Enter a number (Use arrows UP / DOWN)",
 		"4. Press [Decipher]",
 	],
+	"crypto_done": [
+	"NICE! You solved the crypto task."
+	],
 	
+	"steg_tool_info": [
+		"Using bunny magic, you should now have a new tool in your toolkit!",
+		"Press the tool kit button to check it out.",
+		"This tool can be used for steganography.",
+	],
+	"steg_task_info": [
+		"Look, a new task has appeared!",
+		"Press the tasks button on the bottom right."
+	],
+	"file_explorer": [
+		"infoinfo!",
+		""
+	],
+	
+	"steg_task": [
+		"Open the file explorer I showed you earlier.",
+		"1. See if you find the Saint Sofelin image.",
+		"2. Extract the image metadata, by entering the image filepath in metaExtract",
+		"3. /home/pictures/saintSofelin",
+		"4. Press [Analyze]",
+	],
+	"steg_done": [
+		"Amazing!! Well done.",
+		"Now I will teach you about web exploitation."
+	],
+	"web_tool_info": [
+		""
+	],
+	"web_task_info": [
+		"blahblah"
+	],
+	"web_task": [
+		"What kind of tool should you use to crack usernames and passwords?",
+		"Open the password breaker tool I showed you earlier.",
+		"1. Pick the website option.",
+		"2. and enter the URL",
+		"3. Choose the username or password list you want to test.",
+		"4. Press the green [SCAN] button",
+	],
+	"web_done": [
+		""
+	],
 	"finished": [
 		"NICE! Now you are a certified hacker."
 	]

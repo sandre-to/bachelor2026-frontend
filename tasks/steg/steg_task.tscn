@@ -65,6 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3hfx2")
 task = ExtResource("2_lfggm")
+task_type = "\"steg\""
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)

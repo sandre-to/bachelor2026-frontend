@@ -1,15 +1,25 @@
 class_name StegScene 
 extends BaseTask
-
+var steg_tasks := {
+	"tutorial_task": "res://tasks/steg/steg_tutorial.tres",
+	"level_1.2": "res://tasks/steg/steg1.2.tres"
+}
 func _ready() -> void:
 	super._ready()
-	set_data_info()
 	start()
 
-func set_data_info() -> void:
-	title.text = task.name
-	description.text = task.description
-	puzzle.text = task.extra_description
+
+func set_data_info(key: String) -> void:
+	if key in steg_tasks.keys():
+		var current_task = steg_tasks[key]
+		task = load(current_task)
+		title.text = task.name
+		description.text = task.description
+		puzzle.text = task.extra_description
+	else:
+		push_error("Key does not exist in tasks: ", key)
+	
+	
 
 func _on_start() -> bool:
 	var steg_task := task as StegData

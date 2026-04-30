@@ -12,6 +12,11 @@ class_name TutorialDialoguePanel extends Panel
 @onready var tutorial_task_manager: TutorialTasks = %TutorialTaskManager
 @onready var play_button: Button = %PlayButton
 @onready var tutorial_tool_selector: TutorialToolSelector = $"../TutorialToolSelector"
+@onready var steg_tool_button: = $"../TutorialToolSelector/Panel/HBoxContainer/StegToolButton"
+@onready var task_button: Button = $"../TutorialTaskManager/TaskButton"
+@onready var task_1: Button = %Task1
+@onready var task_2: Button = %Task2
+@onready var task_3: Button = %Task3
 
 var dialogue_data := {}
 var dialogue := []
@@ -28,7 +33,9 @@ var files_pressed := false
 var clear_pressed := false
 
 func _ready() -> void:
-	SignalBus.task_completed.connect(_on_tutorial_task_completed)
+	steg_tool_button.hide()
+	SignalBus.task_completed.connect(_on_task_completed)
+	
 	await get_tree().create_timer(0.8).timeout
 	load_dialogue()
 	start_dialogue("intro")
@@ -47,6 +54,12 @@ func start_dialogue(key: String) -> void:
 		if key == "clear_button":
 			animation.play("clear_button")
 			clear_button.disabled = false
+		if key == "steg_task_info":
+			task_1.hide()
+			tutorial_task_manager.show()
+			task_button.disabled = false
+			task_2.show()
+			
 		show_next_line()
 	else:
 		push_error("Dialogue key not found: " + key)
@@ -110,6 +123,16 @@ func end_of_dialogue() -> void:
 		active_tween = create_tween()
 		active_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 		active_tween.tween_property(self, "position", position + Vector2(-70, -200), dialog_move_speed)
+	
+	
+	elif current_dialogue_key == "steg_tool_info":
+		FileSystem.add_image_file("saintSofelin", "res://scenes/file_explorer/pictures/devSofie.png") 
+		start_dialogue("steg_task_info")
+	elif current_dialogue_key == "steg_task_info":
+		start_dialogue("steg_task")
+		
+	elif current_dialogue_key == "steg_done":
+		start_dialogue("web_tool_info")
 
 func _on_files_button_pressed() -> void:
 	if files_pressed: return
@@ -146,23 +169,55 @@ func _on_task_1_pressed() -> void:
 	if task_pressed: return
 	
 	task_pressed = true
-	animation.stop()
+	#animation.stop()
 	show()
 	start_dialogue("last_section")
 	clear_button.disabled = false
 	tools_button.disabled = false
 	files_button.disabled = false
-
-func _on_tutorial_task_completed() -> void:
-	start_dialogue("finished")
+func _on_task_completed(task_type: String) -> void:
+	tutorial_task_manager.clear_current_task()
 	tutorial_task_manager.hide()
-	play_button.show()
-	next_button.hide()
-	clear_button.disabled = true
-	tools_button.disabled = true
-	files_button.disabled = true
-	tutorial_tool_selector.hide_selected_tools()
-	clear_button.pressed.emit()
-	active_tween = create_tween()
-	active_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	active_tween.tween_property(self, "position", position + Vector2(70, 200), dialog_move_speed)
+
+	match task_type:
+		"crypto":
+			steg_tool_button.show()
+			tools_button.disabled = false
+			start_dialogue("steg_tool_info")
+		"steg":
+			start_dialogue("steg_done")
+		"web":
+			start_dialogue("finished")
+			
+			
+			
+#REMEMBER TO REMOVE FUNC BELOW
+func _on_crypto_task_completed() -> void: #endre til etter stegogweb
+	tutorial_task_manager.clean_current_task()
+	tutorial_task_manager.hide()
+	start_dialogue("crypto_done")
+	
+	if current_dialogue_key == "crypto_task":
+		start_dialogue("crypto_done")
+	elif current_dialogue_key == "steg_task":
+		start_dialogue("web_tool_info")
+	elif current_dialogue_key == "web_task":
+		start_dialogue("finished")
+	#play_button.show()
+	#next_button.hide()
+	#clear_button.disabled = true
+	#tools_button.disabled = true
+	#files_button.disabled = true
+	#tutorial_tool_selector.hide_selected_tools()
+	#clear_button.pressed.emit()
+	#active_tween = create_tween()
+	#active_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	#active_tween.tween_property(self, "position", position + Vector2(70, 200), dialog_move_speed)
+
+func steg_task() -> void:
+	start_dialogue("steg_task")
+	pass
+
+func web_task() -> void:
+	start_dialogue("web_task")
+	pass
