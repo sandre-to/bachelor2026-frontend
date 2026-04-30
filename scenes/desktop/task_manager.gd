@@ -114,6 +114,7 @@ func _on_task_completed() -> void:
 		await get_tree().create_timer(0.15).timeout
 		
 		dialogue_panel.show()
+		bun_boss.show()
 		dialogue_panel.start_dialogue("boss_start")
 		return
 	
