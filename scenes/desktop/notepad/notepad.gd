@@ -13,6 +13,7 @@ var current_file_path: String = ""
 var is_read_only_file: bool = false
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
+var notes := {}
 
 func _ready() -> void:
 	open_personal_notes()
@@ -57,33 +58,27 @@ func get_save_path() -> String:
 
 func save_note() -> void:
 	if is_read_only_file:
-		status_label.text = "Read-only file"
 		return
-
-	var path := get_save_path()
-	var file := FileAccess.open(path, FileAccess.WRITE)
-	if file == null:
-		status_label.text = "Failed to save"
-		return
-
-	file.store_string(text_edit.text)
-	status_label.text = "Saved: %s" % path.get_file()
-
+	
+	var file_name := txt_name_input.text.strip_edges()
+	if file_name.is_empty():
+		file_name = "untitled"
+	
+	notes[file_name] = text_edit.text
+	status_label.text = "Saved: %s" % file_name
+	
 func load_note() -> void:
-	var path := get_save_path()
+	var file_name := txt_name_input.text.strip_edges()
+	if file_name.is_empty():
+		file_name = "untitled"
 
-	if not FileAccess.file_exists(path):
+	if not notes.has(file_name):
 		text_edit.text = ""
 		status_label.text = "No saved note"
 		return
-
-	var file := FileAccess.open(path, FileAccess.READ)
-	if file == null:
-		status_label.text = "Failed to load"
-		return
-
-	text_edit.text = file.get_as_text()
-	status_label.text = "Loaded: %s" % path.get_file()
+	
+	text_edit.text = notes[file_name]
+	status_label.text = "Loaded: %s" % file_name
 
 func clear_note() -> void:
 	if is_read_only_file:
