@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://cunx6y83t73w5"]
+
+[ext_resource type="Script" uid="uid://bttbsejslc7c6" path="res://tasks/hint_box.gd" id="1_n6s6y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms4vn"]
+bg_color = Color(0.41753522, 0.68266326, 0.27585247, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m38qy"]
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a38up"]
+bg_color = Color(0.43519226, 0.4351923, 0.43519217, 1)
+
+[node name="HintBox" type="Panel" unique_id=1931929207]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -312.0
+offset_right = 272.5
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ms4vn")
+script = ExtResource("1_n6s6y")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=73958943]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1794220679]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HintTitle" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1554196528]
+unique_name_in_owner = true
+layout_mode = 2
+text = "HINT"
+label_settings = SubResource("LabelSettings_m38qy")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=789001784]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_m38qy")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CloseHintButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2100651118]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_a38up")
+text = "CLOSE"
