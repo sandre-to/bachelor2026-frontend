@@ -6,39 +6,28 @@ class_name Desktop extends Control
 @onready var file_explorer: Control = $FileExplorer
 @onready var tool_panel: Panel = %ToolPanel
 @onready var task_manager: Control = %TaskManager
-@onready var browser: Browser = %Browser
-@onready var notepad: NotepadApp = %NotepadApp
 @onready var task_display: Panel = %Panel
 @onready var tool_selector: ToolSelector = %ToolSelector
+@onready var notepad_app: NotepadApp = %NotepadApp
+@onready var browser: Browser = %Browser
 
 func _ready() -> void:
 	color_rect.show()
 	animation.play("fade_in")
+	await animation.animation_finished
+	animation.queue_free()
 	
 	tool_selector.hide()
 	Backend.connect_to_backend()	# MIDLERTIDIG
 
-func _on_files_button_pressed() -> void:
-	file_explorer.visible = not file_explorer.visible
+func _draw() -> void:
+	draw_circle(Vector2(1920.0 / 2, 1080.0 / 2), 5000, Color.BLACK)
 
 func _on_home_button_pressed() -> void:
 	file_explorer.hide()
 	tool_selector.hide()
 	task_display.hide()
-	notepad.hide()
+	notepad_app.hide()
 	browser.hide()
 	for tool in tool_panel.get_children():
 		tool.hide()
-
-func _on_tools_button_pressed() -> void:
-	tool_selector.visible = not tool_selector.visible
-
-func _on_button_pressed() -> void:
-	browser.visible = not browser.visible
-
-func _on_notepad_button_pressed() -> void:
-	print("notepad button pressed")
-	notepad.visible = not notepad.visible
-	
-	if notepad.visible:
-		notepad.open_personal_notes()
