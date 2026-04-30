@@ -20,3 +20,16 @@ func _on_copy_button_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	hint_box.hide()
+
+func _on_confirm_button_pressed() -> void:
+	if enter_flag.text == task.flag:
+		SignalBus.task_completed.emit()
+	else:
+		error_panel.show()
+
+
+func set_task(_task: CryptoData) -> void:
+	task = _task
+	title.text = _task.name
+	description.text = _task.description
+	puzzle.text = _task.cipher_text
