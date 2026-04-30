@@ -54,7 +54,8 @@ func _on_secret_button_pressed() -> void:
 	preview.hide()
 	_show_folder_from_path(FileSystem.SECRET_DIR)
 
-
+func _on_exit_button_pressed() -> void:
+	hide()
 
 func _on_files_item_selected(index: int) -> void:
 	var file: FileEntity = files.get_item_metadata(index)
@@ -65,6 +66,7 @@ func _open_image_popup(texture: Texture2D) -> void:
 		var popup = preload("res://scenes/file_explorer/imgPopUp.tscn").instantiate()
 		add_child(popup)
 		popup.show_image(texture)
+
 
 # _on_files_item_activated():	Kjøres når en valgt fil/katalog åpnes.
 #								Den bestemmer hvilke "program" filen skal åpnes i.

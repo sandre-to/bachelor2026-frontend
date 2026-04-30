@@ -9,10 +9,13 @@ class_name NotepadApp
 @onready var clear_button: Button = $PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Clear
 @onready var txt_name_input: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/TxtNameInput
 
+
 var current_file_path: String = ""
 var is_read_only_file: bool = false
+
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
+# SOFIE: Brukerens notater lagres her
 var notes := {}
 
 func _ready() -> void:
@@ -20,6 +23,7 @@ func _ready() -> void:
 
 func open_personal_notes() -> void:
 	current_file_path = ""
+	# SOFIE: De skal kunne lese egne notater
 	is_read_only_file = false
 	text_edit.editable = true
 	save_button.disabled = false
@@ -29,12 +33,14 @@ func open_personal_notes() -> void:
 
 func open_reference_file(file_name: String, content: String) -> void:
 	current_file_path = ""
+	# SOFIE: De skal ikke kunne redigere allerede eksiterende filer
 	is_read_only_file = true
 	text_edit.text = content
 	text_edit.editable = false
 	save_button.disabled = true
 	load_button.disabled = true
 	clear_button.disabled = true
+	# SOFIE: For brukervennlighet
 	status_label.text = "Viewing: %s" % file_name
 
 func new_personal_note() -> void:
@@ -47,6 +53,8 @@ func new_personal_note() -> void:
 	clear_button.disabled = false
 	status_label.text = "New note"
 
+# SOFIE: For simpelhetens skyld benyttes kun navnet på notatet
+# som filsti i notepad "appen". 
 func get_save_path() -> String:
 	var file_name := txt_name_input.text.strip_edges()
 
