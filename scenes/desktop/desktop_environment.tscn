@@ -5,12 +5,14 @@
 [ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
+[ext_resource type="Texture2D" uid="uid://ctb4dghxhp0ig" path="res://assets/icons/carrotXPbar.png" id="4_pgb4e"]
+[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://tasks/task_label.tres" id="5_d20cb"]
 [ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="5_jyxi7"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="5_ndhkw"]
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="6_0nmlt"]
 [ext_resource type="Texture2D" uid="uid://4q8o53gb77ch" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
 [ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
-[ext_resource type="Script" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
 [ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_ctsuf"]
 [ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_f6qo7"]
 [ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="11_ctsuf"]
@@ -237,6 +239,36 @@ text = "BunOS"
 label_settings = SubResource("LabelSettings_bpu8p")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Visuals" unique_id=2059825751]
+custom_minimum_size = Vector2(200, 46)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 7.0
+offset_right = -120.0
+offset_bottom = 53.0
+grow_horizontal = 0
+max_value = 200.0
+value = 200.0
+texture_progress = ExtResource("4_pgb4e")
+tint_under = Color(0.7590985, 0.0074165636, 0.6296517, 1)
+tint_over = Color(0.40341344, 0.6652766, 0.9377301, 1)
+tint_progress = Color(0.956804, 0.86080885, 0.7255407, 1)
+
+[node name="XPLabel" type="Label" parent="Visuals" unique_id=1627190756]
+layout_mode = 0
+offset_left = 1540.0
+offset_top = 10.0
+offset_right = 1598.0
+offset_bottom = 53.0
+text = "XP:"
+label_settings = ExtResource("5_d20cb")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="DesktopPanel" type="MarginContainer" parent="." unique_id=2089317787]
 layout_mode = 1
