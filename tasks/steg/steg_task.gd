@@ -58,9 +58,9 @@ func _on_start() -> bool:
 
 	return true
 
-func verify_flag() -> bool:
-	var steg_task := task as StegData
-	if steg_task == null:
-		return false
-
-	return enter_flag.text.strip_edges() == steg_task.flag
+#func verify_flag() -> bool:
+	#var steg_task := task as StegData
+	#if steg_task == null:
+		#return false
+#
+	#return enter_flag.text.strip_edges() == steg_task.flag

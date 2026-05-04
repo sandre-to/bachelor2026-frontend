@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_bowak")
-id = 9
 name = "EXPERIMENTAL"
 description = "fuck bitches"
 extra_description = "get money"
