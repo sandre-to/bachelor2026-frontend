@@ -54,7 +54,7 @@
 	
 	"steg_tool_info": [
 		"Using bunny magic, you should now have a new tool in your toolkit!",
-		"Press the tool kit button to check it out.",
+		"Press the stegano tool in the toolkit, I'll show you how to use it later.",
 		"This tool can be used for steganography.",
 	],
 	"steg_task_info": [
@@ -102,6 +102,7 @@
 		"6. Enter the password you found, and enter the flag into the task."
 	],
 	"finished": [
-		"NICE! Now you are a certified hacker."
+		"NICE! Now you are a certified hacker.",
+		"Press next to start the main game."
 	]
 }

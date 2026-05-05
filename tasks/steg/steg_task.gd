@@ -4,6 +4,7 @@ var steg_tasks := {
 	"tutorial_task": "res://tasks/steg/steg_tutorial.tres",
 	"level_1.2": "res://tasks/steg/steg1.2.tres"
 }
+@onready var error_panel: Panel = $ErrorPanel
 func _ready() -> void:
 	super._ready()
 	start()
@@ -73,4 +74,10 @@ func verify_flag() -> bool:
 	if steg_task == null:
 		return false
 
+	if not enter_flag.text.strip_edges() == steg_task.flag:
+		error_panel.show()
+
 	return enter_flag.text.strip_edges() == steg_task.flag
+
+func _on_exit_button_pressed() -> void:
+	error_panel.hide()

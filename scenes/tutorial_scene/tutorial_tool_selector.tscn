@@ -21,7 +21,8 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_d5bjg")
 
-[node name="Panel" type="Panel" parent="." unique_id=2036567516]
+[node name="ToolButtonPanel" type="Panel" parent="." unique_id=2036567516]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -36,7 +37,7 @@ offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=2129684249]
+[node name="HBoxContainer" type="HBoxContainer" parent="ToolButtonPanel" unique_id=2129684249]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,13 +47,13 @@ grow_vertical = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="ToolButton" parent="Panel/HBoxContainer" unique_id=1782323474 instance=ExtResource("2_ujv2c")]
+[node name="ToolButton" parent="ToolButtonPanel/HBoxContainer" unique_id=1782323474 instance=ExtResource("2_ujv2c")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("3_b31ty")
 tool_title = "CRYPTO"
 
-[node name="StegToolButton" parent="Panel/HBoxContainer" unique_id=1827193967 instance=ExtResource("2_ujv2c")]
+[node name="StegToolButton" parent="ToolButtonPanel/HBoxContainer" unique_id=1827193967 instance=ExtResource("2_ujv2c")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -60,7 +61,7 @@ icon = ExtResource("4_b31ty")
 tool_title = "STEGANO"
 tool_info = "Find hidden information in files or pictures"
 
-[node name="WebToolButton" parent="Panel/HBoxContainer" unique_id=611143068 instance=ExtResource("2_ujv2c")]
+[node name="WebToolButton" parent="ToolButtonPanel/HBoxContainer" unique_id=611143068 instance=ExtResource("2_ujv2c")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -68,4 +69,4 @@ icon = ExtResource("5_0jppb")
 tool_title = "WEB"
 tool_info = "Crack some usernames or passwords"
 
-[connection signal="pressed" from="Panel/HBoxContainer/ToolButton" to="." method="_on_crypto_pressed"]
+[connection signal="pressed" from="ToolButtonPanel/HBoxContainer/ToolButton" to="." method="_on_crypto_pressed"]

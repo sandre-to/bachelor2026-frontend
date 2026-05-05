@@ -13,8 +13,16 @@ class_name TutorialDialoguePanel extends Panel
 @onready var tutorial_task_manager: TutorialTasks = %TutorialTaskManager
 @onready var play_button: Button = %PlayButton
 @onready var tutorial_tool_selector: TutorialToolSelector = $"../TutorialToolSelector"
-@onready var steg_tool_button: = $"../TutorialToolSelector/Panel/HBoxContainer/StegToolButton"
-@onready var web_tool_button: = $"../TutorialToolSelector/Panel/HBoxContainer/WebToolButton"
+#@onready var steg_tool_button: = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton"
+#@onready var web_tool_button: = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton"
+@onready var tool_button: Button = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/ToolButton"
+@onready var steg_tool_button: Button = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton"
+@onready var web_tool_button: Button = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton"
+
+
+@onready var tool_button_panel: Panel = $"../TutorialToolSelector/ToolButtonPanel"
+var next_button_start_pos: Vector2
+
 
 @onready var task_button: Button = $"../TutorialTaskManager/TaskButton"
 @onready var task_1: Button = %Task1
@@ -48,7 +56,8 @@ func _ready() -> void:
 	steg_tool_button.hide()
 	web_tool_button.hide()
 	browser.hide()
-	
+	play_button.hide()
+	next_button_start_pos = next_button.position
 	text_base_scale = tutorial_text.scale
 	next_base_scale = next_button.scale
 	base_font_size = tutorial_text.get_theme_font_size("normal_font_size")
@@ -75,6 +84,8 @@ func start_dialogue(key: String) -> void:
 		if key == "clear_button":
 			animation.play("clear_button")
 			clear_button.disabled = false
+		if key == "crypto_task":
+			waiting_for_action = "crypto_task_done"
 			#STEG
 		if key == "steg_tool_info":
 			waiting_for_action = "steg_tool"
@@ -86,6 +97,8 @@ func start_dialogue(key: String) -> void:
 			tutorial_task_manager.show()
 			task_button.disabled = false
 			task_2.show()
+		if key == "steg_task":
+			waiting_for_action =  "steg_task_done"
 			#WEB
 		if key == "web_tool_info":
 			waiting_for_action = "web_tool"
@@ -102,6 +115,8 @@ func start_dialogue(key: String) -> void:
 			task_3.show()
 			tutorial_task_manager.show()
 			task_button.disabled = false
+		if key == "web_task":
+			waiting_for_action = "web_task_done"
 	else:
 		push_error("Dialogue key not found: " + key)
 
@@ -180,8 +195,10 @@ func end_of_dialogue() -> void:
 		start_dialogue("web_tool_info")
 		
 	elif current_dialogue_key == "browser_pressed":
-
 		start_dialogue("web_task_info")
+	elif current_dialogue_key == "finished":
+		play_button.show()
+		
 
 func _on_files_button_pressed() -> void:
 	if waiting_for_action != "files_button":
@@ -197,6 +214,7 @@ func _on_files_button_pressed() -> void:
 	active_tween.tween_property(self, "position", position + Vector2(500, 0), dialog_move_speed)
 
 func _on_tools_button_pressed() -> void:
+	tool_button_panel.show()
 	if tool_pressed: return
 	
 	tool_pressed = true
@@ -244,26 +262,33 @@ func _on_task_2_pressed() -> void:
 func _on_task_3_pressed() -> void:
 	if waiting_for_action == "task_3":
 		waiting_for_action = ""
+		browser.hide()
 		animation.stop()
 		start_dialogue("web_task")
 		
 func _on_task_completed(task_type: String) -> void:
+	#universelt
+	waiting_for_action = ""
+	
 	tutorial_task_manager.clear_current_task()
 	tutorial_task_manager.hide()
-
+	file_explorer.hide()
+	tutorial_tool_selector.hide_selected_tools()
+	tool_button_panel.hide()
+	#spesifikt til hver kategori
 	match task_type:
 		"crypto":
 			steg_tool_button.show()
+			web_tool_button.hide()
 			tools_button.disabled = false
-			file_explorer.hide()
-			tutorial_tool_selector.hide_selected_tools()
+			reset_dialogue_position()
 			start_dialogue("steg_tool_info")
 		"steg":
 			web_tool_button.show() 
-			file_explorer.hide()
-			tutorial_tool_selector.hide_selected_tools()
 			start_dialogue("steg_done")
 		"web":
+			reset_dialogue_position()
+			await get_tree().create_timer(dialog_move_speed).timeout
 			start_dialogue("finished")
 
 
@@ -341,7 +366,7 @@ func shrink_dialogue_ui() -> void:
 	tween.parallel().tween_property(
 		next_button,
 		"position",
-		Vector2(450, 8),
+		Vector2(400, 8),
 		dialog_move_speed
 	)
 func reset_dialogue_position() -> void:
@@ -358,3 +383,6 @@ func reset_dialogue_position() -> void:
 	# tilbakestille knapp
 	next_button.scale = next_base_scale
 	next_button.add_theme_font_size_override("font_size", base_font_size)
+	tween.tween_callback(func():
+		next_button.position = next_button_start_pos
+	)

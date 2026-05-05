@@ -514,6 +514,7 @@ offset_left = -20.0
 offset_right = -20.0
 
 [node name="TutorialToolSelector" parent="." unique_id=1798708503 instance=ExtResource("8_r3qa2")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="TutorialTaskManager" type="Control" parent="." unique_id=368341897]
@@ -718,6 +719,7 @@ text = "SKIP TUTORIAL"
 
 [node name="Browser" parent="." unique_id=1900007620 instance=ExtResource("16_rxhm2")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = 307.0
 offset_top = 295.0
@@ -731,10 +733,10 @@ offset_bottom = -147.0
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/BrowserButton" to="DialoguePanel" method="_on_browser_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="." method="_on_clear_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="DialoguePanel" method="_on_clear_button_pressed"]
-[connection signal="pressed" from="TutorialToolSelector/Panel/HBoxContainer/StegToolButton" to="TutorialToolSelector" method="_on_steg_tool_button_pressed"]
-[connection signal="pressed" from="TutorialToolSelector/Panel/HBoxContainer/StegToolButton" to="DialoguePanel" method="_on_steg_tool_button_pressed"]
-[connection signal="pressed" from="TutorialToolSelector/Panel/HBoxContainer/WebToolButton" to="TutorialToolSelector" method="_on_web_tool_button_pressed"]
-[connection signal="pressed" from="TutorialToolSelector/Panel/HBoxContainer/WebToolButton" to="DialoguePanel" method="_on_web_tool_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton" to="TutorialToolSelector" method="_on_steg_tool_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton" to="DialoguePanel" method="_on_steg_tool_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton" to="TutorialToolSelector" method="_on_web_tool_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton" to="DialoguePanel" method="_on_web_tool_button_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/TaskButton" to="TutorialTaskManager" method="_on_task_button_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TutorialTaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="DialoguePanel" method="_on_task_1_pressed"]
