@@ -11,9 +11,11 @@ func _ready() -> void:
 	line_edit.text = str(number)
 	tool_type = ToolType.CRYPTO_TOOL
 	super()
+	
+	SignalBus.sent_message.connect(encrypt)
 
 func encrypt(text: String, shift: int) -> String:
-	if text_input.text == "":
+	if text == "":
 		push_error("User entered empty text.")
 		return ""
 	
@@ -38,7 +40,7 @@ func encrypt(text: String, shift: int) -> String:
 			result += char(mod(code + shift - 97, 26) + 97)
 		else:
 			result += c
-		
+	SignalBus.encrypted.emit(result)
 	return result
 
 func valid_shift(input: String) -> bool:

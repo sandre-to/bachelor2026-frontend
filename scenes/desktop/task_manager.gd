@@ -1,7 +1,7 @@
 class_name TaskManager extends Control
 
 const CRYPTO_TASK: PackedScene = preload(
-	"res://tasks/experimentation/exp_task.tscn")
+	"res://tasks/crypto/crypto_task.tscn")
 
 const STEGANO_TASK: PackedScene = preload(
 	"res://tasks/steg/steg_task.tscn")
@@ -58,7 +58,7 @@ func fade_out(panel: Control) -> void:
 	tween.tween_callback(func(): panel.hide())
 
 func _on_task_1_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "level_1.1")
+	spawn_task(CRYPTO_TASK, "1.1")
 
 func _on_task_2_pressed() -> void:
 	spawn_task(STEGANO_TASK, "")
@@ -67,7 +67,7 @@ func _on_task_3_pressed() -> void:
 	spawn_task(WEB_TASK, "")
 
 func _on_task_4_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "level_1.4")
+	spawn_task(CRYPTO_TASK, "1.4")
 
 func spawn_task(task_scene: PackedScene, key: String) -> void:
 	if task_scene == null || current_task != null: return

@@ -6,6 +6,8 @@ class_name BaseTask extends Control
 @onready var description: Label = %Description
 @onready var puzzle: RichTextLabel = %Puzzle
 @onready var enter_flag: LineEdit = %EnterFlag
+@onready var hint_box: HintBox = $HintBox
+@onready var error_panel: ErrorPanel = $ErrorPanel
 
 # --- KNAPPER ---
 @onready var confirm_button: Button = %ConfirmButton
@@ -13,15 +15,19 @@ class_name BaseTask extends Control
 @onready var hint_1: Button = %Hint1
 @onready var hint_2: Button = %Hint2
 @onready var hint_3: Button = %Hint3
+@onready var close_hint_button: Button = %CloseHintButton
 
 enum CancelReason{
 	USER, BAD_MESSAGE,
 	UNSTABLE, FORCE
 }
 
-
 func _ready() -> void:
-	# Hente data fra backend
+	if hint_box == null or error_panel == null:
+		print("Missing either hint or error box.
+			Please add them as child scenes in your task.")
+		return
+	reset_ui()
 	
 	# Koble til knapper slik at det funker i inherited klasser
 	confirm_button.pressed.connect(_on_confirm_button_pressed)
@@ -30,16 +36,19 @@ func _ready() -> void:
 	var buttons = hint_container.get_children()
 	for i in range(buttons.size()):
 		buttons[i].pressed.connect(_on_hint_pressed.bind(i + 1))
-	
+
+func reset_ui() -> void:
+	hint_2.disabled = true
+	hint_3.disabled = true
+	hint_box.hide()
+	error_panel.hide()
 
 # start():	Metoden som kjører når oppgaven startes
 func start() -> void:
-	# Spør backenden om å starte
+	#Spør backenden om å starte
 	var request_success: bool = await request_task()
 	if not request_success:
 		return
-	
-	set_task_info()
 	
 	# Initialiser den spesifike oppgaven
 	var init_success: bool = _on_start()
@@ -50,7 +59,6 @@ func start() -> void:
 	var backend_synced: bool = await parse_finished()
 	if not backend_synced:
 		return
-	
 
 
 # _on_start():	Metoden hvor alle oppgaver initialiserer seg selv;
@@ -77,12 +85,16 @@ func _on_confirm_button_pressed() -> void:
 func _on_enter_flag_text_submitted(_new_text: String) -> void: 
 	_on_confirm_button_pressed()
 	
-func _on_hint_pressed(_index: int) -> void: 
-	var hint: String = await request_hint(_index)
+func _on_hint_pressed(index: int) -> void:
+	var hint: String = await request_hint(index)
 	if hint == "invalid-hint":
 		print("evil hint")
 		return
-	puzzle.text = hint
+
+	hint_box.set_hint_text(hint, index)
+	match index:
+		1: hint_2.disabled = false
+		2: hint_3.disabled = false
 
 func completed_task() -> void:
 	var hints := hint_container.get_children()
@@ -109,46 +121,46 @@ func remove_task() -> void:
 
 # request_task():	Spør backenden om å starte oppgaven
 #					Kaller på API-et: respondToTask
-func request_task() -> bool:
-	var req_id: int = Backend.send({
-		"type": "task",
-		"data": {
-			"taskID": task.id
-		}
-	})
-	
-	# Forbindelsen var lukket
-	if req_id == Backend.COULD_NOT_SEND:
-		return false
-	
-	var response: Dictionary = await Backend.recieve(req_id)
-	
-	# Fikk ingen respons i tide
-	if response == Backend.NO_RESPONSE_MSG:
-		return false
-	
-	if response.get("status") == "error":
-		# FEILHÅNDTER #
-		print("Errorstatus returnert")
-		print("Begrunnet:  " + response["data"]["desc"])
-		print(JSON.stringify(response, '\t'))
-		return false
-	
-	var response_data = response.get("data")
-	
-	if not response_data.has("data"):
-		# FEILHÅNDTER #
-		print("Oppgavedata mangler datafeltet")
-		print(JSON.stringify(response, '\t'))
-		return false
-		
-	task.backend_data = response_data.get("data")
-	task.backend_data.make_read_only()
-	
-	if response_data.has("extraDesc"):
-		task.extra_description = response_data.get("extraDesc")
-	
-	return true
+#func request_task() -> bool:
+	#var req_id: int = Backend.send({
+		#"type": "task",
+		#"data": {
+			#"taskID": task.id
+		#}
+	#})
+	#
+	## Forbindelsen var lukket
+	#if req_id == Backend.COULD_NOT_SEND:
+		#return false
+	#
+	#var response: Dictionary = await Backend.recieve(req_id)
+	#
+	## Fikk ingen respons i tide
+	#if response == Backend.NO_RESPONSE_MSG:
+		#return false
+	#
+	#if response.get("status") == "error":
+		## FEILHÅNDTER #
+		#print("Errorstatus returnert")
+		#print("Begrunnet:  " + response["data"]["desc"])
+		#print(JSON.stringify(response, '\t'))
+		#return false
+	#
+	#var response_data = response.get("data")
+	#
+	#if not response_data.has("data"):
+		## FEILHÅNDTER #
+		#print("Oppgavedata mangler datafeltet")
+		#print(JSON.stringify(response, '\t'))
+		#return false
+		#
+	#task.backend_data = response_data.get("data")
+	#task.backend_data.make_read_only()
+	#
+	#if response_data.has("extraDesc"):
+		#task.extra_description = response_data.get("extraDesc")
+	#
+	#return true
 
 
 
@@ -195,6 +207,7 @@ func verify_flag() -> bool:
 	if response.get("data").get("result") == "correct":
 		return true
 	
+	error_panel.show()
 	return false
 
 
