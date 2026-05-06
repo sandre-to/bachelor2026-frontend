@@ -221,6 +221,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
 
 [node name="ErrorPanel" type="Panel" parent="." unique_id=957502420]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

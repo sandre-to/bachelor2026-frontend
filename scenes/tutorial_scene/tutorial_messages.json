@@ -96,7 +96,7 @@
 		"Open the password breaker tool I showed you earlier.",
 		"1. Pick the website option.",
 		"2. and enter the URL https://kapibara.com",
-		"3. Choose the username or password list you want to test.",
+		"3. Choose the password list you want to test.",
 		"4. Press the green [SCAN] button",
 		"5. Now, the fun part! Open the Boogle browser and enter the URL: https://kapibara.com",
 		"6. Enter the password you found, and enter the flag into the task."
