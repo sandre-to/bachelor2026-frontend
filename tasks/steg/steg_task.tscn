@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://b6qfcavjpda1m" path="res://tasks/steg/steg_task.gd" id="1_3hfx2"]
 [ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://tasks/task_label.tres" id="2_bj12d"]
 [ext_resource type="Resource" uid="uid://bylxc2f72yl4p" path="res://tasks/steg/steg1.2.tres" id="2_lfggm"]
+[ext_resource type="PackedScene" path="res://tasks/error_panel.tscn" id="4_gdjgg"]
+[ext_resource type="PackedScene" path="res://tasks/hint_box.tscn" id="5_ci7j5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
@@ -205,3 +207,14 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
+
+[node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("4_gdjgg")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+
+[node name="HintBox" parent="." unique_id=1931929207 instance=ExtResource("5_ci7j5")]
+visible = false
+layout_mode = 1
+grow_horizontal = 1
+grow_vertical = 1

@@ -12,13 +12,13 @@ class_name Desktop extends Control
 @onready var file_explorer: FileExplorer = %FileExplorer
 
 func _ready() -> void:
+	Backend.connect_to_backend()	# MIDLERTIDIG
 	color_rect.show()
 	animation.play("fade_in")
 	await animation.animation_finished
 	animation.queue_free()
 	
 	tool_selector.hide()
-	Backend.connect_to_backend()	# MIDLERTIDIG
 
 func _draw() -> void:
 	draw_circle(Vector2(1920.0 / 2, 1080.0 / 2), 5000, Color.BLACK)

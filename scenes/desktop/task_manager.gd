@@ -42,6 +42,9 @@ func _on_task_button_pressed() -> void:
 	if missions_panel.visible:
 		fade_out(missions_panel)
 	else:
+		if current_task != null:
+			current_task.remove_task()
+			current_task = null
 		close_tasks()
 		fade_in(missions_panel)
 
@@ -77,7 +80,7 @@ func spawn_task(task_scene: PackedScene, key: String) -> void:
 	add_child(task)
 	
 	if task is CryptoScene:
-		task.set_data_info(key)
+		task.load_resource(key)
 	
 	current_task = task
 	
@@ -114,7 +117,7 @@ func _on_task_completed() -> void:
 		await get_tree().create_timer(0.15).timeout
 		
 		dialogue_panel.show()
-		bun_boss.show()
+		#bun_boss.show()
 		dialogue_panel.start_dialogue("boss_start")
 		return
 	

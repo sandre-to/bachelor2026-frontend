@@ -17,6 +17,8 @@ class_name BaseTask extends Control
 @onready var hint_3: Button = %Hint3
 @onready var close_hint_button: Button = %CloseHintButton
 
+var gotten_hints: Dictionary[int, String] = {}
+
 enum CancelReason{
 	USER, BAD_MESSAGE,
 	UNSTABLE, FORCE
@@ -85,12 +87,18 @@ func _on_confirm_button_pressed() -> void:
 func _on_enter_flag_text_submitted(_new_text: String) -> void: 
 	_on_confirm_button_pressed()
 	
+
 func _on_hint_pressed(index: int) -> void:
+	if gotten_hints.has(index):
+		hint_box.set_hint_text(gotten_hints.get(index), index)
+		return
+	
 	var hint: String = await request_hint(index)
 	if hint == "invalid-hint":
 		print("evil hint")
 		return
-
+	
+	gotten_hints.set(index, hint)
 	hint_box.set_hint_text(hint, index)
 	match index:
 		1: hint_2.disabled = false
@@ -121,46 +129,46 @@ func remove_task() -> void:
 
 # request_task():	Spør backenden om å starte oppgaven
 #					Kaller på API-et: respondToTask
-#func request_task() -> bool:
-	#var req_id: int = Backend.send({
-		#"type": "task",
-		#"data": {
-			#"taskID": task.id
-		#}
-	#})
-	#
-	## Forbindelsen var lukket
-	#if req_id == Backend.COULD_NOT_SEND:
-		#return false
-	#
-	#var response: Dictionary = await Backend.recieve(req_id)
-	#
-	## Fikk ingen respons i tide
-	#if response == Backend.NO_RESPONSE_MSG:
-		#return false
-	#
-	#if response.get("status") == "error":
-		## FEILHÅNDTER #
-		#print("Errorstatus returnert")
-		#print("Begrunnet:  " + response["data"]["desc"])
-		#print(JSON.stringify(response, '\t'))
-		#return false
-	#
-	#var response_data = response.get("data")
-	#
-	#if not response_data.has("data"):
-		## FEILHÅNDTER #
-		#print("Oppgavedata mangler datafeltet")
-		#print(JSON.stringify(response, '\t'))
-		#return false
-		#
-	#task.backend_data = response_data.get("data")
-	#task.backend_data.make_read_only()
-	#
-	#if response_data.has("extraDesc"):
-		#task.extra_description = response_data.get("extraDesc")
-	#
-	#return true
+func request_task() -> bool:
+	var req_id: int = Backend.send({
+		"type": "task",
+		"data": {
+			"taskID": task.id
+		}
+	})
+
+	# Forbindelsen var lukket
+	if req_id == Backend.COULD_NOT_SEND:
+		return false
+	
+	var response: Dictionary = await Backend.recieve(req_id)
+	
+	# Fikk ingen respons i tide
+	if response == Backend.NO_RESPONSE_MSG:
+		return false
+	
+	if response.get("status") == "error":
+		# FEILHÅNDTER #
+		print("Errorstatus returnert")
+		print("Begrunnet:  " + response["data"]["desc"])
+		print(JSON.stringify(response, '\t'))
+		return false
+	
+	var response_data = response.get("data")
+	
+	if not response_data.has("data"):
+		# FEILHÅNDTER #
+		print("Oppgavedata mangler datafeltet")
+		print(JSON.stringify(response, '\t'))
+		return false
+		
+	task.backend_data = response_data.get("data")
+	task.backend_data.make_read_only()
+	
+	if response_data.has("extraDesc"):
+		task.extra_description = response_data.get("extraDesc")
+	
+	return true
 
 
 

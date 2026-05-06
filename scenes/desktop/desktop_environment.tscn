@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cfhl30tbhlv01" path="res://scenes/desktop/time_label.gd" id="3_lwt6y"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="3_ndhkw"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="4_lh7yh"]
-[ext_resource type="Script" uid="uid://lce5cp5cnt17" path="res://scenes/desktop/task_bar.gd" id="4_nd566"]
+[ext_resource type="Script" path="res://scenes/desktop/task_bar.gd" id="4_nd566"]
 [ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="5_jyxi7"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="5_ndhkw"]
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="6_0nmlt"]
@@ -259,7 +259,6 @@ tool_info = "Crack some passwords"
 
 [node name="NotepadButton" type="Button" parent="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 icon = ExtResource("12_k7yd3")
