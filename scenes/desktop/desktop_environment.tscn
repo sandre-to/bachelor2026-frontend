@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="6_0nmlt"]
 [ext_resource type="Texture2D" uid="uid://4q8o53gb77ch" path="res://assets/tools/logo_stego.png" id="6_ifu37"]
 [ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="6_lwt6y"]
-[ext_resource type="Script" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
+[ext_resource type="Script" uid="uid://dvlwdquf15yda" path="res://scenes/desktop/tool_selector.gd" id="6_oveh5"]
 [ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_ctsuf"]
 [ext_resource type="PackedScene" uid="uid://c32p2w0k0gdix" path="res://scenes/tool_selector/tool_button.tscn" id="10_f6qo7"]
 [ext_resource type="Texture2D" uid="uid://bekxvrod3206g" path="res://assets/icons/1803612.png" id="11_ctsuf"]
@@ -350,7 +350,6 @@ theme_override_constants/separation = 15
 layout_mode = 2
 icon = ExtResource("11_ctsuf")
 tool_title = "CRYPTO"
-tool_info = "An important equipment to solve weird messagesq"
 
 [node name="Stegano" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/ToolSelector/HBoxContainer" unique_id=1005146078 instance=ExtResource("10_f6qo7")]
 layout_mode = 2
@@ -362,7 +361,7 @@ tool_info = "Find hidden information in files or pictures"
 layout_mode = 2
 icon = ExtResource("13_ybhkl")
 tool_title = "WEB"
-tool_info = "Crack some passwords"
+tool_info = "Crack some usernames or passwords"
 
 [node name="NotepadButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true

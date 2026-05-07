@@ -7,7 +7,7 @@
 	],
 	
 	"files": [
-		"The files button at the bottom shows all the files on your computer.",
+		"The files button at the bottom right shows all the files on your computer.",
 	],
 	
 	"files_folder": [
@@ -16,7 +16,7 @@
 	],
 	
 	"tools": [
-		"This is your toolkit.",
+		"This is your toolkit. For now you can only see the crypto tool.",
 	],
 	
 	"tools_info": [
@@ -24,7 +24,7 @@
 	],
 	
 	"clear_button": [
-		"If too much are shown on screen, press the clear button."
+		"If too much is shown on screen, press the clear button."
 	],
 	"tasks": [
 		"You're doing great so far!!",
@@ -48,8 +48,61 @@
 		"3. Enter a number (Use arrows UP / DOWN)",
 		"4. Press [Decipher]",
 	],
+	"crypto_done": [
+	"NICE! You solved the crypto task."
+	],
 	
+	"steg_tool_info": [
+		"Using bunny magic, you should now have a new tool in your toolkit!",
+		"Press the stegano tool in the toolkit, I'll show you how to use it later.",
+		"This tool can be used for steganography.",
+	],
+	"steg_task_info": [
+		"Look, a new task has appeared!",
+		"Press the tasks button on the bottom right."
+	],
+	
+	
+	"steg_task": [
+		"Open the file explorer I showed you earlier.",
+		"1. See if you find the Saint Sofelin image.",
+		"2. Extract the image metadata -",
+		"by entering the image filepath in metaExtract",
+		"3. /home/pictures/saintSofelin",
+		"4. Press [Analyze]",
+	],
+	"steg_done": [
+		"Amazing!! Well done.",
+		"Now I will teach you about web exploitation."
+	],
+	"web_tool_info": [
+		"Using magic you should now have a new web exploit tool!",
+		"My fairy dust is running low...",
+		"Press the web tool in the toolkit, I'll show you how to use it later."
+	],
+	"browser_info": [
+		"What's the fun in cracking usernames and passwords without trying them??",
+		"Press the Boogle browser to the right of the toolkit"
+	],
+	"browser_pressed": [
+		"Here you can test login credentials after cracking them using the web tool.",
+		"Some missions only require the password, whille harder missions require finding usernames too."
+	],
+	"web_task_info": [
+		"Now, are you ready to use what you've learned?",
+		"Open the new task."
+	],
+	"web_task": [
+		"Open the password breaker tool I showed you earlier.",
+		"1. Pick the website option.",
+		"2. and enter the URL https://kapibara.com",
+		"3. Choose the password list you want to test.",
+		"4. Press the green [SCAN] button",
+		"5. Now, the fun part! Open the Boogle browser and enter the URL: https://kapibara.com",
+		"6. Enter the password you found, and enter the flag into the task."
+	],
 	"finished": [
-		"NICE! Now you are a certified hacker."
+		"NICE! Now you are a certified hacker.",
+		"Press next to start the main game."
 	]
 }

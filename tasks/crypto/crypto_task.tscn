@@ -94,6 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qx4og")
+task_type = "\"crypto\""
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 material = SubResource("ShaderMaterial_mkcnv")
@@ -269,6 +270,7 @@ offset_right = -165.0
 offset_bottom = 251.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_r7fc5")
 
 [node name="MarginContainer" type="MarginContainer" parent="ErrorPanel" unique_id=528531086]
@@ -278,6 +280,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
@@ -294,6 +297,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ExitButton" type="Button" parent="ErrorPanel" unique_id=181860722]
+z_index = 1000
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -301,9 +305,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -194.0
-offset_top = 94.0
+offset_top = 136.0
 offset_right = 194.0
-offset_bottom = 174.0
+offset_bottom = 216.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32

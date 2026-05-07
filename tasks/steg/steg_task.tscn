@@ -56,6 +56,19 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfggm"]
+bg_color = Color(0.6057733, 0.094179206, 0.14435059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8uea1"]
+font_size = 52
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdjgg"]
+bg_color = Color(0.2702219, 0.27022195, 0.27022177, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
 [node name="StegTask" type="Control" unique_id=629482100]
 layout_mode = 3
 anchors_preset = 15
@@ -65,6 +78,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3hfx2")
 task = ExtResource("2_lfggm")
+task_type = "\"steg\""
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -205,3 +219,63 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
+
+[node name="ErrorPanel" type="Panel" parent="." unique_id=957502420]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1005.0
+offset_top = -229.0
+offset_right = -165.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_lfggm")
+
+[node name="MarginContainer" type="MarginContainer" parent="ErrorPanel" unique_id=639763089]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Label" type="Label" parent="ErrorPanel/MarginContainer" unique_id=2082109685]
+layout_mode = 2
+size_flags_vertical = 1
+text = "ERROR
+OH NO! WRONG FLAG."
+label_settings = SubResource("LabelSettings_8uea1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ExitButton" type="Button" parent="ErrorPanel" unique_id=548999856]
+z_index = 1000
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = 136.0
+offset_right = 194.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_gdjgg")
+text = "EXIT"
+
+[connection signal="pressed" from="ErrorPanel/ExitButton" to="." method="_on_exit_button_pressed"]
