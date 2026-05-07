@@ -1,20 +1,14 @@
 class_name TaskManager extends Control
 
-const CRYPTO_TASK: PackedScene = preload(
-	"res://tasks/crypto/crypto_task.tscn")
+const TASK: PackedScene = preload("res://tasks/base_task.tscn")
 
-const STEGANO_TASK: PackedScene = preload(
-	"res://tasks/steg/steg_task.tscn")
-	
-const WEB_TASK: PackedScene = preload(
-	"res://tasks/web_exploit/web_task.tscn")
-	
+@export var current_bulk: String = "bulk_1"
+
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
 @onready var dialogue_panel: DialoguePanel = %DialoguePanel
 @onready var bun_boss: Panel = %BunBoss
 @onready var boss_flag: LineEdit = %BossFlag
-
 
 # --- Oppgave knapper ---
 @onready var task_1: Button = %Task1
@@ -29,7 +23,7 @@ var completed_bulk: bool = false
 
 func _ready() -> void:
 	missions_panel.hide()
-	SignalBus.test.connect(_on_task_completed)
+	SignalBus.task_completed.connect(_on_task_completed)
 	
 	buttons = {
 		1: task_1,
@@ -58,44 +52,39 @@ func fade_out(panel: Control) -> void:
 	tween.tween_callback(func(): panel.hide())
 
 func _on_task_1_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "level_1.1", "crypto")
+	spawn_task(0)
 
 func _on_task_2_pressed() -> void:
-	spawn_task(STEGANO_TASK, "level_1.2", "steg")
+	spawn_task(1)
 
 func _on_task_3_pressed() -> void:
-	spawn_task(WEB_TASK, "level_1.3", "web")
+	spawn_task(2)
 
 func _on_task_4_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "level_1.4", "crypto")
+	spawn_task(3)
 
-func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void:
-	if task_scene == null:
-		return
-
+func spawn_task(index: int) -> void:
 	if current_task:
 		current_task.queue_free()
 		current_task = null
 	
 	fade_out(missions_panel)
 	
-	var task := task_scene.instantiate() as BaseTask
+	var task := TASK.instantiate() as BaseTask
 	add_child(task)
 	
-	task.task_type = task_type
+	task.set_data_info(current_bulk, index)
 	current_task = task
-	#task.set_data_info(key)
 	
 	task.global_position += Vector2(-100, 0)
 	fade_in(task)
-	#task.start()
 
 func close_tasks() -> void:
 	for child in get_children():
 		if child is BaseTask:
 			child.queue_free()
 
-func _on_task_completed() -> void:
+func _on_task_completed(_type: String) -> void:
 	if completed_bulk: return
 	
 	if current_task:
@@ -109,6 +98,7 @@ func _on_task_completed() -> void:
 	# Lås oppgaveknappen, og åpne neste [Task 1 låst -> Task 2 åpen]
 	buttons[index].disabled = true
 	buttons[index].text = "COMPLETED"
+	buttons[index].modulate = Color.LIME_GREEN
 	index += 1
 	
 	if index > buttons.size():
@@ -119,8 +109,13 @@ func _on_task_completed() -> void:
 		await get_tree().create_timer(0.15).timeout
 		
 		dialogue_panel.show()
-		bun_boss.show()
 		dialogue_panel.start_dialogue("boss_start")
 		return
 	
 	buttons[index].disabled = false
+
+func reset_bulk(bulk: String) -> void:
+	current_task = null
+	index = 1
+	completed_bulk = false
+	current_bulk = bulk

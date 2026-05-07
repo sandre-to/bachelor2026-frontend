@@ -4,7 +4,7 @@ extends Resource
 enum TaskType {
 	CRYPTO,
 	STEGANO,
-	WEB_EXPLOIT,
+	WEB,
 }
 
 @export var type: TaskType

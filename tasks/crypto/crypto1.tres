@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://chf0kvj3v0qx5"]
+
+[ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/base_task_ui/task_data.gd" id="1_ltm3w"]
+
+[resource]
+script = ExtResource("1_ltm3w")
+name = "What is this gibberish??"
+flag = "applecider"
+description = "So many weird messages to solve"
+puzzle_text = "Awumbquma Q omb jwzml wn kizzwba, Q kzidm ixxtma zqopb vwe. Ntio: ixxtmkqlmz"
+metadata/_custom_type_script = "uid://wlwnowr21m8v"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://cisupf2go5xat"]
+
+[ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/base_task_ui/task_data.gd" id="1_4xunx"]
+
+[resource]
+script = ExtResource("1_4xunx")
+name = "This again?"
+flag = "bunboss"
+description = "I'm tired boss"
+puzzle_text = "Xli ribx qmwwmsr mw xli fsww lmqwipj. Fi gevijyp. Jpek: fyrfsww"
+metadata/_custom_type_script = "uid://wlwnowr21m8v"

@@ -6,12 +6,12 @@
 script = ExtResource("1")
 image_name = "carrotEater"
 real_image_path = "res://scenes/file_explorer/pictures/prince.png"
-flag = "prince"
 author = "Unknown"
-id = 1
 type = 1
 name = "Carrot in Plain Sight"
-description = "The bunny swears this image is just a normal carrot…
+flag = "prince"
+description = "Carrot Eater"
+puzzle_text = "The bunny swears this image is just a normal carrot…
 but something feels off.
 
 Maybe the carrot is hiding more than just vitamins?"

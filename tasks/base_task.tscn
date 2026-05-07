@@ -158,18 +158,11 @@ autowrap_trim_flags = 128
 context_menu_enabled = true
 selection_enabled = true
 
-[node name="CopyTextButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel" unique_id=2103772403]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -85.0
-offset_top = -40.0
-offset_right = 85.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="CopyTextButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=2103772403]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 text = "COPY TEXT"
 
 [node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
@@ -236,8 +229,9 @@ offset_bottom = 366.0
 
 [node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("3_a38up")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = -985.0
 offset_right = -145.0
 
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel/CopyTextButton" to="." method="_on_copy_text_button_pressed"]
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/CopyTextButton" to="." method="_on_copy_text_button_pressed"]

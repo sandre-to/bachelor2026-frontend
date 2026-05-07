@@ -1,21 +1,20 @@
 class_name BaseTask extends Control
 
-@export var tasks: Dictionary = {
+@export var tasks: Dictionary[String, Array] = {
 	"tutorial": [
 		"res://tasks/crypto/tutorial_crypto.tres",
 		"res://tasks/steg/steg_tutorial.tres",
 		"res://tasks/web_exploit/web_tutorial.tres"
 	],
 	"bulk_1": [
-		"res://tasks/crypto/level1-1.tres",
+		"res://tasks/crypto/crypto1.tres",
 		"res://tasks/steg/steg1.2.tres",
 		"res://tasks/web_exploit/web1.3.tres",
-		"res://tasks/crypto/level1-4.tres"
+		"res://tasks/crypto/crypto2.tres"
 	]
 }
 
 @export var task: TaskData
-@export var task_type: String = ""
 
 @onready var title: Label = %Title
 @onready var description: Label = %Description
@@ -54,10 +53,10 @@ func set_data_info(key: String, index: int) -> void:
 		match task.type:
 			TaskData.TaskType.CRYPTO:
 				pass
-			TaskData.TaskType.WEB_EXPLOIT:
+			TaskData.TaskType.WEB:
 				SignalBus.send_web_data.emit(task)
 			TaskData.TaskType.STEGANO:
-				pass
+				set_steg_info()
 	else:
 		push_error("Key does not exist in tasks: ", key)
 
@@ -76,7 +75,7 @@ func _on_hint_pressed(index: int) -> void:
 			hint_box.set_hint_text("someasdasdsathing something", index)
 			hint_3.disabled = false
 		3:
-			hint_box.set_hint_text("something sadadasdadssomething", index)
+			hint_box.set_hint_text(task.flag, index)
 			
 func completed_task() -> void:
 	if not task or enter_flag.text != task.flag: 
@@ -85,9 +84,18 @@ func completed_task() -> void:
 		
 	SignalBus.task_completed.emit(
 		TaskData.TaskType.keys()[task.type].to_lower())
+	print("TASK COMPLETED")
 
 func _on_copy_text_button_pressed() -> void:
 	DisplayServer.clipboard_set(puzzle.text)
 
 func hide_all_hints() -> void:
 	hint_container.hide()
+
+func set_steg_info() -> void:
+	var file := FileSystem.get_file_entity(FileSystem.PICTURE_DIR + "/" + task.image_name)
+	file.metadata["type"] = "image"
+	file.metadata["Author"] = task.author
+	file.metadata["Software"] = task.software
+	file.metadata["Comment"] = task.comment
+	file.metadata[task.flag_metadata_key] = task.flag
