@@ -12,11 +12,11 @@ class_name Desktop extends Control
 @onready var tool_selector: ToolSelector = %ToolSelector
 
 func _ready() -> void:
+	#Backend.connect_to_backend()	# MIDLERTIDIG
 	color_rect.show()
 	animation.play("fade_in")
 	
 	tool_selector.hide()
-	Backend.connect_to_backend()	# MIDLERTIDIG
 
 func _on_files_button_pressed() -> void:
 	file_explorer.visible = not file_explorer.visible

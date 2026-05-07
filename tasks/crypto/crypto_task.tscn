@@ -94,7 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qx4og")
-task_type = "\"crypto\""
+task_type = "crypto"
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 material = SubResource("ShaderMaterial_mkcnv")

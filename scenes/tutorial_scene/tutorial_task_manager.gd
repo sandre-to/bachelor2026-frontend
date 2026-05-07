@@ -6,6 +6,7 @@ const STEGANO_TASK: PackedScene = preload(
 	"res://tasks/steg/steg_task.tscn")
 const WEB_TASK: PackedScene = preload(
 	"res://tasks/web_exploit/web_task.tscn")
+
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
 
@@ -56,13 +57,13 @@ func _on_task_2_pressed() -> void:
 		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
 		hint_container.hide()
 	
-	
 func _on_task_3_pressed() -> void:
 	spawn_task(WEB_TASK, "tutorial_task", "web")
 	var task := current_task
 	if task:
 		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
 		hint_container.hide()
+
 func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void:
 	if task_scene == null:
 		return

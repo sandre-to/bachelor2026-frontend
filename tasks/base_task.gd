@@ -65,17 +65,19 @@ func set_task_info() -> void:
 	puzzle.text = task.extra_description
 
 func _on_confirm_button_pressed() -> void: 
-	var flag_correct: bool = await verify_flag()
-	if flag_correct:
-		completed_task()
-	else:
-		# Feil :,(
-		print("bruh")
-
-	print("SUBMIT")
+	#var flag_correct: bool = await verify_flag()
+	#if flag_correct:
+		#completed_task()
+	#else:
+		## Feil :,(
+		#print("bruh")
+#
+	#print("SUBMIT")
+	pass
 	
 func _on_enter_flag_text_submitted(_new_text: String) -> void: 
-	_on_confirm_button_pressed()
+	#_on_confirm_button_pressed()
+	pass
 	
 func _on_hint_pressed(_index: int) -> void: 
 	var hint: String = await request_hint(_index)
@@ -85,17 +87,7 @@ func _on_hint_pressed(_index: int) -> void:
 	puzzle.text = hint
 
 func completed_task() -> void:
-	var hints := hint_container.get_children()
-	for hint in hints:
-		hint.disabled = true
-	
-	description.text = "COMPLETED, GOOD JOB!"
-	confirm_button.disabled = true
-	task.completed = true
 	SignalBus.task_completed.emit(task_type)
-	
-func get_task_data() -> void:
-	pass
 
 # skal avbryte oppgaven etter spilleren trykker på en knapp
 func remove_task() -> void:

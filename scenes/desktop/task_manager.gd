@@ -29,7 +29,7 @@ var completed_bulk: bool = false
 
 func _ready() -> void:
 	missions_panel.hide()
-	SignalBus.task_completed.connect(_on_task_completed)
+	SignalBus.test.connect(_on_task_completed)
 	
 	buttons = {
 		1: task_1,
@@ -58,32 +58,37 @@ func fade_out(panel: Control) -> void:
 	tween.tween_callback(func(): panel.hide())
 
 func _on_task_1_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "level_1.1")
+	spawn_task(CRYPTO_TASK, "level_1.1", "crypto")
 
 func _on_task_2_pressed() -> void:
-	spawn_task(STEGANO_TASK, "level_1.2")
+	spawn_task(STEGANO_TASK, "level_1.2", "steg")
 
 func _on_task_3_pressed() -> void:
-	spawn_task(WEB_TASK, "level_1.3")
+	spawn_task(WEB_TASK, "level_1.3", "web")
 
 func _on_task_4_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "level_1.4")
+	spawn_task(CRYPTO_TASK, "level_1.4", "crypto")
 
-func spawn_task(task_scene: PackedScene, key: String) -> void:
-	if task_scene == null || current_task != null: return
+func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void:
+	if task_scene == null:
+		return
+
+	if current_task:
+		current_task.queue_free()
+		current_task = null
+	
 	fade_out(missions_panel)
 	
-	var task := task_scene.instantiate()
+	var task := task_scene.instantiate() as BaseTask
 	add_child(task)
 	
-	if task is BaseTask:
-		task.set_data_info(key)
-	
+	task.task_type = task_type
 	current_task = task
+	task.set_data_info(key)
 	
 	task.global_position += Vector2(-100, 0)
 	fade_in(task)
-	task.start()
+	#task.start()
 
 func close_tasks() -> void:
 	for child in get_children():

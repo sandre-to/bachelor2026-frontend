@@ -25,12 +25,9 @@ func _on_confirm_button_pressed() -> void:
 	if enter_flag.text == task.flag:
 		confirm_button.disabled = true
 		completed_task()
+		SignalBus.test.emit()
 	else:
 		error_panel.show()
-
-#func _on_start() -> bool:
-	#print(task.backend_data["felt_1"])
-	#return true
 
 func _on_exit_button_pressed() -> void:
 	error_panel.hide()

@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	animation.play("panel_popup")
 	disable_main_buttons()
-	tutorial_task_manager.hide()
+	#tutorial_task_manager.hide()
 
 func _on_files_button_pressed() -> void:
 	file_explorer.visible = not file_explorer.visible
