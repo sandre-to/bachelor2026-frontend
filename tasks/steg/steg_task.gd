@@ -4,10 +4,10 @@ var steg_tasks := {
 	"tutorial_task": "res://tasks/steg/steg_tutorial.tres",
 	"level_1.2": "res://tasks/steg/steg1.2.tres"
 }
-@onready var error_panel: Panel = $ErrorPanel
+#@onready var error_panel: Panel = $ErrorPanel
 func _ready() -> void:
 	super._ready()
-	set_data_info()
+	#set_data_info()
 	#start()
 
 
