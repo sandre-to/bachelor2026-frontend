@@ -39,7 +39,7 @@ func start() -> void:
 	#if not request_success:
 		#return
 	
-	set_task_info()
+	#set_task_info()
 	
 	# Initialiser den spesifike oppgaven
 	var init_success: bool = _on_start()

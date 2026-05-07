@@ -14,6 +14,11 @@ shader_parameter/blur = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
 bg_color = Color(0, 0, 0, 0.6509804)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 32
 corner_radius_top_right = 32
 corner_radius_bottom_right = 32
@@ -21,6 +26,15 @@ corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjtgf"]
 bg_color = Color(0.18932778, 0.1893278, 0.18932769, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.04303915, 0.043039165, 0.04303909, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_qx4og"]
 font_size = 32
