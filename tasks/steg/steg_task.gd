@@ -7,7 +7,7 @@ var steg_tasks := {
 @onready var error_panel: Panel = $ErrorPanel
 func _ready() -> void:
 	super._ready()
-	set_data_info()
+	#set_data_info()
 	#start()
 
 
