@@ -4,6 +4,25 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6y5lh"]
 bg_color = Color(0.9490196, 0.83137256, 0.92156863, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7782843, 0.7742199, 1, 1)
+border_blend = true
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvu7o"]
+bg_color = Color(0.9166399, 0.91663986, 0.9166398, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.7563093, 0.78345245, 0.9961224, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4neok"]
 bg_color = Color(0, 0, 0, 1)
@@ -13,7 +32,7 @@ corner_radius_bottom_right = 13
 corner_radius_bottom_left = 13
 
 [node name="ImgPopUp" type="Control" unique_id=1782949988]
-custom_minimum_size = Vector2(700, 900)
+custom_minimum_size = Vector2(700, 1000)
 layout_mode = 3
 anchors_preset = 13
 anchor_left = 0.5
@@ -24,22 +43,21 @@ grow_vertical = 2
 script = ExtResource("1_4neok")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=566821279]
-custom_minimum_size = Vector2(650, 900)
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -350.0
+offset_left = -325.0
 offset_top = 50.0
-offset_right = 300.0
+offset_right = 325.0
 offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=434360992]
-custom_minimum_size = Vector2(650, 900)
+custom_minimum_size = Vector2(650, 950)
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -70,14 +88,31 @@ pivot_offset_ratio = Vector2(-10, -10)
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ExitButton" type="Button" parent="CenterContainer/VinduPanel" unique_id=1055664215]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=477197685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=189029032]
+modulate = Color(0.7886237, 0.516396, 0.7316262, 1)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bvu7o")
+
+[node name="ExitButton" type="Button" parent="VBoxContainer/Panel" unique_id=1055664215]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(30, 30)
-layout_mode = 0
-offset_left = 660.0
-offset_top = 25.0
-offset_right = 690.0
-offset_bottom = 67.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_bottom = 42.0
+grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -86,3 +121,19 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_4neok")
 text = "x"
+
+[node name="FilepathLabel" type="Label" parent="VBoxContainer/Panel" unique_id=562328045]
+custom_minimum_size = Vector2(650, 30)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 5.0
+offset_right = 675.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.1254902, 0.7882353, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_img_panel_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Panel/ExitButton" to="." method="_on_exit_button_pressed"]

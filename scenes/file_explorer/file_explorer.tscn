@@ -27,6 +27,13 @@ corner_radius_bottom_left = 2
 bg_color = Color(0.87170446, 0.63351786, 0.68110865, 1)
 border_color = Color(0.230315, 0.23031494, 0.23031479, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xeun"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
 [node name="FileExplorer" type="Control" unique_id=1560975105]
 layout_mode = 3
 anchors_preset = 8
@@ -150,8 +157,22 @@ theme_override_constants/margin_bottom = 12
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer" unique_id=2050464423]
 layout_mode = 2
 
+[node name="ExitButton" type="Button" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer" unique_id=1191774118]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0xeun")
+text = "x"
+
 [node name="Title" type="Label" parent="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer" unique_id=381950390]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -179,5 +200,6 @@ stretch_mode = 3
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/PicturesButton" to="." method="_on_pictures_button_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/DocumentsButton" to="." method="_on_documents_button_pressed"]
 [connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/MarginContainer/FoldersList/SecretButton" to="." method="_on_secret_button_pressed"]
+[connection signal="pressed" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="item_activated" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/Files" to="." method="_on_files_item_activated"]
 [connection signal="item_selected" from="Panel/TabContainer/Home/HBoxContainer/Info/MarginContainer/VBoxContainer/Files" to="." method="_on_files_item_selected"]
