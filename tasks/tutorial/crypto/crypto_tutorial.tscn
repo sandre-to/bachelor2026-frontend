@@ -1,0 +1,234 @@
+[gd_scene format=3 uid="uid://birkrjia4mg1w"]
+
+[ext_resource type="Script" uid="uid://byfebj50lgafr" path="res://tasks/tutorial/crypto/crypto_tutorial.gd" id="1_urgi7"]
+[ext_resource type="Resource" uid="uid://ce3eoioh75at0" path="res://tasks/crypto/tutorial_task.tres" id="2_4j2hd"]
+[ext_resource type="PackedScene" uid="uid://cunx6y83t73w5" path="res://tasks/hint_box.tscn" id="2_sbprw"]
+[ext_resource type="PackedScene" uid="uid://wm56ni637qy" path="res://tasks/error_panel.tscn" id="3_8ygaf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rgci"]
+bg_color = Color(0.15208533, 0.5071063, 0.4144344, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_a38up"]
+Button/styles/normal = SubResource("StyleBoxFlat_4rgci")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
+bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjtgf"]
+bg_color = Color(0, 0, 0, 0.8)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.04303915, 0.043039165, 0.04303909, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjtgf"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0.19215687, 0.19215687, 0.19215687, 0.69411767)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncm2f"]
+bg_color = Color(0.29954743, 0.29954746, 0.2995473, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jfeq"]
+bg_color = Color(0.25952256, 0.5388755, 0.19095689, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="BaseTask" type="Control" unique_id=629482100]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_a38up")
+script = ExtResource("1_urgi7")
+task = ExtResource("2_4j2hd")
+
+[node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
+custom_minimum_size = Vector2(640, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -362.0
+offset_right = 320.0
+offset_bottom = 335.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_43dnk")
+
+[node name="MarginContainer" type="MarginContainer" parent="OuterPanel" unique_id=1848680035]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="InnerPanel" type="Panel" parent="OuterPanel/MarginContainer" unique_id=732732529]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vjtgf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel" unique_id=569444347]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 27.5
+offset_right = -40.0
+offset_bottom = -33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=198418054]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TASK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=1429868216]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_vjtgf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PuzzlePanel" type="Panel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=246550945]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ncm2f")
+
+[node name="Puzzle" type="RichTextLabel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel" unique_id=1290987728]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 11.0
+offset_right = -15.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+autowrap_trim_flags = 128
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="EnterFlag" type="LineEdit" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=928400105]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_colors/font_placeholder_color = Color(0.8156863, 0.8156863, 0.8156863, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ncm2f")
+placeholder_text = "ENTER FLAG"
+
+[node name="ConfirmButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=1790146294]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0jfeq")
+text = "CONFIRM"
+
+[node name="HintContainer" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=897604010]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Hint1" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=1534878314]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = SubResource("Theme_a38up")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
+text = "HINT 1"
+
+[node name="Hint2" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=601580613]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
+text = "HINT 2"
+
+[node name="Hint3" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=2012168441]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
+text = "HINT 3"
+
+[node name="HintBox" parent="." unique_id=1931929207 instance=ExtResource("2_sbprw")]
+visible = false
+layout_mode = 1
+offset_top = -316.0
+
+[node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("3_8ygaf")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 840.0
+offset_bottom = 480.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]

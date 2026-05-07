@@ -1,11 +1,11 @@
 class_name TutorialTasks extends Control
 
 const CRYPTO_TASK: PackedScene = preload(
-	"res://tasks/crypto/crypto_task.tscn")
+	"res://tasks/tutorial/crypto/crypto_tutorial.tscn")
 const STEGANO_TASK: PackedScene = preload(
-	"res://tasks/steg/steg_task.tscn")
+	"res://tasks/tutorial/steg/steg_tutorial.tscn")
 const WEB_TASK: PackedScene = preload(
-	"res://tasks/web_exploit/web_task.tscn")
+	"res://tasks/tutorial/web/web_tutorial.tscn")
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
 
@@ -72,7 +72,7 @@ func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void
 		current_task = null
 	fade_out(missions_panel)
 	
-	var task := task_scene.instantiate()
+	var task: TutorialTask = task_scene.instantiate()
 	add_child(task)
 	
 	task.task_type = task_type
