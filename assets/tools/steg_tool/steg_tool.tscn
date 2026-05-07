@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1558707609]
-custom_minimum_size = Vector2(400, 500)
+custom_minimum_size = Vector2(400, 700)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=222385930]
@@ -93,7 +93,7 @@ layout_mode = 0
 offset_left = 75.0
 offset_top = 80.0
 offset_right = 575.0
-offset_bottom = 255.0
+offset_bottom = 335.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MetaDataPanel/Panel" unique_id=1104513067]
 layout_mode = 0
@@ -115,9 +115,9 @@ layout_mode = 2
 [node name="Panel" type="Panel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FindingsPanel" unique_id=1664735168]
 layout_mode = 0
 offset_left = 180.0
-offset_top = 310.0
+offset_top = 430.0
 offset_right = 480.0
-offset_bottom = 390.0
+offset_bottom = 510.0
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FindingsPanel/Panel" unique_id=452200829]
 layout_mode = 0
@@ -135,18 +135,18 @@ layout_mode = 2
 custom_minimum_size = Vector2(110, 40)
 layout_mode = 0
 offset_left = 200.0
-offset_top = 225.0
+offset_top = 304.0
 offset_right = 310.0
-offset_bottom = 265.0
+offset_bottom = 344.0
 text = "clear"
 
 [node name="analyzeButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1539051935]
 custom_minimum_size = Vector2(110, 40)
 layout_mode = 0
 offset_left = 350.0
-offset_top = 225.0
+offset_top = 304.0
 offset_right = 460.0
-offset_bottom = 265.0
+offset_bottom = 344.0
 text = "analyze"
 
 [connection signal="text_submitted" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/FileInput/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

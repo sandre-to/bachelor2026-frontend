@@ -1,14 +1,5 @@
 class_name StegScene 
 extends BaseTask
-var steg_tasks := {
-	"tutorial_task": "res://tasks/steg/steg_tutorial.tres",
-	"level_1.2": "res://tasks/steg/steg1.2.tres"
-}
-
-func _ready() -> void:
-	super._ready()
-	#set_data_info()
-	#start()
 
 func _on_start() -> bool:
 	var steg_task := task as StegData
@@ -56,16 +47,6 @@ func _on_start() -> bool:
 		print("INSERTED METADATA:", inserted.metadata)
 
 	return true
-
-func verify_flag() -> bool:
-	var steg_task := task as StegData
-	if steg_task == null:
-		return false
-
-	if not enter_flag.text.strip_edges() == steg_task.flag:
-		error_panel.show()
-
-	return enter_flag.text.strip_edges() == steg_task.flag
 
 func _on_exit_button_pressed() -> void:
 	error_panel.hide()

@@ -68,7 +68,8 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ExitButton" type="Button" parent="." unique_id=1986124332]
-z_index = 1000
+z_index = 100
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

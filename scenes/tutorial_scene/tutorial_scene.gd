@@ -4,7 +4,7 @@ class_name TutorialScene extends Control
 @onready var file_explorer: Control = $FileExplorer
 @onready var tool_panel: Panel = %ToolPanel
 @onready var main_buttons: HBoxContainer = %HBoxContainer
-@onready var tool_selector: TutorialToolSelector = $TutorialToolSelector
+@onready var tool_selector: TutorialToolSelector = %TutorialToolSelector
 
 @onready var animation: AnimationPlayer = $Animation
 @onready var color_rect: ColorRect = $Animation/ColorRect

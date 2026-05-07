@@ -12,4 +12,4 @@ enum TaskType {
 @export var completed: bool = false
 @export var flag: String = ""
 @export_multiline() var description: String = ""
-@export_multiline() var cipher_text: String = ""
+@export_multiline() var puzzle_text: String = ""

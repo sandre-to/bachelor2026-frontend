@@ -4,11 +4,6 @@ class_name HintBox extends Panel
 @onready var label: Label = %Label
 @onready var close_hint_button: Button = %CloseHintButton
 
-func _ready() -> void:
-	close_hint_button.pressed.connect(func(): 
-		hide()
-	)
-
 func set_hint_text(hint: String, index: int) -> void:
 	show()
 	hint_title.text = "HINT " + str(index)
