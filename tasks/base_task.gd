@@ -112,7 +112,7 @@ func completed_task() -> void:
 	description.text = "COMPLETED, GOOD JOB!"
 	confirm_button.disabled = true
 	task.completed = true
-	SignalBus.task_completed.emit(task_type)
+	SignalBus.task_completed.emit()
 	
 func get_task_data() -> void:
 	pass
