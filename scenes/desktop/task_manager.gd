@@ -76,9 +76,9 @@ func spawn_task(task_scene: PackedScene, key: String) -> void:
 	var task := task_scene.instantiate()
 	add_child(task)
 	
-	if task is BaseTask:
-		task.set_data_info(key)
-	
+	#if task is BaseTask:
+		#task.set_data_info(key)
+	#
 	current_task = task
 	
 	task.global_position += Vector2(-100, 0)
