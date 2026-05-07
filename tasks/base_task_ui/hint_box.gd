@@ -13,3 +13,6 @@ func set_hint_text(hint: String, index: int) -> void:
 	show()
 	hint_title.text = "HINT " + str(index)
 	label.text = hint
+
+func _on_close_hint_button_pressed() -> void:
+	hide()

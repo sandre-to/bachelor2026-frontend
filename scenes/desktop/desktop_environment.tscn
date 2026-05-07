@@ -259,7 +259,6 @@ tool_info = "Crack some usernames or passwords"
 
 [node name="NotepadButton" type="Button" parent="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 icon = ExtResource("12_k7yd3")
@@ -612,8 +611,8 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_2_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_3_pressed"]
-[connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_4_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_3_pressed"]
+[connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/Panel/MarginContainer/VBoxContainer/Task4" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_4_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/TaskManager/TaskButton" to="DekstopLayout/VBoxContainer/TaskBar/TaskManager" method="_on_task_button_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]

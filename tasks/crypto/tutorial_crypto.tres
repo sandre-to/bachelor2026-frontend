@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://b84hmbnv55uwq"]
+
+[ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/base_task_ui/task_data.gd" id="1_qyq6s"]
+
+[resource]
+script = ExtResource("1_qyq6s")
+name = "Tutorial Crypto"
+flag = "talkingcarrot"
+description = "Decipher the message below please!"
+cipher_text = "Mj e fyrrc ger xepo, ger e gevvsx epws xepo? Jpek: xepomrkgevvsx"
+metadata/_custom_type_script = "uid://wlwnowr21m8v"

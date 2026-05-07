@@ -1,11 +1,10 @@
 class_name TutorialTasks extends Control
 
-const CRYPTO_TASK: PackedScene = preload(
-	"res://tasks/crypto/crypto_task.tscn")
-const STEGANO_TASK: PackedScene = preload(
-	"res://tasks/steg/steg_task.tscn")
-const WEB_TASK: PackedScene = preload(
-	"res://tasks/web_exploit/web_task.tscn")
+const TASK: PackedScene = preload("res://tasks/base_task.tscn")
+const TASK_KEY: String = "tutorial"
+const CRYPTO: int = 0
+const STEG: int = 1
+const WEB: int = 3
 
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
@@ -18,6 +17,7 @@ var current_task: BaseTask = null
 
 func _ready() -> void:
 	missions_panel.hide()
+	SignalBus.task_completed.connect(_on_task_completed)
 		
 func clear_current_task() -> void:
 	if current_task:
@@ -47,39 +47,29 @@ func fade_out(panel: Control) -> void:
 	tween.tween_callback(func(): panel.hide())
 
 func _on_task_1_pressed() -> void:
-	spawn_task(CRYPTO_TASK, "tutorial_task", "crypto")
-
+	spawn_task(CRYPTO)
 
 func _on_task_2_pressed() -> void:
-	spawn_task(STEGANO_TASK, "tutorial_task", "steg")
-	var task := current_task
-	if task:
-		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
-		hint_container.hide()
+	spawn_task(STEG)
 	
 func _on_task_3_pressed() -> void:
-	spawn_task(WEB_TASK, "tutorial_task", "web")
-	var task := current_task
-	if task:
-		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
-		hint_container.hide()
+	spawn_task(WEB)
 
-func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void:
-	if task_scene == null:
-		return
-
+func spawn_task(index: int) -> void:
 	if current_task:
 		current_task.queue_free()
 		current_task = null
+	
 	fade_out(missions_panel)
 	
-	var task := task_scene.instantiate()
+	var task := TASK.instantiate()
 	add_child(task)
 	
-	task.task_type = task_type
-	task.set_data_info(key)
+	task.set_data_info(TASK_KEY, index)
 	current_task = task
 	
 	task.global_position += Vector2(-100, 0)
 	fade_in(task)
-	task.start()
+
+func _on_task_completed() -> void:
+	fade_out(current_task)

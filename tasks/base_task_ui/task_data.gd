@@ -5,16 +5,11 @@ enum TaskType {
 	CRYPTO,
 	STEGANO,
 	WEB_EXPLOIT,
-	BOSS
 }
 
-@export var id: int
 @export var type: TaskType
 @export var name: String = "" 
 @export var completed: bool = false
+@export var flag: String = ""
 @export_multiline() var description: String = ""
-
-# Felt hentet av backenden #
-@export var backend_data: Dictionary = {}
-@export_multiline() var extra_description: String = ""
-var hint_costs: Array[float] = []
+@export_multiline() var cipher_text: String = ""

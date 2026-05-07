@@ -20,7 +20,6 @@ var cwd: Directory
 @onready var preview: TextureRect = $Preview
 @onready var tool_selector: ToolSelector = %ToolSelector
 
-
 func _ready() -> void:
 	cwd = FileSystem.get_file_entity("/")
 	hide()
@@ -40,8 +39,6 @@ func _show_folder(directory: Directory) -> void:
 		files.add_item(file.name)
 		files.set_item_metadata(files.item_count - 1, file)
 
-	
-	
 func _on_pictures_button_pressed() -> void:
 	preview.hide()
 	_show_folder_from_path(FileSystem.PICTURE_DIR)

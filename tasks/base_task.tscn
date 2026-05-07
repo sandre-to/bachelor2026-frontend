@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://f7m1nc23t8ak"]
 
 [ext_resource type="Script" uid="uid://cjlrds15q0udc" path="res://tasks/base_task.gd" id="1_ncm2f"]
-[ext_resource type="PackedScene" uid="uid://cunx6y83t73w5" path="res://tasks/hint_box.tscn" id="2_m38qy"]
-[ext_resource type="PackedScene" uid="uid://wm56ni637qy" path="res://tasks/error_panel.tscn" id="3_a38up"]
+[ext_resource type="PackedScene" uid="uid://cunx6y83t73w5" path="res://tasks/base_task_ui/hint_box.tscn" id="2_m38qy"]
+[ext_resource type="PackedScene" uid="uid://wm56ni637qy" path="res://tasks/base_task_ui/error_panel.tscn" id="3_a38up"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rgci"]
 bg_color = Color(0.15208533, 0.5071063, 0.4144344, 1)
@@ -15,7 +15,7 @@ corner_radius_bottom_left = 8
 Button/styles/normal = SubResource("StyleBoxFlat_4rgci")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
-bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
+bg_color = Color(0.34818223, 0.5227266, 0.7692588, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
@@ -28,10 +28,10 @@ corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjtgf"]
 bg_color = Color(0, 0, 0, 0.8)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.04303915, 0.043039165, 0.04303909, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -92,10 +92,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="InnerPanel" type="Panel" parent="OuterPanel/MarginContainer" unique_id=732732529]
 layout_mode = 2
@@ -118,6 +118,7 @@ theme_override_constants/separation = 24
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "TASK"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -157,9 +158,24 @@ autowrap_trim_flags = 128
 context_menu_enabled = true
 selection_enabled = true
 
+[node name="CopyTextButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel" unique_id=2103772403]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -40.0
+offset_right = 85.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "COPY TEXT"
+
 [node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
 [node name="EnterFlag" type="LineEdit" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=928400105]
@@ -210,23 +226,21 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
 
 [node name="HintBox" parent="." unique_id=1931929207 instance=ExtResource("2_m38qy")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_top = -316.0
+offset_left = -326.0
+offset_top = -366.0
+offset_right = 326.0
+offset_bottom = 366.0
 
 [node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("3_a38up")]
+unique_name_in_owner = true
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 840.0
-offset_bottom = 480.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+offset_left = -1142.0
+offset_top = -240.0
+offset_right = -302.0
+offset_bottom = 240.0
 
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/PuzzlePanel/CopyTextButton" to="." method="_on_copy_text_button_pressed"]

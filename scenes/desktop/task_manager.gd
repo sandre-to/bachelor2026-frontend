@@ -84,7 +84,7 @@ func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void
 	
 	task.task_type = task_type
 	current_task = task
-	task.set_data_info(key)
+	#task.set_data_info(key)
 	
 	task.global_position += Vector2(-100, 0)
 	fade_in(task)
