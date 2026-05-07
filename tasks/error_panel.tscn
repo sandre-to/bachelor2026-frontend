@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://wm56ni637qy"]
+
+[ext_resource type="Script" uid="uid://y1avn1vich1c" path="res://tasks/error_panel.gd" id="1_apbry"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7fc5"]
+bg_color = Color(0.6057733, 0.094179206, 0.14435059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r7fc5"]
+font_size = 52
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qx4og"]
+bg_color = Color(0.2702219, 0.27022195, 0.27022177, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[node name="ErrorPanel" type="Panel" unique_id=1659107796]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -240.0
+offset_right = 420.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r7fc5")
+script = ExtResource("1_apbry")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=539919394]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1840530403]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 1
+text = "ERROR
+OH NO! WRONG FLAG."
+label_settings = SubResource("LabelSettings_r7fc5")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ExitButton" type="Button" parent="." unique_id=1343243297]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.0
+offset_top = 94.0
+offset_right = 194.0
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_qx4og")
+text = "EXIT"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
