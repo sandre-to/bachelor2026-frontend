@@ -1,7 +1,7 @@
 class_name BaseTask extends Control
 
 @export var task: TaskData
-
+@export var task_type: String = ""
 @onready var title: Label = %Title
 @onready var description: Label = %Description
 @onready var puzzle: RichTextLabel = %Puzzle
@@ -112,7 +112,7 @@ func completed_task() -> void:
 	description.text = "COMPLETED, GOOD JOB!"
 	confirm_button.disabled = true
 	task.completed = true
-	SignalBus.task_completed.emit()
+	SignalBus.task_completed.emit(task_type)
 	
 func get_task_data() -> void:
 	pass

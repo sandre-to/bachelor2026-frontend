@@ -64,10 +64,10 @@ func _on_task_1_pressed() -> void:
 	spawn_task(CRYPTO_TASK, "1.1")
 
 func _on_task_2_pressed() -> void:
-	spawn_task(STEGANO_TASK, "")
+	spawn_task(STEGANO_TASK, "level_1.2")
 
 func _on_task_3_pressed() -> void:
-	spawn_task(WEB_TASK, "")
+	spawn_task(WEB_TASK, "level_1.3")
 
 func _on_task_4_pressed() -> void:
 	spawn_task(CRYPTO_TASK, "1.4")

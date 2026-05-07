@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="StegData" format=3 uid="uid://bgf0aibk5pv3s"]
+
+[ext_resource type="Script" uid="uid://brcdhiw7q1eva" path="res://tasks/steg/stegData.gd" id="1_5ybyu"]
+
+[resource]
+script = ExtResource("1_5ybyu")
+image_name = "saintSofelin"
+real_image_path = "uid://dcx7dtnnxdm0g"
+flag = "edmuniaaa"
+author = "A Berg. AS"
+type = 1
+name = "Who is Saint Sofelin? "
+description = "  /)/)
+( . .)
+( づ♡"
+extra_description = "And does her portrait have some hidden information? Maybe for a bunny clever enough too know where to look. 
+"

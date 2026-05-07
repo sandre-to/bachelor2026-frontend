@@ -5,12 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://dnx6jwjhp11w8" path="res://assets/icons/mappe (1).png" id="4_eeqkd"]
 [ext_resource type="PackedScene" uid="uid://ixxriek6xq6m" path="res://assets/tools/caesar_cipher/caesar_cipher.tscn" id="5_rxhm2"]
 [ext_resource type="Texture2D" uid="uid://d3hv2u5oc0ryp" path="res://assets/icons/tools.png" id="5_vdb40"]
+[ext_resource type="Texture2D" uid="uid://dbxtyi8yqlp2r" path="res://assets/icons/3706642.png" id="6_vhyu0"]
+[ext_resource type="PackedScene" uid="uid://c4co1lnveh66q" path="res://assets/tools/steg_tool/steg_tool.tscn" id="7_rc1i8"]
 [ext_resource type="Texture2D" uid="uid://bj8ur2l2pulys" path="res://assets/icons/trash_can.png" id="7_vdb40"]
 [ext_resource type="PackedScene" uid="uid://br0013lsoj1dy" path="res://scenes/file_explorer/file_explorer.tscn" id="8_8o7cq"]
 [ext_resource type="PackedScene" uid="uid://7pl1y0n2mdj7" path="res://scenes/tutorial_scene/tutorial_tool_selector.tscn" id="8_r3qa2"]
+[ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="8_ucsme"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="12_u14mm"]
 [ext_resource type="Script" uid="uid://c2rturuwo0jp6" path="res://scenes/tutorial_scene/tutorial_task_manager.gd" id="14_rc1i8"]
 [ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/tutorial_dialogue_panel.gd" id="14_ucsme"]
+[ext_resource type="PackedScene" uid="uid://6ci887btl5lm" path="res://tasks/web_exploit/browser.tscn" id="16_rxhm2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpu8p"]
 bg_color = Color(0, 0, 0, 1)
@@ -399,6 +403,16 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="BrowserButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer" unique_id=1917237755]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+icon = ExtResource("6_vhyu0")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="ToolPanel" type="Panel" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=371145754]
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0)
@@ -421,6 +435,16 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="StegTool" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=1224495268 instance=ExtResource("7_rc1i8")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="WebExploit" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ToolPanel" unique_id=375065791 instance=ExtResource("8_ucsme")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="ClearButton" type="Button" parent="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel" unique_id=1515162580]
 unique_name_in_owner = true
@@ -445,9 +469,9 @@ visible = false
 layout_mode = 1
 offset_left = -20.0
 offset_right = -20.0
-script = null
 
 [node name="TutorialToolSelector" parent="." unique_id=1798708503 instance=ExtResource("8_r3qa2")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="TutorialTaskManager" type="Control" parent="." unique_id=368341897]
@@ -526,7 +550,21 @@ vertical_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "TASK 1"
+text = "CRYPTO TASK"
+
+[node name="Task2" type="Button" parent="TutorialTaskManager/Panel/MarginContainer/VBoxContainer" unique_id=1195510407]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "STEG TASK"
+
+[node name="Task3" type="Button" parent="TutorialTaskManager/Panel/MarginContainer/VBoxContainer" unique_id=927918751]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "WEB TASK"
 
 [node name="DialoguePanel" type="Panel" parent="." unique_id=602928932]
 process_mode = 3
@@ -640,15 +678,35 @@ offset_bottom = 45.0
 grow_horizontal = 2
 text = "SKIP TUTORIAL"
 
+[node name="Browser" parent="." unique_id=1900007620 instance=ExtResource("16_rxhm2")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 307.0
+offset_top = 295.0
+offset_right = -307.0
+offset_bottom = -147.0
+
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="." method="_on_files_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/FilesButton" to="DialoguePanel" method="_on_files_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="." method="_on_tools_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton" to="DialoguePanel" method="_on_tools_button_pressed"]
+[connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/BrowserButton" to="DialoguePanel" method="_on_browser_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="." method="_on_clear_button_pressed"]
 [connection signal="pressed" from="DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/ClearButton" to="DialoguePanel" method="_on_clear_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton" to="TutorialToolSelector" method="_on_steg_tool_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton" to="DialoguePanel" method="_on_steg_tool_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton" to="TutorialToolSelector" method="_on_web_tool_button_pressed"]
+[connection signal="pressed" from="TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton" to="DialoguePanel" method="_on_web_tool_button_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/TaskButton" to="TutorialTaskManager" method="_on_task_button_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="TutorialTaskManager" method="_on_task_1_pressed"]
 [connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task1" to="DialoguePanel" method="_on_task_1_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="TutorialTaskManager" method="_on_task_2_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task2" to="DialoguePanel" method="_on_task_2_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="TutorialTaskManager" method="_on_task_3_pressed"]
+[connection signal="pressed" from="TutorialTaskManager/Panel/MarginContainer/VBoxContainer/Task3" to="DialoguePanel" method="_on_task_3_pressed"]
 [connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SkipTutorial" to="." method="_on_skip_tutorial_pressed"]
+
+[editable path="TutorialToolSelector"]

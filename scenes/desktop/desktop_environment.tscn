@@ -255,7 +255,7 @@ tool_info = "Find hidden information in files or pictures"
 layout_mode = 2
 icon = ExtResource("13_ybhkl")
 tool_title = "WEB"
-tool_info = "Crack some passwords"
+tool_info = "Crack some usernames or passwords"
 
 [node name="NotepadButton" type="Button" parent="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer" unique_id=1429358022]
 unique_name_in_owner = true
