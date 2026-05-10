@@ -119,3 +119,8 @@ func reset_bulk(bulk: String) -> void:
 	index = 1
 	completed_bulk = false
 	current_bulk = bulk
+	
+	task_1.disabled = false
+	task_2.disabled = true
+	task_3.disabled = true
+	task_4.disabled = true
