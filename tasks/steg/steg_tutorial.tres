@@ -11,3 +11,4 @@ type = 1
 name = "Who is Saint Sofelin? "
 flag = "edmuniaaa"
 description = "Check the picture files in the file explorer"
+puzzle_text = "There is a picture that you can extract data from. Something about a saint."

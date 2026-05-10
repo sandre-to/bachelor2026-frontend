@@ -69,7 +69,7 @@
 		"2. Extract the image metadata -",
 		"by entering the image filepath in metaExtract",
 		"3. /home/pictures/saintSofelin",
-		"4. Press [Analyze]",
+		"4. The flag should be in userComment",
 	],
 	"steg_done": [
 		"Amazing!! Well done.",

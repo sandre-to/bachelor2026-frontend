@@ -78,10 +78,10 @@ func _on_hint_pressed(index: int) -> void:
 			hint_box.set_hint_text(task.flag, index)
 			
 func completed_task() -> void:
-	if not task or enter_flag.text != task.flag: 
+	if not task or enter_flag.text.strip_edges() != task.flag: 
 		error_panel.show()
 		return
-		
+	
 	SignalBus.task_completed.emit(
 		TaskData.TaskType.keys()[task.type].to_lower())
 	print("TASK COMPLETED")
