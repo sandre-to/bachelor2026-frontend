@@ -13,3 +13,4 @@ enum TaskType {
 @export var flag: String = ""
 @export_multiline() var description: String = ""
 @export_multiline() var puzzle_text: String = ""
+@export var hints: Array[String] = []

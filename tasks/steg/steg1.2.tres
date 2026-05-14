@@ -15,4 +15,5 @@ puzzle_text = "The bunny swears this image is just a normal carrot…
 but something feels off.
 
 Maybe the carrot is hiding more than just vitamins?"
+hints = Array[String](["", ""])
 metadata/_custom_type_script = "uid://wlwnowr21m8v"

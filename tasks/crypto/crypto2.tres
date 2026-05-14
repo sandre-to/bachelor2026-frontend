@@ -8,4 +8,5 @@ name = "This again?"
 flag = "bunboss"
 description = "I'm tired boss"
 puzzle_text = "Xli ribx qmwwmsr mw xli fsww lmqwipj. Fi gevijyp. Jpek: fyrfsww"
+hints = Array[String](["", ""])
 metadata/_custom_type_script = "uid://wlwnowr21m8v"

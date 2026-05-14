@@ -28,7 +28,6 @@ func _on_web_pressed() -> void:
 
 func _on_notepad_button_pressed() -> void:
 	var was_visible = notepad.visible
-	hide_selected_tools()
 	notepad.visible = not was_visible
 	
 	if notepad.visible:

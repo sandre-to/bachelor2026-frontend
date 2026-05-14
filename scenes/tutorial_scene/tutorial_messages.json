@@ -1,35 +1,30 @@
 {
 	"intro": [
-	"We have a newcomer here!",
-	"Welcome to BunOS, the environment for bunny hackers.",
-	"Let me show you how it works!",
-    "- Your boss, BunBoss"
+		"We have a newcomer here!",
+		"Welcome to BunOS, the environment for bunny hackers.",
+		"Let me show you how it works!",
+		"- Your boss, BunBoss"
 	],
-	
 	"files": [
-		"The files button at the bottom right shows all the files on your computer.",
+		"The files button at the bottom shows all the files on your computer."
 	],
-	
 	"files_folder": [
 		"NICE WORK!",
 		"Try out the different folders. For now they do nothing!"
 	],
-	
 	"tools": [
-		"This is your toolkit. For now you can only see the crypto tool.",
+		"This is your toolkit. For now you can only see the crypto tool."
 	],
-	
 	"tools_info": [
 		"Place your mouse on it."
 	],
-	
 	"clear_button": [
 		"If too much is shown on screen, press the clear button."
 	],
 	"tasks": [
 		"You're doing great so far!!",
 		"The last thing I want you to know",
-		"Is how tasks work in this environment",
+		"Is how tasks work in this environment"
 	],
 	"next_tasks": [
 		"Look! Something appeared in the right corner."
@@ -37,39 +32,35 @@
 	"last_section": [
 		"Let me show you how cryptography works.",
 		"Slow and steady wins the race right?",
-		"BUT I'M TOO QUICK!!",
+		"BUT I'M TOO QUICK!!"
 	],
-	
 	"crypto_task": [
 		"What kind of tool should you use for solving messages like this?",
 		"Open the crypto tool I showed you earlier.",
 		"1. Copy the text you want to decipher",
 		"2. Paste it in the INPUT area in Message Solver.",
 		"3. Enter a number (Use arrows UP / DOWN)",
-		"4. Press [Decipher]",
+		"4. Press [Decipher]"
 	],
 	"crypto_done": [
-	"NICE! You solved the crypto task."
+		"NICE! You solved the crypto task."
 	],
-	
 	"steg_tool_info": [
 		"Using bunny magic, you should now have a new tool in your toolkit!",
 		"Press the stegano tool in the toolkit, I'll show you how to use it later.",
-		"This tool can be used for steganography.",
+		"This tool can be used for steganography."
 	],
 	"steg_task_info": [
 		"Look, a new task has appeared!",
 		"Press the tasks button on the bottom right."
 	],
-	
-	
 	"steg_task": [
 		"Open the file explorer I showed you earlier.",
 		"1. See if you find the Saint Sofelin image.",
 		"2. Extract the image metadata -",
 		"by entering the image filepath in metaExtract",
 		"3. /home/pictures/saintSofelin",
-		"4. The flag should be in userComment",
+		"4. The flag should be in userComment"
 	],
 	"steg_done": [
 		"Amazing!! Well done.",

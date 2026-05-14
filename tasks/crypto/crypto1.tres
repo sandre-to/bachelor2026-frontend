@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://chf0kvj3v0qx5"]
+[gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://bhyrf7fxkfxfs"]
 
 [ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/base_task_ui/task_data.gd" id="1_ltm3w"]
 
@@ -8,4 +8,5 @@ name = "What is this gibberish??"
 flag = "applecider"
 description = "So many weird messages to solve"
 puzzle_text = "Awumbquma Q omb jwzml wn kizzwba, Q kzidm ixxtma zqopb vwe. Ntio: ixxtmkqlmz"
+hints = Array[String](["This is a crypto task! The tool is always message solver.", "The shift number is 8"])
 metadata/_custom_type_script = "uid://wlwnowr21m8v"

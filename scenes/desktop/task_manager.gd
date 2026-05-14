@@ -76,7 +76,7 @@ func spawn_task(index: int) -> void:
 	task.set_data_info(current_bulk, index)
 	current_task = task
 	
-	task.global_position += Vector2(-100, 0)
+	task.global_position += Vector2(-36, 0)
 	fade_in(task)
 
 func close_tasks() -> void:

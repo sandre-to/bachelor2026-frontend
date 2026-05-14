@@ -49,7 +49,7 @@ func set_data_info(key: String, index: int) -> void:
 		title.text = task.name
 		description.text = task.description
 		puzzle.text = task.puzzle_text
-		
+
 		match task.type:
 			TaskData.TaskType.CRYPTO:
 				pass
@@ -67,12 +67,14 @@ func _on_enter_flag_text_submitted(_new_text: String) -> void:
 	completed_task()
 	
 func _on_hint_pressed(index: int) -> void: 
+	if not task.hints: return
+	
 	match index:
 		1: 
-			hint_box.set_hint_text("something something", index)
+			hint_box.set_hint_text(task.hints[0], index)
 			hint_2.disabled = false
 		2:
-			hint_box.set_hint_text("someasdasdsathing something", index)
+			hint_box.set_hint_text(task.hints[1], index)
 			hint_3.disabled = false
 		3:
 			hint_box.set_hint_text(task.flag, index)
