@@ -185,16 +185,6 @@ allow_reselect = true
 scroll_hint_mode = 2
 icon_scale = 0.2
 
-[node name="Preview" type="TextureRect" parent="." unique_id=1755326574]
-custom_minimum_size = Vector2(128, 128)
-layout_mode = 0
-offset_left = -49.0
-offset_top = -495.0
-offset_right = 407.0
-offset_bottom = -285.0
-mouse_filter = 2
-stretch_mode = 3
-
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="gui_input" from="Panel/TabContainer" to="." method="_on_tab_container_gui_input"]
 [connection signal="gui_input" from="Panel/TabContainer/Home" to="." method="_on_home_gui_input"]

@@ -15,5 +15,5 @@ puzzle_text = "The bunny swears this image is just a normal carrot…
 but something feels off.
 
 Maybe the carrot is hiding more than just vitamins?"
-hints = Array[String](["", ""])
+hints = Array[String](["You need to use the Steg Tool", "Try this path: /home/pictures/carrotEater"])
 metadata/_custom_type_script = "uid://wlwnowr21m8v"

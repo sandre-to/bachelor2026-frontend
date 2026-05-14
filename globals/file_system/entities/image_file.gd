@@ -2,8 +2,7 @@ extends File
 class_name ImageFile
 
 var _real_path: String				# Den REELE filstien til bildet
-var image: Image = null
-var texture: ImageTexture = null
+var texture: Texture2D = null
 
 
 func _init(_name: String, real_path: String) -> void:
@@ -21,14 +20,11 @@ func get_texture() -> Texture2D:
 
 
 func load_image() -> void:
-	if not FileAccess.file_exists(_real_path):
-		push_error("fuckass bilde eksisterer ikke")
+	if not ResourceLoader.exists(_real_path):
+		push_error("Image does not exist: " + _real_path)
 		return
-	
-	image = Image.new()
-	var err = image.load(_real_path)
-	if err != OK:
-		push_error("fuckass bilde laster ikke")
-		return
-	
-	texture = ImageTexture.create_from_image(image)
+
+	texture = load(_real_path) as Texture2D
+
+	if texture == null:
+		push_error("Failed to load texture: " + _real_path)

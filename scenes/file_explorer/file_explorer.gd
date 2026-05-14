@@ -17,7 +17,6 @@ var cwd: Directory
 
 @onready var files: ItemList = %Files
 @onready var folders_list: VBoxContainer = %FoldersList
-@onready var preview: TextureRect = $Preview
 @onready var tool_selector: ToolSelector = %ToolSelector
 
 var dragging: bool = false
@@ -43,15 +42,12 @@ func _show_folder(directory: Directory) -> void:
 		files.set_item_metadata(files.item_count - 1, file)
 
 func _on_pictures_button_pressed() -> void:
-	preview.hide()
 	_show_folder_from_path(FileSystem.PICTURE_DIR)
 
 func _on_documents_button_pressed() -> void:
-	preview.hide()
 	_show_folder_from_path(FileSystem.DOCUMENT_DIR)
 
 func _on_secret_button_pressed() -> void:
-	preview.hide()
 	_show_folder_from_path(FileSystem.SECRET_DIR)
 
 func _on_exit_button_pressed() -> void:
