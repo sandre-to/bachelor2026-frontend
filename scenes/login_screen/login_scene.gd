@@ -42,7 +42,7 @@ func _on_request_completed(
 	print(response_text)
 	
 	if last_request_type == "Login":
-	# TODO: Lag en WS-forbindelse
+	# TODO: Lag en WS-forbindelse & GTFO til desktopscenen
 		pass
 	elif last_request_type == "Register":
 	# TODO: Vis statusmelding til brukeren

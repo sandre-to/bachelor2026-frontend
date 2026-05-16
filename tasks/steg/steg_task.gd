@@ -70,15 +70,5 @@ func _on_start() -> bool:
 
 	return true
 
-func verify_flag() -> bool:
-	var steg_task := task as StegData
-	if steg_task == null:
-		return false
-
-	if not enter_flag.text.strip_edges() == steg_task.flag:
-		error_panel.show()
-
-	return enter_flag.text.strip_edges() == steg_task.flag
-
 func _on_exit_button_pressed() -> void:
 	error_panel.hide()

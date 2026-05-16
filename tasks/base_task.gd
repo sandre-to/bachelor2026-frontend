@@ -45,6 +45,8 @@ func reset_ui() -> void:
 	hint_box.hide()
 	error_panel.hide()
 
+
+
 # start():	Metoden som kjører når oppgaven startes
 func start() -> void:
 	#Spør backenden om å starte
@@ -52,11 +54,13 @@ func start() -> void:
 	if not request_success:
 		return
 	
+	set_task_info()
+	
 	# Initialiser den spesifike oppgaven
 	var init_success: bool = _on_start()
 	if not init_success:
 		return
-	
+		
 	# Fortell backenden at initen fungerte
 	var backend_synced: bool = await parse_finished()
 	if not backend_synced:
@@ -167,7 +171,7 @@ func request_task() -> bool:
 	
 	if response_data.has("extraDesc"):
 		task.extra_description = response_data.get("extraDesc")
-	
+	print(task.backend_data)
 	return true
 
 
