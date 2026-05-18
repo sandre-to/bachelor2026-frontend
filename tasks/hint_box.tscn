@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cunx6y83t73w5"]
+[gd_scene format=3 uid="uid://cn05kofr7cwka"]
 
-[ext_resource type="Script" uid="uid://bttbsejslc7c6" path="res://tasks/hint_box.gd" id="1_n6s6y"]
+[ext_resource type="Script" path="res://tasks/hint_box.gd" id="1_n6s6y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms4vn"]
 bg_color = Color(0.41753522, 0.68266326, 0.27585247, 1)

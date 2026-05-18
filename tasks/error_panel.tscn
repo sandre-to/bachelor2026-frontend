@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://wm56ni637qy"]
+[gd_scene format=3 uid="uid://l8klivrqacke"]
 
-[ext_resource type="Script" uid="uid://y1avn1vich1c" path="res://tasks/error_panel.gd" id="1_apbry"]
+[ext_resource type="Script" path="res://tasks/error_panel.gd" id="1_apbry"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7fc5"]
 bg_color = Color(0.6057733, 0.094179206, 0.14435059, 1)

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://f7m1nc23t8ak"]
 
 [ext_resource type="Script" uid="uid://cjlrds15q0udc" path="res://tasks/base_task.gd" id="1_ncm2f"]
-[ext_resource type="PackedScene" uid="uid://cunx6y83t73w5" path="res://tasks/hint_box.tscn" id="2_m38qy"]
-[ext_resource type="PackedScene" uid="uid://wm56ni637qy" path="res://tasks/error_panel.tscn" id="3_a38up"]
+[ext_resource type="PackedScene" uid="uid://cn05kofr7cwka" path="res://tasks/hint_box.tscn" id="2_m38qy"]
+[ext_resource type="PackedScene" uid="uid://l8klivrqacke" path="res://tasks/error_panel.tscn" id="3_a38up"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rgci"]
 bg_color = Color(0.15208533, 0.5071063, 0.4144344, 1)
@@ -211,22 +211,12 @@ text = "HINT 3"
 
 [node name="HintBox" parent="." unique_id=1931929207 instance=ExtResource("2_m38qy")]
 visible = false
-layout_mode = 1
-offset_top = -316.0
+layout_mode = 0
+anchors_preset = 0
 
 [node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("3_a38up")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 840.0
-offset_bottom = 480.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]
