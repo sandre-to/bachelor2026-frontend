@@ -63,6 +63,8 @@ func _on_task_3_pressed() -> void:
 	if task:
 		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
 		hint_container.hide()
+		
+		
 func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void:
 	if task_scene == null:
 		return
@@ -75,8 +77,8 @@ func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void
 	var task: TutorialTask = task_scene.instantiate()
 	add_child(task)
 	
-	task.task_type = task_type
-	task.set_data_info(key)
+	task.type = task_type
+	task.set_data_info(key, 0)
 	current_task = task
 	
 	task.global_position += Vector2(-100, 0)

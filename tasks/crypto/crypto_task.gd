@@ -2,8 +2,8 @@ class_name CryptoScene extends BaseTask
 
 @export var crypto_tasks := {
 	"tutorial": "res://tasks/crypto/tutorial_task.tres",
-	"1.1": "res://tasks/crypto/level1-1.tres",
-	"1.4": "res://tasks/crypto/level1-4.tres"
+	"1.1": "res://tasks/crypto/crypto1.tres",
+	"1.4": "res://tasks/crypto/crypto2.tres"
 }
 
 func _ready() -> void:
@@ -26,13 +26,6 @@ func _on_copy_button_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	hint_box.hide()
-
-#func _on_confirm_button_pressed() -> void:
-	#if enter_flag.text == task.flag:
-		#confirm_button.disabled = true
-		#SignalBus.task_completed.emit()
-	#else:
-		#error_panel.show()
 
 func set_task(_task: TaskData) -> void:
 	task = _task

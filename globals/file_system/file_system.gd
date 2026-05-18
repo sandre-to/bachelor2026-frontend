@@ -152,13 +152,13 @@ func _init_file_structure() -> void:
 	add_image_file("merlinsBeard", "res://scenes/file_explorer/pictures/devJesus.jpg")
 	add_image_file("bunnySaintEddie", "res://scenes/file_explorer/pictures/devEdwina.png")
 	
-	var steg_data: StegData = load(
-		"res://tasks/steg/steg_tutorial.tres")
+	#var steg_data: StegData = load(
+		#"res://tasks/steg/steg_tutorial.tres")
 	
 	var file := FileSystem.get_file_entity(FileSystem.PICTURE_DIR + "/saintSofelin")
 	file.metadata["type"] = "image"
-	file.metadata["Author"] = steg_data.author
-	file.metadata["Software"] = steg_data.software
-	file.metadata["Comment"] = steg_data.comment
-	file.metadata[steg_data.flag_metadata_key] = steg_data.flag
+	#file.metadata["Author"] = steg_data.author
+	#file.metadata["Software"] = steg_data.software
+	#file.metadata["Comment"] = steg_data.comment
+	#file.metadata[steg_data.flag_metadata_key] = steg_data.flag
 	

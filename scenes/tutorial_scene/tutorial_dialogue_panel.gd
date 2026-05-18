@@ -274,6 +274,7 @@ func _on_task_completed(task_type: String) -> void:
 	tutorial_tool_selector.hide_selected_tools()
 	tool_button_panel.hide()
 	#spesifikt til hver kategori
+	print(task_type)
 	match task_type:
 		"crypto":
 			steg_tool_button.show()
@@ -281,7 +282,7 @@ func _on_task_completed(task_type: String) -> void:
 			tools_button.disabled = false
 			reset_dialogue_position()
 			start_dialogue("steg_tool_info")
-		"stegano":
+		"steg":
 			web_tool_button.show() 
 			start_dialogue("steg_done")
 		"web":

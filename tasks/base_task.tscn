@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjlrds15q0udc" path="res://tasks/base_task.gd" id="1_ncm2f"]
 [ext_resource type="PackedScene" uid="uid://cunx6y83t73w5" path="res://tasks/base_task_ui/hint_box.tscn" id="2_m38qy"]
-[ext_resource type="PackedScene" uid="uid://wm56ni637qy" path="res://tasks/base_task_ui/error_panel.tscn" id="3_a38up"]
+[ext_resource type="PackedScene" uid="uid://l8klivrqacke" path="res://tasks/base_task_ui/error_panel.tscn" id="3_a38up"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rgci"]
 bg_color = Color(0.15208533, 0.5071063, 0.4144344, 1)

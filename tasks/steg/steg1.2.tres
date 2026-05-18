@@ -8,6 +8,7 @@ image_name = "carrotEater"
 real_image_path = "res://scenes/file_explorer/pictures/prince.png"
 author = "Unknown"
 type = 1
+id = 2
 name = "Carrot in Plain Sight"
 flag = "prince"
 description = "The bunny swears this image is just a normal carrot…

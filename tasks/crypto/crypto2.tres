@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_4xunx")
+id = 4
 name = "This again?"
 flag = "bunboss"
 description = "I'm tired boss"

@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_ltm3w")
+id = 1
 name = "What is this gibberish??"
 flag = "applecider"
 description = "So many weird messages to solve"

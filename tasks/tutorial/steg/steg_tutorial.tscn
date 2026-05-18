@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://dm1l4i6iui3ek"]
+[gd_scene format=3 uid="uid://be4obpw82ux8n"]
 
 [ext_resource type="Script" uid="uid://bwngib54hpgis" path="res://tasks/tutorial/steg/steg_tutorial.gd" id="1_iqy87"]
-[ext_resource type="Resource" uid="uid://bgf0aibk5pv3s" path="res://tasks/steg/steg_tutorial.tres" id="2_wgea5"]
-[ext_resource type="PackedScene" uid="uid://cn05kofr7cwka" path="res://tasks/hint_box.tscn" id="3_iqy87"]
-[ext_resource type="PackedScene" uid="uid://l8klivrqacke" path="res://tasks/error_panel.tscn" id="4_wgea5"]
+[ext_resource type="Resource" uid="uid://bgf0aibk5pv3s" path="res://tasks/tutorial/steg/steg_tutorial.tres" id="2_iqy87"]
+[ext_resource type="PackedScene" uid="uid://cunx6y83t73w5" path="res://tasks/base_task_ui/hint_box.tscn" id="2_lmgrd"]
+[ext_resource type="PackedScene" uid="uid://l8klivrqacke" path="res://tasks/base_task_ui/error_panel.tscn" id="3_h7vxs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rgci"]
 bg_color = Color(0.15208533, 0.5071063, 0.4144344, 1)
@@ -16,11 +16,11 @@ corner_radius_bottom_left = 8
 Button/styles/normal = SubResource("StyleBoxFlat_4rgci")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43dnk"]
-bg_color = Color(0.78431374, 0.78431374, 0.78431374, 0.5176471)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+bg_color = Color(0.34818223, 0.5227266, 0.7692588, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 32
 corner_radius_top_right = 32
@@ -29,15 +29,15 @@ corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjtgf"]
 bg_color = Color(0, 0, 0, 0.8)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.04303915, 0.043039165, 0.04303909, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_vjtgf"]
 font_size = 32
@@ -69,7 +69,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_a38up")
 script = ExtResource("1_iqy87")
-task = ExtResource("2_wgea5")
+task = ExtResource("2_iqy87")
 
 [node name="OuterPanel" type="Panel" parent="." unique_id=1516989610]
 custom_minimum_size = Vector2(640, 500)
@@ -94,10 +94,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="InnerPanel" type="Panel" parent="OuterPanel/MarginContainer" unique_id=732732529]
 layout_mode = 2
@@ -120,13 +120,14 @@ theme_override_constants/separation = 24
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
 text = "TASK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=1429868216]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 110)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_vertical = 1
 text = "Description"
@@ -136,7 +137,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="PuzzlePanel" type="Panel" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=246550945]
-custom_minimum_size = Vector2(0, 160)
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ncm2f")
 
@@ -157,11 +158,21 @@ focus_mode = 2
 theme_override_font_sizes/normal_font_size = 24
 autowrap_trim_flags = 128
 context_menu_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
 selection_enabled = true
 
-[node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
-custom_minimum_size = Vector2(0, 50)
+[node name="CopyTextButton" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=2103772403]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+text = "COPY TEXT"
+
+[node name="FlagAndConfirm" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=78205528]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
 [node name="EnterFlag" type="LineEdit" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm" unique_id=928400105]
@@ -181,9 +192,10 @@ text = "CONFIRM"
 
 [node name="HintContainer" type="HBoxContainer" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer" unique_id=897604010]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_constants/separation = 12
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
 alignment = 1
 
 [node name="Hint1" type="Button" parent="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer" unique_id=1534878314]
@@ -211,12 +223,20 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4rgci")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4rgci")
 text = "HINT 3"
 
-[node name="HintBox" parent="." unique_id=1931929207 instance=ExtResource("3_iqy87")]
+[node name="HintBox" parent="." unique_id=1931929207 instance=ExtResource("2_lmgrd")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
+offset_left = -326.0
+offset_top = -366.0
+offset_right = 326.0
+offset_bottom = 366.0
 
-[node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("4_wgea5")]
+[node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("3_h7vxs")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
+offset_left = -985.0
+offset_right = -145.0
 
-[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/FlagAndConfirm/ConfirmButton" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="OuterPanel/MarginContainer/InnerPanel/VBoxContainer/CopyTextButton" to="." method="_on_copy_text_button_pressed"]

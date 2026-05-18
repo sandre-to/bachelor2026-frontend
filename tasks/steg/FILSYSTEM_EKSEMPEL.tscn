@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://wnalc3s3ai5o"]
-
-[ext_resource type="Script" uid="uid://dam3vp8l3ar5l" path="res://tasks/steg/FILSYSTEM_EKSEMPEL.gd" id="1_fdykl"]
-
-[node name="Test" type="Node" unique_id=1165977506]
-script = ExtResource("1_fdykl")

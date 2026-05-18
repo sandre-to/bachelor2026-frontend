@@ -129,13 +129,13 @@ func _on_hint_pressed(index: int) -> void:
 	hint_box.set_hint_text(hint, index)
 	match index:
 		1: 
-			hint_box.set_hint_text(task.hints[0], index)
+			hint_box.set_hint_text(gotten_hints[index], index)
 			hint_2.disabled = false
 		2:
-			hint_box.set_hint_text(task.hints[1], index)
+			hint_box.set_hint_text(gotten_hints[index], index)
 			hint_3.disabled = false
 		3:
-			hint_box.set_hint_text(task.flag, index)
+			hint_box.set_hint_text(gotten_hints[index], index)
 
 
 
