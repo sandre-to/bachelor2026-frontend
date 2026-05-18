@@ -12,17 +12,15 @@ class_name TutorialDialoguePanel extends Panel
 @onready var file_explorer := %FileExplorer
 @onready var tutorial_task_manager: TutorialTasks = %TutorialTaskManager
 @onready var play_button: Button = %PlayButton
-@onready var tutorial_tool_selector: TutorialToolSelector = $"../TutorialToolSelector"
 #@onready var steg_tool_button: = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton"
 #@onready var web_tool_button: = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton"
-@onready var tool_button: Button = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/ToolButton"
-@onready var steg_tool_button: Button = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton"
-@onready var web_tool_button: Button = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton"
+@onready var tool_button: Button = $"../DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/TutorialToolSelector/ToolButtonPanel/HBoxContainer/ToolButton"
+@onready var steg_tool_button: Button = $"../DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton"
+@onready var web_tool_button: Button = $"../DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton"
+@onready var tool_button_panel: Panel = $"../DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/TutorialToolSelector/ToolButtonPanel"
+@onready var tutorial_tool_selector: TutorialToolSelector = %TutorialToolSelector
 
-
-@onready var tool_button_panel: Panel = $"../TutorialToolSelector/ToolButtonPanel"
 var next_button_start_pos: Vector2
-
 
 @onready var task_button: Button = $"../TutorialTaskManager/TaskButton"
 @onready var task_1: Button = %Task1
@@ -283,7 +281,7 @@ func _on_task_completed(task_type: String) -> void:
 			tools_button.disabled = false
 			reset_dialogue_position()
 			start_dialogue("steg_tool_info")
-		"steg":
+		"stegano":
 			web_tool_button.show() 
 			start_dialogue("steg_done")
 		"web":
@@ -315,19 +313,19 @@ func _on_clear_button_pressed() -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 
-	tween.parallel().tween_property(
-		self,
-		"position",
-		Vector2(716, 318),
-		dialog_move_speed
-	)
+	#tween.parallel().tween_property(
+		#self,
+		#"position",
+		#Vector2(716, 318),
+		#dialog_move_speed
+	#)
 
-	tween.parallel().tween_property(
-		self,
-		"size",
-		Vector2(488, 444),
-		dialog_move_speed
-	)
+	#tween.parallel().tween_property(
+		#self,
+		#"size",
+		#Vector2(488, 444),
+		#dialog_move_speed
+	#)
 	if clear_pressed: return
 	
 	clear_pressed = true

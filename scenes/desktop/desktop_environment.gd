@@ -17,7 +17,6 @@ func _ready() -> void:
 	animation.play("fade_in")
 	await animation.animation_finished
 	animation.queue_free()
-	
 	tool_selector.hide()
 
 func _draw() -> void:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://yghdr8ejvmj6"]
 
 [ext_resource type="Script" uid="uid://b6qfcavjpda1m" path="res://tasks/steg/steg_task.gd" id="1_3hfx2"]
-[ext_resource type="LabelSettings" uid="uid://c7408qgsvpvra" path="res://tasks/task_label.tres" id="2_bj12d"]
+[ext_resource type="LabelSettings" path="res://tasks/task_label.tres" id="2_bj12d"]
 [ext_resource type="Resource" uid="uid://bylxc2f72yl4p" path="res://tasks/steg/steg1.2.tres" id="2_lfggm"]
 [ext_resource type="PackedScene" uid="uid://l8klivrqacke" path="res://tasks/error_panel.tscn" id="4_gdjgg"]
 [ext_resource type="PackedScene" uid="uid://cn05kofr7cwka" path="res://tasks/hint_box.tscn" id="5_ci7j5"]

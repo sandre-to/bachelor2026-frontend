@@ -17,9 +17,10 @@ var cwd: Directory
 
 @onready var files: ItemList = %Files
 @onready var folders_list: VBoxContainer = %FoldersList
-@onready var preview: TextureRect = $Preview
 @onready var tool_selector: ToolSelector = %ToolSelector
 
+var dragging: bool = false
+var drag_offset: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	cwd = FileSystem.get_file_entity("/")
@@ -40,18 +41,13 @@ func _show_folder(directory: Directory) -> void:
 		files.add_item(file.name)
 		files.set_item_metadata(files.item_count - 1, file)
 
-	
-	
 func _on_pictures_button_pressed() -> void:
-	preview.hide()
 	_show_folder_from_path(FileSystem.PICTURE_DIR)
 
 func _on_documents_button_pressed() -> void:
-	preview.hide()
 	_show_folder_from_path(FileSystem.DOCUMENT_DIR)
 
 func _on_secret_button_pressed() -> void:
-	preview.hide()
 	_show_folder_from_path(FileSystem.SECRET_DIR)
 
 func _on_exit_button_pressed() -> void:
@@ -96,4 +92,20 @@ func _on_files_item_activated(index: int) -> void:
 	elif file_entity is Directory:
 		_show_folder(file_entity as Directory)
 	
-	
+
+func _on_home_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			dragging = true
+			drag_offset = get_global_mouse_position() - global_position
+		else:
+			dragging = false
+
+	if event is InputEventMouseMotion and dragging:
+		var new_pos := get_global_mouse_position() - drag_offset
+		var screen_size := get_viewport_rect().size
+
+		new_pos.x = clamp(new_pos.x, 0.0, screen_size.x - size.x)
+		new_pos.y = clamp(new_pos.y, 0.0, screen_size.y - size.y)
+
+		global_position = new_pos

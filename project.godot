@@ -22,15 +22,12 @@ run/max_fps=60
 [autoload]
 
 SignalBus="*uid://dkpaul1rx55de"
-NetworkManager="*uid://db00shqp8vjnj"
+NetworkManager="uid://db00shqp8vjnj"
 FileSystem="*uid://dqfpai62gs7sp"
-flag_manager="*uid://sgrmelivqb0n"
-GameNetwork="*uid://cfy7v87qnh6rm"
-Backend="*uid://db00shqp8vjnj"
-Network="*uid://cfy7v87qnh6rm"
-HttpManager="uid://cavqb22lgnfdx"
-<<<<<<<HEADSceneManager="*uid://bs5rjynbtaxhk"
-SceneManager="*uid://bs5rjynbtaxhk"
+flag_manager="uid://sgrmelivqb0n"
+GameNetwork="uid://cfy7v87qnh6rm"
+Backend="uid://db00shqp8vjnj"
+Network="uid://cfy7v87qnh6rm"
 
 [debug]
 

@@ -5,7 +5,6 @@ extends TaskData
 @export_file("*.jpg", "*.jpeg", "*.png", "*.webp") var real_image_path: String = ""
 @export var virtual_directory: String = "/home/pictures"
 
-@export var flag: String = ""
 @export var flag_metadata_key: String = "UserComment"
 
 @export var author: String = ""

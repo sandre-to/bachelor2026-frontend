@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="TaskData" format=3 uid="uid://mxltqw3ucknr"]
 
-[ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/task_resource.gd" id="1_2byew"]
+[ext_resource type="Script" uid="uid://wlwnowr21m8v" path="res://tasks/base_task_ui/task_data.gd" id="1_2byew"]
+
 
 [resource]
 script = ExtResource("1_2byew")

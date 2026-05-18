@@ -4,6 +4,6 @@ extends Node
 signal task_completed(task_type: String)
 signal send_web_data(task: WebData)
 signal send_boss_web(task: WebData)
-signal send_boss_download(task: )
+signal send_boss_download(task)
 signal sent_message(message: String, shift: int)
 signal encrypted(message: String)

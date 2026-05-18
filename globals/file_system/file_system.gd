@@ -146,49 +146,19 @@ func _init_file_structure() -> void:
 	mkdir(DOCUMENT_DIR)
 	mkdir(SECRET_DIR)
 	
-	# Passordlister
-	print(add_text_file(
-		"top_10_passwords.txt",
-		SECRET_DIR,
-		"res://assets/tools/password_breaker/top_10_passwords.txt"
-	))
-	
-
-	
-	var pass_list_two: TextFile = touch(SECRET_DIR + "/top_bunny_passwords.txt")
-	var list2_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/top_bunny_passwords.txt",
-		FileAccess.READ
-	).get_as_text()
-	pass_list_two.update_content(list2_content)
-	pass_list_two.chmod("r--")
-	
-	var pass_list_three: TextFile = touch(SECRET_DIR + "/phone_codes.txt")
-	var list3_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/phone_codes.txt",
-		FileAccess.READ
-	).get_as_text()
-	pass_list_three.update_content(list3_content)
-	pass_list_three.chmod("r--")
-	
-	var user_list_one: TextFile = touch(SECRET_DIR + "/username1.txt")
-	var userlist1_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/username1.txt",
-		FileAccess.READ
-	).get_as_text()
-	user_list_one.update_content(userlist1_content)
-	user_list_one.chmod("r--")
-	
-	var user_list_two: TextFile = touch(SECRET_DIR + "/username2.txt")
-	var userlist2_content: String = FileAccess.open(
-		"res://assets/tools/password_breaker/username2.txt",
-		FileAccess.READ
-	).get_as_text()
-	user_list_two.update_content(userlist2_content)
-	user_list_two.chmod("r--")
-
 	add_image_file("carrotEater", "res://scenes/file_explorer/pictures/prince.png")
 	add_image_file("bunnyEater", "res://scenes/file_explorer/pictures/petter.jpg")
 	add_image_file("saintSofelin", "res://scenes/file_explorer/pictures/devSofie.png")
 	add_image_file("merlinsBeard", "res://scenes/file_explorer/pictures/devJesus.jpg")
 	add_image_file("bunnySaintEddie", "res://scenes/file_explorer/pictures/devEdwina.png")
+	
+	var steg_data: StegData = load(
+		"res://tasks/steg/steg_tutorial.tres")
+	
+	var file := FileSystem.get_file_entity(FileSystem.PICTURE_DIR + "/saintSofelin")
+	file.metadata["type"] = "image"
+	file.metadata["Author"] = steg_data.author
+	file.metadata["Software"] = steg_data.software
+	file.metadata["Comment"] = steg_data.comment
+	file.metadata[steg_data.flag_metadata_key] = steg_data.flag
+	

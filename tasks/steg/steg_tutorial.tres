@@ -6,12 +6,9 @@
 script = ExtResource("1_5ybyu")
 image_name = "saintSofelin"
 real_image_path = "uid://dcx7dtnnxdm0g"
-flag = "edmuniaaa"
 author = "A Berg. AS"
 type = 1
 name = "Who is Saint Sofelin? "
-description = "  /)/)
-( . .)
-( づ♡"
-extra_description = "And does her portrait have some hidden information? Maybe for a bunny clever enough too know where to look. 
-"
+flag = "edmuniaaa"
+description = "Check the picture files in the file explorer"
+puzzle_text = "There is a picture that you can extract data from. Something about a saint."

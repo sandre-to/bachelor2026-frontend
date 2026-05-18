@@ -2,7 +2,6 @@ class_name DialoguePanel extends Panel
 
 @export var dialog_move_speed: float = 0.35
 @onready var next_button: Button = $NextButton
-@onready var bunny_image: TextureRect = $"../BunBoss/BunnyImage"
 @onready var boss_flag: LineEdit = %BossFlag
 @onready var text: RichTextLabel = %Text
 
