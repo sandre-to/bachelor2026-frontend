@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://f4vf50j17767" path="res://assets/tools/password_breaker/web_exploit.tscn" id="8_ucsme"]
 [ext_resource type="Texture2D" uid="uid://c4aklsmnldvmx" path="res://assets/icons/tasks_icon.png" id="12_u14mm"]
 [ext_resource type="Script" uid="uid://c2rturuwo0jp6" path="res://scenes/tutorial_scene/tutorial_task_manager.gd" id="14_rc1i8"]
-[ext_resource type="Script" uid="uid://by3il3k263fkj" path="res://scenes/tutorial_scene/tutorial_dialogue_panel.gd" id="14_ucsme"]
+[ext_resource type="Script" uid="uid://c6epru3aftqk8" path="res://scenes/tutorial_scene/tutorial_dialogue_panel.gd" id="14_ucsme"]
 [ext_resource type="PackedScene" uid="uid://6ci887btl5lm" path="res://tasks/web_exploit/browser.tscn" id="16_rxhm2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpu8p"]

@@ -56,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 18
+theme_override_constants/separation = 14
 
 [node name="Title" type="RichTextLabel" parent="Panel/VBoxContainer" unique_id=2087250503]
 unique_name_in_owner = true
@@ -151,7 +151,6 @@ vertical_alignment = 1
 selection_enabled = true
 
 [node name="HelpButton" parent="Panel/VBoxContainer" unique_id=2072855675 instance=ExtResource("5_ftf01")]
-visible = false
 layout_mode = 2
 
 [connection signal="text_changed" from="Panel/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]

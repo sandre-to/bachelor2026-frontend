@@ -7,7 +7,6 @@ const TASK: PackedScene = preload("res://tasks/base_task.tscn")
 @onready var missions_panel: Panel = $Panel
 @onready var task_button: Button = $TaskButton
 @onready var dialogue_panel: DialoguePanel = %DialoguePanel
-@onready var bun_boss: Panel = %BunBoss
 @onready var boss_flag: LineEdit = %BossFlag
 
 # --- Oppgave knapper ---
@@ -63,7 +62,7 @@ func _on_task_3_pressed() -> void:
 func _on_task_4_pressed() -> void:
 	spawn_task(3)
 
-func spawn_task(index: int) -> void:
+func spawn_task(_index: int) -> void:
 	if current_task:
 		current_task.queue_free()
 		current_task = null
@@ -73,7 +72,7 @@ func spawn_task(index: int) -> void:
 	var task := TASK.instantiate() as BaseTask
 	add_child(task)
 	
-	task.set_data_info(current_bulk, index)
+	task.set_data_info(current_bulk, _index)
 	current_task = task
 	
 	task.global_position += Vector2(-36, 0)

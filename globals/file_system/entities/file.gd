@@ -11,7 +11,6 @@ class_name File
 func _init(_name: String) -> void:
 	super(_name)
 
-
 @warning_ignore("unused_parameter")
 # Get_entity():	Implementasjon av en abstrakte metode.
 func get_entity(path: String) -> FileEntity:
