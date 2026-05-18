@@ -34,7 +34,7 @@ func _on_button_pressed() -> void:
 	#else:
 		#error_panel.show()
 
-func set_task(_task: CryptoData) -> void:
+func set_task(_task: TaskData) -> void:
 	task = _task
 	title.text = _task.name
 	description.text = _task.description

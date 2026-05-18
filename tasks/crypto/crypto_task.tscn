@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b1ylepo62jqiq"]
 
-[ext_resource type="Script" uid="uid://cby35ml5hvjt1" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
+[ext_resource type="Script" uid="uid://bpo5e7ifnioju" path="res://tasks/crypto/crypto_task.gd" id="1_qx4og"]
 [ext_resource type="Resource" uid="uid://b2w6777bok8rs" path="res://tasks/crypto/crypto_task.tres" id="2_mkcnv"]
 [ext_resource type="Shader" uid="uid://bwcfes2onpcsa" path="res://scripts/shaders/desktop_environment.gdshader" id="2_r7fc5"]
-[ext_resource type="PackedScene" uid="uid://l8klivrqacke" path="res://tasks/error_panel.tscn" id="4_3r7of"]
-[ext_resource type="PackedScene" uid="uid://cn05kofr7cwka" path="res://tasks/hint_box.tscn" id="4_imn07"]
+[ext_resource type="PackedScene" uid="uid://l8klivrqacke" path="res://tasks/base_task_ui/error_panel.tscn" id="4_3r7of"]
+[ext_resource type="PackedScene" uid="uid://cunx6y83t73w5" path="res://tasks/base_task_ui/hint_box.tscn" id="4_imn07"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rgci"]
 bg_color = Color(0.15208533, 0.5071063, 0.4144344, 1)
@@ -235,10 +235,12 @@ text = "COPY TEXT"
 
 [node name="HintBox" parent="." unique_id=1931929207 instance=ExtResource("4_imn07")]
 visible = false
-layout_mode = 1
+layout_mode = 0
+anchors_preset = 0
 
-[node name="ErrorPanel" parent="." unique_id=1659107796 instance=ExtResource("4_3r7of")]
+[node name="ErrorPanel" parent="." unique_id=841170452 instance=ExtResource("4_3r7of")]
 visible = false
-layout_mode = 1
+layout_mode = 0
+anchors_preset = 0
 
 [connection signal="pressed" from="OuterPanel/CopyButton" to="." method="_on_copy_button_pressed"]

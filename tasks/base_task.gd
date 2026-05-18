@@ -92,27 +92,28 @@ func start() -> void:
 func _on_start() -> bool:
 	return false
 
+
+
 func set_task_info() -> void: 
 	title.text = task.name
 	description.text = task.description
 	puzzle.text = task.extra_description
+
+
 
 func _on_confirm_button_pressed() -> void: 
 	var flag_correct: bool = await verify_flag()
 	if flag_correct:
 		completed_task()
 	else:
-		push_error("Key does not exist in tasks: ", key)
+		print("buh")
 
-func _on_confirm_button_pressed() -> void:
-	completed_task()
+	
 	
 func _on_enter_flag_text_submitted(_new_text: String) -> void: 
 	completed_task()
-	
-func _on_hint_pressed(index: int) -> void: 
-	if not task.hints: return
-	
+
+
 
 func _on_hint_pressed(index: int) -> void:
 	if gotten_hints.has(index):
@@ -135,7 +136,9 @@ func _on_hint_pressed(index: int) -> void:
 			hint_3.disabled = false
 		3:
 			hint_box.set_hint_text(task.flag, index)
-			
+
+
+
 func completed_task() -> void:
 	var hints := hint_container.get_children()
 	for hint in hints:
@@ -145,9 +148,13 @@ func completed_task() -> void:
 	confirm_button.disabled = true
 	task.completed = true
 	SignalBus.task_completed.emit()
-	
+
+
+
 func get_task_data() -> void:
 	pass
+
+
 
 # skal avbryte oppgaven etter spilleren trykker på en knapp
 func remove_task() -> void:
@@ -299,6 +306,8 @@ func cancel_task(reason: CancelReason) -> void:
 	SignalBus.task_completed.emit(
 		TaskData.TaskType.keys()[task.type].to_lower())
 	print("TASK COMPLETED")
+
+
 
 func _on_copy_text_button_pressed() -> void:
 	DisplayServer.clipboard_set(puzzle.text)

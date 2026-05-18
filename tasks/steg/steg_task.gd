@@ -1,5 +1,5 @@
-class_name StegScene 
-extends BaseTask
+class_name StegScene extends BaseTask
+
 var steg_tasks := {
 	"tutorial_task": "res://tasks/steg/steg_tutorial.tres",
 	"level_1.2": "res://tasks/steg/steg1.2.tres"
@@ -11,7 +11,7 @@ func _ready() -> void:
 	#start()
 
 
-func set_data_info(key: String) -> void:
+func set_data_info(key: String, index: int) -> void:
 	if key in steg_tasks.keys():
 		var current_task = steg_tasks[key]
 		task = load(current_task)
