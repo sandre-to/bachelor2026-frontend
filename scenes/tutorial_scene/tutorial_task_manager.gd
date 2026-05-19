@@ -1,3 +1,4 @@
+#håndterer spawning og visning av tutorial oppgaver
 class_name TutorialTasks extends Control
 
 const CRYPTO_TASK: PackedScene = preload(
@@ -13,16 +14,19 @@ const WEB_TASK: PackedScene = preload(
 @onready var task_2: Button = %Task2
 @onready var task_3: Button = %Task3
 
+#aktiv oppgave i tutorialen
 var current_task: BaseTask = null
 
 func _ready() -> void:
 	missions_panel.hide()
 		
+#fjerner nåværende oppgave fra scenen
 func clear_current_task() -> void:
 	if current_task:
 		current_task.queue_free()
 		current_task = null
-		
+
+#viser/skjuler oppgavepanelet
 func _on_task_button_pressed() -> void:
 	if current_task and current_task.visible:
 		fade_out(current_task)
@@ -33,6 +37,7 @@ func _on_task_button_pressed() -> void:
 	else:
 		fade_in(missions_panel)
 
+#enkel fade-animasjon for paneler
 func fade_in(panel: Control) -> void:
 	panel.visible = true
 	panel.modulate.a = 0.0
@@ -47,12 +52,17 @@ func fade_out(panel: Control) -> void:
 
 func _on_task_1_pressed() -> void:
 	spawn_task(CRYPTO_TASK, "tutorial_task", "crypto")
-
+	#hint skjules i tutorial oppgaver
+	var task := current_task
+	if task:
+		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
+		hint_container.hide()
 
 func _on_task_2_pressed() -> void:
 	spawn_task(STEGANO_TASK, "tutorial_task", "steg")
 	var task := current_task
 	if task:
+		#hint skjules i tutorial oppgaver
 		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
 		hint_container.hide()
 	
@@ -61,10 +71,12 @@ func _on_task_3_pressed() -> void:
 	spawn_task(WEB_TASK, "tutorial_task", "web")
 	var task := current_task
 	if task:
+		#hint skjules i tutorial oppgaver
 		var hint_container = task.get_node("OuterPanel/MarginContainer/InnerPanel/VBoxContainer/HintContainer")
 		hint_container.hide()
 		
 		
+#starter valgt tutorial-oppgave
 func spawn_task(task_scene: PackedScene, key: String, task_type: String) -> void:
 	if task_scene == null:
 		return

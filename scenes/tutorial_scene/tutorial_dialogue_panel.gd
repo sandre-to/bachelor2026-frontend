@@ -1,3 +1,4 @@
+#styrer dialogflyt og progresjon i tutorialen
 class_name TutorialDialoguePanel extends Panel
 
 @export var dialog_move_speed: float = 0.25
@@ -12,8 +13,6 @@ class_name TutorialDialoguePanel extends Panel
 @onready var file_explorer := %FileExplorer
 @onready var tutorial_task_manager: TutorialTasks = %TutorialTaskManager
 @onready var play_button: Button = %PlayButton
-#@onready var steg_tool_button: = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton"
-#@onready var web_tool_button: = $"../TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton"
 @onready var tool_button: Button = $"../DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/TutorialToolSelector/ToolButtonPanel/HBoxContainer/ToolButton"
 @onready var steg_tool_button: Button = $"../DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/TutorialToolSelector/ToolButtonPanel/HBoxContainer/StegToolButton"
 @onready var web_tool_button: Button = $"../DesktopPanel/OuterPanel/MarginContainer/DesktopPanel/TaskBar/MarginContainer/HBoxContainer/ToolsButton/TutorialToolSelector/ToolButtonPanel/HBoxContainer/WebToolButton"
@@ -29,7 +28,7 @@ var next_button_start_pos: Vector2
 
 @onready var browser: Browser = %Browser
 @onready var browser_button: Button = %BrowserButton
-
+#status for dialog og ventende spillerhandlinger
 var dialogue_data := {}
 var dialogue := []
 var current_index := 0
@@ -38,7 +37,7 @@ var current_dialogue_key := ""
 var is_typing := false
 var active_tween: Tween
 
-# Viktig sjekk for å ikke trigge dialog etter første gang
+#hindrer at samme dialogsteg trigges flere ganger
 var task_pressed := false
 var tool_pressed := false
 var files_pressed := false
@@ -49,7 +48,7 @@ var waiting_for_action: String = ""
 var text_base_scale: Vector2
 var next_base_scale: Vector2
 var base_font_size: int
-
+#laster og starter første dialog
 func _ready() -> void:
 	steg_tool_button.hide()
 	web_tool_button.hide()
@@ -66,6 +65,7 @@ func _ready() -> void:
 	load_dialogue()
 	start_dialogue("intro")
 	
+#starter dialogsekvens basert på nøkkel fra JSON
 func start_dialogue(key: String) -> void:
 	if key in dialogue_data:
 		current_dialogue_key = key
@@ -118,6 +118,7 @@ func start_dialogue(key: String) -> void:
 	else:
 		push_error("Dialogue key not found: " + key)
 
+#leser dialogtekst fra JSON-fil
 func load_dialogue() -> void:
 	var file := FileAccess.open(
 		"res://scenes/tutorial_scene/tutorial_messages.json", 
@@ -125,6 +126,7 @@ func load_dialogue() -> void:
 		
 	dialogue_data = JSON.parse_string(file.get_as_text())
 
+#viser neste linje i aktiv dialog
 func show_next_line():
 	if current_index < dialogue.size():
 		tutorial_text.text = dialogue[current_index]
@@ -144,7 +146,7 @@ func _on_next_button_pressed() -> void:
 		return
 
 	end_of_dialogue()
-
+#skriver teksten gradvis på skjermen
 func type_text() -> void:
 	tutorial_text.visible_characters = 0
 	
@@ -197,7 +199,7 @@ func end_of_dialogue() -> void:
 	elif current_dialogue_key == "finished":
 		play_button.show()
 		
-
+#fortsetter tutorialen når riktig knapp trykkes
 func _on_files_button_pressed() -> void:
 	if waiting_for_action != "files_button":
 		return
@@ -211,6 +213,7 @@ func _on_files_button_pressed() -> void:
 	active_tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	active_tween.tween_property(self, "position", position + Vector2(500, 0), dialog_move_speed)
 
+#fortsetter tutorialen når riktig knapp trykkes
 func _on_tools_button_pressed() -> void:
 	tool_button_panel.show()
 	if tool_pressed: return
@@ -234,6 +237,7 @@ func _on_task_1_pressed() -> void:
 	tools_button.disabled = false
 	files_button.disabled = false
 	
+#fortsetter tutorialen når riktig knapp trykkes
 func _on_task_2_pressed() -> void:
 	if waiting_for_action == "task_2":
 		waiting_for_action = ""
@@ -264,6 +268,7 @@ func _on_task_3_pressed() -> void:
 		animation.stop()
 		start_dialogue("web_task")
 		
+#håndterer fullført oppgave og går til neste steg
 func _on_task_completed(task_type: String) -> void:
 	#universelt
 	waiting_for_action = ""
@@ -313,20 +318,6 @@ func _on_browser_button_pressed() -> void:
 func _on_clear_button_pressed() -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-
-	#tween.parallel().tween_property(
-		#self,
-		#"position",
-		#Vector2(716, 318),
-		#dialog_move_speed
-	#)
-
-	#tween.parallel().tween_property(
-		#self,
-		#"size",
-		#Vector2(488, 444),
-		#dialog_move_speed
-	#)
 	if clear_pressed: return
 	
 	clear_pressed = true
@@ -334,7 +325,8 @@ func _on_clear_button_pressed() -> void:
 	animation.stop()
 	
 	start_dialogue("tasks")
-
+	
+#tilpasser dialogboksen når nettleseren vises
 func shrink_dialogue_ui() -> void:
 	# mindre tekst
 	tutorial_text.add_theme_font_size_override("normal_font_size", int(base_font_size * 0.65))
@@ -368,6 +360,8 @@ func shrink_dialogue_ui() -> void:
 		Vector2(400, 8),
 		dialog_move_speed
 	)
+	
+#tilbakestiller dialogboksen til standard plassering
 func reset_dialogue_position() -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)

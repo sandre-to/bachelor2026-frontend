@@ -1,3 +1,4 @@
+#håndterer valg og visning av tutorial-verktøy
 class_name TutorialToolSelector extends Control
 
 # --- Tool interface ---
@@ -12,7 +13,7 @@ func _on_crypto_pressed() -> void:
 	hide_selected_tools()
 	caesar_cipher.visible = not was_visible
 
-
+#skjuler aktive verktøy før nytt åpnes
 func hide_selected_tools() -> void:
 	for panel in tool_panel.get_children():
 		if panel.visible:
