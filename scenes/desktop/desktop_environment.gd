@@ -30,3 +30,6 @@ func _on_home_button_pressed() -> void:
 	browser.hide()
 	for tool in tool_panel.get_children():
 		tool.hide()
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/intro_scene/intro_scene.tscn")

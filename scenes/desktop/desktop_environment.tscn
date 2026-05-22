@@ -226,6 +226,7 @@ expand_icon = true
 
 [node name="ToolSelector" type="Control" parent="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer/ToolsButton" unique_id=1714930008]
 unique_name_in_owner = true
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = 8
@@ -346,6 +347,7 @@ script = ExtResource("11_f6qo7")
 
 [node name="Panel" type="Panel" parent="DekstopLayout/VBoxContainer/TaskBar/TaskManager" unique_id=1286714973]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -618,6 +620,18 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 
+[node name="MainMenuButton" type="Button" parent="." unique_id=900393171]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -171.0
+offset_top = 31.0
+offset_right = -27.0
+offset_bottom = 70.0
+grow_horizontal = 0
+text = "Main Menu"
+
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer/FilesButton" to="." method="_on_files_button_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer/FilesButton" to="DekstopLayout/VBoxContainer/TaskBar" method="_on_files_button_pressed"]
 [connection signal="pressed" from="DekstopLayout/VBoxContainer/TaskBar/HBoxContainer/ToolsButton" to="DekstopLayout/VBoxContainer/TaskBar" method="_on_tools_button_pressed"]
@@ -636,3 +650,4 @@ color = Color(0.3779188, 0.37791887, 0.37791884, 1)
 [connection signal="pressed" from="DialoguePanel/NextButton" to="DialoguePanel" method="_on_next_button_pressed"]
 [connection signal="text_submitted" from="DialoguePanel/BossFlag" to="." method="_on_boss_flag_text_submitted"]
 [connection signal="text_submitted" from="DialoguePanel/BossFlag" to="DialoguePanel" method="_on_boss_flag_text_submitted"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
